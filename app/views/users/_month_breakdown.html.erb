@@ -1,0 +1,91 @@
+<% @first_sunday = @start_date - @start_date.wday.day %>
+<% @last_saturday = @end_date + (6 - @end_date.wday).day %>
+<% @entries = current_user.entries.with_date_for_calendar(@start_date, @end_date) %>
+
+<% gross_spending = @entries.select{|e| e.charge_type.counts_towards_spending?}.sum{|e| e.amount} %>
+<% gross_income = @entries.select{|e| not e.charge_type.counts_towards_spending?}.sum{|e| e.amount} %>
+<% net_profit = gross_income - gross_spending %>
+
+<table style="table-layout: fixed;font-size:11px"><col width="110px" /><col width="65px" />
+    <tr>
+      <td style="font-weight:bold;">Gross Income</td>
+      <td style="text-align: right;"><%= gross_income.to_currency %></td>
+    </tr>
+    <tr>
+      <td style="font-weight:bold;">Gross Spending</td>
+      <td style="text-align: right;"><%= gross_spending.to_currency %></td>
+    </tr>
+    <tr>
+      <td style="font-weight:bold;">Net <span class="gain">Profit</span> / <span class="loss">Loss</span></td>
+      <td style="text-align: right;" class="<%= (net_profit < 0) ? 'loss' : '' %><%= (net_profit > 0) ? 'gain' : '' %>"><%= net_profit.to_currency %></td>
+    </tr>
+  </tbody>
+</table>
+
+<table style="width:100%;border-collapse:collapse;table-layout: fixed;"><%#= '<col width="14%"/>'*7 %>
+  <thead>
+    <tr>
+      <% (0..6).each do |iDay| %>
+        <th><%= Date::DAYNAMES[iDay] %></th>
+      <% end %>
+    </tr>
+  </thead>
+  <tbody style="font-size:11px">
+    <tr>
+      <% (0..@last_saturday - @first_sunday).each do |first_day_offset| %>
+        <% iDate = @first_sunday + first_day_offset.day %>
+        <td valign="top" style="border:1px solid #777;padding:0px"
+            class="<%= 'calendar-entry-body-today' if iDate == Date.today %> <%= 'other-month' if iDate.month != @start_date.month %>"
+            <%= 'onclick="goBackOneMonth();"'.html_safe if iDate < @start_date %> <%= 'onclick="goForwardOneMonth();"'.html_safe if iDate > @end_date %>
+            onmouseover="$(this).addClassName('hover');$('calendar_box_<%= first_day_offset %>_new_entry_link').show();" onmouseout="$(this).removeClassName('hover');$('calendar_box_<%= first_day_offset %>_new_entry_link').hide();">
+          <div style="width:100%">
+            <div class="calendar-entry-heading">
+              <%= link_to image_tag('icons/001_46.png', :style => 'border:none', :align => 'absmiddle', :size => '11x11', :title => "New Entry for #{iDate.strftime("%B %e, %Y")}"), new_entry_path(:entry => {:billing_date => iDate}), :style => 'display:none', :id => "calendar_box_#{first_day_offset}_new_entry_link" %>
+              <% if [@start_date, (@end_date + 1.day)].include?(iDate) %>
+                <%= iDate.strftime("%b %e") %>
+              <% else %>
+                <%= iDate.strftime("%e") %>
+              <% end %>
+            </div>
+            <div style="min-height:60px">
+              <% iDateEntries = @entries.select{|e| e.billing_date == iDate and e.charge_type.counts_towards_spending?}.sort{|a,b| a.id <=> b.id} %>
+              <% iDateEntriesTransfers = @entries.select{|e| e.billing_date == iDate and not e.charge_type.counts_towards_spending?}.sort{|a,b| a.id <=> b.id} %>
+              <% iDateEntries.each do |entry| %>
+                <div class="calendar-entry-amount"><%= entry.amount.to_currency %></div>
+                <div class="calendar-entry-name" title="<%=h entry.name %><%= ('&#13;' + h(entry.description)).html_safe unless entry.description.blank? %>">
+                  <%= link_to(image_tag('icons/001_15.png', :style => 'border:none', :align => 'absmiddle', :size => '11x11', :title => 'Not Charged'), mark_charged_entry_path(entry, :authenticity_token => form_authenticity_token), :remote => true, :method => :post, :confirm => "Are you sure you want to mark this entry as charged?\n\n#{entry.name}\n\n#{entry.amount.to_currency + ' ' + entry.charge_type.full_name}\n", :id => "entry_#{entry.id}_mark_charged_link") unless entry.charged? %>
+                  <%= link_to entry.name, entry, :style => "text-decoration:none;color:#{entry.charged? ? '#404040' : '#FFB475'};", :id => "entry_#{entry.id}_name" %>
+                </div>
+                <div style="clear:both"></div>
+              <% end %>
+              <% if iDateEntries.size > 0 %>
+                <% total_spent = iDateEntries.sum{|e| e.amount} %>
+                <div class="calendar-entry-amount<%= (total_spent > 0) ? ' loss' : '' %><%= (total_spent < 0) ? ' gain' : '' %>" style="border-top:1px solid #777; font-weight: bold">
+                  <%= total_spent.to_currency %>
+                </div>
+                <div class="calendar-entry-name">Total Spent</div>
+              <% end %>
+              <br />
+              <% iDateEntriesTransfers.each do |entry| %>
+                <div class="calendar-entry-amount"><%= entry.amount.to_currency %></div>
+                <div class="calendar-entry-name" title="<%=h entry.name %><%= ('&#13;' + h(entry.description)).html_safe unless entry.description.blank? %>">
+                  <%= link_to(image_tag('icons/001_15.png', :style => 'border:none', :align => 'absmiddle', :size => '11x11', :title => 'Not Charged'), mark_charged_entry_path(entry, :authenticity_token => form_authenticity_token), :remote => true, :method => :post, :confirm => "Are you sure you want to mark this entry as charged?\n\n#{entry.name}\n\n#{entry.amount.to_currency + ' ' + entry.charge_type.full_name}\n", :id => "entry_#{entry.id}_mark_charged_link") unless entry.charged? %>
+                  <%= link_to entry.name, entry, :style => "text-decoration:none;color:#{entry.charged? ? '#404040' : '#FFB475'};", :id => "entry_#{entry.id}_name" %>
+                </div>
+                <div style="clear:both"></div>
+              <% end %>
+              <% if iDateEntriesTransfers.size > 0 %>
+                <% total_transfered = iDateEntriesTransfers.sum{|e| e.amount} %>
+                <div class="calendar-entry-amount<%= (total_transfered > 0) ? ' gain' : '' %><%= (total_transfered < 0) ? ' loss' : '' %>" style="border-top:1px solid #777; font-weight: bold">
+                  <%= total_transfered.to_currency %>
+                </div>
+                <div class="calendar-entry-name">Total Earned</div>
+              <% end %>
+            </div>
+          </div>
+        </td>
+        <%= "</tr><tr>".html_safe if first_day_offset % 7 == 6 and first_day_offset != @last_saturday - @first_sunday %>
+      <% end %>
+    </tr>
+  </tbody>
+</table>

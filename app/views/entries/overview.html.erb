@@ -1,0 +1,36 @@
+<% @title = 'Earning and Spending' %>
+<div class="title"><%= @title %></div>
+
+<div class="content" style="text-align:center">
+
+  <%= form_tag earning_spending_graph_entries_path, :remote => true, :method => :post, :id => 'search-form' do %>
+    <%= link_to_function '&laquo;'.html_safe, "goBackOneYear();", :style => 'text-decoration:none', :title => 'Previous Year' %>
+    <%= link_to_function '&lsaquo;'.html_safe, "goBackOneMonth();", :style => 'text-decoration:none', :title => 'Previous Month' %>
+    <%= select_tag :month, options_for_select( Date::MONTHNAMES[1..12].collect{|month| [month,Date::MONTHNAMES.index(month)]}, Date.today.month) %>
+    <%= select_tag :year, options_for_select( (current_user.first_billing_date.year..Date.today.year).to_a, Date.today.year ) %>
+    <%= link_to_function image_tag('icons/001_44.png', :style => 'border:none', :align => 'absmiddle', :size => '15x15'), "goToCurrentMonth();", :title => 'Go To Current Month' %>
+    <%= link_to_function '&rsaquo;'.html_safe, "goForwardOneMonth();", :style => 'text-decoration:none', :title => 'Next Month' %>
+    <%= link_to_function '&raquo;'.html_safe, "goForwardOneYear();", :style => 'text-decoration:none', :title => 'Next Year' %>
+  <% end %>
+  <br /><br />
+  <div id="earning_spending"></div>
+  <br /><br />
+  <%= draw_chart('highcharts', 'column', {'Gross Spending' => @gross_spending, 'Gross Income' => @gross_income, 'Net Profit' => @net_profit}, "year_chart", {:title => "Full Overview", :width => '100%', :height => 450}, (current_user.first_billing_date.year..Date.today.year).to_a) %>
+</div>
+
+<%= javascript_tag(remote_function(:with => "$('search-form').serialize()", :url => earning_spending_graph_entries_path, :method => :post)) %>
+
+<% content_for :script do %>
+  <%= javascript_tag do %>
+    Event.observe(window, 'load', function(){
+      new Form.Observer('search-form', 0.5, function(form, value) {
+        new Ajax.Request('<%= earning_spending_graph_entries_path %>', {
+          asynchronous:true,
+          evalScripts:true,
+          method:'post',
+          parameters:form.serialize()
+        });
+      });
+    });
+  <% end %>
+<% end %>

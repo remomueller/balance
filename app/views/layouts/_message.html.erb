@@ -1,0 +1,12 @@
+<% if notice %>
+  <div id="notice" class="notice"><%= notice.html_safe %></div>
+  <%= javascript_tag 'setTimeout ( "$(\'notice\').blindUp({ duration: 0.5 })", 2000 )' %>
+<% end %>
+<% if alert %><div class="error"><%= alert.html_safe %></div><% end %>
+<% if flash[:error] %><div class="error">Error: <%= flash[:error].html_safe %></div><% end %>
+<% if flash[:warning] %><div class="warning">Warning: <%= flash[:warning].html_safe %></div><% end %>
+
+<% flash[:warning] = nil %>
+<% flash[:error] = nil %>
+<% notice = nil %>
+<% alert = nil %>

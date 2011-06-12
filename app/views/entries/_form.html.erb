@@ -1,0 +1,19 @@
+<table class="form">
+  <tr><td><label for="entry_name">Name</label></td><td><%= text_field_with_auto_complete :entry, :name %></td><td class="field-status" id="name_status"></td></tr>
+  <tr><td><label for="entry_description">Description</label></td><td><%= text_area :entry, :description, :cols => 50, :rows => 5 %></td><td class="field-status" id="description_status"></td></tr>
+  <tr><td><label for="entry_billing_date">Billing Date</label></td><td><%= calendar_date_select :entry, :billing_date %></td><td class="field-status" id="billing_date_status"></td></tr>
+  <tr><td><label for="entry_charged">Charged</label></td><td><%= check_box :entry, :charged %></td></tr>
+  <tr><td><%= label :entry, :charge_type_id %></td><td><%= select :entry, :charge_type_id, [["----", nil]]  + current_user.charge_types.find(:all, :order => 'name').collect{|item| [item.full_name, item.id]}, {}, {:style => "width:250px;"} %></td><td class="field-status" id="charge_type_id_status"></td></tr>
+  <tr><td><label for="entry_decimal_amount">Amount</label></td><td><%= text_field :entry, :decimal_amount %></td><td class="field-status" id="amount_status"></td></tr>
+</table>
+
+<%= validation_errors(@entry) %>
+
+<% content_for :script do %>
+  <%= javascript_tag do %>
+    Event.observe(window, 'load', function(){
+      new Form.Element.Observer('entry_name', 0.25, function(element, value) {checkLength('entry_name', 'name_status', 1);});
+      new Form.Element.Observer('entry_decimal_amount', 0.25, function(element, value) {checkRegex('entry_decimal_amount', 'amount_status', /^([-])?([0-9]*)([.]+[0-9]{0,2})?$/ );});
+    });
+  <% end %>
+<% end %>

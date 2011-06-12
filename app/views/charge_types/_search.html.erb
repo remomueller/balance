@@ -1,0 +1,9 @@
+<table class="search"><tr><th>Charge Type Name</th><th>Account</th></tr>
+<% @charge_types.each do |charge_type| %>
+	<tr>
+	  <td><%= link_to charge_type.name, charge_type %></td>
+		<td><%= charge_type.account.name %></td>
+	</tr>
+<% end %>
+</table>
+<%= will_paginate @charge_types, :class => 'pagination ajax' %>

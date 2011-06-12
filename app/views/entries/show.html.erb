@@ -1,0 +1,18 @@
+<% @title = "Entry #{@entry.name}" %>
+
+<div class="title">
+  <%= @title %> 
+	<%= link_to 'edit', edit_entry_path(@entry) %>
+	<%= link_to 'delete', entry_path(@entry), :method => :delete, :confirm => 'Are you sure you want to delete this entry?' %>
+	<%= link_to 'view all', entries_path %>
+</div>
+
+<div class="content">
+  <table class="show">
+    <tr><td>Description</td><td><%= simple_format @entry.description %></td></tr>
+    <tr><td>Billing Date</td><td><%= @entry.billing_date.to_s(:long_date) %></td></tr>
+    <tr><td>Amount</td><td><%= @entry.amount.to_currency %></td></tr>
+    <tr><td>Charged</td><td><%= check_box_tag 'entry', 'charged', @entry.charged?, :disabled => true %></td></tr>
+    <tr><td>Charge Type</td><td><%= @entry.charge_type.full_name %></td></tr>
+  </table>
+</div>

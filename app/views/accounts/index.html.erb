@@ -1,0 +1,29 @@
+<% @title = 'Accounts' %>
+<div class="title">
+  <form id="search-form">
+    <%= @title %>
+    <%= link_to 'new', new_account_path %>
+    <%= link_to 'find', '#' %> <%= text_field_tag 'search', '', :size => 30 %>
+  </form>
+</div>
+
+<div class="content">
+  <div class="search" id="account_search"></div>
+</div>
+
+<%= javascript_tag(remote_function(:with => "$('search-form').serialize()", :url => search_accounts_path, :method => :post)) %>
+
+<% content_for :script do %>
+  <%= javascript_tag do %>
+    Event.observe(window, 'load', function(){
+      new Form.Observer('search-form', 1.0, function(form, value) {
+        new Ajax.Request('<%= search_accounts_path %>', {
+          asynchronous:true,
+          evalScripts:true,
+          method:'post',
+          parameters:form.serialize() + '&authenticity_token=' + encodeURIComponent('<%= form_authenticity_token %>')
+        });
+      });
+    });
+  <% end %>
+<% end %>

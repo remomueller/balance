@@ -1,0 +1,30 @@
+<% @title = 'Entries' %>
+<div class="title">
+  <form id="search-form">
+    <%= @title %>
+    <%= link_to 'new', new_entry_path %>
+    <%= link_to 'find', '#' %> <%= text_field_tag 'search', '', :size => 30 %>
+    <%= link_to 'charged', '#' %> <%= check_box_tag 'charged', '1', true %>
+  </form>
+</div>
+
+<div class="content">
+  <div class="search" id="entry_search"></div>
+</div>
+
+<%= javascript_tag(remote_function(:with => "$('search-form').serialize()", :url => search_entries_path, :method => :post)) %>
+
+<% content_for :script do %>
+  <%= javascript_tag do %>
+    Event.observe(window, 'load', function(){
+      new Form.Observer('search-form', 1.0, function(form, value) {
+        new Ajax.Request('<%= search_entries_path %>', {
+          asynchronous:true,
+          evalScripts:true,
+          method:'post',
+          parameters:form.serialize() + '&authenticity_token=' + encodeURIComponent('<%= form_authenticity_token %>')
+        });
+      });
+    });
+  <% end %>
+<% end %>

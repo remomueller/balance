@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title><%= ['Balance', @title].join(' - ') unless @title.blank? %></title>
+		<%= stylesheet_link_tag 'application', :media => 'screen, projection' %>
+    <%= csrf_meta_tag %>
+    
+    <%= javascript_include_tag 'jquery-1.4.2.min' %>
+		<%= javascript_include_tag :defaults %>
+		<%= javascript_include_tag 'highcharts' %>
+		<%= (calendar_date_select_includes nil).html_safe %> <!--"red" or "blue", or "silver", or nil for the default!-->
+		<%= yield :css_includes %>
+		<%= yield :js_includes %>
+		<%= yield :script %>
+	</head>
+
+	<body>
+    <%#= javascript_tag "var root_url='#{SITE_URL + '/'}';" %>
+    <%= javascript_tag "var auth_token='#{form_authenticity_token}';" %>
+    <div id="header">
+      <div style="position:relative">
+        <span style="position:absolute;top:18px;left:50px;font-size:0.5em;font-variant:normal">version <%= Balance::VERSION::STRING %></span>
+      </div>
+      Balance
+    </div>
+
+    <div id="message">
+      <%= render :partial => 'layouts/message' %>
+    </div>
+
+    <div id="menu">
+      <% if user_signed_in? -%>
+        <span style="float:right"><%= link_to 'Logout', destroy_user_session_path %></span>
+        <%= link_to 'Home', dashboard_path %>
+        <%= link_to 'Overview', overview_entries_path %>
+        <%= link_to 'Accounts', accounts_path %>
+        <%= link_to 'Charge Types', charge_types_path %>
+        <%= link_to 'Entries', entries_path %>
+    	<% else %>
+    		<span style="float:right"><%= link_to 'Login', new_user_session_path %></span>
+    		<span style="float:right"><%= link_to 'Sign Up', new_user_registration_path %></span>
+    	&nbsp;		
+    	<% end %>
+    </div>
+
+    <div id="content">
+      <%= yield %>
+    </div>
+  </body>
+</html>

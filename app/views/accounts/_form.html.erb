@@ -1,0 +1,13 @@
+<table class="form">
+  <tr><td><label for="account_name">Name</label></td><td><%= text_field :account, :name  %></td><td class="field-status" id="name_status"></td></tr>
+</table>
+
+<%= validation_errors(@account) %>
+
+<% content_for :script do %>
+  <%= javascript_tag do %>
+    Event.observe(window, 'load', function(){
+      new Form.Element.Observer('account_name', 0.25, function(element, value) {checkLength('account_name', 'name_status', 1);});
+    });
+  <% end %>
+<% end %>

@@ -1,0 +1,25 @@
+<% @defaults = {:width => 320, :height => 240, :title_x => '', :title => '', :min => 0, :max => 11} %>
+<% @defaults.merge!(@chart_params) %>
+<% @defaults.each do |k, v| %>
+  <% @defaults[k] = array_or_string_for_javascript(v) if v.kind_of?(String) %>
+<% end %>
+
+<% @values.each do |k, v| %>
+  <% @values[k] = array_or_string_for_javascript(v) if v.kind_of?(Array) %>
+<% end %>
+
+<% @new_values = {} %>
+<% @values.each do |k, v| %>
+  <% @new_values[array_or_string_for_javascript(k)] = v %>
+<% end %>
+
+<% @values = @new_values %>
+
+
+<% case @chart_type when 'column' %>
+  <%= javascript_tag "drawChart('#{@chart_element_id}', #{options_for_javascript(@values)}, #{options_for_javascript(@defaults)});" %>
+<% when 'pie' %>
+  <%= javascript_tag "drawPieChart('#{@chart_element_id}', #{options_for_javascript(@values)}, #{options_for_javascript(@defaults)});" %>
+<% end %>
+
+<div><div id="<%= @chart_element_id %>"></div></div>

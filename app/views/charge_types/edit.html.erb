@@ -1,0 +1,14 @@
+<% @title = "Edit Charge Type: #{@charge_type.name_was}" %>
+<div class="title">
+  <%= @title %>
+  <%= link_to 'view all', charge_types_path %>
+</div>
+
+<div class="content">
+  <div class="form">
+    <%= form_for @charge_type do |f| %>
+      <%= render :partial => 'form' %>
+      <div class="submit"><%= f.submit 'Update', :disable_with => 'Updating...' %> or <%= link_to 'cancel', @charge_type %></div>
+    <% end %>
+  </div>
+</div>

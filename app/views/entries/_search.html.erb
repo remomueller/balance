@@ -1,0 +1,21 @@
+<table class="search">
+  <tr>
+    <th>Entry Name</th>
+    <th>Billing Date</th>
+    <th>Amount</th>
+    <th>Charged</th>
+    <th>Charge Type</th>
+    <th>Account</th>
+  </tr>
+<% @entries.each do |entry| %>
+	<tr>
+		<td><%= link_to entry.name, entry, :title => entry.description %></td>
+    <td><%= entry.billing_date.to_s(:long_date)%></td>
+    <td><%= entry.amount.to_currency %></td>
+    <td><%= check_box_tag 'entry', 'charged', entry.charged?, :disabled => true %></td>
+    <td><%= entry.charge_type.name %></td>
+    <td><%= entry.charge_type.account.name %></td>
+	</tr>
+<% end %>
+</table>
+<%= will_paginate @entries, :class => 'pagination ajax' %>

@@ -1,0 +1,15 @@
+<% @title =  "Edit Account: #{@account.name_was}" %>
+
+<div class="title">
+  <%= @title %>
+  <%= link_to 'view all', accounts_path %>
+</div>
+
+<div class="content">
+  <div class="form">
+  <%= form_for @account do |f| %>
+    <%= render :partial => 'form' %>
+    <div class="submit"><%= f.submit 'Update', :disable_with => 'Updating...' %> or <%= link_to 'cancel', @account %></div>
+  <% end %>
+  </div>
+</div>
