@@ -15,13 +15,14 @@
 	</head>
 
 	<body>
-    <%#= javascript_tag "var root_url='#{SITE_URL + '/'}';" %>
+    <%= javascript_tag "var root_url='#{SITE_URL + '/'}';" %>
     <%= javascript_tag "var auth_token='#{form_authenticity_token}';" %>
     <div id="header">
-      <div style="position:relative">
-        <span style="position:absolute;top:18px;left:50px;font-size:0.5em;font-variant:normal">version <%= Balance::VERSION::STRING %></span>
+      <div id="version" style="position:relative;display:none">
+        <span style="position:absolute;top:20px;left:82px;font-size:0.5em;font-variant:normal;color:#777;line-height:0em">version <%= Balance::VERSION::STRING %></span>
       </div>
-      Balance
+      <%= image_tag('balance.png', :alt => '', :style => 'vertical-align:sub') %>
+      <%= link_to DEFAULT_APP_NAME, root_path, :style => 'text-decoration:none;color:#404040;', :onmouseover => "$('version').show();", :onmouseout => "$('version').hide();" %>
     </div>
 
     <div id="message">
