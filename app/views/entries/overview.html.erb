@@ -18,19 +18,23 @@
   <%= draw_chart('highcharts', 'column', {'Gross Spending' => @gross_spending, 'Gross Income' => @gross_income, 'Net Profit' => @net_profit}, "year_chart", {:title => "Full Overview", :width => '100%', :height => 450}, (current_user.first_billing_date.year..Date.today.year).to_a) %>
 </div>
 
-<%= javascript_tag(remote_function(:with => "$('search-form').serialize()", :url => earning_spending_graph_entries_path, :method => :post)) %>
+<%= javascript_tag do %>
+  $.post($("#search-form").attr("action"), $("#search-form").serialize(), null, "script");
+<% end %>
+
+<%#= javascript_tag(remote_function(:with => "$('search-form').serialize()", :url => earning_spending_graph_entries_path, :method => :post)) %>
 
 <% content_for :script do %>
   <%= javascript_tag do %>
-    Event.observe(window, 'load', function(){
-      new Form.Observer('search-form', 0.5, function(form, value) {
-        new Ajax.Request('<%= earning_spending_graph_entries_path %>', {
-          asynchronous:true,
-          evalScripts:true,
-          method:'post',
-          parameters:form.serialize()
-        });
-      });
-    });
+//    Event.observe(window, 'load', function(){
+//      new Form.Observer('search-form', 0.5, function(form, value) {
+//        new Ajax.Request('<%= earning_spending_graph_entries_path %>', {
+//          asynchronous:true,
+//          evalScripts:true,
+//          method:'post',
+//          parameters:form.serialize()
+//        });
+//      });
+//    });
   <% end %>
 <% end %>
