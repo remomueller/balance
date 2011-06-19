@@ -1,0 +1,396 @@
+/* Colors 
+ * 
+ * Main Color       Cantaloupe        #FFCC66
+ *                  Salmon            #FF6666
+ *                  Unobtrusive Blue  #799DC8
+ *                  Dark Gray         #404040
+ * Secondary Color  Light Cantaloupe  #FBF8F2
+ *                  Light Blue        #E1EAF9
+ *                  Warning Red       #F4C3C3
+ */
+
+
+
+/* Layout Items*/
+
+body {
+	padding:0;
+	margin:0;
+	color:#404040;
+	background: #FFF url(/assets/backdrop_faded.png) no-repeat scroll center top;
+}
+
+body, p, ol, ul, td {
+  font-family: Helvetica, "Helvetica Neue", Arial, sans-serif;
+  font-size: 11px;
+  line-height: 15px;
+}
+
+a {
+	color:#005596;
+	text-decoration: underline;	
+}
+
+a:hover {
+	color:#404040;
+	text-decoration: underline;	
+}
+
+p {
+  margin:0;
+  padding:0;
+}
+
+input[type="text"], input[type="password"], textarea {
+	border:1px solid #404040;
+	padding:3px;
+}
+
+input[type="text"]:disabled, input[type="password"]:disabled, textarea:disabled {
+	background:#f6f6f6;
+}
+
+select {
+		border:1px solid #404040;
+		padding:3px;
+}
+
+.scroll-box {
+  overflow:auto;
+  height:265px;
+}
+
+#header {
+	margin:0;
+	height:80px;
+	line-height:80px;
+	font-size:2.0em;
+	padding-left:15px;
+  border-bottom: 5px solid #FFCC66; /* #b9d063;*/
+	color:#404040;
+	font-weight: bold;
+  font-variant: small-caps;
+	height: 230px;
+}
+
+#menu {
+	background:#404040;
+	padding:5px;
+	color: #fff;
+	font-variant: small-caps;
+	
+}
+
+#menu a {
+	color: #fff;
+	text-decoration: none;
+	padding:0 5px;
+}
+
+.spacer {
+	color:#404040;
+	font-weight: normal;
+	font-size:11pt;
+}
+
+#message {
+  text-align: center;
+}
+
+#message div {
+  font-variant: small-caps;
+}
+
+#message div.close {
+  background-color: #404040;
+}
+
+div.notice {
+  background-color: #CCFFCC;
+}
+
+div.warning {
+  background-color: #FFFF66;
+}
+
+div.error {
+  background-color: #FF6666;
+}
+
+#content {
+	background-color: white;
+	min-height:400px;
+}
+
+#content > div.title {
+	color: #404040;
+	font-weight: bold;
+	font-size:1.3em;
+	font-variant: small-caps;
+  margin:0px 15px 0 15px;
+  padding-top: 15px;
+	border-bottom: 2px solid #FFCC66;
+}
+
+#content > div.title a {
+  padding:0px 0px 0px 6px;
+  border-left:2px dotted #FFCC66;
+  text-align:center;
+  font-size:12px;
+  text-decoration:none;
+  font-variant: normal;
+}
+
+#content div.sub-title, #content td.sub-title {
+	color: #404040;
+	font-size:1.1em;
+	margin:4px 4px;
+	border-bottom:1px solid #FFCC66;
+	font-variant: small-caps;
+}
+
+#content div.sub-title a {
+  padding:0px 0px 0px 6px;
+  float:none;
+	font-size:10px;
+	font-weight: bold;
+	text-decoration: none;
+	border-left: 1px dotted #FFCC66;
+}
+
+#content div.sub-title a.title-link, #content > div.title a.title-link {
+	float:none;
+	color:#b9d063;
+	font-size:1em;
+	text-decoration: none;
+	font-variant: small-caps;
+	font-weight: normal;
+  border-left: 0px;
+  padding: 0px;
+}
+
+#content div.sub-title a:hover.title-link, #content > div.title a:hover.title-link {
+  color: #404040;
+}
+
+
+#content > .content {
+	padding:10px 20px 20px 20px;
+}
+
+#content > .content .sub-content{
+	padding:10px 20px 20px 20px;
+}
+
+
+#footer {
+	position:fixed;
+	bottom:0;
+	left:0;
+	border-top: 5px solid #404040;
+	background: #FFCC66;
+	padding: 5px;
+	width: 100%;
+	z-index: 900;
+}
+
+/* Tables */
+
+table.form {
+	border-collapse: collapse;
+	margin:5px;
+}
+
+table.show tr td {
+  text-align: left;
+}
+
+table.form tr td:first-child, table.show tr td:first-child {
+	text-align: right;
+	font-weight:bold;
+	vertical-align: top;
+	padding-right:5px;
+}
+
+table.show tr td:first-child {
+	background:#FBF8F2;
+	margin:2px;
+}
+
+table.search {
+	border-collapse: collapse;
+	width:100%;
+}
+
+table.search th {
+	text-align:left;
+	font-weight:bold;
+	font-variant: small-caps;
+}
+
+table.search td {
+	padding:3px 3px 3px 10px;
+}
+
+table.search tr {
+	border-bottom:1px dotted #bbb;
+}
+
+table.search a {
+  text-decoration: none;
+}
+
+div.form {
+	background: #FBF8F2;
+	border: 1px solid #404040;
+	padding:15px;	
+	position:relative;
+}
+
+div.form .submit{
+	margin:10px;
+	border: 1px solid #404040;
+	background:#fff;
+	padding:5px;
+}
+
+div.form .submit a { 
+	color:red;
+	font-size:0.9em;
+}
+
+#center_messages .by-line {
+  color: #ececec;
+}
+
+/* Text Formatting for descriptions */
+span.focus {
+  font-variant: small-caps;
+  font-weight: bold;
+  font-size: 1.2em;
+}
+
+/* Required Field on Registration Page */
+span.req {
+  color: #f00;
+  padding: 0px 4px;
+}
+
+table td.field-status {
+	font-size: 0.9em;
+	color: #F44;
+}
+
+/* For Pagination */
+.pagination {
+  padding: 3px;
+  margin: 3px;
+}
+
+.pagination a {
+  padding: 2px 5px 2px 5px;
+  margin: 1px;
+  text-decoration: none;
+  color: #005596;
+  border: 1px solid #fff;
+  border-bottom: 2px solid #fff;
+}
+
+.pagination a:hover, .pagination a:active {
+  border: 1px solid #005596;
+}
+
+.pagination span.current, .pagination .current {
+  padding: 2px 5px 2px 5px;
+  margin: 1px;
+  color: #005596;
+  border: 1px solid #fff;
+  border-bottom: 2px solid #005596;
+}
+
+.pagination span.disabled {
+  padding: 2px 5px 2px 5px;
+  margin: 2px;
+  color: #ddd;
+}
+
+div.auto_complete {
+  position: absolute;
+  width: 250px;
+  background-color: white;
+  border: 1px solid #888;
+  margin: 0px;
+  padding: 0px;
+}
+
+ul {
+	list-style-type: none;
+	margin: 0px;
+	padding: 0px;
+}
+
+ul li.selected { background-color: #ffb; }
+li {
+	list-style-type: none;
+	display: block;
+	margin: 0;
+	padding: 2px;
+	height: 32px;
+	white-space: nowrap;
+	overflow: hidden;
+}
+
+.calendar-entry-heading{
+  text-align: right;
+  background-color: #E1EAF9;
+}
+
+.calendar-entry-body-today{
+  background-color: #C6CAF5;
+}
+
+.calendar-entry-body-today .calendar-entry-heading{
+  background-color: #9999CC;
+}
+
+/* Other Month */
+.other-month .calendar-entry-heading{
+  background-color: #FBF8F2;
+}
+
+.other-month.calendar-entry-body-today{
+  background-color: #F9E0C8;
+}
+
+.calendar-entry-body-today.other-month .calendar-entry-heading{
+  background-color: #FFB475;
+}
+
+/* Hover */
+.hover{
+  background-color: #CCFFCC;
+}
+
+.hover .calendar-entry-heading{
+  background-color: #669966;
+}
+
+.calendar-entry-amount{
+  width: 65px;
+  text-align: right;
+  float: left;
+  margin-right: 5px;
+}
+
+.calendar-entry-name{
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.loss{
+  color: #FF6666;
+}
+
+.gain{
+  color: #669966;
+}
