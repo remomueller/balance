@@ -1,12 +1,8 @@
 Balance::Application.routes.draw do  
-  devise_for :users
+  devise_for :users, :path_names => { :sign_up => 'register', :sign_in => 'login' }
 
   resources :accounts do
     post :search, :on => :collection
-  end
-  
-  resources :announcements do
-    post :hide, :on => :collection
   end
 
   resources :charge_types do
@@ -23,7 +19,8 @@ Balance::Application.routes.draw do
     end
   end
   
-  root :to => "users#dashboard"
-
+  match "/about" => "sites#about", :as => :about
   match "/dashboard" => "users#dashboard", :as => :dashboard
+  
+  root :to => "users#dashboard"
 end
