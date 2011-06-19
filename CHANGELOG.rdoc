@@ -1,0 +1,16 @@
+* enhancements
+  * Sort Entry Autocomplete by most commonly used
+  * Copy existing entry as template for a new one
+  * Make Purchases with Cash Withdrawals easier
+  * Use jQuery instead of Prototype
+  * Automatically create a "Transfer" ChargeType when creating a new account.
+  * Select Entries to put together as a PDF Report
+  * Easier to make new Entry from menu drop down
+
+== 1.0.0
+
+* Accounts can be created
+* Charge types can be added to accounts
+* Entries can be input from calendar view and associated with charge types
+* Overall graph allows view of yearly and month by month spending
+* Statistics for average expenditures, charged balance, and account balance displayed on dashboard
