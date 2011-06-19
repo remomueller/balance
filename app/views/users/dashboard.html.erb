@@ -19,7 +19,6 @@
           <%= link_to_function '&rsaquo;'.html_safe, "goForwardOneMonth();", :style => 'text-decoration:none', :title => 'Next Month' %>
           <%= link_to_function '&raquo;'.html_safe, "goForwardOneYear();", :style => 'text-decoration:none', :title => 'Next Year' %>
         <% end %>
-        <%= javascript_tag(remote_function(:with => "$('search-form').serialize()", :url => dashboard_path, :method => :get, :complete => 'hideLoading()')) %>
         <div id="spending"></div>
       </div>
       </td>
@@ -87,19 +86,24 @@
 
   
 </div>
-                                 
+
+<%= javascript_tag do %>
+//  alert('hi');
+  $.get($("#search-form").attr("action"), $("#search-form").serialize(), null, "script");
+<% end %>
+     
 <% content_for :script do %>
   <%= javascript_tag do %>
-    Event.observe(window, 'load', function(){
-      new Form.Observer('search-form', 0.5, function(form, value) {
-        new Ajax.Request('<%= dashboard_path %>', {
-          asynchronous:true,
-          evalScripts:true,
-          method:'get',
-          onComplete:function(request){hideLoading()},
-          parameters:form.serialize()
-        });
-      });
-    });
+//    Event.observe(window, 'load', function(){
+//      new Form.Observer('search-form', 0.5, function(form, value) {
+//        new Ajax.Request('<%= dashboard_path %>', {
+//          asynchronous:true,
+//          evalScripts:true,
+//          method:'get',
+//          onComplete:function(request){hideLoading()},
+//          parameters:form.serialize()
+//        });
+//      });
+//    });
   <% end %>
 <% end %>
