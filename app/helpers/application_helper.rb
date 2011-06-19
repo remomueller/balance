@@ -1,17 +1,5 @@
 module ApplicationHelper
 
-  def include_css(css)
-    content_for :css_includes do
-      stylesheet_link_tag css
-    end
-  end
-  
-  def include_js(js)
-    content_for :js_includes do
-      javascript_include_tag js
-    end
-  end
-
   def cancel
     link_to 'cancel', (request.referer || dashboard_path)
   end

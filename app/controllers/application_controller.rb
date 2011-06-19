@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
   
+  # TODO, remove these from here.
   def month_start_date(year, month)
     Date.parse("#{year}-#{month}-01")
   end
