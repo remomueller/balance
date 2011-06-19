@@ -1,11 +1,17 @@
-* enhancements
+* Enhancements
   * Sort Entry Autocomplete by most commonly used
   * Copy existing entry as template for a new one
   * Make Purchases with Cash Withdrawals easier
-  * Use jQuery instead of Prototype
   * Automatically create a "Transfer" ChargeType when creating a new account.
   * Select Entries to put together as a PDF Report
   * Easier to make new Entry from menu drop down
+
+== 1.1.0
+
+* Enhancements
+  * Upgrade to Rails 3.1.0.rc4
+  * Replace Prototype with jQuery
+  * Replace WillPaginate with Kaminari
 
 == 1.0.0
 
