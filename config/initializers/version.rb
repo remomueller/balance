@@ -1,7 +1,7 @@
 module Balance
   module VERSION #:nodoc:
     MAJOR = 1
-    MINOR = 0
+    MINOR = 1
     TINY = 0
     BUILD = nil # nil, "pre", "beta1", "beta2", "rc", "rc2"
 
