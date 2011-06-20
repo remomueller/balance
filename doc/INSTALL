@@ -9,8 +9,8 @@
 # used for the program.
 
 # x) Install node.js and CoffeeScript
+
   # Download and compile node.js
-  #   From: http://geekiriki.blogspot.com/2010/07/getting-started-with-nodejs-and.html
   
   cd <src>
   wget http://nodejs.org/dist/node-v0.4.8.tar.gz
