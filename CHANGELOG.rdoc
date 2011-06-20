@@ -1,4 +1,5 @@
 * Enhancements
+  * Replace CalendarDateSelect with jQuery DatePicker
   * Sort Entry Autocomplete by most commonly used
   * Copy existing entry as template for a new one
   * Make Purchases with Cash Withdrawals easier
