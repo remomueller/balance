@@ -12,19 +12,21 @@
   <div class="search" id="entry_search"></div>
 </div>
 
-<%= javascript_tag(remote_function(:with => "$('search-form').serialize()", :url => search_entries_path, :method => :post)) %>
+<%= javascript_tag do %>
+  $.post($("#search-form").attr("action"), $("#search-form").serialize(), null, "script");
+<% end %>
 
 <% content_for :script do %>
   <%= javascript_tag do %>
-    Event.observe(window, 'load', function(){
-      new Form.Observer('search-form', 1.0, function(form, value) {
-        new Ajax.Request('<%= search_entries_path %>', {
-          asynchronous:true,
-          evalScripts:true,
-          method:'post',
-          parameters:form.serialize() + '&authenticity_token=' + encodeURIComponent('<%= form_authenticity_token %>')
-        });
-      });
-    });
+//    Event.observe(window, 'load', function(){
+//      new Form.Observer('search-form', 1.0, function(form, value) {
+//        new Ajax.Request('<%= search_entries_path %>', {
+//          asynchronous:true,
+//          evalScripts:true,
+//          method:'post',
+//          parameters:form.serialize() + '&authenticity_token=' + encodeURIComponent('<%= form_authenticity_token %>')
+//        });
+//      });
+//    });
   <% end %>
 <% end %>

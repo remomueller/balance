@@ -64,6 +64,8 @@ class EntriesController < ApplicationController
   end
 
   def create
+    params[:entry][:billing_date] = Date.strptime(params[:entry][:billing_date], "%m/%d/%Y") if params[:entry] and not params[:entry][:billing_date].blank?
+    
     @entry = current_user.entries.new(params[:entry])
     if @entry.save
       flash[:notice] = 'Entry was successfully created.'
@@ -74,6 +76,8 @@ class EntriesController < ApplicationController
   end
 
   def update
+    params[:entry][:billing_date] = Date.strptime(params[:entry][:billing_date], "%m/%d/%Y") if params[:entry] and not params[:entry][:billing_date].blank?
+    
     @entry = current_user.entries.find_by_id(params[:id])
     if @entry.update_attributes(params[:entry])
       flash[:notice] = 'Entry was successfully updated.'
