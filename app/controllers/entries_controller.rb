@@ -98,9 +98,6 @@ class EntriesController < ApplicationController
   def mark_charged
     @entry = current_user.entries.find_by_id(params[:id])
     @entry.update_attribute :charged, true if @entry
-    render :update do |page|
-      page << "$('entry_#{@entry.id}_name').style.color='#404040'; $('entry_#{@entry.id}_mark_charged_link').remove();" if @entry
-    end
   end
 
   def destroy
