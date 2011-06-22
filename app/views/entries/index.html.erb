@@ -1,26 +1,26 @@
 <% @title = 'Entries' %>
 <div class="title">
-  <form id="search-form">
+  <%= form_tag entries_path, :method => :get, :remote => true, :id => 'search-form' do %>
     <%= @title %>
     <%= link_to 'new', new_entry_path %>
     <%= link_to 'find', '#' %> <%= text_field_tag 'search', '', :size => 30 %>
     <%= link_to 'charged', '#' %> <%= check_box_tag 'charged', '1', true %>
-  </form>
+  <% end %>
 </div>
 
 <div class="content">
-  <div class="search" id="entry_search"></div>
+  <div class="search" id="entries"></div>
 </div>
 
 <%= javascript_tag do %>
-  $.post($("#search-form").attr("action"), $("#search-form").serialize(), null, "script");
+  $.get($("#search-form").attr("action"), $("#search-form").serialize(), null, "script");
 <% end %>
 
 <% content_for :script do %>
   <%= javascript_tag do %>
 //    Event.observe(window, 'load', function(){
 //      new Form.Observer('search-form', 1.0, function(form, value) {
-//        new Ajax.Request('<%= search_entries_path %>', {
+//        new Ajax.Request('<%#= search_entries_path %>', {
 //          asynchronous:true,
 //          evalScripts:true,
 //          method:'post',

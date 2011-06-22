@@ -12,7 +12,6 @@ Balance::Application.routes.draw do
   resources :entries do
     post :mark_charged, :on => :member
     collection do
-      post :search
       get :overview
       post :earning_spending_graph
       post :auto_complete_for_entry_name
