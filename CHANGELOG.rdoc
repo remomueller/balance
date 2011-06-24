@@ -6,6 +6,7 @@
   * Automatically create a "Transfer" ChargeType when creating a new account.
   * Select Entries to put together as a PDF Report
   * Easier to make new Entry from menu drop down
+  * Add Recurring Templates
 
 == 1.1.0
 

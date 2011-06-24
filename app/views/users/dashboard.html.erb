@@ -82,27 +82,4 @@
     <div id="month-breakdown">
     </div>
   </div>
-    
-
-  
 </div>
-
-<%= javascript_tag do %>
-  $.get($("#search-form").attr("action"), $("#search-form").serialize(), null, "script");
-<% end %>
-     
-<% content_for :script do %>
-  <%= javascript_tag do %>
-//    Event.observe(window, 'load', function(){
-//      new Form.Observer('search-form', 0.5, function(form, value) {
-//        new Ajax.Request('<%= dashboard_path %>', {
-//          asynchronous:true,
-//          evalScripts:true,
-//          method:'get',
-//          onComplete:function(request){hideLoading()},
-//          parameters:form.serialize()
-//        });
-//      });
-//    });
-  <% end %>
-<% end %>

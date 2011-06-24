@@ -31,9 +31,6 @@ class EntriesController < ApplicationController
         @gross_income << @entries.last.select{|e| not e.charge_type.counts_towards_spending?}.sum{|e| e.amount}
         @net_profit << @gross_income.last + @gross_spending.last
       end
-      render :update do |page|
-        page.replace_html 'earning_spending', :partial => "earning_spending_graph"
-      end
     else
       render :nothing => true
     end
@@ -106,8 +103,7 @@ class EntriesController < ApplicationController
     redirect_to entries_url
   end
   
-  def auto_complete_for_entry_name
-    @entries = current_user.entries.group('name').order('name ASC').where(['LOWER(name) LIKE ?', '%' + params[:entry][:name].downcase.split(' ').join('%') + '%']).limit(8)
-    render :partial => 'entries'
+  def autocomplete
+    @entries = Entry.with_user(current_user.id).group('name').order('COUNT(id) DESC, name ASC').where(['LOWER(name) LIKE ?', '%' + params[:term].downcase.split(' ').join('%') + '%']).limit(8)
   end
 end

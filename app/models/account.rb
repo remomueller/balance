@@ -2,6 +2,8 @@ class Account < ActiveRecord::Base
   validates_presence_of :name
   belongs_to :user
   has_many :charge_types, :order => :name, :conditions => ['charge_types.deleted = ?', false]
+  
+  scope :search, lambda { |*args| {:conditions => [ 'LOWER(accounts.name) LIKE ?', '%' + args.first.downcase.split(' ').join('%') + '%' ] } }
 
   def destroy(real = false)
     unless real

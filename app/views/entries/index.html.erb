@@ -11,22 +11,3 @@
 <div class="content">
   <div class="search" id="entries"></div>
 </div>
-
-<%= javascript_tag do %>
-  $.get($("#search-form").attr("action"), $("#search-form").serialize(), null, "script");
-<% end %>
-
-<% content_for :script do %>
-  <%= javascript_tag do %>
-//    Event.observe(window, 'load', function(){
-//      new Form.Observer('search-form', 1.0, function(form, value) {
-//        new Ajax.Request('<%#= search_entries_path %>', {
-//          asynchronous:true,
-//          evalScripts:true,
-//          method:'post',
-//          parameters:form.serialize() + '&authenticity_token=' + encodeURIComponent('<%= form_authenticity_token %>')
-//        });
-//      });
-//    });
-  <% end %>
-<% end %>

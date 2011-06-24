@@ -1,15 +1,23 @@
 class ChargeTypesController < ApplicationController
   before_filter :authenticate_user!
   
-  def search
-    if params[:search]
-      @charge_types = current_user.charge_types.paginate(:per_page => 20, :page => params[:page],
-        :conditions => [ 'LOWER(charge_types.name) LIKE ?', '%' + params['search'].downcase.split(' ').join('%') + '%' ])
-      render :update do |page|
-        page.replace_html 'charge_type_search', :partial => 'search'
-      end
-    end
+  def index
+    # current_user.update_attribute :charge_types_per_page, params[:charge_types_per_page].to_i if params[:charge_types_per_page].to_i >= 10 and params[:charge_types_per_page].to_i <= 200
+    charge_type_scope = current_user.charge_types
+    @search_terms = params[:search].to_s.gsub(/[^0-9a-zA-Z]/, ' ').split(' ')
+    @search_terms.each{|search_term| charge_type_scope = charge_type_scope.search(search_term) }
+    @charge_types = charge_type_scope.page(params[:page]).per(20) # current_user.charge_types_per_page)
   end
+  
+  # def search
+  #   if params[:search]
+  #     @charge_types = current_user.charge_types.paginate(:per_page => 20, :page => params[:page],
+  #       :conditions => [ 'LOWER(charge_types.name) LIKE ?', '%' + params['search'].downcase.split(' ').join('%') + '%' ])
+  #     render :update do |page|
+  #       page.replace_html 'charge_type_search', :partial => 'search'
+  #     end
+  #   end
+  # end
 
   def show
     @charge_type = current_user.charge_types.find(params[:id])

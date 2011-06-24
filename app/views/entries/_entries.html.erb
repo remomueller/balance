@@ -18,14 +18,4 @@
 	</tr>
 <% end %>
 </table>
-
 <center><%= paginate @entries %></center>
-
-<%# TODO: Remove Deprecated %>
-<% if false %>
-<ul>
-<% for entry in @entries do -%>
-  <li><%=h entry.name %></li>
-<% end -%>
-</ul>
-<% end %>

@@ -8,6 +8,7 @@ class Entry < ActiveRecord::Base
   scope :search, lambda { |*args| {:conditions => [ 'LOWER(name) LIKE ?', '%' + args.first.downcase.split(' ').join('%') + '%' ] } }
   scope :with_charged, lambda { |*args| { :conditions => ["entries.charged = ? or 1 = ?", args.first, args.first]} }
   scope :with_date_for_calendar, lambda { |*args| { :conditions => ["DATE(entries.billing_date) >= ? and DATE(entries.billing_date) <= ?", args.first, args[1]]}}
+  scope :with_user, lambda { |*args| { :conditions => ["user_id IN (?)", args.first] } }
   
   def destroy(real = false)
     unless real

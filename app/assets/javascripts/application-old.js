@@ -1,14 +1,15 @@
-$(function(){
-
-  $(".datepicker").datepicker({ showOtherMonths: true, selectOtherMonths: true, changeMonth: true, changeYear: true });  
-  $("#ui-datepicker-div").hide();
-
-  $(".pagination a, .page a, .next a, .prev a").live("click", function() {
-    $.get(this.href, null, null, "script")
-    return false;
-  });
-  
-});
+// TODO Make sure this is being done elsewhere?
+// $(function(){
+// 
+//   $(".datepicker").datepicker({ showOtherMonths: true, selectOtherMonths: true, changeMonth: true, changeYear: true });  
+//   $("#ui-datepicker-div").hide();
+// 
+//   $(".pagination a, .page a, .next a, .prev a").live("click", function() {
+//     $.get(this.href, null, null, "script")
+//     return false;
+//   });
+//   
+// });
 
 // document.observe("dom:loaded", function() {
 //   var container = $(document.body)
@@ -121,52 +122,52 @@ function calculateEndOfMonthSpending(){
   $('left_to_spend_per_day_this_month').update('$ ' + per_day_spending.toFixed(2));
 }
 
-// HIGHCHART CHARTS
-function drawHighChartHistogramChart(element_id, values, params, categories){
-  var my_series = new Array();
-  
-  $H(values).each(function(pair){
-     my_series.push({name: pair.key, data: pair.value.map(function(val){return parseInt(val,10)/100.0})})
-   })
-  
-  min = params['min']/100.0;
-  max = params['max']/100.0;
-      
-  new Highcharts.Chart({
-    chart: {
-      renderTo: element_id,
-      defaultSeriesType: 'column'
-    },
-    credits: {
-      enabled: false
-    },
-    title: {
-      text: params['title']
-    },
-    
-    tooltip: {
-      formatter: function() {
-        return '<b>$ ' + this.y.toFixed(2) + '</b> ' + this.series.name + ' in <b>' + this.x + '</b>';
-      }
-    },
-    
-    xAxis: {
-      categories: categories
-    },
-    
-    yAxis: {
-      title: {
-        text: null
-      },
-      labels: {
-        formatter: function(){
-          return ('$ ' + this.value);
-        }
-      },
-      min: min,
-      max: max
-    },
-    
-    series: my_series,
-  });
-}
+// // HIGHCHART CHARTS
+// function drawHighChartHistogramChart(element_id, values, params, categories){
+//   var my_series = new Array();
+//   
+//   $H(values).each(function(pair){
+//      my_series.push({name: pair.key, data: pair.value.map(function(val){return parseInt(val,10)/100.0})})
+//    })
+//   
+//   min = params['min']/100.0;
+//   max = params['max']/100.0;
+//       
+//   new Highcharts.Chart({
+//     chart: {
+//       renderTo: element_id,
+//       defaultSeriesType: 'column'
+//     },
+//     credits: {
+//       enabled: false
+//     },
+//     title: {
+//       text: params['title']
+//     },
+//     
+//     tooltip: {
+//       formatter: function() {
+//         return '<b>$ ' + this.y.toFixed(2) + '</b> ' + this.series.name + ' in <b>' + this.x + '</b>';
+//       }
+//     },
+//     
+//     xAxis: {
+//       categories: categories
+//     },
+//     
+//     yAxis: {
+//       title: {
+//         text: null
+//       },
+//       labels: {
+//         formatter: function(){
+//           return ('$ ' + this.value);
+//         }
+//       },
+//       min: min,
+//       max: max
+//     },
+//     
+//     series: my_series,
+//   });
+// }
