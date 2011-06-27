@@ -354,15 +354,15 @@ li {
 }
 
 /* Other Month */
-.other-month .calendar-entry-heading{
+.last-month .calendar-entry-heading, .next-month .calendar-entry-heading{
   background-color: #FBF8F2;
 }
 
-.other-month.calendar-entry-body-today{
+.last-month.calendar-entry-body-today, .next-month.calendar-entry-body-today{
   background-color: #F9E0C8;
 }
 
-.calendar-entry-body-today.other-month .calendar-entry-heading{
+.calendar-entry-body-today.last-month .calendar-entry-heading, .calendar-entry-body-today.next-month .calendar-entry-heading{
   background-color: #FFB475;
 }
 

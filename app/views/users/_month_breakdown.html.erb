@@ -35,9 +35,10 @@
       <% (0..@last_saturday - @first_sunday).each do |first_day_offset| %>
         <% iDate = @first_sunday + first_day_offset.day %>
         <td valign="top" style="border:1px solid #777;padding:0px"
-            class="<%= 'calendar-entry-body-today' if iDate == Date.today %> <%= 'other-month' if iDate.month != @start_date.month %>"
-            <%= 'onclick="goBackOneMonth();"'.html_safe if iDate < @start_date %> <%= 'onclick="goForwardOneMonth();"'.html_safe if iDate > @end_date %>
-            onmouseover="$(this).addClassName('hover');$('calendar_box_<%= first_day_offset %>_new_entry_link').show();" onmouseout="$(this).removeClassName('hover');$('calendar_box_<%= first_day_offset %>_new_entry_link').hide();">
+            class="<%= 'calendar-entry-body-today' if iDate == Date.today %>
+                   <%= 'last-month' if iDate < @start_date %>
+                   <%= 'next-month' if iDate > @end_date %>"
+            onmouseover="$(this).addClass('hover');$('#calendar_box_<%= first_day_offset %>_new_entry_link').show();" onmouseout="$(this).removeClass('hover');$('#calendar_box_<%= first_day_offset %>_new_entry_link').hide();">
           <div style="width:100%">
             <div class="calendar-entry-heading">
               <%= link_to image_tag('001_46.png', :style => 'border:none', :align => 'absmiddle', :size => '11x11', :title => "New Entry for #{iDate.strftime("%B %e, %Y")}"), new_entry_path(:entry => {:billing_date => iDate}), :style => 'display:none', :id => "calendar_box_#{first_day_offset}_new_entry_link" %>
