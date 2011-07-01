@@ -57,6 +57,6 @@ function drawHighChartHistogramChart(element_id, values, params, categories){
           radius: 2
         }
       }
-    },
+    }
   });
 }
