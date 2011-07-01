@@ -1,7 +1,10 @@
 require 'test_helper'
 
 class AccountsControllerTest < ActionController::TestCase
+  include Devise::TestHelpers
+  
   setup do
+    login(users(:valid))
     @account = accounts(:one)
   end
 
@@ -40,7 +43,7 @@ class AccountsControllerTest < ActionController::TestCase
   end
 
   test "should destroy account" do
-    assert_difference('Account.count', -1) do
+    assert_difference('Account.current.count', -1) do
       delete :destroy, id: @account.to_param
     end
 

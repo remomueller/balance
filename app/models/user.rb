@@ -7,6 +7,8 @@ class User < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me
 
+  scope :current, :conditions => { :deleted => false }
+  
   has_many :accounts, :order => :name, :conditions => ['accounts.deleted = ?', false]
   has_many :charge_types, :through => :accounts, :order => :name, :conditions => ['charge_types.deleted = ?', false]
   has_many :entries, :order => 'billing_date desc, id desc', :conditions => ['entries.deleted = ?', false]

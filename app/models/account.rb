@@ -3,6 +3,7 @@ class Account < ActiveRecord::Base
   belongs_to :user
   has_many :charge_types, :order => :name, :conditions => ['charge_types.deleted = ?', false]
   
+  scope :current, :conditions => { :deleted => false }
   scope :search, lambda { |*args| {:conditions => [ 'LOWER(accounts.name) LIKE ?', '%' + args.first.downcase.split(' ').join('%') + '%' ] } }
 
   def destroy(real = false)

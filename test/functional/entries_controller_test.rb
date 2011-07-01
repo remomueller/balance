@@ -1,7 +1,10 @@
 require 'test_helper'
 
 class EntriesControllerTest < ActionController::TestCase
+  include Devise::TestHelpers
+  
   setup do
+    login(users(:valid))
     @entry = entries(:one)
   end
 
@@ -18,7 +21,7 @@ class EntriesControllerTest < ActionController::TestCase
 
   test "should create entry" do
     assert_difference('Entry.count') do
-      post :create, entry: @entry.attributes
+      post :create, :entry => {:billing_date => '10/29/2000', :charge_type_id => 1, :name => 'Breakfast to Go', :description => 'Coffee from the local coffee shop.', :amount => '5.42'}
     end
 
     assert_redirected_to entry_path(assigns(:entry))
@@ -35,12 +38,12 @@ class EntriesControllerTest < ActionController::TestCase
   end
 
   test "should update entry" do
-    put :update, id: @entry.to_param, entry: @entry.attributes
+    put :update, id: @entry.to_param, :entry => {:billing_date => '10/28/2000', :charge_type_id => 1, :name => 'Lunch', :description => '$10.58 for Lunch at Restaurant', :amount => '10.58'}
     assert_redirected_to entry_path(assigns(:entry))
   end
 
   test "should destroy entry" do
-    assert_difference('Entry.count', -1) do
+    assert_difference('Entry.current.count', -1) do
       delete :destroy, id: @entry.to_param
     end
 

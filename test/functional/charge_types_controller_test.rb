@@ -1,7 +1,10 @@
 require 'test_helper'
 
 class ChargeTypesControllerTest < ActionController::TestCase
+  include Devise::TestHelpers
+  
   setup do
+    login(users(:valid))
     @charge_type = charge_types(:one)
   end
 
@@ -40,7 +43,7 @@ class ChargeTypesControllerTest < ActionController::TestCase
   end
 
   test "should destroy charge type" do
-    assert_difference('ChargeType.count', -1) do
+    assert_difference('ChargeType.current.count', -1) do
       delete :destroy, id: @charge_type.to_param
     end
 

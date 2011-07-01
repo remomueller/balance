@@ -3,6 +3,7 @@ class ChargeType < ActiveRecord::Base
   belongs_to :account
   has_many :entries, :order => :billing_date, :conditions => ['entries.deleted = ?', false]
 
+  scope :current, :conditions => { :deleted => false }
   scope :search, lambda { |*args| {:conditions => [ 'LOWER(charge_types.name) LIKE ?', '%' + args.first.downcase.split(' ').join('%') + '%' ] } }
   
   def destroy(real = false)

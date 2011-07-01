@@ -1,3 +1,5 @@
+== Planned
+
 * Enhancements
   * Copy existing entry as template for a new one
   * Make Purchases with Cash Withdrawals easier
@@ -5,6 +7,12 @@
   * Select Entries to put together as a PDF Report
   * Easier to make new Entry from menu drop down
   * Add Recurring Templates
+
+* Test Coverage
+  * Accounts test suite
+  * Charge Types Controller test suite
+  * Entries Controller test suite
+  * Users test suite
 
 == 1.1.0
 
@@ -16,8 +24,9 @@
   * Replace CalendarDateSelect with jQuery DatePicker
   * Sort Entry Autocomplete by most commonly used
 
-* Testing
-  * Fixtures updated.
+* Test Coverage
+  * Fixtures updated
+  * Test base cleaned up
 
 == 1.0.0
 
