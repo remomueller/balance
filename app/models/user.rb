@@ -8,7 +8,6 @@ class User < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation, :remember_me
 
   has_many :accounts, :order => :name, :conditions => ['accounts.deleted = ?', false]
-  has_many :announcements
   has_many :charge_types, :through => :accounts, :order => :name, :conditions => ['charge_types.deleted = ?', false]
   has_many :entries, :order => 'billing_date desc, id desc', :conditions => ['entries.deleted = ?', false]
   

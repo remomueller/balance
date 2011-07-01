@@ -1,43 +1,47 @@
 require 'test_helper'
 
 class AccountsControllerTest < ActionController::TestCase
-  def test_should_get_index
+  setup do
+    @account = accounts(:one)
+  end
+
+  test "should get index" do
     get :index
     assert_response :success
     assert_not_nil assigns(:accounts)
   end
 
-  def test_should_get_new
+  test "should get new" do
     get :new
     assert_response :success
   end
 
-  def test_should_create_account
+  test "should create account" do
     assert_difference('Account.count') do
-      post :create, :account => { }
+      post :create, account: @account.attributes
     end
 
     assert_redirected_to account_path(assigns(:account))
   end
 
-  def test_should_show_account
-    get :show, :id => accounts(:one).id
+  test "should show account" do
+    get :show, id: @account.to_param
     assert_response :success
   end
 
-  def test_should_get_edit
-    get :edit, :id => accounts(:one).id
+  test "should get edit" do
+    get :edit, id: @account.to_param
     assert_response :success
   end
 
-  def test_should_update_account
-    put :update, :id => accounts(:one).id, :account => { }
+  test "should update account" do
+    put :update, id: @account.to_param, account: @account.attributes
     assert_redirected_to account_path(assigns(:account))
   end
 
-  def test_should_destroy_account
+  test "should destroy account" do
     assert_difference('Account.count', -1) do
-      delete :destroy, :id => accounts(:one).id
+      delete :destroy, id: @account.to_param
     end
 
     assert_redirected_to accounts_path

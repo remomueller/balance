@@ -1,43 +1,47 @@
 require 'test_helper'
 
 class EntriesControllerTest < ActionController::TestCase
-  def test_should_get_index
+  setup do
+    @entry = entries(:one)
+  end
+
+  test "should get index" do
     get :index
     assert_response :success
     assert_not_nil assigns(:entries)
   end
 
-  def test_should_get_new
+  test "should get new" do
     get :new
     assert_response :success
   end
 
-  def test_should_create_entry
+  test "should create entry" do
     assert_difference('Entry.count') do
-      post :create, :entry => { }
+      post :create, entry: @entry.attributes
     end
 
     assert_redirected_to entry_path(assigns(:entry))
   end
 
-  def test_should_show_entry
-    get :show, :id => entries(:one).id
+  test "should show entry" do
+    get :show, id: @entry.to_param
     assert_response :success
   end
 
-  def test_should_get_edit
-    get :edit, :id => entries(:one).id
+  test "should get edit" do
+    get :edit, id: @entry.to_param
     assert_response :success
   end
 
-  def test_should_update_entry
-    put :update, :id => entries(:one).id, :entry => { }
+  test "should update entry" do
+    put :update, id: @entry.to_param, entry: @entry.attributes
     assert_redirected_to entry_path(assigns(:entry))
   end
 
-  def test_should_destroy_entry
+  test "should destroy entry" do
     assert_difference('Entry.count', -1) do
-      delete :destroy, :id => entries(:one).id
+      delete :destroy, id: @entry.to_param
     end
 
     assert_redirected_to entries_path

@@ -16,6 +16,9 @@
   * Replace CalendarDateSelect with jQuery DatePicker
   * Sort Entry Autocomplete by most commonly used
 
+* Testing
+  * Fixtures updated.
+
 == 1.0.0
 
 * Accounts can be created

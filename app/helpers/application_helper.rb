@@ -14,20 +14,6 @@ module ApplicationHelper
     end
   end
   
-  def announcements?
-    not announcements.empty?
-  end
-  
-  def announcements
-    @announcements ||= begin
-      if current_user.announcement_hide_time
-        Announcement.where(['updated_at > ?', current_user.announcement_hide_time]).order('updated_at desc')
-      else
-        Announcement.order('updated_at desc')
-      end
-    end
-  end
-  
   def draw_chart(chart_api, chart_type, values, chart_element_id, chart_params, categories)
     if chart_api == 'google'
       google_chart(chart_type, values, chart_element_id, chart_params)

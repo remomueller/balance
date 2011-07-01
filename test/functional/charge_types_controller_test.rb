@@ -1,43 +1,47 @@
 require 'test_helper'
 
 class ChargeTypesControllerTest < ActionController::TestCase
-  def test_should_get_index
+  setup do
+    @charge_type = charge_types(:one)
+  end
+
+  test "should get index" do
     get :index
     assert_response :success
     assert_not_nil assigns(:charge_types)
   end
 
-  def test_should_get_new
+  test "should get new" do
     get :new
     assert_response :success
   end
 
-  def test_should_create_charge_type
+  test "should create charge type" do
     assert_difference('ChargeType.count') do
-      post :create, :charge_type => { }
+      post :create, charge_type: @charge_type.attributes
     end
 
     assert_redirected_to charge_type_path(assigns(:charge_type))
   end
 
-  def test_should_show_charge_type
-    get :show, :id => charge_types(:one).id
+  test "should show charge type" do
+    get :show, id: @charge_type.to_param
     assert_response :success
   end
 
-  def test_should_get_edit
-    get :edit, :id => charge_types(:one).id
+  test "should get edit" do
+    get :edit, id: @charge_type.to_param
     assert_response :success
   end
 
-  def test_should_update_charge_type
-    put :update, :id => charge_types(:one).id, :charge_type => { }
+  test "should update charge type" do
+    put :update, id: @charge_type.to_param, charge_type: @charge_type.attributes
     assert_redirected_to charge_type_path(assigns(:charge_type))
   end
 
-  def test_should_destroy_charge_type
+  test "should destroy charge type" do
     assert_difference('ChargeType.count', -1) do
-      delete :destroy, :id => charge_types(:one).id
+      delete :destroy, id: @charge_type.to_param
     end
 
     assert_redirected_to charge_types_path
