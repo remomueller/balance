@@ -1,7 +1,17 @@
-# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+# Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
 
-# one:
-#   column: value
-#
-# two:
-#   column: value
+one:
+  user_id: 1
+  charge_type_id: 1
+  name: Lunch
+  billing_date: MyBillingDate
+  amount: 1057
+  description: $10.57 for Lunch at Restaurant
+
+two:
+  user_id: 1
+  charge_type_id: 2
+  name: Deposit
+  billing_date: MyBillingDate
+  amount: 20000
+  description: $200 deposited into my bank account.

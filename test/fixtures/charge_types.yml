@@ -1,9 +1,16 @@
-# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+# Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
 
 one:
-  name: MyString
-  is_spending: false
+  id: 1
+  name: Credit Card
+  account_id: 1
+  counts_towards_spending: true
+  deleted: false
+
 
 two:
-  name: MyString
-  is_spending: false
+  id: 2
+  name: Transfer
+  account_id: 1
+  counts_towards_spending: false
+  deleted: false

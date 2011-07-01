@@ -1,11 +1,49 @@
-# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+# Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
 
-# This model initially had no columns defined.  If you add columns to the
-# model remove the '{}' from the fixture names and add the columns immediately
-# below each fixture, per the syntax in the comments below
-#
-one: {}
-# column: value
-#
-two: {}
-#  column: value
+valid:
+  id: 1
+  first_name: MyString
+  last_name: MyString
+  deleted: false
+  email: test@example.com
+  encrypted_password: MyString
+  password_salt: MyString
+  reset_password_token: ResetTokenOne
+  remember_token: MyString
+  remember_created_at: MyDate
+  sign_in_count: 0
+  current_sign_in_at: MyDate
+  last_sign_in_at: MyDate
+  current_sign_in_ip: MyString
+  last_sign_in_ip: MyString
+  confirmation_token: ConfirmationTokenOne
+  confirmed_at: MyDate
+  confirmation_sent_at: MyDate
+  failed_attempts: 0
+  unlock_token: UnlockTokenOne
+  locked_at: MyDate
+  authentication_token: MyString
+
+invalid:
+  id: 2
+  first_name: MyString
+  last_name: MyString
+  deleted: false
+  email: EmailTwo
+  encrypted_password: MyString
+  password_salt: MyString
+  reset_password_token: ResetTokenTwo
+  remember_token: MyString
+  remember_created_at: MyDate
+  sign_in_count: 0
+  current_sign_in_at: MyDate
+  last_sign_in_at: MyDate
+  current_sign_in_ip: MyString
+  last_sign_in_ip: MyString
+  confirmation_token: ConfirmationTokenTwo
+  confirmed_at: MyDate
+  confirmation_sent_at: MyDate
+  failed_attempts: 0
+  unlock_token: UnlockTokenTwo
+  locked_at: MyDate
+  authentication_token: MyString
