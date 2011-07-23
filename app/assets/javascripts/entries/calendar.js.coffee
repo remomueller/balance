@@ -5,14 +5,15 @@ jQuery ->
 
 @goBackOneYear = () -> 
   year_selector = $('#year')
-  if year_selector.val() != 0
-    year_selector.val(year_selector.attr('selectedIndex') - 1)
+  year_selector.val(year_selector.val() - 1)
+  year_selector.change()
 
 @goForwardOneYear = () ->
   year_selector = $('#year')
-  num_years = $(year_selector + ' option').size()
-  if year_selector.attr('selectedIndex') != num_years - 1
-    year_selector.attr('selectedIndex', year_selector.attr('selectedIndex') + 1)
+  num_years = $(year_selector).find('option').size()
+  if parseInt(year_selector.val()) != num_years - 1
+    year_selector.val(parseInt(year_selector.val()) + 1)
+    year_selector.change()
 
 @goBackOneMonth = () ->
   month_selector = $("#month")
