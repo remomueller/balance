@@ -34,7 +34,7 @@
             <tr><td>Average Expenditures Per Year</td><td><%= current_user.average_expenditures_per_year %></td></tr>
             <tr><td></td></tr>
             <% current_user.accounts.each do |account| %>
-              <tr><td>Balance <%= account.name %></td><td id="account_<%= account.id %>_balance"><%= account.balance.to_currency %></td><td><%= link_to_function 'copy', "$('amount_left').value = #{account.balance / 100.0};"  %></td></tr>
+              <tr><td>Balance <%= account.name %></td><td id="account_<%= account.id %>_balance"><%= account.balance.to_currency %></td><td><%= link_to_function 'copy', "$('#amount_left').val(#{account.balance / 100.0});"  %></td></tr>
             <% end %>
             <% total_assets = current_user.accounts.collect(&:balance).sum %>
             <tr>
