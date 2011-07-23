@@ -1,8 +1,6 @@
 require 'test_helper'
 
 class ChargeTypesControllerTest < ActionController::TestCase
-  include Devise::TestHelpers
-  
   setup do
     login(users(:valid))
     @charge_type = charge_types(:one)

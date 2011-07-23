@@ -14,3 +14,8 @@ gem 'coffee-script'               # Compiles JavaScript
 gem 'jquery-rails'                # JavaScript Engine
 gem 'sass-rails', '~> 3.1.0.rc'   # Compiles CSS
 gem 'uglifier'                    # Minimizes and obscures JS and CSS
+
+group :test do
+  # Pretty printed test output
+  gem 'turn', :require => false
+end

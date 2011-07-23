@@ -19,7 +19,6 @@ goBackOneMonth = () ->
   year_selector = $("#year")
   if month_selector.val() == '1'
     if year_selector.val() != '1'
-      alert('one year back')
       month_selector.val('12')
       year_selector.val(year_selector.val() - 1)
   else
@@ -30,16 +29,12 @@ goForwardOneMonth = () ->
   month_selector = $('#month')
   year_selector = $('#year')
   num_years = $(year_selector).find('option').size()
-  alert(month_selector.val())
   if month_selector.val() == '12'
-    alert('num years: ' + num_years + ' ' + year_selector.val())
     if year_selector.val() != num_years - 1
       month_selector.val('1')
-      alert(year_selector.val())
-      year_selector.val(year_selector.val() + 1)
+      year_selector.val(parseInt(year_selector.val()) + 1)
   else
-    alert('else: ' + month_selector.val())
-    month_selector.val(month_selector.val() + 1)
+    month_selector.val(parseInt(month_selector.val()) + 1)
   month_selector.change()
 
 goToCurrentMonth = () ->
