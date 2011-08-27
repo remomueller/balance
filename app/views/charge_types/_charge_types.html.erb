@@ -2,7 +2,7 @@
 <% @charge_types.each do |charge_type| %>
 	<tr>
 	  <td><%= link_to charge_type.name, charge_type %></td>
-		<td><%= charge_type.account.name %></td>
+		<td><%= link_to charge_type.account.name, charge_type.account %></td>
 	</tr>
 <% end %>
 </table>

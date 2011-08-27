@@ -12,9 +12,9 @@
 		<td><%= link_to entry.name, entry, :title => entry.description %></td>
     <td><%= simple_date(entry.billing_date) %></td>
     <td style="text-align:right"><%= entry.amount.to_currency %></td>
-    <td><%= check_box_tag 'entry', 'charged', entry.charged?, :disabled => true %></td>
-    <td><%= entry.charge_type.name %></td>
-    <td><%= entry.charge_type.account.name %></td>
+    <td style="text-align:center"><%= check_box_tag 'entry', 'charged', entry.charged?, :disabled => true %></td>
+    <td><%= link_to entry.charge_type.name, entry.charge_type %></td>
+    <td><%= link_to entry.charge_type.account.name, entry.charge_type.account %></td>
 	</tr>
 <% end %>
 </table>
