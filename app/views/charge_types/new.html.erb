@@ -1,13 +1,12 @@
 <% @title = 'New Charge Type' %>
-<div class="title">
+<h1>
   <%= @title %>
   <%= link_to 'view all', charge_types_path %>
-</div>
-<div class="content">
-  <div class="form">
-    <%= form_for @charge_type do |f| %>
-      <%= render :partial => 'form' %>
-      <div class="submit"><%= f.submit 'Create', :disable_with => 'Creating...' %> or <%= cancel %></div>
-    <% end %>
-  </div>
+</h1>
+
+<div class="form">
+  <%= form_for @charge_type do |f| %>
+    <%= render :partial => 'form' %>
+    <div class="submit"><%= f.submit 'Create', :disable_with => 'Creating...' %> or <%= cancel %></div>
+  <% end %>
 </div>

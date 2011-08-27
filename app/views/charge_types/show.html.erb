@@ -1,17 +1,15 @@
 <% @title = "Charge Type #{@charge_type.name}" %>
 
-<div class="title">
+<h1>
   <%= @title %> 
 	<%= link_to 'edit', edit_charge_type_path(@charge_type) %>
 	<%= link_to 'delete', @charge_type, :method => :delete, :confirm => 'Are you sure you want to delete this charge type?' %>
 	<%= link_to 'view all', charge_types_path %>
-</div>
+</h1>
 
-<div class="content">
-  <table class="show">
-    <tr><td>Name</td><td><%=h @charge_type.name %></td></tr>
-    <tr><td>Account</td><td><%=h @charge_type.account.name %></td></tr>
-    <tr><td>Counts towards spending</td><td><%= check_box_tag 'counts', 'towards_spending', @charge_type.counts_towards_spending?, :disabled => true %></td></tr>
-    <tr><td>Total Spent</td><td><%= @charge_type.total_spent.to_currency %></td></tr>
-  </table>
-</div>
+<table class="show">
+  <tr><td>Name</td><td><%=h @charge_type.name %></td></tr>
+  <tr><td>Account</td><td><%=h @charge_type.account.name %></td></tr>
+  <tr><td>Counts towards spending</td><td><%= check_box_tag 'counts', 'towards_spending', @charge_type.counts_towards_spending?, :disabled => true %></td></tr>
+  <tr><td>Total Spent</td><td><%= @charge_type.total_spent.to_currency %></td></tr>
+</table>

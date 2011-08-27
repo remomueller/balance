@@ -1,5 +1,5 @@
 <% @title = 'Earning and Spending' %>
-<div class="title"><%= @title %></div>
+<h1><%= @title %></h1>
 
 <div class="content" style="text-align:center">
   <%= form_tag earning_spending_graph_entries_path, :remote => true, :method => :get, :id => 'search-form' do %>

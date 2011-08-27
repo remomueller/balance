@@ -1,26 +1,24 @@
 <% @title = 'Login' %>
 
-<div class="title"><%= @title %></div>
+<h1><%= @title %></h1>
 
-<div class="content">
-  <div class="form">
-  <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
-    <table class="form">
-      <tr><td><%= f.label :email %></td><td><%= f.text_field :email %></td></tr>
+<div class="form">
+<%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+  <table class="form">
+    <tr><td><%= f.label :email %></td><td><%= f.text_field :email %></td></tr>
 
-      <tr><td><%= f.label :password %></td><td><%= f.password_field :password %></td></tr>
+    <tr><td><%= f.label :password %></td><td><%= f.password_field :password %></td></tr>
 
-      <% if devise_mapping.rememberable? -%>
-        <tr><td><%= f.label :remember_me %></td><td><%= f.check_box :remember_me %></td></tr>
-      <% end -%>
-    </table>
-    <div class="submit"><%= f.submit "Sign in" %>
-      <% if devise_mapping.recoverable? && controller_name != 'passwords' %>
-       or <%= link_to "Forgot your password?", new_password_path(resource_name) %>
-       <% end %>
-    </div>
-  <% end %>
-  <%= javascript_tag("$('#{resource_name}_email').focus()") %>
-  <%#= render :partial => "devise/shared/links" %>
+    <% if devise_mapping.rememberable? -%>
+      <tr><td><%= f.label :remember_me %></td><td><%= f.check_box :remember_me %></td></tr>
+    <% end -%>
+  </table>
+  <div class="submit"><%= f.submit "Sign in" %>
+    <% if devise_mapping.recoverable? && controller_name != 'passwords' %>
+     or <%= link_to "Forgot your password?", new_password_path(resource_name) %>
+     <% end %>
   </div>
+<% end %>
+<%= javascript_tag("$('#{resource_name}_email').focus()") %>
+<%#= render :partial => "devise/shared/links" %>
 </div>

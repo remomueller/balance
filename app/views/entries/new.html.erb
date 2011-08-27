@@ -1,15 +1,12 @@
 <% @title = 'New Entry' %>
-<div class="title">
+<h1>
   <%= @title %>
   <%= link_to 'view all', entries_path %>
-</div>
-<div class="content">
-  <div class="form">
-    <%= form_for @entry do |f| %>
-      <%= render :partial => 'form' %>
-      <div class="submit"><%= f.submit 'Create', :disable_with => 'Creating...' %> or <%= cancel %></div>
-    <% end %>
-  </div>
-</div>
+</h1>
 
-<%= javascript_tag '$("entry_name").focus()' %>
+<div class="form">
+  <%= form_for @entry do |f| %>
+    <%= render :partial => 'form' %>
+    <div class="submit"><%= f.submit 'Create', :disable_with => 'Creating...' %> or <%= cancel %></div>
+  <% end %>
+</div>

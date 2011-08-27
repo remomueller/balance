@@ -1,21 +1,19 @@
 <% @title = 'Sign Up' %>
 
-<div class="title"><%= @title %></div>
+<h1><%= @title %></h1>
 
-<div class="content">
-  <div class="form">
-    <%= form_tag users_path, :method => :post do %>
-      <table class="form">
-        <tr><td><label for="first_name">First Name</label></td><td><%= text_field :user, :first_name %></td><td class="field-status" id="first_name_status"></td></tr>
-        <tr><td><label for="last_name">Last Name</label></td><td><%= text_field :user, :last_name %></td><td class="field-status" id="last_name_status"></td></tr>
-        <tr><td><label for="login">Login</label></td><td><%= text_field :user, :login %></td><td class="field-status" id="login_status"></td></tr>
-        <tr><td><label for="email">Email</label></td><td><%= text_field :user, :email %></td><td class="field-status" id="email_status"></td></tr>
-        <tr><td><label for="password">Password</label></td><td><%= password_field :user, :password %></td><td class="field-status" id="password_status"></td></tr>
-        <tr><td><label for="password_confirmation">Confirm Password</label></td><td><%= password_field :user, :password_confirmation %></td><td class="field-status" id="password_confirmation_status"></td></tr>
-      </table>
-      <div class="submit"><%= submit_tag 'Sign up' %></div>
-    <% end %>
-  </div>
+<div class="form">
+  <%= form_tag users_path, :method => :post do %>
+    <table class="form">
+      <tr><td><label for="first_name">First Name</label></td><td><%= text_field :user, :first_name %></td><td class="field-status" id="first_name_status"></td></tr>
+      <tr><td><label for="last_name">Last Name</label></td><td><%= text_field :user, :last_name %></td><td class="field-status" id="last_name_status"></td></tr>
+      <tr><td><label for="login">Login</label></td><td><%= text_field :user, :login %></td><td class="field-status" id="login_status"></td></tr>
+      <tr><td><label for="email">Email</label></td><td><%= text_field :user, :email %></td><td class="field-status" id="email_status"></td></tr>
+      <tr><td><label for="password">Password</label></td><td><%= password_field :user, :password %></td><td class="field-status" id="password_status"></td></tr>
+      <tr><td><label for="password_confirmation">Confirm Password</label></td><td><%= password_field :user, :password_confirmation %></td><td class="field-status" id="password_confirmation_status"></td></tr>
+    </table>
+    <div class="submit"><%= submit_tag 'Sign up' %></div>
+  <% end %>
 </div>
 
 <%= validation_errors(@user) %>

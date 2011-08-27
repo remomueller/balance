@@ -18,6 +18,7 @@
 
 * Enhancements
   * Update Rails to 3.1.0.rc6
+  * Major redesign using a better CSS base template (BlueTrip CSS Framework)
 
 * Testing
   * Add Navigation integration tests for friendly forwarding and redirection to login page

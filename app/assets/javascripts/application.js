@@ -6,4 +6,6 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require external/highcharts-2.1.4.src
+//= require external/exporting-2.1.4.src
 //= require_tree .

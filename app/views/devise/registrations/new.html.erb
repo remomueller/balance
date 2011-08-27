@@ -1,24 +1,22 @@
 <% @title = 'Sign Up' %>
 
-<div class="title"><%= @title %></div>
+<h1><%= @title %></h1>
 
-<div class="content">
-  <div class="form">
+<div class="form">
 
-    <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
-      <table class="form">
-        <%= devise_error_messages! %>
-        <tr><td><%= f.label :first_name %></td><td><%= text_field :user, :first_name %></td><td class="field-status" id="first_name_status"></td></tr>
-        <tr><td><%= f.label :last_name %></td><td><%= text_field :user, :last_name %></td><td class="field-status" id="last_name_status"></td></tr>
-        <tr><td><%= f.label :email %></td><td><%= f.text_field :email %></td></tr>
+  <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+    <table class="form">
+      <%= devise_error_messages! %>
+      <tr><td><%= f.label :first_name %></td><td><%= text_field :user, :first_name %></td><td class="field-status" id="first_name_status"></td></tr>
+      <tr><td><%= f.label :last_name %></td><td><%= text_field :user, :last_name %></td><td class="field-status" id="last_name_status"></td></tr>
+      <tr><td><%= f.label :email %></td><td><%= f.text_field :email %></td></tr>
 
-        <tr><td><%= f.label :password %></td><td><%= f.password_field :password %></td></tr>
+      <tr><td><%= f.label :password %></td><td><%= f.password_field :password %></td></tr>
 
-        <tr><td><%= f.label :password_confirmation %></td><td><%= f.password_field :password_confirmation %></td></tr>
-      </table>
-      <div class="submit"><%= f.submit "Sign up" %></div>
-    <% end %>
-  </div>
+      <tr><td><%= f.label :password_confirmation %></td><td><%= f.password_field :password_confirmation %></td></tr>
+    </table>
+    <div class="submit"><%= f.submit "Sign up" %></div>
+  <% end %>
 </div>
 
 <%#= render :partial => "devise/shared/links" %>
