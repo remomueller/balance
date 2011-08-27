@@ -1,13 +1,3 @@
 <% @title =  "Edit Entry: #{@entry.name}" %>
 
-<h1>
-  <%= @title %>
-  <%= link_to 'view all', entries_path %>
-</h1>
-
-<div class="form">
-<%= form_for @entry do |f| %>
-  <%= render :partial => 'form' %>
-  <div class="submit"><%= f.submit 'Update', :disable_with => 'Updating...' %> or <%= link_to 'cancel', @entry %></div>
-<% end %>
-</div>
+<%= render 'form' %>

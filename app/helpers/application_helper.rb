@@ -1,7 +1,6 @@
 module ApplicationHelper
-
   def cancel
-    link_to 'cancel', (request.referer || dashboard_path)
+    link_to image_tag('icons/cross.png', :alt => '') + 'Cancel', URI.parse(request.referer.to_s).path.blank? ? root_path : (URI.parse(request.referer.to_s).path), :class => 'button negative'
   end
 
   def validation_errors(obj)
@@ -37,6 +36,15 @@ module ApplicationHelper
     @chart_params = chart_params
     @categories = categories
     render :partial => 'charts/highcharts_chart'
+  end
+
+  def simple_date(past_date)
+    return '' if past_date.blank?
+    if past_date.year == Date.today.year
+      past_date.strftime("%b %d")
+    else
+      past_date.strftime("%b %d, %Y")
+    end
   end
 
 end

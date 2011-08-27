@@ -35,3 +35,7 @@ jQuery ->
   )
   
   $('#entry_name').focus()
+  
+  $("#entry_decimal_amount").watermark('Format x.xx (No $ Sign)')
+  
+  $("#search").watermark('&lt;Enter&gt; to Search')

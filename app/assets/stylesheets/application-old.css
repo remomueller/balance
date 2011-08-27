@@ -49,7 +49,7 @@ body{ color: #404040; overflow-y: scroll; }
 }
 
 a:link { text-decoration: none; color: #FDB000; }
-a:visited { text-decoration: none; color: #99c; }
+a:visited { text-decoration: none; color: #FDB000; }
 a:hover { text-decoration: none; color: #EB6C20; }
 a:active, a:focus { text-decoration: none; color: #000; }
 
@@ -194,16 +194,9 @@ div.menu_dropdown_left, div.menu_dropdown_left_center {
 
 /*
 
-
-/* Tables */
-
-/*table.form {
+table.form {
   border-collapse: collapse;
   margin:5px;
-}
-
-table.show tr td {
-  text-align: left;
 }
 
 table.form tr td:first-child, table.show tr td:first-child {
@@ -213,106 +206,10 @@ table.form tr td:first-child, table.show tr td:first-child {
   padding-right:5px;
 }
 
-table.show tr td:first-child {
-  background:#FBF8F2;
-  margin:2px;
-}
-
-table.search {
-  border-collapse: collapse;
-  width:100%;
-}
-
-table.search th {
-  text-align:left;
-  font-weight:bold;
-  font-variant: small-caps;
-}
-
-table.search td {
-  padding:3px 3px 3px 10px;
-}
-
-table.search tr {
-  border-bottom:1px dotted #bbb;
-}
-
-table.search a {
-  text-decoration: none;
-}
 */
 
-div.form {
-  background: #FBF8F2;
-  border: 1px solid #404040;
-  padding:15px; 
-  position:relative;
-}
-
-div.form .submit{
-  margin:10px;
-  border: 1px solid #404040;
-  background:#fff;
-  padding:5px;
-}
-
-div.form .submit a { 
-  color:red;
-  font-size:0.9em;
-}
-
-/* Text Formatting for descriptions */
-span.focus {
-  font-variant: small-caps;
-  font-weight: bold;
-  font-size: 1.2em;
-}
-
-table td.field-status {
-  font-size: 0.9em;
-  color: #F44;
-}
-
-/* For Pagination */
-.pagination {
-  padding: 3px;
-  margin: 3px;
-}
-
-.pagination a {
-  padding: 2px 5px 2px 5px;
-  margin: 1px;
-  text-decoration: none;
-  color: #005596;
-  border: 1px solid #fff;
-  border-bottom: 2px solid #fff;
-}
-
-.pagination a:hover, .pagination a:active {
-  border: 1px solid #005596;
-}
-
-.pagination span.current, .pagination .current {
-  padding: 2px 5px 2px 5px;
-  margin: 1px;
-  color: #005596;
-  border: 1px solid #fff;
-  border-bottom: 2px solid #005596;
-}
-
-.pagination span.disabled {
-  padding: 2px 5px 2px 5px;
-  margin: 2px;
-  color: #ddd;
-}
-
-div.auto_complete {
-  position: absolute;
-  width: 250px;
-  background-color: white;
-  border: 1px solid #888;
-  margin: 0px;
-  padding: 0px;
+table.search {
+  width:100%;
 }
 
 .calendar-entry-heading{

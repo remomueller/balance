@@ -1,11 +1,11 @@
 <% @title = 'Entries' %>
-<h1>
-  <%= form_tag entries_path, :method => :get, :remote => true, :id => 'search-form' do %>
-    <%= @title %>
-    <%= link_to 'new', new_entry_path %>
-    <%= link_to 'find', '#' %> <%= text_field_tag 'search', '', :size => 30 %>
-    <%= link_to 'charged', '#' %> <%= check_box_tag 'charged', '1', true %>
-  <% end %>
-</h1>
+<h1><%= @title %></h1>
 
-<div class="search" id="entries"></div>
+<%= link_to image_tag('icons/addfile.png', :alt => '') + "Create New Entry", new_entry_path, :class => 'button positive' %>
+
+<%= form_tag entries_path, :method => :get, :remote => true, :id => 'search-form' do %>
+  <%= text_field_tag 'search', params[:search] %>
+  <%= link_to_function 'charged', "if ($('#charged').is(':checked')) {$('#charged').removeAttr('checked');} else {$('#charged').attr('checked', 'checked');};$('#charged').change();" %> <%= check_box_tag 'charged', '1', true %>
+
+  <div class="search" id="entries"><div style="clear:both"></div><br /><center><%= image_tag "ajax-loader.gif" %></center></div>
+<% end %>
