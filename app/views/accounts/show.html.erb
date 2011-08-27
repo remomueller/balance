@@ -1,21 +1,28 @@
-<% @title = "Account #{@account.name}" %>
+<% @title = "Account: #{@account.name}" %>
 
-<h1>
-  <%= @title %> 
-	<%= link_to 'edit', edit_account_path(@account) %>
-	<%= link_to 'delete', @account, :method => :delete, :confirm => 'Are you sure you want to delete this account?' %>
-	<%= link_to 'view all', accounts_path %>
-</h1>
+<h1><%= @title %></h1>
 
-<table class="show">
-  <tr><td>Current Balance</td><td><%= @account.balance.to_currency %></td></tr>
-  <tr><td>Total Spent</td><td><%= @account.total_spent.to_currency %></td></tr>
-  <tr>
-    <td>Charge Types</td>
-    <td>
-      <% @account.charge_types.each do |charge_type| %>
-        <%= charge_type.name %><br />
-      <% end %>
-    </td>
-  </tr>
-</table>
+<%= link_to image_tag('icons/edit.png', :alt => '') + "Edit Account", edit_account_path(@account), :class => 'button' %>
+<%= link_to image_tag('icons/delete.png', :alt => '') + "Delete Account", @account, :confirm => "Are you sure you want to delete Account #{@account.name}?", :method => :delete, :class => 'button negative' %>	
+<%= link_to image_tag('icons/mydocuments.png', :alt => '') + "View All Accounts", accounts_path, :class => 'button' %>
+
+<div style="clear:both"></div>
+
+<p>
+  <b>Current Balance:</b>
+  <%= @account.balance.to_currency %>
+</p>
+
+<p>
+  <b>Total Spent:</b>
+  <%= @account.total_spent.to_currency %>
+</p>
+
+<p>
+  <b>Charge Types:</b>
+  <ul>
+  <% @account.charge_types.each do |charge_type| %>
+    <li><%= link_to charge_type.name, charge_type %></li>
+  <% end %>
+  </ul>
+</p>

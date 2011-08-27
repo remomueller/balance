@@ -1,8 +1,39 @@
+<% width = '914px' %>
+<%= form_for(@account) do |f| %>
+  <% if @account.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@account.errors.count, "error") %> prohibited this account from being saved:</h2>
+
+      <ul>
+      <% @account.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <fieldset>
+    <legend><%= @title %></legend>
+    <div class="field">
+      <%= f.label :name %><br />
+      <%= f.text_field :name, :style => "width:#{width}" %>
+    </div>
+  </fieldset>
+  
+  <div class="actions">
+    <% form_name = @account.new_record? ? 'new_account' : "edit_account_#{@account.id}" %>
+    <%= link_to_function image_tag('icons/tick.png', :alt => '') + (@account.new_record? ? "Create Account" : "Update Account"), "$('##{form_name}').submit();", :class => "button positive" %>
+    <%= cancel %>
+  </div>
+<% end %>
+
+<% if false %>
 <table class="form">
   <tr><td><label for="account_name">Name</label></td><td><%= text_field :account, :name  %></td><td class="field-status" id="name_status"></td></tr>
 </table>
 
 <%= validation_errors(@account) %>
+
+<% end %>
 
 <% content_for :script do %>
   <%= javascript_tag do %>

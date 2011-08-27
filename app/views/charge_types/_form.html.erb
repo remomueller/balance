@@ -1,10 +1,52 @@
+<% width = '914px' %>
+<%= form_for(@charge_type) do |f| %>
+  <% if @charge_type.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@charge_type.errors.count, "error") %> prohibited this charge type from being saved:</h2>
+
+      <ul>
+      <% @charge_type.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <fieldset>
+    <legend><%= @title %></legend>
+    
+    <div class="field">
+      <%= f.label :name %><br />
+      <%= f.text_field :name, :style => "width:#{width}" %>
+    </div>
+
+    <div class="field">
+      <%= f.label :counts_towards_spending %><br />
+      <%= f.check_box :counts_towards_spending %>
+    </div>
+    
+    <div class="field">
+      <%= f.label :account_id %><br />
+      <%= f.select :account_id, [["----", nil]]  + current_user.accounts.find(:all, :order => 'name').collect{|item| [item.name, item.id]} %>
+    </div>
+    
+  </fieldset>
+  
+  <div class="actions">
+    <% form_name = @charge_type.new_record? ? 'new_charge_type' : "edit_charge_type_#{@charge_type.id}" %>
+    <%= link_to_function image_tag('icons/tick.png', :alt => '') + (@charge_type.new_record? ? "Create Charge Type" : "Update Charge Type"), "$('##{form_name}').submit();", :class => "button positive" %>
+    <%= cancel %>
+  </div>
+<% end %>
+
+
+<% if false %>
 <table class="form">
-  <tr><td><%= label :charge_type, :name %></td><td><%= text_field :charge_type, :name %></td><td class="field-status" id="name_status"></td></tr>
-  <tr><td><%= label :charge_type, :counts_towards_spending %></td><td><%= check_box :charge_type, :counts_towards_spending %></td></tr>
   <tr><td><%= label :charge_type, :account_id %></td><td><%= select :charge_type, :account_id, [["----", nil]]  + current_user.accounts.find(:all, :order => 'name').collect{|item| [item.name, item.id]}, {}, {:style => "width:250px;"} %></td><td class="field-status" id="account_id_status"></td></tr>
 </table>
 
 <%= validation_errors(@charge_type) %>
+
+<% end %>
 
 <% content_for :script do %>
   <%= javascript_tag do %>

@@ -1,10 +1,9 @@
 <% @title = 'Charge Types' %>
-<h1>
-  <%= form_tag charge_types_path, :method => :get, :remote => true, :id => 'search-form' do %>
-    <%= @title %>
-    <%= link_to 'new', new_charge_type_path %>
-    <%= link_to 'find', '#' %> <%= text_field_tag 'search', '', :size => 30 %>
-  <% end %>
-</h1>
+<h1><%= @title %></h1>
 
-<div class="search" id="charge_types"></div>
+<%= link_to image_tag('icons/addfile.png', :alt => '') + "Create New Charge Type", new_charge_type_path, :class => 'button positive' %>
+
+<%= form_tag charge_types_path, :method => :get, :remote => true, :id => 'search-form' do %>
+  <%= text_field_tag 'search', params[:search] %>
+  <div class="search" id="charge_types"><div style="clear:both"></div><br /><center><%= image_tag "ajax-loader.gif" %></center></div>
+<% end %>
