@@ -20,3 +20,13 @@ class ActionController::TestCase
     sign_in(:user, user)
   end
 end
+
+class ActionController::IntegrationTest
+  def sign_in_as(user_template, password, email)
+    user = User.create(:password => password, :password_confirmation => password, :email => email,
+                       :first_name => user_template.first_name, :last_name => user_template.last_name)
+    user.save!
+    post_via_redirect 'users/login', :user => {:email => email, :password => password}
+    user
+  end
+end
