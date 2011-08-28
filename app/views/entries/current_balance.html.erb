@@ -1,0 +1,58 @@
+<% @title = 'Current Balance' %>
+
+<h1><%= @title %></h1>
+
+<table style="border-width:0px">
+  <tr>
+    <td valign="top" style="border-width:0px">
+      <table>
+        <% current_user.accounts.each do |account| %>
+          <tr>
+            <td>Balance <%= link_to account.name, account %></td>
+            <td id="account_<%= account.id %>_balance" style="text-align:right"><%= account.balance.to_currency %></td>
+            <td><%= link_to_function 'copy', "$('#amount_left').val(#{account.balance / 100.0});"  %></td>
+          </tr>
+        <% end %>
+        <% total_assets = current_user.accounts.collect(&:balance).sum %>
+        <tr>
+          <td>Total Assets</td>
+          <td style="text-align:right"><%= total_assets.to_currency %></td>
+        </tr>
+
+        <tr>
+          <td>Amount Left</td>
+          <td>
+            <% today = Date.today %>
+            <%= hidden_field_tag 'days_left_until_end_of_month', ((Date.parse("#{today.year}/#{today.month}/01")+1.month) - today).to_i %>
+            <%= text_field_tag 'amount_left' %>
+          </td>
+        </tr>
+
+        <tr>
+          <td>Estimated Spending</td>
+          <td><%= text_field_tag 'estimated_spending' %></td>
+        </tr>
+
+        <tr>
+          <td>Amount Left Over</td>
+          <td><%= text_field_tag 'amount_left_over', 0 %></td>
+        </tr>
+
+        <tr>
+          <td>Left To Spend Per Day This Month <%= link_to_function 'click', "calculateEndOfMonthSpending();" %></td>
+          <td id="left_to_spend_per_day_this_month" style="text-align:right"></td>
+        </tr>
+      </table>
+    </td>
+    <td valign="top" style="border-width:0px">
+      <table>
+        <% current_user.accounts.each do |account| %>
+          <tr>
+            <td>Charged Balance <%= link_to account.name, account %></td>
+            <td style="text-align:right"><%= account.charged_balance.to_currency %></td>
+          </tr>
+        <% end %>
+      </table>
+    </td>
+  </tr>
+</table>

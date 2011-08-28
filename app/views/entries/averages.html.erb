@@ -1,0 +1,22 @@
+<% @title = 'Average Spending' %>
+
+<h1><%= @title %></h1>
+
+<table style="width:100%;border-collapse:collapse;table-layout: fixed;">
+  <thead>
+    <tr>
+      <th>Total Expenditures</th>
+      <th>Avg Per Day</th>
+      <th>Avg Per Month</th>
+      <th>Avg Per Year</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align:right"><%= current_user.total_expenditures.to_currency %></td>
+      <td style="text-align:right"><%= current_user.average_expenditures_per_day %></td>
+      <td style="text-align:right"><%= current_user.average_expenditures_per_month %></td>
+      <td style="text-align:right"><%= current_user.average_expenditures_per_year %></td>
+    </tr>
+  </tbody>
+</table>

@@ -6,6 +6,12 @@
 <% gross_income = @entries.select{|e| not e.charge_type.counts_towards_spending?}.sum{|e| e.amount} %>
 <% net_profit = gross_income - gross_spending %>
 
+<div style="float:right;text-align:right;margin-top:-60px">
+  <b>Gross Income</b> <%= gross_income.to_currency %><br />
+  <b>Spending</b> <%= gross_spending.to_currency %><br />
+  <b>Net <%= (net_profit < 0) ? "<span class='loss'>Loss</span>".html_safe : "<span class='gain'>Profit</span>".html_safe %></b> <span class="<%= (net_profit < 0) ? 'loss' : '' %><%= (net_profit > 0) ? 'gain' : '' %>"><%= net_profit.to_currency %></span>
+</div>
+
 <table style="width:100%;border-collapse:collapse;table-layout: fixed;"><%#= '<col width="14%"/>'*7 %>
   <thead>
     <tr>
@@ -75,6 +81,7 @@
   </tbody>
 </table>
 
+<% if false %>
 <table style="table-layout: fixed;font-size:11px"><col width="110px" /><col width="65px" />
     <tr>
       <td style="font-weight:bold;">Gross Income</td>
@@ -90,3 +97,4 @@
     </tr>
   </tbody>
 </table>
+<% end %>

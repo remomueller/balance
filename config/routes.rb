@@ -15,6 +15,8 @@ Balance::Application.routes.draw do
       get :overview
       get :earning_spending_graph
       get :autocomplete
+      get :averages
+      get :current_balance
     end
   end
   

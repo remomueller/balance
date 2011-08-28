@@ -1,81 +1,26 @@
 <% @title = 'Dashboard' %>
 
-<h1>
-  Month Breakdown
-</h1>
-<div id="month-breakdown"></div>
+<h1>Month Breakdown</h1>
 
-<h1>Averages and Statistics</h1>
+<div style="text-align:center;margin-top:-10px;float:middle">
+  <%= form_tag dashboard_path, :remote => true, :update => 'spending', :method => :get, :id => 'search-form' do %>
+    <%= link_to_function '&laquo;'.html_safe, "goBackOneYear();", :style => 'text-decoration:none', :title => 'Previous Year' %>
+    <%= link_to_function '&lsaquo;'.html_safe, "goBackOneMonth();", :style => 'text-decoration:none', :title => 'Previous Month' %>
+    <%= select_tag :month, options_for_select( Date::MONTHNAMES[1..12].collect{|month| [month,Date::MONTHNAMES.index(month)]}, Date.today.month) %>
+    <%= select_tag :year, options_for_select( (current_user.first_billing_date.year..Date.today.year+1).to_a, Date.today.year ) %>
+    <%#= link_to_function image_tag('001_44.png', :style => 'border:none', :align => 'absmiddle', :size => '15x15'), "goToCurrentMonth();", :title => 'Go To Current Month' %>
+    <%= link_to_function '&rsaquo;'.html_safe, "goForwardOneMonth();", :style => 'text-decoration:none', :title => 'Next Month' %>
+    <%= link_to_function '&raquo;'.html_safe, "goForwardOneYear();", :style => 'text-decoration:none', :title => 'Next Year' %>
+  <% end %>
+</div>
 
-<table style="width:100%;border-collapse:collapse;table-layout: fixed;">
-  <tr>
-    <td valign="top">
-    <h2>
-      Spending This Month
-    </h2>
-    <div class="sub-content">
-      <%= form_tag dashboard_path, :remote => true, :update => 'spending', :method => :get, :id => 'search-form' do %>
-        <%= link_to_function '&laquo;'.html_safe, "goBackOneYear();", :style => 'text-decoration:none', :title => 'Previous Year' %>
-        <%= link_to_function '&lsaquo;'.html_safe, "goBackOneMonth();", :style => 'text-decoration:none', :title => 'Previous Month' %>
-        <%= select_tag :month, options_for_select( Date::MONTHNAMES[1..12].collect{|month| [month,Date::MONTHNAMES.index(month)]}, Date.today.month) %>
-        <%= select_tag :year, options_for_select( (current_user.first_billing_date.year..Date.today.year+1).to_a, Date.today.year ) %>
-        <%= link_to_function image_tag('001_44.png', :style => 'border:none', :align => 'absmiddle', :size => '15x15'), "goToCurrentMonth();", :title => 'Go To Current Month' %>
-        <%= link_to_function '&rsaquo;'.html_safe, "goForwardOneMonth();", :style => 'text-decoration:none', :title => 'Next Month' %>
-        <%= link_to_function '&raquo;'.html_safe, "goForwardOneYear();", :style => 'text-decoration:none', :title => 'Next Year' %>
-      <% end %>
-      <div id="spending"></div>
-    </div>
-    </td>
-    <td valign="top">
-      <h2>
-        Average Spending
-      </h2>
-      <div class="sub-content">
-        <table class="show">
-          <tr><td>Total Expenditures</td><td><%= current_user.total_expenditures.to_currency %></td></tr>
-          <tr><td>Average Expenditures Per Day</td><td><%= current_user.average_expenditures_per_day %></td></tr>
-          <tr><td>Average Expenditures Per Month</td><td><%= current_user.average_expenditures_per_month %></td></tr>
-          <tr><td>Average Expenditures Per Year</td><td><%= current_user.average_expenditures_per_year %></td></tr>
-          <tr><td></td></tr>
-          <% current_user.accounts.each do |account| %>
-            <tr><td>Balance <%= account.name %></td><td id="account_<%= account.id %>_balance"><%= account.balance.to_currency %></td><td><%= link_to_function 'copy', "$('#amount_left').val(#{account.balance / 100.0});"  %></td></tr>
-          <% end %>
-          <% total_assets = current_user.accounts.collect(&:balance).sum %>
-          <tr>
-            <td>Total Assets</td>
-            <td><%= total_assets.to_currency %></td>
-          </tr>
+<div id="month-breakdown">
+  <div style="height:500px"><br /><center><%= image_tag "ajax-loader.gif" %></center></div>
+</div>
 
-          <tr>
-            <td>Amount Left</td>
-            <td>
-              <% today = Date.today %>
-              <%= hidden_field_tag 'days_left_until_end_of_month', ((Date.parse("#{today.year}/#{today.month}/01")+1.month) - today).to_i %>
-              <%= text_field_tag 'amount_left' %>
-            </td>
-          </tr>
-
-          <tr>
-            <td>Estimated Spending</td>
-            <td><%= text_field_tag 'estimated_spending' %></td>
-          </tr>
-
-          <tr>
-            <td>Amount Left Over</td>
-            <td><%= text_field_tag 'amount_left_over', 0 %></td>
-          </tr>
-
-          <tr>
-            <td>Left To Spend Per Day This Month <%= link_to_function 'click', "calculateEndOfMonthSpending();" %></td>
-            <td id="left_to_spend_per_day_this_month"></td>
-          </tr>
-
-          <tr><td></td></tr>
-          <% current_user.accounts.each do |account| %>
-            <tr><td>Charged Balance <%= account.name %></td><td><%= account.charged_balance.to_currency %></td></tr>
-          <% end %>
-        </table>
-      </div>
-    </td>
-  </tr>
-</table>
+<h2>
+  Spending This Month
+</h2>
+<div class="sub-content">
+  <div id="spending"></div>
+</div>

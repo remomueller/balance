@@ -1,6 +1,14 @@
 class EntriesController < ApplicationController
   before_filter :authenticate_user!
 
+  def averages
+    
+  end
+  
+  def current_balance
+    
+  end
+
   def overview
     @today = Date.today.year
     @year = @today.year
