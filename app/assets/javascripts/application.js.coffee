@@ -42,3 +42,10 @@ jQuery ->
   $("#entry_decimal_amount").watermark('ex: 1000.00 - No Currency Symbols or Commas')
   
   $("#search").watermark('&lt;Enter&gt; to Search')
+  
+  $(document).keydown( (e) ->
+    if e.keyCode == 37
+      goBackOneMonth()
+    if e.keyCode == 39
+      goForwardOneMonth()
+  )
