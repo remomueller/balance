@@ -36,7 +36,7 @@ jQuery ->
   
   $('#entry_name').focus()
   
-  $("#entry_decimal_amount").watermark('Format x.xx (No $ Sign)')
+  $("#entry_decimal_amount").watermark('ex: 1000.00 - No Currency Symbols or Commas')
   
   $("#search").watermark('&lt;Enter&gt; to Search')
   
