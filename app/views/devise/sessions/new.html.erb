@@ -1,24 +1,29 @@
 <% @title = 'Login' %>
 
-<h1><%= @title %></h1>
-
-<div class="form">
 <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
-  <table class="form">
-    <tr><td><%= f.label :email %></td><td><%= f.text_field :email %></td></tr>
-
-    <tr><td><%= f.label :password %></td><td><%= f.password_field :password %></td></tr>
-
+  <fieldset style="width:235px">
+    <legend><%= @title %></legend>
+    
+    <div class="field">
+      <%= f.label :email %><br />
+      <%= f.text_field :email %>
+    </div>
+    <div class="field">
+      <%= f.label :password %><br />
+      <%= f.password_field :password %>
+    </div>
+  </fieldset>
+  <div class="actions">
+    <% form_name = 'user_new' %>
+    <%= link_to_function image_tag('icons/tick.png', :alt => '') + "Sign in", "$('##{form_name}').submit();", :class => "button positive" %>
     <% if devise_mapping.rememberable? -%>
-      <tr><td><%= f.label :remember_me %></td><td><%= f.check_box :remember_me %></td></tr>
+      <div style="padding-top:5px;padding-bottom:4px;"><%= f.check_box :remember_me %> <%= f.label :remember_me %></div>
     <% end -%>
-  </table>
-  <div class="submit"><%= f.submit "Sign in" %>
     <% if devise_mapping.recoverable? && controller_name != 'passwords' %>
-     or <%= link_to "Forgot your password?", new_password_path(resource_name) %>
-     <% end %>
+      <div style="clear:both"></div><br />
+      <%= link_to "Forgot your password?", new_password_path(resource_name) %>
+    <% end %>
   </div>
 <% end %>
-<%= javascript_tag("$('#{resource_name}_email').focus()") %>
+
 <%#= render :partial => "devise/shared/links" %>
-</div>

@@ -20,15 +20,19 @@
       </div>
     </div>
   </div>
+  
+  <div style="float:left;width:10px">&nbsp;</div>
 
   <div style="float:left">
-    <%= link_to_function 'Overview', "$('#menu_overview').show();", :onmouseover => "$('#menu_overview').show();" %>
+    <%= link_to_function 'Graphs', "$('#menu_graphs').show();", :onmouseover => "$('#menu_graphs').show();" %>
     <div style="position:relative;">
-      <div id="menu_overview" class="menu_dropdown_left_center" style="display:none">
-        <div><%= link_to 'Overview', overview_entries_path %></div>
+      <div id="menu_graphs" class="menu_dropdown_left_center" style="display:none">
+        <div><%= link_to 'Graphs', overview_entries_path %></div>
       </div>
     </div>
   </div>
+  
+  <div style="float:left;width:10px">&nbsp;</div>
   
   <div style="float:left">
     <%= link_to_function 'Accounts', "$('#menu_accounts').show();", :onmouseover => "$('#menu_accounts').show();" %>
@@ -40,6 +44,8 @@
     </div>
   </div>
 
+  <div style="float:left;width:10px">&nbsp;</div>
+
   <div style="float:left">
     <%= link_to_function 'Charge Types', "$('#menu_charge_types').show();", :onmouseover => "$('#menu_charge_types').show();" %>
     <div style="position:relative;">
@@ -49,6 +55,8 @@
       </div>
     </div>
   </div>
+  
+  <div style="float:left;width:10px">&nbsp;</div>
   
   <div style="float:left">
     <%= link_to_function 'Entries', "$('#menu_entries').show();", :onmouseover => "$('#menu_entries').show();" %>
@@ -60,7 +68,7 @@
     </div>
   </div>
 
-  <%= javascript_tag "hideOnMouseOut(['#menu_user_settings', '#menu_home', '#menu_overview', '#menu_accounts', '#menu_charge_types', '#menu_entries']);" %>
+  <%= javascript_tag "hideOnMouseOut(['#menu_user_settings', '#menu_home', '#menu_graphs', '#menu_accounts', '#menu_charge_types', '#menu_entries']);" %>
 <% else %>
   <div style="float:right" onmouseover="$('#menu_user_settings').show();">
     <%= link_to_function 'Login', "$('#menu_user_settings').show();" %>
