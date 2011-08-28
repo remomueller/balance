@@ -1,7 +1,13 @@
+<% if params[:direction].to_i > 0 %>
+  $("#month-breakdown").hide( 'slide', { direction: "left" }, 1000 );
+  $("#month-breakdown").html("<%= escape_javascript(render("users/month_breakdown")) %>");
+  $("#month-breakdown").show( 'slide', { direction: "right" }, 1000 );
+<% elsif params[:direction].to_i < 0 %>
+  $("#month-breakdown").hide( 'slide', { direction: "right" }, 1000 );
+  $("#month-breakdown").html("<%= escape_javascript(render("users/month_breakdown")) %>");
+  $("#month-breakdown").show( 'slide', { direction: "left" }, 1000 );  
+<% else %>
+  $("#month-breakdown").html("<%= escape_javascript(render("users/month_breakdown")) %>");
+<% end %>
+
 $("#spending").html("<%= escape_javascript(render("accounts/month_spending")) %>");
-
-$("#month-breakdown").hide( 'slide', { direction: "left" }, 1000 );
-
-$("#month-breakdown").html("<%= escape_javascript(render("users/month_breakdown")) %>");
-
-$("#month-breakdown").show( 'slide', { direction: "right" }, 1000 );
