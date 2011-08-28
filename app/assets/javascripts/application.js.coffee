@@ -12,7 +12,7 @@ jQuery ->
     false
   )
 
-  $(".field_with_errors input, .field_with_errors_cleared input, .field_with_errors textarea, .field_with_errors_cleared textarea").change( () ->
+  $(".field_with_errors input, .field_with_errors_cleared input, .field_with_errors textarea, .field_with_errors_cleared textarea, .field_with_errors select").change( () ->
     el = $(this)
     if  el.val() != '' && el.val() != null
       $(el).parent().removeClass('field_with_errors')
@@ -34,10 +34,11 @@ jQuery ->
     event.stopPropagation()
   )
   
+  $('#user_email').focus()
   $('#entry_name').focus()
+  $('#account_name').focus()
+  $('#charge_type_name').focus()
   
   $("#entry_decimal_amount").watermark('ex: 1000.00 - No Currency Symbols or Commas')
   
   $("#search").watermark('&lt;Enter&gt; to Search')
-  
-  $('#user_email').focus()

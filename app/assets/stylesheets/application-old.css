@@ -208,6 +208,28 @@ table.form tr td:first-child, table.show tr td:first-child {
 
 */
 
+.field_with_errors, .field_with_errors_cleared {
+  display: inline;
+}
+
+.field_with_errors input, .field_with_errors textarea, .field_with_errors select {
+  background-color: #FB4E50;
+}
+
+.fieldset_with_errors {
+  background-color: #F9E8E8;
+  border-color: #FB4E50;
+}
+
+.fieldset_with_errors legend {
+  background-color: #F9E8E8;
+  border: 1px solid #FB4E50;
+}
+
+.field_with_errors_cleared input, .field_with_errors_cleared textarea {
+/*  background-color: #66FF66;*/
+}
+
 table.search {
   width:100%;
 }
