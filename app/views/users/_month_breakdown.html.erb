@@ -31,7 +31,7 @@
             onmouseover="$(this).addClass('hover');$('#calendar_box_<%= first_day_offset %>_new_entry_link').show();" onmouseout="$(this).removeClass('hover');$('#calendar_box_<%= first_day_offset %>_new_entry_link').hide();">
           <div style="width:100%">
             <div class="calendar-entry-heading">
-              <%= link_to image_tag('001_46.png', :style => 'border:none', :align => 'absmiddle', :size => '11x11', :title => "New Entry for #{iDate.strftime("%B %e, %Y")}"), new_entry_path(:entry => {:billing_date => iDate}), :style => 'display:none', :id => "calendar_box_#{first_day_offset}_new_entry_link" %>
+              <%= link_to image_tag('001_46.png', :style => 'border:none', :align => 'absmiddle', :size => '11x11', :title => "New Entry for #{iDate.strftime("%B %e, %Y")}"), new_entry_path(:entry => {:billing_date => iDate}, :from_calendar => 1), :style => 'display:none', :id => "calendar_box_#{first_day_offset}_new_entry_link" %>
               <% if [@start_date, (@end_date + 1.day)].include?(iDate) %>
                 <%= iDate.strftime("%b %e") %>
               <% else %>

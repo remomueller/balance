@@ -57,6 +57,6 @@ class ChargeTypesController < ApplicationController
     @charge_type = current_user.charge_types.find(params[:id])
     @charge_type.destroy
 
-    redirect_to charge_types_url
+    redirect_to charge_types_path
   end
 end

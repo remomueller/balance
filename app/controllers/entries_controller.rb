@@ -82,7 +82,11 @@ class EntriesController < ApplicationController
     @entry = current_user.entries.new(params[:entry])
     if @entry.save
       flash[:notice] = 'Entry was successfully created.'
-      redirect_to @entry
+      if params[:from_calendar] == '1'
+        redirect_to dashboard_path
+      else
+        redirect_to @entry
+      end
     else
       render :action => :new
     end
@@ -108,7 +112,7 @@ class EntriesController < ApplicationController
   def destroy
     @entry = current_user.entries.find_by_id(params[:id])
     @entry.destroy if @entry
-    redirect_to entries_url
+    redirect_to entries_path
   end
   
   def autocomplete
