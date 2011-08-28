@@ -19,6 +19,9 @@
 * Enhancements
   * Update Rails to 3.1.0.rc6
   * Major redesign using a better CSS base template (BlueTrip CSS Framework)
+  * New entries made from calendar are now redirected back to the calendar
+  * Main dashboard page broken down to Month Overview, Averages, and Current Balance Pages
+  * Links added for easier navigation to and from accounts and charge types
 
 * Testing
   * Add Navigation integration tests for friendly forwarding and redirection to login page
