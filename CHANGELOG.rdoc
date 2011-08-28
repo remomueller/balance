@@ -22,6 +22,7 @@
   * New entries made from calendar are now redirected back to the calendar
   * Main dashboard page broken down to Month Overview, Averages, and Current Balance Pages
   * Links added for easier navigation to and from accounts and charge types
+  * Validation errors now correctly highlight invalid fields
 
 * Testing
   * Add Navigation integration tests for friendly forwarding and redirection to login page
