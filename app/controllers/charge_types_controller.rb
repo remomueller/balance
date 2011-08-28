@@ -8,16 +8,6 @@ class ChargeTypesController < ApplicationController
     @search_terms.each{|search_term| charge_type_scope = charge_type_scope.search(search_term) }
     @charge_types = charge_type_scope.page(params[:page]).per(20) # current_user.charge_types_per_page)
   end
-  
-  # def search
-  #   if params[:search]
-  #     @charge_types = current_user.charge_types.paginate(:per_page => 20, :page => params[:page],
-  #       :conditions => [ 'LOWER(charge_types.name) LIKE ?', '%' + params['search'].downcase.split(' ').join('%') + '%' ])
-  #     render :update do |page|
-  #       page.replace_html 'charge_type_search', :partial => 'search'
-  #     end
-  #   end
-  # end
 
   def show
     @charge_type = current_user.charge_types.find(params[:id])

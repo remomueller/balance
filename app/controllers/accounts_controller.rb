@@ -9,16 +9,6 @@ class AccountsController < ApplicationController
     @accounts = account_scope.page(params[:page]).per(20) # current_user.accounts_per_page)
   end
 
-  # def search
-  #   if params[:search]
-  #     @accounts = current_user.accounts.paginate( :order => 'name', :per_page => 20, :page => params[:page],
-  #       :conditions => [ 'LOWER(name) LIKE ?', '%' + params['search'].downcase.split(' ').join('%') + '%' ])
-  #     render :update do |page|
-  #       page.replace_html 'account_search', :partial => 'search'
-  #     end
-  #   end
-  # end
-
   def show
     @account = current_user.accounts.find(params[:id])
   end

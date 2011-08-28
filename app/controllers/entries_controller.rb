@@ -51,16 +51,6 @@ class EntriesController < ApplicationController
     @search_terms.each{|search_term| entry_scope = entry_scope.search(search_term) }
     @entries = entry_scope.page(params[:page]).per(20) # current_user.entries_per_page)
   end
-  
-  # def search
-  #   if params[:search]
-  #     @entries = current_user.entries.with_charged(params[:charged] == "1").paginate(:per_page => 20, :page => params[:page],
-  #       :conditions => [ 'LOWER(name) LIKE ?', '%' + params['search'].downcase.split(' ').join('%') + '%' ])
-  #     render :update do |page|
-  #       page.replace_html 'entry_search', :partial => 'search'
-  #     end
-  #   end
-  # end
 
   def show
     @entry = current_user.entries.find_by_id(params[:id])
