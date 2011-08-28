@@ -6,8 +6,8 @@
   <%= form_tag dashboard_path, :remote => true, :update => 'spending', :method => :get, :id => 'search-form' do %>
     <%= link_to_function '&laquo;'.html_safe, "goBackOneYear();", :style => 'text-decoration:none', :title => 'Previous Year' %>
     <%= link_to_function '&lsaquo;'.html_safe, "goBackOneMonth();", :style => 'text-decoration:none', :title => 'Previous Month' %>
-    <%= select_tag :month, options_for_select( Date::MONTHNAMES[1..12].collect{|month| [month,Date::MONTHNAMES.index(month)]}, Date.today.month) %>
-    <%= select_tag :year, options_for_select( (current_user.first_billing_date.year..Date.today.year+1).to_a, Date.today.year ) %>
+    <%= select_tag :month, options_for_select( Date::MONTHNAMES[1..12].collect{|month| [month,Date::MONTHNAMES.index(month)]}, (params[:month] || Date.today.month)) %>
+    <%= select_tag :year, options_for_select( (current_user.first_billing_date.year..Date.today.year+1).to_a, (params[:year] || Date.today.year) ) %>
     <%#= link_to_function image_tag('001_44.png', :style => 'border:none', :align => 'absmiddle', :size => '15x15'), "goToCurrentMonth();", :title => 'Go To Current Month' %>
     <%= link_to_function '&rsaquo;'.html_safe, "goForwardOneMonth();", :style => 'text-decoration:none', :title => 'Next Month' %>
     <%= link_to_function '&raquo;'.html_safe, "goForwardOneYear();", :style => 'text-decoration:none', :title => 'Next Year' %>

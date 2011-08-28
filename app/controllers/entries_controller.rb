@@ -73,7 +73,7 @@ class EntriesController < ApplicationController
     if @entry.save
       flash[:notice] = 'Entry was successfully created.'
       if params[:from_calendar] == '1'
-        redirect_to dashboard_path
+        redirect_to dashboard_path(:month => @entry.billing_date.month, :year => @entry.billing_date.year)
       else
         redirect_to @entry
       end
