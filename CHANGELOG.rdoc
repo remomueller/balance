@@ -14,6 +14,10 @@
   * Entries Controller test suite
   * Users test suite
 
+== 1.3.0
+
+* Enhancements
+
 == 1.2.0
 
 * Enhancements
