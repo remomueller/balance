@@ -19,6 +19,7 @@
 * Enhancements
   * Changing months now uses jQuery Slide transition on the Month Overview
   * Clicking left and right in Month Overview will transition between months
+  * Current Balance page now lets you calculate your maximum daily spending until your next paycheck (the default day is the beginning of the next month)
 
 == 1.2.0
 

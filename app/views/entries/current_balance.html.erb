@@ -23,7 +23,6 @@
           <td>Amount Left</td>
           <td>
             <% today = Date.today %>
-            <%= hidden_field_tag 'days_left_until_end_of_month', ((Date.parse("#{today.year}/#{today.month}/01")+1.month) - today).to_i %>
             <%= text_field_tag 'amount_left' %>
           </td>
         </tr>
@@ -39,7 +38,14 @@
         </tr>
 
         <tr>
-          <td>Left To Spend Per Day This Month <%= link_to_function 'click', "calculateEndOfMonthSpending();" %></td>
+          <td>Next Pay Check</td>
+          <td>
+            <%= text_field_tag 'paycheck_day', (Date.parse("#{today.year}/#{today.month}/01")+1.month).strftime('%m/%d/%Y'), :class => 'datepicker' %>
+          </td>
+        </tr>
+
+        <tr>
+          <td>Maximum Spending Per Day<%= link_to_function 'click', "calculateEndOfMonthSpending();" %></td>
           <td id="left_to_spend_per_day_this_month" style="text-align:right"></td>
         </tr>
       </table>
