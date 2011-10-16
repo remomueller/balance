@@ -1,5 +1,9 @@
 Balance::Application.routes.draw do  
-  devise_for :users, :path_names => { :sign_up => 'register', :sign_in => 'login' }
+  match '/auth/failure' => 'contour/authentications#failure'
+  match '/auth/:provider/callback' => 'contour/authentications#create'
+  match '/auth/:provider' => 'contour/authentications#passthru'
+
+  resources :authentications, :controller => 'contour/authentications'
 
   resources :accounts do
     get :search, :on => :collection
@@ -19,6 +23,8 @@ Balance::Application.routes.draw do
       get :current_balance
     end
   end
+  
+  devise_for :users, :controllers => {:registrations => 'contour/registrations', :sessions => 'contour/sessions', :passwords => 'contour/passwords'}, :path_names => { :sign_up => 'register', :sign_in => 'login' }
   
   match "/about" => "sites#about", :as => :about
   match "/dashboard" => "users#dashboard", :as => :dashboard
