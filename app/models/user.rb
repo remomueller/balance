@@ -63,6 +63,11 @@ class User < ActiveRecord::Base
   def reverse_name
     last_name + ', ' + first_name
   end
+
+  # Overriding Devise built-in active? method
+  def active_for_authentication?
+    super # and self.status == 'active' and not self.deleted?
+  end
   
   def apply_omniauth(omniauth)
     unless omniauth['user_info'].blank?
