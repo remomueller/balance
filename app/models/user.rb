@@ -9,9 +9,10 @@ class User < ActiveRecord::Base
 
   scope :current, :conditions => { :deleted => false }
   
+  has_many :authentications
   has_many :accounts, :order => :name, :conditions => ['accounts.deleted = ?', false]
   has_many :charge_types, :through => :accounts, :order => :name, :conditions => ['charge_types.deleted = ?', false]
-  has_many :entries, :order => 'billing_date desc, id desc', :conditions => ['entries.deleted = ?', false]
+  has_many :entries, :order => 'billing_date desc, id desc', :conditions => ['entries.deleted = ?', false]  
   
   def total_expenditures
     @total_spent ||= begin
@@ -61,5 +62,18 @@ class User < ActiveRecord::Base
   
   def reverse_name
     last_name + ', ' + first_name
+  end
+  
+  def apply_omniauth(omniauth)
+    unless omniauth['user_info'].blank?
+      self.email = omniauth['user_info']['email'] if email.blank?
+      self.first_name = omniauth['user_info']['first_name'] if first_name.blank?
+      self.last_name = omniauth['user_info']['last_name'] if last_name.blank?
+    end
+    authentications.build(:provider => omniauth['provider'], :uid => omniauth['uid'])
+  end
+
+  def password_required?
+    (authentications.empty? || !password.blank?) && super
   end
 end

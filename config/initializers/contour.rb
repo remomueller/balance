@@ -26,11 +26,31 @@ Contour.setup do |config|
     :links => [{:html => '"<div style=\"white-space:nowrap\">"+(current_user.methods.include?(:name) ? current_user.name.to_s : "")+"</div>"', :eval => true}, {:html => '"<div class=\"small quiet\">"+current_user.email+"</div>"', :eval => true}, {:name => 'Authentications', :path => 'authentications_path'}, {:html => "<hr>"}, {:name => 'Logout', :path => 'destroy_user_session_path'}]
   },
   {
-    :name => 'Home', :id => 'home', :display => 'always', :position => 'left', :position_class => 'left', :condition => 'true', :image => '', :image_options => {},
+    :name => 'Home', :id => 'home', :display => 'always', :position => 'left', :position_class => 'left',
     :links => [{:name => 'Home', :path => 'root_path'},
                {:name => 'Current Balance', :path => 'current_balance_entries_path'},
                {:name => 'Averages', :path => 'averages_entries_path'}]
-  }]
+  },
+  {
+    :name => 'Graphs', :id => 'graphs', :display => 'signed_in', :position => 'left', :position_class => 'left_center',
+    :links => [{:name => 'Graphs', :path => 'overview_entries_path'}]
+  },
+  {
+    :name => 'Accounts', :id => 'accounts', :display => 'signed_in', :position => 'left', :position_class => 'left_center',
+    :links => [{:name => 'Accounts', :path => 'accounts_path'},
+               {:name => '&raquo;New', :path => 'new_account_path'}]
+  },
+  {
+    :name => 'Charge Types', :id => 'charge_types', :display => 'signed_in', :position => 'left', :position_class => 'left_center',
+    :links => [{:name => 'Charge Types', :path => 'charge_types_path'},
+               {:name => '&raquo;New', :path => 'new_charge_type_path'}]
+  },
+  {
+    :name => 'Entries', :id => 'entries', :display => 'signed_in', :position => 'left', :position_class => 'left_center',
+    :links => [{:name => 'Entries', :path => 'entries_path'},
+               {:name => '&raquo;New', :path => 'new_entry_path'}]
+  }
+  ]
   
   # Enter an address of a valid RSS Feed if you would like to see news on the sign in page.
   config.news_feed = 'https://github.com/remomueller/balance/commits/master.atom'
