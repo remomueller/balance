@@ -1,5 +1,7 @@
 == Planned
 
+* TODO: Update configuration files to 3.1.1
+
 * Enhancements
   * Copy existing entry as template for a new one
   * Make Purchases with Cash Withdrawals easier
