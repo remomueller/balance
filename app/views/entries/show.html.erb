@@ -2,9 +2,9 @@
 
 <h1><%= @title %></h1>
 
-<%= link_to image_tag('icons/edit.png', :alt => '') + "Edit Entry", edit_entry_path(@entry), :class => 'button' %>
-<%= link_to image_tag('icons/delete.png', :alt => '') + "Delete Entry", @entry, :confirm => "Are you sure you want to delete Entry #{@entry.name}?", :method => :delete, :class => 'button negative' %>	
-<%= link_to image_tag('icons/mydocuments.png', :alt => '') + "View All Entries", entries_path, :class => 'button' %>
+<%= link_to image_tag('contour/edit.png', :alt => '') + "Edit Entry", edit_entry_path(@entry), :class => 'button' %>
+<%= link_to image_tag('contour/delete.png', :alt => '') + "Delete Entry", @entry, :confirm => "Are you sure you want to delete Entry #{@entry.name}?", :method => :delete, :class => 'button negative' %>	
+<%= link_to image_tag('contour/mydocuments.png', :alt => '') + "View All Entries", entries_path, :class => 'button' %>
 
 <div style="clear:both"></div>
 
