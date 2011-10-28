@@ -29,4 +29,5 @@ group :test do
   # Pretty printed test output
   gem 'win32console', :platforms => [:mswin, :mingw]
   gem 'turn', '0.8.2'
+  gem 'simplecov', :require => false
 end
