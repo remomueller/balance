@@ -38,16 +38,6 @@
   </div>
 <% end %>
 
-
-<% if false %>
-<table class="form">
-  <tr><td><%= label :charge_type, :account_id %></td><td><%= select :charge_type, :account_id, [["----", nil]]  + current_user.accounts.find(:all, :order => 'name').collect{|item| [item.name, item.id]}, {}, {:style => "width:250px;"} %></td><td class="field-status" id="account_id_status"></td></tr>
-</table>
-
-<%= validation_errors(@charge_type) %>
-
-<% end %>
-
 <% content_for :script do %>
   <%= javascript_tag do %>
     Event.observe(window, 'load', function(){
