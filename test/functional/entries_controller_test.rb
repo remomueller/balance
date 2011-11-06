@@ -61,7 +61,7 @@ class EntriesControllerTest < ActionController::TestCase
 
   test "should create entry" do
     assert_difference('Entry.count') do
-      post :create, :entry => {:billing_date => '10/29/2000', :charge_type_id => charge_types(:bank_credit_card).to_param, :name => 'Breakfast to Go', :description => 'Coffee from the local coffee shop.', :amount => '5.42'}
+      post :create, :entry => {:billing_date => '10/29/2000', :charge_type_id => charge_types(:bank_credit_card).to_param, :name => 'Breakfast to Go', :description => 'Coffee from the local coffee shop.', :decimal_amount => '5.42'}
     end
 
     assert_redirected_to entry_path(assigns(:entry))
@@ -69,7 +69,7 @@ class EntriesControllerTest < ActionController::TestCase
 
   test "should create entry and redirect to calendar overview" do
     assert_difference('Entry.count') do
-      post :create, :entry => {:billing_date => '10/29/2000', :charge_type_id => charge_types(:bank_credit_card).to_param, :name => 'Breakfast to Go', :description => 'Coffee from the local coffee shop.', :amount => '5.42'}, :from_calendar => '1'
+      post :create, :entry => {:billing_date => '10/29/2000', :charge_type_id => charge_types(:bank_credit_card).to_param, :name => 'Breakfast to Go', :description => 'Coffee from the local coffee shop.', :decimal_amount => '5.42'}, :from_calendar => '1'
     end
 
     assert_not_nil assigns(:entry)
@@ -78,11 +78,19 @@ class EntriesControllerTest < ActionController::TestCase
 
   test "should not create entry without name" do
     assert_difference('Entry.count', 0) do
-      post :create, :entry => {:billing_date => '10/29/2000', :charge_type_id => charge_types(:bank_credit_card).to_param, :name => '', :description => '', :amount => '5.42'}
+      post :create, :entry => {:billing_date => '10/29/2000', :charge_type_id => charge_types(:bank_credit_card).to_param, :name => '', :description => '', :decimal_amount => '5.42'}
     end
     
     assert_not_nil assigns(:entry)
 
+    assert_template 'new'
+  end
+
+  test "should not create entry with invalid decimal amount" do
+    assert_difference('Entry.count', 0) do
+      post :create, :entry => {:billing_date => '10/29/2000', :charge_type_id => charge_types(:bank_credit_card).to_param, :name => 'Breakfast', :description => '', :decimal_amount => '$ 5.42'}
+    end
+    assert_not_nil assigns(:entry)
     assert_template 'new'
   end
 
@@ -97,12 +105,12 @@ class EntriesControllerTest < ActionController::TestCase
   end
 
   test "should update entry" do
-    put :update, id: @entry.to_param, :entry => {:billing_date => '10/28/2000', :charge_type_id => charge_types(:bank_credit_card).to_param, :name => 'Lunch', :description => '$10.58 for Lunch at Restaurant', :amount => '10.58'}
+    put :update, id: @entry.to_param, :entry => {:billing_date => '10/28/2000', :charge_type_id => charge_types(:bank_credit_card).to_param, :name => 'Lunch', :description => '$10.58 for Lunch at Restaurant', :decimal_amount => '10.58'}
     assert_redirected_to entry_path(assigns(:entry))
   end
 
   test "should not update entry without name" do
-    put :update, id: @entry.to_param, :entry => {:billing_date => '10/28/2000', :charge_type_id => charge_types(:bank_credit_card).to_param, :name => '', :description => '', :amount => '10.58'}
+    put :update, id: @entry.to_param, :entry => {:billing_date => '10/28/2000', :charge_type_id => charge_types(:bank_credit_card).to_param, :name => '', :description => '', :decimal_amount => '10.58'}
     assert_not_nil assigns(:entry)
     assert_template 'edit'
   end
@@ -127,4 +135,17 @@ class EntriesControllerTest < ActionController::TestCase
     assert (assigns(:entries).size <= 8)
     assert_template 'autocomplete'
   end
+  
+  test "should get averages" do
+    get :averages
+    assert_template 'averages'
+    assert_response :success
+  end
+  
+  test "should get current balance" do
+    get :current_balance
+    assert_template 'current_balance'
+    assert_response :success
+  end
+  
 end

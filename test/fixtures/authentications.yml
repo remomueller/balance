@@ -1,11 +1,11 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
-one:
+open_id:
   user: valid
-  provider: MyString
+  provider: open_id
   uid: MyString
 
-two:
+google_apps:
   user: valid
-  provider: MyString
+  provider: google_apps
   uid: MyString

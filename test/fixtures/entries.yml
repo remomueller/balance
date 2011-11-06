@@ -16,4 +16,4 @@ two:
   billing_date: 2000-10-27
   amount: 20000
   description: $200 deposited into my bank account.
-  charged: false
+  charged: true

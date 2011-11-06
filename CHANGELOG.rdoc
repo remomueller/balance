@@ -19,7 +19,7 @@
 == 1.4.0
 
 * Testing
-  * Analyzing test coverage using SimpleCov gem
+  * Test Coverage is now at 100% with help of SimpleCov
 
 == 1.3.0
 
