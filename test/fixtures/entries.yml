@@ -1,19 +1,19 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
 
 one:
-  id: 1
-  user_id: 1
-  charge_type_id: 1
+  user: valid
+  charge_type: bank_credit_card
   name: Lunch
   billing_date: 2000-10-28
   amount: 1057
   description: $10.57 for Lunch at Restaurant
+  charged: false
 
 two:
-  id: 2
-  user_id: 1
-  charge_type_id: 2
+  user: valid
+  charge_type: bank_transfer
   name: Deposit
   billing_date: 2000-10-27
   amount: 20000
   description: $200 deposited into my bank account.
+  charged: false

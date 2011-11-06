@@ -1,7 +1,6 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
 
 valid:
-  id: 1
   first_name: MyString
   last_name: MyString
   deleted: false
@@ -25,7 +24,6 @@ valid:
   authentication_token: MyString
 
 invalid:
-  id: 2
   first_name: MyString
   last_name: MyString
   deleted: false
