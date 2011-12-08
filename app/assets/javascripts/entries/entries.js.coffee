@@ -23,7 +23,7 @@ jQuery ->
         event.preventDefault()
     )
     .autocomplete(
-      source: "/entries/autocomplete",
+      source: root_url + "/entries/autocomplete",
       html: true
     )
   

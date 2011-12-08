@@ -20,6 +20,7 @@
 
 * Bug Fix
   * Graphs now render correctly in IE7 and IE8
+  * Autocomplete now works correctly when using a subdomain
 
 * Testing
   * Test Coverage is now at 100% with help of SimpleCov
