@@ -1,7 +1,7 @@
 jQuery ->
-  $(".last-month").live("click", () -> goBackOneMonth())
-  $(".next-month").live("click", () -> goForwardOneMonth())
-  
+  $(document)
+    .on('click', '.last-month', () -> goBackOneMonth())
+    .on('click', '.next-month', () -> goForwardOneMonth())  
 
 @goBackOneYear = () -> 
   year_selector = $('#year')
