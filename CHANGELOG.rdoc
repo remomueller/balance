@@ -23,6 +23,9 @@
   * Updated jQuery Calls to use jQuery 1.7 specification (.live to .on)
   * Removed JavaScript functions that are provided by Contour
 
+* Refactoring
+  * Moved root path to be the entries calendar
+
 * Bug Fix
   * Graphs now render correctly in IE7 and IE8
   * Autocomplete now works correctly when using a subdomain

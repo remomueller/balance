@@ -18,33 +18,36 @@ Contour.setup do |config|
   
   # Enter the items you wish to see in the menu
   config.menu_items = [{
-    :name => 'Login', :id => 'auth', :display => 'not_signed_in', :path => 'new_user_session_path', :position => 'right', :condition => 'true',
-    :links => [{:name => 'Sign Up', :path => 'new_user_registration_path'}]
+    name: 'Login', display: 'not_signed_in', path: 'new_user_session_path', position: 'right',
+    links: [{ name: 'Sign Up', path: 'new_user_registration_path' }]
   },
   {
-    :name => 'current_user.name', :eval => true, :id => 'auth', :display => 'signed_in', :path => 'root_path', :position => 'right', :condition => 'true',
-    :links => [{:html => '"<div class=\"small quiet\">"+current_user.email+"</div>"', :eval => true}, {:name => 'Authentications', :path => 'authentications_path', :condition => 'not PROVIDERS.blank?'}, {:html => "<br />"}, {:name => 'Logout', :path => 'destroy_user_session_path'}]
+    name: 'current_user.name', eval: true, display: 'signed_in', path: 'root_path', position: 'right',
+    links: [{ html: '"<div class=\"small quiet\">"+current_user.email+"</div>"', eval: true },
+            { name: 'Authentications', path: 'authentications_path', condition: 'not PROVIDERS.blank?' },
+            { html: "<br />" },
+            { name: 'Logout', path: 'destroy_user_session_path' }]
   },
   {
-    :name => 'Home', :id => 'home', :display => 'always', :path => 'root_path', :position => 'left',
-    :links => [{:name => 'Current Balance', :path => 'current_balance_entries_path'},
-               {:name => 'Averages', :path => 'averages_entries_path'}]
+    name: 'Home', display: 'always', path: 'root_path', position: 'left',
+    links: [{ name: 'Current Balance', path: 'current_balance_entries_path' },
+            { name: 'Averages', path: 'averages_entries_path' }]
   },
   {
-    :name => 'Graphs', :id => 'graphs', :display => 'signed_in', :path => 'overview_entries_path', :position => 'left',
-    :links => []
+    name: 'Graphs', display: 'signed_in', path: 'overview_entries_path', position: 'left',
+    links: []
   },
   {
-    :name => 'Accounts', :id => 'accounts', :display => 'signed_in', :path => 'accounts_path', :position => 'left',
-    :links => [{:name => '&raquo;New', :path => 'new_account_path'}]
+    name: 'Accounts', display: 'signed_in', path: 'accounts_path', position: 'left',
+    links: [{ name: '&raquo;New', path: 'new_account_path' }]
   },
   {
-    :name => 'Charge Types', :id => 'charge_types', :display => 'signed_in', :path => 'charge_types_path', :position => 'left',
-    :links => [{:name => '&raquo;New', :path => 'new_charge_type_path'}]
+    name: 'Charge Types', display: 'signed_in', path: 'charge_types_path', position: 'left',
+    links: [{ name: '&raquo;New', path: 'new_charge_type_path' }]
   },
   {
-    :name => 'Entries', :id => 'entries', :display => 'signed_in', :path => 'entries_path', :position => 'left',
-    :links => [{:name => '&raquo;New', :path => 'new_entry_path'}]
+    name: 'Entries', display: 'signed_in', path: 'entries_path', position: 'left',
+    links: [{ name: '&raquo;New', path: 'new_entry_path' }]
   }
   ]
   

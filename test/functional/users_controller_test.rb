@@ -8,25 +8,6 @@ class UsersControllerTest < ActionController::TestCase
     # @user = users(:one)
   end
 
-  test "should get dashboard" do
-    get :dashboard
-    assert_template 'dashboard'
-    assert_response :success
-  end
-  
-  test "should get dashboard with month and year" do
-    get :dashboard, :month => 1, :year => 2011
-    assert_template 'dashboard'
-    assert_response :success
-  end
-
-  # TODO: Calling dashboard without month and year
-  test "should get dashboard with js" do
-    get :dashboard, :month => 1, :year => 2011, :format => 'js'
-    assert_template 'dashboard'
-    assert_response :success
-  end
-
   # test "should get index" do
   #   get :index
   #   assert_response :success

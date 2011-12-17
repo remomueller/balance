@@ -1,6 +1,15 @@
 class EntriesController < ApplicationController
   before_filter :authenticate_user!
 
+  def calendar
+    params[:month] = Date.today.month if params[:month].blank?
+    params[:year] = Date.today.year if params[:year].blank?
+    if params[:month] and params[:year]
+      @start_date = Date.parse("#{params[:year]}-#{params[:month]}-01")
+      @end_date = Date.parse("#{params[:year].to_i+params[:month].to_i/12}-#{(params[:month].to_i)%12+1}-01")-1.day
+    end
+  end
+
   def averages
     
   end
@@ -73,7 +82,7 @@ class EntriesController < ApplicationController
     if @entry.save
       flash[:notice] = 'Entry was successfully created.'
       if params[:from_calendar] == '1'
-        redirect_to dashboard_path(:month => @entry.billing_date.month, :year => @entry.billing_date.year)
+        redirect_to calendar_entries_path(:month => @entry.billing_date.month, :year => @entry.billing_date.year)
       else
         redirect_to @entry
       end
