@@ -4,13 +4,11 @@
   * Make Purchases with Cash Withdrawals easier
   * Automatically create a "Transfer" ChargeType when creating a new account.
   * Select Entries to put together as a PDF Report
-  * Easier to make new Entry from menu drop down
-  * Add Recurring Templates
 
 == 1.4.0
 
 * Enhancements
-  * Update to Rails 3.1.3 and Contour 0.7.0
+  * Update to Rails 3.2.0.rc2 and Contour 0.9.0
   * Updated jQuery Calls to use jQuery 1.7 specification (.live to .on)
   * Removed JavaScript functions that are provided by Contour
   * Existing entries can now be copied as templates for new entries
@@ -24,6 +22,7 @@
 
 * Testing
   * Test Coverage is now at 100% with help of SimpleCov
+  * Continuous integration using TravisCI, http://travis-ci.org/remomueller/balance
 
 == 1.3.0
 
