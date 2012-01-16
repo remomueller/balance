@@ -1,9 +1,6 @@
 == Planned
 
-* TODO: Update configuration files to 3.1.3
-
 * Enhancements
-  * Copy existing entry as template for a new one
   * Make Purchases with Cash Withdrawals easier
   * Automatically create a "Transfer" ChargeType when creating a new account.
   * Select Entries to put together as a PDF Report
