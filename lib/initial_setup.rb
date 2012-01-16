@@ -2,19 +2,20 @@ require 'fileutils'
 require 'erb'
 require 'digest/sha1'
 
-FileUtils.cd('..')
 root_folder = FileUtils.pwd
 FileUtils.cd('lib/templates')
 template_folder = FileUtils.pwd
 
 puts template_folder
 puts root_folder
-  
+
 files = [['config','database.yml'],
+  ['config/initializers', 'action_mailer.rb'],
   ['config/initializers', 'secret_token.rb'],
   ['config/initializers', '00_site_name.rb'],
-  ['config/initializers', 'devise.rb']]
-  
+  ['config/initializers', 'devise.rb'],
+  ['config/initializers', 'omniauth.rb']]
+
 files.each do |folder_name, file_name|
   file_template = File.join(template_folder, file_name + '.erb')
   file_original = File.join(root_folder, folder_name, file_name)
