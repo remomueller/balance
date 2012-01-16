@@ -11,6 +11,10 @@ class Entry < ActiveRecord::Base
   scope :with_date_for_calendar, lambda { |*args| { :conditions => ["DATE(entries.billing_date) >= ? and DATE(entries.billing_date) <= ?", args.first, args[1]]}}
   scope :with_user, lambda { |*args| { :conditions => ["user_id IN (?)", args.first] } }
   
+  def copyable_attributes
+    self.attributes.reject{|key, val| ['id', 'billing_date'].include?(key.to_s)}
+  end
+  
   def destroy(real = false)
     unless real
       update_attribute :deleted, true
@@ -28,7 +32,7 @@ class Entry < ActiveRecord::Base
   end
   
   def decimal_amount
-    "%0.02f" % (self.amount / 100.0) unless self.new_record?
+    "%0.02f" % (self.amount / 100.0) unless self.amount.blank?
   end
 
   def decimal_amount=(decimal_amount_input)

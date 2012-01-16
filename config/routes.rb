@@ -9,7 +9,10 @@ Balance::Application.routes.draw do
   end
   
   resources :entries do
-    post :mark_charged, :on => :member
+    member do
+      post :mark_charged
+      get :copy
+    end
     collection do
       get :calendar
       get :overview

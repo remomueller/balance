@@ -33,7 +33,7 @@
   
   <div class="actions">
     <% form_name = @charge_type.new_record? ? 'new_charge_type' : "edit_charge_type_#{@charge_type.id}" %>
-    <%= link_to_function image_tag('contour/tick.png', :alt => '') + (@charge_type.new_record? ? "Create Charge Type" : "Update Charge Type"), "$('##{form_name}').submit();", :class => "button positive" %>
+    <%= link_to_function image_tag('contour/tick.png', alt: '') + (@charge_type.new_record? ? "Create Charge Type" : "Update Charge Type"), "$('##{form_name}').submit();", :class => "button positive" %>
     <%= cancel %>
   </div>
 <% end %>

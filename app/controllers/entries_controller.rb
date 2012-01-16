@@ -70,6 +70,16 @@ class EntriesController < ApplicationController
     @entry = current_user.entries.new(params[:entry])
     @entry.billing_date = Date.today if @entry.billing_date.blank?
   end
+  
+  def copy
+    entry = current_user.entries.find_by_id(params[:id])
+    if entry
+      @entry = current_user.entries.new(entry.copyable_attributes)
+      render 'new'
+    else
+      redirect_to new_entry_path
+    end
+  end
 
   def edit
     @entry = current_user.entries.find_by_id(params[:id])

@@ -83,6 +83,25 @@ class EntriesControllerTest < ActionController::TestCase
     assert_response :success
   end
 
+  test "should copy existing" do
+    get :copy, id: @entry.to_param
+    assert_not_nil assigns(:entry)
+    assert_equal @entry.name, assigns(:entry).name
+    assert_equal @entry.description, assigns(:entry).description
+    assert_nil assigns(:entry).billing_date
+    assert_equal @entry.charged, assigns(:entry).charged
+    assert_equal @entry.charge_type, assigns(:entry).charge_type
+    assert_equal @entry.amount, assigns(:entry).amount
+    assert_template 'new'
+    assert_response :success
+  end
+
+  test "should not copy existing with invalid id" do
+    get :copy, id: -1
+    assert_nil assigns(:entry)
+    assert_redirected_to new_entry_path
+  end
+
   test "should create entry" do
     assert_difference('Entry.count') do
       post :create, entry: {billing_date: '10/29/2000', charge_type_id: charge_types(:bank_credit_card).to_param, name: 'Breakfast to Go', description: 'Coffee from the local coffee shop.', decimal_amount: '5.42'}
