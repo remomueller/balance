@@ -5,41 +5,9 @@ valid:
   last_name: LastName
   deleted: false
   email: test@example.com
-  encrypted_password: MyString
-  reset_password_token: ResetTokenOne
-  remember_token: MyString
-  remember_created_at: 2012-01-01
-  sign_in_count: 0
-  current_sign_in_at: 2012-01-01
-  last_sign_in_at: 2012-01-01
-  current_sign_in_ip: MyString
-  last_sign_in_ip: MyString
-  confirmation_token: ConfirmationTokenOne
-  confirmed_at: 2012-01-01
-  confirmation_sent_at: 2012-01-01
-  failed_attempts: 0
-  unlock_token: UnlockTokenOne
-  locked_at: 2012-01-01
-  authentication_token: MyString
 
 invalid:
   first_name: MyString
   last_name: MyString
   deleted: false
   email: EmailTwo
-  encrypted_password: MyString
-  reset_password_token: ResetTokenTwo
-  remember_token: MyString
-  remember_created_at: 2012-01-01
-  sign_in_count: 0
-  current_sign_in_at: 2012-01-01
-  last_sign_in_at: 2012-01-01
-  current_sign_in_ip: MyString
-  last_sign_in_ip: MyString
-  confirmation_token: ConfirmationTokenTwo
-  confirmed_at: 2012-01-01
-  confirmation_sent_at: 2012-01-01
-  failed_attempts: 0
-  unlock_token: UnlockTokenTwo
-  locked_at: 2012-01-01
-  authentication_token: MyString

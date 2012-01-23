@@ -1,13 +1,13 @@
-Balance::Application.routes.draw do  
+Balance::Application.routes.draw do
 
   resources :accounts do
-    get :search, :on => :collection
+    get :search, on: :collection
   end
 
   resources :charge_types do
-    get :search, :on => :collection
+    get :search, on: :collection
   end
-  
+
   resources :entries do
     member do
       post :mark_charged
@@ -22,15 +22,16 @@ Balance::Application.routes.draw do
       get :current_balance
     end
   end
-  
+
   devise_for :users, controllers: { registrations: 'contour/registrations',
                                          sessions: 'contour/sessions',
                                         passwords: 'contour/passwords' },
                      path_names:  {       sign_up: 'register',
                                           sign_in: 'login' }
-  
-  match "/about" => "sites#about", :as => :about
-  
-  root :to => "entries#calendar"
-  
+
+  match "/about" => "sites#about", as: :about
+
+  root to: "entries#calendar"
+
+  # See how all your routes lay out with "rake routes"
 end
