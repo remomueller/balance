@@ -7,15 +7,17 @@ class UpdateUsersWithAuthentication < ActiveRecord::Migration
     add_column :users, :unlock_token, :string
     add_column :users, :locked_at, :datetime
     add_column :users, :authentication_token, :string
-    
+
     add_index :users, :confirmation_token, :unique => true
     add_index :users, :unlock_token, :unique => true
+    add_index :users, :authentication_token, :unique => true
   end
 
   def self.down
     remove_index :users, :confirmation_token
     remove_index :users, :unlock_token
-    
+    remove_index :users, :authentication_token
+
     remove_column :users, :confirmation_token
     remove_column :users, :confirmed_at
     remove_column :users, :confirmation_sent_at
