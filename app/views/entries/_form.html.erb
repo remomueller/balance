@@ -1,4 +1,4 @@
-<% width = '914px' %>
+<% @width = '914px' %>
 <%= form_for(@entry) do |f| %>
   <% if @entry.errors.any? %>
     <div id="error_explanation">
@@ -11,42 +11,12 @@
       </ul>
     </div>
   <% end %>
-  
-  <%= hidden_field_tag 'from_calendar', params[:from_calendar].to_i %>
-  
+
   <fieldset>
     <legend><%= @title %></legend>
-    <div class="field">
-      <%= f.label :name %><br />
-      <%= f.text_field :name, :style => "width:#{width}" %>
-    </div>
-    
-    <div class="field">
-      <%= f.label :description %><br />
-      <%= f.text_area :description, :rows => 7, :style => "width:#{width}" %>
-    </div>
-    
-    <div class="field">
-      <%= f.label :billing_date %><br />
-      <%= f.text_field :billing_date, :class => 'datepicker', :value => @entry.billing_date ? @entry.billing_date.strftime('%m/%d/%Y') : '' %>
-    </div>
-    
-    <div class="field">
-      <%= f.label :charged %><br />
-      <%= f.check_box :charged %>
-    </div>
-    
-    <div class="field">
-      <%= f.label :charge_type_id %><br />
-      <%= f.select :charge_type_id, [["----", nil]]  + current_user.charge_types.find(:all, :order => 'name').collect{|item| [item.full_name, item.id]} %>
-    </div>
-    
-    <div class="field">
-      <%= f.label :decimal_amount, 'Amount' %><br />
-      <%= f.text_field :decimal_amount, :style => "width:#{width}", default: '100' %>
-    </div>
+    <%= render partial: 'entries/inner_form', locals: { f: f } %>
   </fieldset>
-  
+
   <div class="actions">
     <% form_name = @entry.new_record? ? 'new_entry' : "edit_entry_#{@entry.id}" %>
     <%= link_to_function image_tag('contour/tick.png', alt: '') + (@entry.new_record? ? "Create Entry" : "Update Entry"), "$('##{form_name}').submit();", :class => "button positive" %>

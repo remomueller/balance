@@ -24,11 +24,13 @@
     <tr>
       <% (0..@last_saturday - @first_sunday).each do |first_day_offset| %>
         <% iDate = @first_sunday + first_day_offset.day %>
-        <td valign="top" style="border:1px solid #777;padding:0px"
+        <td valign="top" style="padding:0px"
             class="<%= 'calendar-entry-body-today' if iDate == Date.today %>
                    <%= 'last-month' if iDate < @start_date %>
                    <%= 'next-month' if iDate > @end_date %>"
-            onmouseover="$(this).addClass('hover');$('#calendar_box_<%= first_day_offset %>_new_entry_link').show();" onmouseout="$(this).removeClass('hover');$('#calendar_box_<%= first_day_offset %>_new_entry_link').hide();">
+            onmouseover="$(this).addClass('hover');$('#calendar_box_<%= first_day_offset %>_new_entry_link').show();"
+            onmouseout="$(this).removeClass('hover');$('#calendar_box_<%= first_day_offset %>_new_entry_link').hide();"
+            ondblclick="$('#entry_billing_date').val('<%= iDate.strftime('%m/%d/%Y') %>'); $('#new-entry-dialog').dialog('open');">
           <div style="width:100%">
             <div class="calendar-entry-heading">
               <%= link_to image_tag('001_46.png', :style => 'border:none;vertical-align:text-bottom', :size => '11x11', :title => "New Entry for #{iDate.strftime("%B %e, %Y")}"), new_entry_path(:entry => {:billing_date => iDate}, :from_calendar => 1), :style => 'display:none', :id => "calendar_box_#{first_day_offset}_new_entry_link" %>
@@ -39,8 +41,8 @@
               <% end %>
             </div>
             <div style="min-height:60px">
-              <% iDateEntries = @entries.select{|e| e.billing_date == iDate and e.charge_type.counts_towards_spending?}.sort{|a,b| a.id <=> b.id} %>
-              <% iDateEntriesTransfers = @entries.select{|e| e.billing_date == iDate and not e.charge_type.counts_towards_spending?}.sort{|a,b| a.id <=> b.id} %>
+              <% iDateEntries = @entries.select{ |e| e.billing_date == iDate and e.charge_type.counts_towards_spending? }.sort{ |a,b| a.id <=> b.id } %>
+              <% iDateEntriesTransfers = @entries.select{ |e| e.billing_date == iDate and not e.charge_type.counts_towards_spending? }.sort{ |a,b| a.id <=> b.id } %>
               <% iDateEntries.each do |entry| %>
                 <div class="calendar-entry-amount"><%= entry.amount.to_currency %></div>
                 <div class="calendar-entry-name" title="<%=h entry.name %><%= ('&#13;' + h(entry.description)).html_safe unless entry.description.blank? %>">
@@ -80,21 +82,3 @@
     </tr>
   </tbody>
 </table>
-
-<% if false %>
-<table style="table-layout: fixed;font-size:11px"><col width="110px" /><col width="65px" />
-    <tr>
-      <td style="font-weight:bold;">Gross Income</td>
-      <td style="text-align: right;"><%= gross_income.to_currency %></td>
-    </tr>
-    <tr>
-      <td style="font-weight:bold;">Gross Spending</td>
-      <td style="text-align: right;"><%= gross_spending.to_currency %></td>
-    </tr>
-    <tr>
-      <td style="font-weight:bold;">Net <span class="gain">Profit</span> / <span class="loss">Loss</span></td>
-      <td style="text-align: right;" class="<%= (net_profit < 0) ? 'loss' : '' %><%= (net_profit > 0) ? 'gain' : '' %>"><%= net_profit.to_currency %></td>
-    </tr>
-  </tbody>
-</table>
-<% end %>

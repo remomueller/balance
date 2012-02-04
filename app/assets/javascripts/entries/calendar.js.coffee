@@ -1,9 +1,4 @@
-jQuery ->
-  $(document)
-    .on('click', '.last-month', () -> goBackOneMonth())
-    .on('click', '.next-month', () -> goForwardOneMonth())  
-
-@goBackOneYear = () -> 
+@goBackOneYear = () ->
   year_selector = $('#year')
   year_selector.val(year_selector.val() - 1)
   $('#direction').val(-1)
@@ -58,14 +53,14 @@ jQuery ->
   amount_left = parseFloat($('#amount_left').val() || 0) # Amount left currently in checking
   estimated_spending = parseFloat($('#estimated_spending').val() || 0) # Amount you estimate to spend through end of month
   amount_left_over = parseFloat($('#amount_left_over').val() || 0)  # Amount that you want to have left over at end of month
-  per_day_spending = ((amount_left - estimated_spending - amount_left_over) / days_left)  
+  per_day_spending = ((amount_left - estimated_spending - amount_left_over) / days_left)
   $('#left_to_spend_per_day_this_month').html('$ ' + per_day_spending.toFixed(2))
 
 @calculateDaysUntilPaycheck = () ->
   one_day = 1000*60*60*24
   today = new Date()
   paycheck = Date.parse($('#paycheck_day').val())
-  Math.ceil((paycheck-today.getTime())/(one_day))  
-  
-  
-  
+  Math.ceil((paycheck-today.getTime())/(one_day))
+
+
+

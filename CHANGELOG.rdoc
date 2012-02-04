@@ -7,6 +7,9 @@
 
 == 1.5.0
 
+* Enhancements
+  * Entries can now be created from the calendar by double clicking on a date
+
 * Refactoring
   * Updated to Rails 3.2.1 and fixed Devise 2.0.0 locales file
 
