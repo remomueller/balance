@@ -41,9 +41,11 @@ jQuery ->
 
   $("#search").watermark('&lt;Enter&gt; to Search')
 
-  $(document).keydown( (e) ->
-    if e.keyCode == 37
-      goBackOneMonth()
-    if e.keyCode == 39
-      goForwardOneMonth()
-  )
+  $(document)
+    .keydown( (e) ->
+      if $("input, textarea").is(":focus") then return
+      if e.which == 37
+        goBackOneMonth()
+      if e.which == 39
+        goForwardOneMonth()
+    )

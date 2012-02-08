@@ -7,6 +7,9 @@
 
 == 1.5.1
 
+* Bug Fix
+  * Arrow keys no longer change the calendar month when focus is on a text input
+
 == 1.5.0
 
 * Enhancements
