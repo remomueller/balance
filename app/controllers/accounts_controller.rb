@@ -27,7 +27,7 @@ class AccountsController < ApplicationController
       flash[:notice] = 'Account was successfully created.'
       redirect_to @account
     else
-      render :action => :new
+      render action: :new
     end
   end
 
@@ -37,7 +37,7 @@ class AccountsController < ApplicationController
       flash[:notice] = 'Account was successfully updated.'
       redirect_to @account
     else
-      render :action => :edit
+      render action: :edit
     end
   end
 

@@ -6,7 +6,7 @@
 		<%= stylesheet_link_tag "application" %>
 		<%= javascript_include_tag "application" %>
     <%= csrf_meta_tag %>
-    
+
 		<%= yield :script %>
 		<%# TODO: remove < % content_for :script do % > tags, then remove yield :script %>
 	</head>
@@ -17,19 +17,19 @@
       <div id="version" style="position:relative;display:none">
         <span style="position:absolute;top:25px;left:60px;font-size:0.5em;font-variant:normal;line-height:0em" class="quiet"><%= Balance::VERSION::STRING %></span>
       </div>
-      <%#= image_tag('balance.png', alt: '', :style => 'vertical-align:middle') %>
-      <%= link_to DEFAULT_APP_NAME, root_path, :style => 'text-decoration:none;color:#404040;', :onmouseover => "$('#version').show();", :onmouseout => "$('#version').hide();" %>
+      <%#= image_tag('balance.png', alt: '', style: 'vertical-align:middle') %>
+      <%= link_to DEFAULT_APP_NAME, root_path, style: 'text-decoration:none;color:#404040;', onmouseover: "$('#version').show();", onmouseout: "$('#version').hide();" %>
     </div>
 
     <div class="container" style="position:relative">
       <div id="message">
-        <%= render :partial => 'layouts/message' %>
+        <%= render partial: 'layouts/message' %>
       </div>
     </div>
 
     <div style="height:29px">
       <div id="menu" class="container">
-        <%= render :partial => 'layouts/menu' %>
+        <%= render partial: 'layouts/menu' %>
       </div>
     </div>
 

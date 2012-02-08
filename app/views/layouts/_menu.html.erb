@@ -1,6 +1,6 @@
 <% if user_signed_in? -%>
   <div style="float:right">
-    <%= link_to_function current_user.name, "$('#menu_user_settings').show();", :onmouseover => "$('#menu_user_settings').show();" %>
+    <%= link_to_function current_user.name, "$('#menu_user_settings').show();", onmouseover: "$('#menu_user_settings').show();" %>
     <div style="position:relative">
       <div id="menu_user_settings" class="menu_dropdown_right" style="display:none">
         <div style="white-space:nowrap"><%= current_user.name %></div>
@@ -12,7 +12,7 @@
   </div>
 
   <div style="float:left">
-    <%= link_to_function 'Home', "$('#menu_home').show();", :onmouseover => "$('#menu_home').show();" %>
+    <%= link_to_function 'Home', "$('#menu_home').show();", onmouseover: "$('#menu_home').show();" %>
     <div style="position:relative;">
       <div id="menu_home" class="menu_dropdown_left" style="display:none">
         <div><%= link_to 'Home', root_path %></div>
@@ -22,22 +22,22 @@
       </div>
     </div>
   </div>
-  
+
   <div style="float:left;width:10px">&nbsp;</div>
 
   <div style="float:left">
-    <%= link_to_function 'Graphs', "$('#menu_graphs').show();", :onmouseover => "$('#menu_graphs').show();" %>
+    <%= link_to_function 'Graphs', "$('#menu_graphs').show();", onmouseover: "$('#menu_graphs').show();" %>
     <div style="position:relative;">
       <div id="menu_graphs" class="menu_dropdown_left_center" style="display:none">
         <div><%= link_to 'Graphs', overview_entries_path %></div>
       </div>
     </div>
   </div>
-  
+
   <div style="float:left;width:10px">&nbsp;</div>
-  
+
   <div style="float:left">
-    <%= link_to_function 'Accounts', "$('#menu_accounts').show();", :onmouseover => "$('#menu_accounts').show();" %>
+    <%= link_to_function 'Accounts', "$('#menu_accounts').show();", onmouseover: "$('#menu_accounts').show();" %>
     <div style="position:relative;">
       <div id="menu_accounts" class="menu_dropdown_left_center" style="display:none">
         <div><%= link_to 'Accounts', accounts_path %></div>
@@ -49,7 +49,7 @@
   <div style="float:left;width:10px">&nbsp;</div>
 
   <div style="float:left">
-    <%= link_to_function 'Charge Types', "$('#menu_charge_types').show();", :onmouseover => "$('#menu_charge_types').show();" %>
+    <%= link_to_function 'Charge Types', "$('#menu_charge_types').show();", onmouseover: "$('#menu_charge_types').show();" %>
     <div style="position:relative;">
       <div id="menu_charge_types" class="menu_dropdown_left_center" style="display:none">
         <div style="white-space:nowrap"><%= link_to 'Charge Types', charge_types_path %></div>
@@ -57,11 +57,11 @@
       </div>
     </div>
   </div>
-  
+
   <div style="float:left;width:10px">&nbsp;</div>
-  
+
   <div style="float:left">
-    <%= link_to_function 'Entries', "$('#menu_entries').show();", :onmouseover => "$('#menu_entries').show();" %>
+    <%= link_to_function 'Entries', "$('#menu_entries').show();", onmouseover: "$('#menu_entries').show();" %>
     <div style="position:relative;">
       <div id="menu_entries" class="menu_dropdown_left_center" style="display:none">
         <div><%= link_to 'Entries', entries_path %></div>
@@ -82,9 +82,9 @@
       </div>
     </div>
   </div>
-  
+
   <div style="float:left">
-    <%= link_to_function 'Home', "$('#menu_home').show();", :onmouseover => "$('#menu_home').show();" %>
+    <%= link_to_function 'Home', "$('#menu_home').show();", onmouseover: "$('#menu_home').show();" %>
     <div style="position:relative;">
       <div id="menu_home" class="menu_dropdown_left" style="display:none">
         <div><%= link_to 'Home', root_path %></div>

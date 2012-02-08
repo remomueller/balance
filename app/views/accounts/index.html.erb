@@ -1,9 +1,9 @@
 <% @title = 'Accounts' %>
 <h1><%= @title %></h1>
 
-<%= link_to image_tag('contour/addfile.png', alt: '') + "Create New Account", new_account_path, :class => 'button positive' %>
+<%= link_to image_tag('contour/addfile.png', alt: '') + "Create New Account", new_account_path, class: 'button positive' %>
 
-<%= form_tag accounts_path, :method => :get, :remote => true, :id => 'search-form' do %>
+<%= form_tag accounts_path, method: :get, remote: true, id: 'search-form' do %>
   <%= text_field_tag 'search', params[:search] %>
   <div class="search" id="accounts"><div style="clear:both"></div><br /><center><%= image_tag "ajax-loader.gif" %></center></div>
 <% end %>

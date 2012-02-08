@@ -15,13 +15,13 @@
     <legend><%= @title %></legend>
     <div class="field">
       <%= f.label :name %><br />
-      <%= f.text_field :name, :style => "width:#{width}" %>
+      <%= f.text_field :name, style: "width:#{width}" %>
     </div>
   </fieldset>
-  
+
   <div class="actions">
     <% form_name = @account.new_record? ? 'new_account' : "edit_account_#{@account.id}" %>
-    <%= link_to_function image_tag('contour/tick.png', alt: '') + (@account.new_record? ? "Create Account" : "Update Account"), "$('##{form_name}').submit();", :class => "button positive" %>
+    <%= link_to_function image_tag('contour/tick.png', alt: '') + (@account.new_record? ? "Create Account" : "Update Account"), "$('##{form_name}').submit();", class: "button positive" %>
     <%= cancel %>
   </div>
 <% end %>

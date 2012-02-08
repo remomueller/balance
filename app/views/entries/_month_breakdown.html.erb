@@ -33,7 +33,7 @@
             ondblclick="$('#entry_billing_date').val('<%= iDate.strftime('%m/%d/%Y') %>'); $('#new-entry-dialog').dialog('open');">
           <div style="width:100%">
             <div class="calendar-entry-heading">
-              <%= link_to image_tag('001_46.png', :style => 'border:none;vertical-align:text-bottom', :size => '11x11', :title => "New Entry for #{iDate.strftime("%B %e, %Y")}"), new_entry_path(:entry => {:billing_date => iDate}, :from_calendar => 1), :style => 'display:none', :id => "calendar_box_#{first_day_offset}_new_entry_link" %>
+              <%= link_to image_tag('001_46.png', style: 'border:none;vertical-align:text-bottom', size: '11x11', title: "New Entry for #{iDate.strftime("%B %e, %Y")}"), new_entry_path(entry: {billing_date: iDate}, from_calendar: 1), style: 'display:none', id: "calendar_box_#{first_day_offset}_new_entry_link" %>
               <% if [@start_date, (@end_date + 1.day)].include?(iDate) %>
                 <%= iDate.strftime("%b %e") %>
               <% else %>
@@ -46,8 +46,8 @@
               <% iDateEntries.each do |entry| %>
                 <div class="calendar-entry-amount"><%= entry.amount.to_currency %></div>
                 <div class="calendar-entry-name" title="<%=h entry.name %><%= ('&#13;' + h(entry.description)).html_safe unless entry.description.blank? %>">
-                  <%= link_to(image_tag('001_15.png', :style => 'border:none', :align => 'absmiddle', :size => '11x11', :title => 'Not Charged'), mark_charged_entry_path(entry, :authenticity_token => form_authenticity_token), :remote => true, :method => :post, :confirm => "Are you sure you want to mark this entry as charged?\n\n#{entry.name}\n\n#{entry.amount.to_currency + ' ' + entry.charge_type.full_name}\n", :id => "entry_#{entry.id}_mark_charged_link") unless entry.charged? %>
-                  <%= link_to entry.name, entry, :style => "text-decoration:none;color:#{entry.charged? ? '#404040' : '#FFB475'};", :id => "entry_#{entry.id}_name" %>
+                  <%= link_to(image_tag('001_15.png', style: 'border:none', align: 'absmiddle', size: '11x11', title: 'Not Charged'), mark_charged_entry_path(entry, authenticity_token: form_authenticity_token), remote: true, method: :post, confirm: "Are you sure you want to mark this entry as charged?\n\n#{entry.name}\n\n#{entry.amount.to_currency + ' ' + entry.charge_type.full_name}\n", id: "entry_#{entry.id}_mark_charged_link") unless entry.charged? %>
+                  <%= link_to entry.name, entry, style: "text-decoration:none;color:#{entry.charged? ? '#404040' : '#FFB475'};", id: "entry_#{entry.id}_name" %>
                 </div>
                 <div style="clear:both"></div>
               <% end %>
@@ -62,8 +62,8 @@
               <% iDateEntriesTransfers.each do |entry| %>
                 <div class="calendar-entry-amount"><%= entry.amount.to_currency %></div>
                 <div class="calendar-entry-name" title="<%=h entry.name %><%= ('&#13;' + h(entry.description)).html_safe unless entry.description.blank? %>">
-                  <%= link_to(image_tag('001_15.png', :style => 'border:none', :align => 'absmiddle', :size => '11x11', :title => 'Not Charged'), mark_charged_entry_path(entry, :authenticity_token => form_authenticity_token), :remote => true, :method => :post, :confirm => "Are you sure you want to mark this entry as charged?\n\n#{entry.name}\n\n#{entry.amount.to_currency + ' ' + entry.charge_type.full_name}\n", :id => "entry_#{entry.id}_mark_charged_link") unless entry.charged? %>
-                  <%= link_to entry.name, entry, :style => "text-decoration:none;color:#{entry.charged? ? '#404040' : '#FFB475'};", :id => "entry_#{entry.id}_name" %>
+                  <%= link_to(image_tag('001_15.png', style: 'border:none', align: 'absmiddle', size: '11x11', title: 'Not Charged'), mark_charged_entry_path(entry, authenticity_token: form_authenticity_token), remote: true, method: :post, confirm: "Are you sure you want to mark this entry as charged?\n\n#{entry.name}\n\n#{entry.amount.to_currency + ' ' + entry.charge_type.full_name}\n", id: "entry_#{entry.id}_mark_charged_link") unless entry.charged? %>
+                  <%= link_to entry.name, entry, style: "text-decoration:none;color:#{entry.charged? ? '#404040' : '#FFB475'};", id: "entry_#{entry.id}_name" %>
                 </div>
                 <div style="clear:both"></div>
               <% end %>

@@ -2,9 +2,9 @@
 
 <h1><%= @title %></h1>
 
-<%= link_to image_tag('contour/edit.png', alt: '') + "Edit Account", edit_account_path(@account), :class => 'button' %>
-<%= link_to image_tag('contour/delete.png', alt: '') + "Delete Account", @account, :confirm => "Are you sure you want to delete Account #{@account.name}?", :method => :delete, :class => 'button negative' %>	
-<%= link_to image_tag('contour/mydocuments.png', alt: '') + "View All Accounts", accounts_path, :class => 'button' %>
+<%= link_to image_tag('contour/edit.png', alt: '') + "Edit Account", edit_account_path(@account), class: 'button' %>
+<%= link_to image_tag('contour/delete.png', alt: '') + "Delete Account", @account, confirm: "Are you sure you want to delete Account #{@account.name}?", method: :delete, class: 'button negative' %>
+<%= link_to image_tag('contour/mydocuments.png', alt: '') + "View All Accounts", accounts_path, class: 'button' %>
 
 <div style="clear:both"></div>
 

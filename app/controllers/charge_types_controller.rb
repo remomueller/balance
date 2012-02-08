@@ -1,6 +1,6 @@
 class ChargeTypesController < ApplicationController
   before_filter :authenticate_user!
-  
+
   def index
     # current_user.update_attribute :charge_types_per_page, params[:charge_types_per_page].to_i if params[:charge_types_per_page].to_i >= 10 and params[:charge_types_per_page].to_i <= 200
     charge_type_scope = current_user.charge_types
@@ -28,7 +28,7 @@ class ChargeTypesController < ApplicationController
       flash[:notice] = 'Charge Type was successfully created.'
       redirect_to @charge_type
     else
-      render :action => :new
+      render action: :new
     end
   end
 
@@ -39,7 +39,7 @@ class ChargeTypesController < ApplicationController
       flash[:notice] = 'Charge Type was successfully updated.'
       redirect_to @charge_type
     else
-      render :action => :edit
+      render action: :edit
     end
   end
 

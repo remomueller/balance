@@ -39,7 +39,7 @@ jQuery ->
   #     event.preventDefault();
   # )
 #     .autocomplete(
-# #     source: "<%= auto_complete_for_entry_name_path(:autocomplete => true) %>",
+# #     source: "<%= auto_complete_for_entry_name_path(autocomplete: true) %>",
 #       selectFirst: true,
 #       html: true,
 #   });

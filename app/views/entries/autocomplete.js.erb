@@ -1,1 +1,1 @@
-[<%= @entries.collect{|e| "{\"label\":\"#{highlight(e.name, @search_terms, :highlighter => '<b>\1</b>')}\", \"value\":\"#{e.name}\"}" }.join(',').html_safe %>]
+[<%= @entries.collect{|e| "{\"label\":\"#{highlight(e.name, @search_terms, highlighter: '<b>\1</b>')}\", \"value\":\"#{e.name}\"}" }.join(',').html_safe %>]

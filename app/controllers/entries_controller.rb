@@ -11,11 +11,11 @@ class EntriesController < ApplicationController
   end
 
   def averages
-    
+
   end
-  
+
   def current_balance
-    
+
   end
 
   def overview
@@ -33,7 +33,7 @@ class EntriesController < ApplicationController
       @net_profit << @gross_income.last + @gross_spending.last
     end
   end
-  
+
   def earning_spending_graph
     @year = params[:year].to_i
     @month = params[:month].to_i
@@ -49,10 +49,10 @@ class EntriesController < ApplicationController
         @net_profit << @gross_income.last + @gross_spending.last
       end
     else
-      render :nothing => true
+      render nothing: true
     end
   end
-  
+
   def index
     # current_user.update_attribute :entries_per_page, params[:entries_per_page].to_i if params[:entries_per_page].to_i >= 10 and params[:entries_per_page].to_i <= 200
     entry_scope = current_user.entries.with_charged(params[:charged] == "1")
@@ -70,7 +70,7 @@ class EntriesController < ApplicationController
     @entry = current_user.entries.new(params[:entry])
     @entry.billing_date = Date.today if @entry.billing_date.blank?
   end
-  
+
   def copy
     entry = current_user.entries.find_by_id(params[:id])
     if entry
@@ -87,29 +87,29 @@ class EntriesController < ApplicationController
 
   def create
     params[:entry][:billing_date] = Date.strptime(params[:entry][:billing_date], "%m/%d/%Y") if params[:entry] and not params[:entry][:billing_date].blank?
-    
+
     @entry = current_user.entries.new(params[:entry])
     if @entry.save
       flash[:notice] = 'Entry was successfully created.'
       if params[:from_calendar] == '1'
-        redirect_to calendar_entries_path(:month => @entry.billing_date.month, :year => @entry.billing_date.year)
+        redirect_to calendar_entries_path(month: @entry.billing_date.month, year: @entry.billing_date.year)
       else
         redirect_to @entry
       end
     else
-      render :action => :new
+      render action: :new
     end
   end
 
   def update
     params[:entry][:billing_date] = Date.strptime(params[:entry][:billing_date], "%m/%d/%Y") if params[:entry] and not params[:entry][:billing_date].blank?
-    
+
     @entry = current_user.entries.find_by_id(params[:id])
     if @entry.update_attributes(params[:entry])
       flash[:notice] = 'Entry was successfully updated.'
       redirect_to @entry
     else
-      render :action => :edit
+      render action: :edit
     end
   end
 
@@ -123,7 +123,7 @@ class EntriesController < ApplicationController
     @entry.destroy if @entry
     redirect_to entries_path
   end
-  
+
   def autocomplete
     @entries = Entry.with_user(current_user.id).group('name').order('COUNT(id) DESC, name ASC').where(['LOWER(name) LIKE ?', '%' + params[:term].downcase.split(' ').join('%') + '%']).limit(8)
   end

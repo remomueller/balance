@@ -1,9 +1,9 @@
 <% @title = 'Entries' %>
 <h1><%= @title %></h1>
 
-<%= link_to image_tag('contour/addfile.png', alt: '') + "Create New Entry", new_entry_path, :class => 'button positive' %>
+<%= link_to image_tag('contour/addfile.png', alt: '') + "Create New Entry", new_entry_path, class: 'button positive' %>
 
-<%= form_tag entries_path, :method => :get, :remote => true, :id => 'search-form' do %>
+<%= form_tag entries_path, method: :get, remote: true, id: 'search-form' do %>
   <%= text_field_tag 'search', params[:search] %>
   <%= link_to_function 'charged', "if ($('#charged').is(':checked')) {$('#charged').removeAttr('checked');} else {$('#charged').attr('checked', 'checked');};$('#charged').change();" %> <%= check_box_tag 'charged', '1', true %>
 

@@ -40,7 +40,7 @@
         <tr>
           <td>Next Pay Check</td>
           <td>
-            <%= text_field_tag 'paycheck_day', (Date.parse("#{today.year}/#{today.month}/01")+1.month).strftime('%m/%d/%Y'), :class => 'datepicker' %>
+            <%= text_field_tag 'paycheck_day', (Date.parse("#{today.year}/#{today.month}/01")+1.month).strftime('%m/%d/%Y'), class: 'datepicker' %>
           </td>
         </tr>
 
