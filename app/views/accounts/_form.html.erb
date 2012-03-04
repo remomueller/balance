@@ -21,7 +21,7 @@
 
   <div class="actions">
     <% form_name = @account.new_record? ? 'new_account' : "edit_account_#{@account.id}" %>
-    <%= link_to_function image_tag('contour/tick.png', alt: '') + (@account.new_record? ? "Create Account" : "Update Account"), "$('##{form_name}').submit();", class: "button positive" %>
+    <%= link_to_function image_tag('gentleface/16/checkmark.png', alt: '') + (@account.new_record? ? "Create Account" : "Update Account"), "$('##{form_name}').submit();", class: "button positive" %>
     <%= cancel %>
   </div>
 <% end %>

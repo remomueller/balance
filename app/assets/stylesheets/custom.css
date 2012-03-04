@@ -9,9 +9,9 @@
 /**************************************/
 /*           COLOR SCHEME             */
 /**************************************
-- black		#000
-- white		#fff
-- logo blue   #FFCC66  
+- black    #000
+- white    #fff
+- logo blue   #FFCC66
 - link blue   #057080
 
 - dark blue   #094E63
@@ -42,39 +42,6 @@ a:visited { text-decoration: none; color: #FDB000; }
 a:hover { text-decoration: none; color: #EB6C20; }
 a:active, a:focus { text-decoration: none; color: #000; }
 
-/**************************************/
-/*              HEADER                */
-/**************************************/
-
-#header {
-  border-bottom-color: #FDB000;
-}
-
-/**************************************/
-/*             NAVIGATION             */
-/**************************************/
-
-#menu a:hover {
-  color: #EB6C20;
-}
-
-div.menu_dropdown_right, div.menu_dropdown_right_center {
-  border-color: #FDB000;
-}
-
-div.menu_dropdown_left, div.menu_dropdown_left_center {
-  border-color: #FDB000;
-}
-
-
-
-#menu div.menu_dropdown_left a, #menu div.menu_dropdown_left_center a, #menu div.menu_dropdown_right a, #menu div.menu_dropdown_right_center a {
-  color: #FDB000;
-}
-
-#menu div.menu_dropdown_left a:hover, #menu div.menu_dropdown_left_center a:hover, #menu div.menu_dropdown_right a:hover, #menu div.menu_dropdown_right_center a:hover {
-  color: #EB6C20;
-}
 
 /**************************************/
 /*            MAIN CONTENT            */
@@ -137,4 +104,14 @@ table.search {
 
 .gain{
   color: #669966;
+}
+
+/* Should be fixed in Contour */
+table {
+  margin-bottom: 0;
+}
+
+div.inner-frame {
+  background-color: white;
+  padding: 10px;
 }

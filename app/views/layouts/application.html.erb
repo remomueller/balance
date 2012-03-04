@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<title><%= [DEFAULT_APP_NAME, @title].compact.join(' - ').html_safe %></title>
-		<%= favicon_link_tag %>
-		<%= stylesheet_link_tag "application" %>
-		<%= javascript_include_tag "application" %>
+  <head>
+    <title><%= [DEFAULT_APP_NAME, @title].compact.join(' - ').html_safe %></title>
+    <%= favicon_link_tag %>
+    <%= stylesheet_link_tag "application" %>
+    <%= javascript_include_tag "application" %>
     <%= csrf_meta_tag %>
 
-		<%= yield :script %>
-		<%# TODO: remove < % content_for :script do % > tags, then remove yield :script %>
-	</head>
+    <%= yield :script %>
+    <%# TODO: remove < % content_for :script do % > tags, then remove yield :script %>
+  </head>
 
-	<body>
+  <body>
     <%= javascript_tag "var root_url='#{SITE_URL + '/'}';var auth_token='#{form_authenticity_token}';" %>
     <div id="header" class="container" style="background-image: url(<%= SITE_URL %>/assets/backdrop_faded.png);">
       <div id="version" style="position:relative;display:none">

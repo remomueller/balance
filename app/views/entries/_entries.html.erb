@@ -1,21 +1,23 @@
-<table class="search">
-  <tr>
-    <th>Entry Name</th>
-    <th>Billing Date</th>
-    <th>Amount</th>
-    <th>Charged</th>
-    <th>Charge Type</th>
-    <th>Account</th>
-  </tr>
-<% @entries.each do |entry| %>
-	<tr>
-		<td><%= link_to entry.name, entry, title: entry.description %></td>
-    <td><%= simple_date(entry.billing_date) %></td>
-    <td style="text-align:right"><%= entry.amount.to_currency %></td>
-    <td style="text-align:center"><%= check_box_tag 'entry', 'charged', entry.charged?, disabled: true %></td>
-    <td><%= link_to entry.charge_type.name, entry.charge_type %></td>
-    <td><%= link_to entry.charge_type.account.name, entry.charge_type.account %></td>
-	</tr>
-<% end %>
-</table>
+<div class="frame">
+  <table class="search">
+    <tr>
+      <th>Entry Name</th>
+      <th>Billing Date</th>
+      <th>Amount</th>
+      <th>Charged</th>
+      <th>Charge Type</th>
+      <th>Account</th>
+    </tr>
+  <% @entries.each do |entry| %>
+    <tr>
+      <td><%= link_to entry.name, entry, title: entry.description %></td>
+      <td><%= simple_date(entry.billing_date) %></td>
+      <td style="text-align:right"><%= entry.amount.to_currency %></td>
+      <td style="text-align:center"><%= check_box_tag 'entry', 'charged', entry.charged?, disabled: true %></td>
+      <td><%= link_to entry.charge_type.name, entry.charge_type %></td>
+      <td><%= link_to entry.charge_type.account.name, entry.charge_type.account %></td>
+    </tr>
+  <% end %>
+  </table>
+</div>
 <center><%= paginate @entries %></center>

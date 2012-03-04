@@ -2,28 +2,30 @@
   Spending This Month
 </h2>
 
-<table>
-  <thead>
-    <tr>
-      <th>Account</th>
-      <th>Spending</th>
-      <th>Daily Average</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% current_user.accounts.each do |account| %>
-      <% unless account.spent_in_time_period(@start_date, @end_date) == 0 %>
-        <tr>
-          <td><%= link_to account.name, account %></td>
-          <td style="text-align:right"><%= account.spent_in_time_period(@start_date, @end_date).to_currency %></td>
-          <td style="text-align:right"><%= account.average_spent_over_time_period(@start_date, @end_date).to_currency %></td>
-        </tr>
+<div class="frame" style="float:left">
+  <table>
+    <thead>
+      <tr>
+        <th>Account</th>
+        <th>Spending</th>
+        <th>Daily Average</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% current_user.accounts.each do |account| %>
+        <% unless account.spent_in_time_period(@start_date, @end_date) == 0 %>
+          <tr>
+            <td><%= link_to account.name, account %></td>
+            <td style="text-align:right"><%= account.spent_in_time_period(@start_date, @end_date).to_currency %></td>
+            <td style="text-align:right"><%= account.average_spent_over_time_period(@start_date, @end_date).to_currency %></td>
+          </tr>
+        <% end %>
       <% end %>
-    <% end %>
-    <tr style="font-weight:bold;border:2px solid #777; background-color: #DEDEDE">
-      <td>Total</td>
-      <td style="text-align:right"><%= current_user.spent_in_time_period(@start_date, @end_date).to_currency %></td>
-      <td style="text-align:right"><%= current_user.average_spent_over_time_period(@start_date, @end_date).to_currency %></td>
-    </tr>
-  </tbody>
-</table>
+      <tr style="font-weight:bold;border:2px solid #777; background-color: #DEDEDE">
+        <td>Total</td>
+        <td style="text-align:right"><%= current_user.spent_in_time_period(@start_date, @end_date).to_currency %></td>
+        <td style="text-align:right"><%= current_user.average_spent_over_time_period(@start_date, @end_date).to_currency %></td>
+      </tr>
+    </tbody>
+  </table>
+</div>

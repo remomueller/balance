@@ -8,8 +8,8 @@
         <br />
         <div class="actions">
           <% form_name = @entry.new_record? ? 'new_entry' : "edit_entry_#{@entry.id}" %>
-          <%= link_to_function image_tag('contour/tick.png', alt: '') + (@entry.new_record? ? "Create Entry" : "Update Entry"), "$('##{form_name}').submit();", class: "button positive" %>
-          <%= link_to_function image_tag('contour/cross.png', alt: '') + 'Cancel', "$( '#new-entry-dialog' ).dialog('close');", class: 'button negative' %>
+          <%= link_to_function image_tag('gentleface/16/checkmark.png', alt: '') + (@entry.new_record? ? "Create Entry" : "Update Entry"), "$('##{form_name}').submit();", class: "button positive" %>
+          <%= link_to_function image_tag('gentleface/16/cancel.png', alt: '') + 'Cancel', "$( '#new-entry-dialog' ).dialog('close');", class: 'button negative' %>
         </div>
 
       <% end %>

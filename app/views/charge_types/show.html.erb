@@ -2,23 +2,31 @@
 
 <h1><%= @title %></h1>
 
-<%= link_to image_tag('contour/edit.png', alt: '') + "Edit Charge Type", edit_charge_type_path(@charge_type), class: 'button' %>
-<%= link_to image_tag('contour/delete.png', alt: '') + "Delete Charge Type", @charge_type, confirm: "Are you sure you want to delete Charge Type #{@charge_type.name}?", method: :delete, class: 'button negative' %>
-<%= link_to image_tag('contour/mydocuments.png', alt: '') + "View All Charge Types", charge_types_path, class: 'button' %>
+<%= link_to image_tag('gentleface/16/doc_edit.png', alt: '') + "Edit Charge Type", edit_charge_type_path(@charge_type), class: 'button' %>
+<%= link_to image_tag('gentleface/16/doc_delete.png', alt: '') + "Delete Charge Type", @charge_type, confirm: "Are you sure you want to delete Charge Type #{@charge_type.name}?", method: :delete, class: 'button negative' %>
+<%= link_to image_tag('gentleface/16/folder_open.png', alt: '') + "View All Charge Types", charge_types_path, class: 'button' %>
 
 <div style="clear:both"></div>
 
-<p>
-  <b>Account:</b>
-  <%= link_to @charge_type.account.name, @charge_type.account %>
-</p>
+<div class="frame">
+  <table style="width:100%" class="padded blank">
+    <tr>
+      <td>
+        <p>
+          <b>Account:</b>
+          <%= link_to @charge_type.account.name, @charge_type.account %>
+        </p>
 
-<p>
-  <b>Counts Towards Spending:</b>
-  <%= check_box_tag 'counts', 'towards_spending', @charge_type.counts_towards_spending?, disabled: true %>
-</p>
+        <p>
+          <b>Counts Towards Spending:</b>
+          <%= check_box_tag 'counts', 'towards_spending', @charge_type.counts_towards_spending?, disabled: true %>
+        </p>
 
-<p>
-  <b>Total Spent:</b>
-  <%= @charge_type.total_spent.to_currency %>
-</p>
+        <p>
+          <b>Total Spent:</b>
+          <%= @charge_type.total_spent.to_currency %>
+        </p>
+      </td>
+    </tr>
+  </table>
+</div>

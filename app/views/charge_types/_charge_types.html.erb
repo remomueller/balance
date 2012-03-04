@@ -1,9 +1,11 @@
-<table class="search"><tr><th>Charge Type Name</th><th>Account</th></tr>
-<% @charge_types.each do |charge_type| %>
-	<tr>
-	  <td><%= link_to charge_type.name, charge_type %></td>
-		<td><%= link_to charge_type.account.name, charge_type.account %></td>
-	</tr>
-<% end %>
-</table>
+<div class="frame">
+  <table class="search"><tr><th>Charge Type Name</th><th>Account</th></tr>
+  <% @charge_types.each do |charge_type| %>
+    <tr>
+      <td><%= link_to charge_type.name, charge_type %></td>
+      <td><%= link_to charge_type.account.name, charge_type.account %></td>
+    </tr>
+  <% end %>
+  </table>
+</div>
 <center><%= paginate @charge_types %></center>

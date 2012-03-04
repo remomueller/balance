@@ -7,6 +7,12 @@
 
 == 1.6.0
 
+* Enhancements
+  * GUI updated to use contour-minimalist theme
+
+* Refactoring
+  * Updated to Rails 3.2.2 and Contour 0.10.2
+
 == 1.5.1
 
 * Bug Fix
