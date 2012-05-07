@@ -7,31 +7,16 @@ jQuery ->
 
   $("#ui-datepicker-div").hide()
 
-  $(".pagination a, .page a, .next a, .prev a").live("click", () ->
+  $(document).on('click', ".pagination a, .page a, .next a, .prev a", () ->
+    return false if $(this).parent().is('.active, .disabled, .per_page')
     $.get(this.href, null, null, "script")
     false
   )
 
-  $(".field_with_errors input, .field_with_errors_cleared input, .field_with_errors textarea, .field_with_errors_cleared textarea, .field_with_errors select").change( () ->
-    el = $(this)
-    if  el.val() != '' && el.val() != null
-      $(el).parent().removeClass('field_with_errors')
-      $(el).parent().addClass('field_with_errors_cleared')
-    else
-      $(el).parent().removeClass('field_with_errors_cleared')
-      $(el).parent().addClass('field_with_errors')
-  )
-
-  $(".per_page a").live("click", () ->
+  $(document).on("click", ".per_page a", () ->
     object_class = $(this).data('object')
     $.get($("#"+object_class+"_search").attr("action"), $("#"+object_class+"_search").serialize() + "&"+object_class+"_per_page="+ $(this).data('count'), null, "script")
     false
-  )
-
-  $('#menu').waypoint( (event, direction) ->
-    $(this).toggleClass('sticky', direction == "down")
-    $(this).css( left: $("#header").offset().left )
-    event.stopPropagation()
   )
 
   $('#user_email').focus()
@@ -40,6 +25,8 @@ jQuery ->
   $('#charge_type_name').focus()
 
   $("#search").watermark('&lt;Enter&gt; to Search')
+
+  $.get($("#search-form").attr("action"), $("#search-form").serialize(), null, "script")
 
   $(document)
     .keydown( (e) ->

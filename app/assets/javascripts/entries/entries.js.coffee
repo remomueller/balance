@@ -12,11 +12,6 @@ jQuery ->
 
   $("#ui-datepicker-div").hide()
 
-  $(".pagination a, .page a, .next a, .prev a").live("click", () ->
-    $.get(this.href, null, null, "script")
-    false
-  )
-
   $("#entry_name")
     .bind("keydown", (event) ->
       if event.keyCode == $.ui.keyCode.TAB && $(this).data("autocomplete").menu.active
@@ -31,8 +26,6 @@ jQuery ->
     .bind("change", (event) ->
       $.get($("#search-form").attr("action"), $("#search-form").serialize(), null, "script")
     )
-
-  $.get($("#search-form").attr("action"), $("#search-form").serialize(), null, "script")
 
   # $("#entry_name").bind( "keydown", ( event ) ->
   #   if event.keyCode === $.ui.keyCode.TAB && $(this).data("autocomplete").menu.active

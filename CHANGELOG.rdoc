@@ -7,6 +7,10 @@
 
 == 1.7.0
 
+* Enhancements
+  * Updating to Contour 1.0.0 and Twitter Bootstrap CSS/JS framework
+  * Updating to Ruby 1.9.3-p125
+
 == 1.6.0
 
 * Enhancements

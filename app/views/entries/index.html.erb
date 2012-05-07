@@ -7,5 +7,5 @@
   <%= text_field_tag 'search', params[:search] %>
   <%= link_to_function 'charged', "if ($('#charged').is(':checked')) {$('#charged').removeAttr('checked');} else {$('#charged').attr('checked', 'checked');};$('#charged').change();" %> <%= check_box_tag 'charged', '1', true %>
 
-  <div class="search" id="entries"><div style="clear:both"></div><br /><center><%= image_tag "ajax-loader.gif" %></center></div>
+  <div class="search" id="entries"><center><%= image_tag "ajax-loader.gif" %></center></div>
 <% end %>

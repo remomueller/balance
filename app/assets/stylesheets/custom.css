@@ -1,55 +1,16 @@
-/*************************************
-   WELCOME TO THE CUSTOM STYLESHEET
---------------------------------------
-              custom.css
-        BlueTrip CSS Framework
-    Put your custom styles in here.
-***************************************/
-
-/**************************************/
-/*           COLOR SCHEME             */
-/**************************************
-- black    #000
-- white    #fff
-- logo blue   #FFCC66
-- link blue   #057080
-
-- dark blue   #094E63
-- light blue  #CDEDF7
-- orange      #EB6C20
-
-Main Color
-- Cantaloupe        #FFCC66
-- Salmon            #FF6666
-- Unobtrusive Blue  #799DC8
-- Dark Gray         #404040
-
-Secondary Color
-- Light Cantaloupe  #FBF8F2
-- Light Blue        #E1EAF9
-- Warning Red       #F4C3C3
-
-
-***************************************/
-
-
 /**************************************/
 /*              GLOBALS               */
 /**************************************/
-
+/*
 a:link { text-decoration: none; color: #FDB000; }
 a:visited { text-decoration: none; color: #FDB000; }
 a:hover { text-decoration: none; color: #EB6C20; }
 a:active, a:focus { text-decoration: none; color: #000; }
-
+*/
 
 /**************************************/
 /*            MAIN CONTENT            */
 /**************************************/
-
-table.search {
-  width:100%;
-}
 
 .calendar-entry-heading{
   text-align: right;
@@ -104,14 +65,4 @@ table.search {
 
 .gain{
   color: #669966;
-}
-
-/* Should be fixed in Contour */
-table {
-  margin-bottom: 0;
-}
-
-div.inner-frame {
-  background-color: white;
-  padding: 10px;
 }

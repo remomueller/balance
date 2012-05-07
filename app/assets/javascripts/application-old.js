@@ -1,28 +1,3 @@
-// TODO Make sure this is being done elsewhere?
-// $(function(){
-//
-//   $(".datepicker").datepicker({ showOtherMonths: true, selectOtherMonths: true, changeMonth: true, changeYear: true });
-//   $("#ui-datepicker-div").hide();
-//
-//   $(".pagination a, .page a, .next a, .prev a").live("click", function() {
-//     $.get(this.href, null, null, "script")
-//     return false;
-//   });
-//
-// });
-
-// document.observe("dom:loaded", function() {
-//   var container = $(document.body)
-//
-//   if (container) {
-//     var img = new Image
-//     img.src = '/assets/ajax-loader.gif'
-//
-//     function createSpinner() {
-//       return new Element('img', { src: img.src, 'class': 'spinner', 'height': '11', 'width': '11' })
-//     }
-//   }
-// })
 
 function updateStatus(val, update)
 {

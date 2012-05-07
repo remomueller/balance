@@ -17,38 +17,40 @@ Contour.setup do |config|
   # config.header_title_image = ''
 
   # Enter the items you wish to see in the menu
-  config.menu_items = [{
-    name: 'Login', display: 'not_signed_in', path: 'new_user_session_path', position: 'right',
-    links: [{ name: 'Sign Up', path: 'new_user_registration_path' }]
-  },
-  {
-    name: 'current_user.name', eval: true, display: 'signed_in', path: 'root_path', position: 'right',
-    links: [{ html: '"<div class=\"small quiet\">"+current_user.email+"</div>"', eval: true },
-            { name: 'Authentications', path: 'authentications_path', condition: 'not PROVIDERS.blank?' },
-            { html: "<br />" },
-            { name: 'Logout', path: 'destroy_user_session_path' }]
-  },
-  {
-    name: 'Home', display: 'always', path: 'root_path', position: 'left',
-    links: [{ name: 'Current Balance', path: 'current_balance_entries_path' },
-            { name: 'Averages', path: 'averages_entries_path' }]
-  },
-  {
-    name: 'Graphs', display: 'signed_in', path: 'overview_entries_path', position: 'left',
-    links: []
-  },
-  {
-    name: 'Accounts', display: 'signed_in', path: 'accounts_path', position: 'left',
-    links: [{ name: '&raquo;New', path: 'new_account_path' }]
-  },
-  {
-    name: 'Charge Types', display: 'signed_in', path: 'charge_types_path', position: 'left',
-    links: [{ name: '&raquo;New', path: 'new_charge_type_path' }]
-  },
-  {
-    name: 'Entries', display: 'signed_in', path: 'entries_path', position: 'left',
-    links: [{ name: '&raquo;New', path: 'new_entry_path' }]
-  }
+  config.menu_items = [
+    {
+      name: 'Login', display: 'not_signed_in', path: 'new_user_session_path', position: 'right',
+      links: [{ name: 'Sign Up', path: 'new_user_registration_path' },
+              { divider: true },
+              { authentications: true }]
+    },
+    {
+      name: 'current_user.name', eval: true, display: 'signed_in', path: 'root_path', position: 'right',
+      links: [{ html: '"<div class=\"small quiet\">"+current_user.email+"</div>"', eval: true },
+              { name: 'Authentications', path: 'authentications_path', condition: 'not PROVIDERS.blank?' },
+              { divider: true },
+              { name: 'Logout', path: 'destroy_user_session_path' }]
+    },
+    {
+      name: 'Calendar', display: 'always', path: 'root_path', position: 'left',
+      links: [{ name: 'Current Balance', path: 'current_balance_entries_path' },
+              { name: 'Averages', path: 'averages_entries_path' }]
+    },
+    {
+      name: 'Graphs', display: 'signed_in', path: 'overview_entries_path', position: 'left'
+    },
+    {
+      name: 'Accounts', display: 'signed_in', path: 'accounts_path', position: 'left',
+      links: [{ name: 'Create', path: 'new_account_path' }]
+    },
+    {
+      name: 'Charge Types', display: 'signed_in', path: 'charge_types_path', position: 'left',
+      links: [{ name: 'Create', path: 'new_charge_type_path' }]
+    },
+    {
+      name: 'Entries', display: 'signed_in', path: 'entries_path', position: 'left',
+      links: [{ name: 'Create', path: 'new_entry_path' }]
+    }
   ]
 
   # Enter an address of a valid RSS Feed if you would like to see news on the sign in page.
