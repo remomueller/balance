@@ -1,9 +1,14 @@
 <% @title = 'Accounts' %>
-<h1><%= @title %></h1>
+<div class="page-header">
+  <h1>
+    <%= @title %>
+    <%= link_to "Create Account", new_account_path, class: 'btn btn-mini btn-primary' %>
+  </h1>
+</div>
 
-<%= link_to image_tag('gentleface/16/doc_new.png', alt: '') + "Create New Account", new_account_path, class: 'button positive' %>
-
-<%= form_tag accounts_path, method: :get, remote: true, id: 'search-form' do %>
-  <%= text_field_tag 'search', params[:search] %>
-  <div class="search" id="accounts"><center><%= image_tag "ajax-loader.gif" %></center></div>
+<%= form_tag accounts_path, method: :get, remote: true, id: 'search-form', class: 'form-search' do %>
+  <%= text_field_tag 'search', params[:search], class: 'search-query' %>
+  <%= submit_tag 'Search', class: 'btn btn-primary' %>
 <% end %>
+
+<div class="search" id="accounts"><center><%= image_tag "ajax-loader.gif" %></center></div>

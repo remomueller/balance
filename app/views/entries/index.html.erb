@@ -1,11 +1,15 @@
 <% @title = 'Entries' %>
-<h1><%= @title %></h1>
+<div class="page-header">
+  <h1>
+    <%= @title %>
+    <%= link_to "Create Entry", new_entry_path, class: 'btn btn-mini btn-primary' %>
+  </h1>
+</div>
 
-<%= link_to image_tag('gentleface/16/doc_new.png', alt: '') + "Create New Entry", new_entry_path, class: 'button positive' %>
-
-<%= form_tag entries_path, method: :get, remote: true, id: 'search-form' do %>
-  <%= text_field_tag 'search', params[:search] %>
+<%= form_tag entries_path, method: :get, remote: true, id: 'search-form', class: 'form-search' do %>
+  <%= text_field_tag 'search', params[:search], class: 'search-query' %>
+  <%= submit_tag 'Search', class: 'btn btn-primary' %>
   <%= link_to_function 'charged', "if ($('#charged').is(':checked')) {$('#charged').removeAttr('checked');} else {$('#charged').attr('checked', 'checked');};$('#charged').change();" %> <%= check_box_tag 'charged', '1', true %>
-
-  <div class="search" id="entries"><center><%= image_tag "ajax-loader.gif" %></center></div>
 <% end %>
+
+<div class="search" id="entries"><center><%= image_tag "ajax-loader.gif" %></center></div>

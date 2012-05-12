@@ -1,9 +1,14 @@
 <% @title = 'Charge Types' %>
-<h1><%= @title %></h1>
+<div class="page-header">
+  <h1>
+    <%= @title %>
+    <%= link_to "Create Charge Type", new_charge_type_path, class: 'btn btn-mini btn-primary' %>
+  </h1>
+</div>
 
-<%= link_to image_tag('gentleface/16/doc_new.png', alt: '') + "Create New Charge Type", new_charge_type_path, class: 'button positive' %>
-
-<%= form_tag charge_types_path, method: :get, remote: true, id: 'search-form' do %>
-  <%= text_field_tag 'search', params[:search] %>
-  <div class="search" id="charge_types"><center><%= image_tag "ajax-loader.gif" %></center></div>
+<%= form_tag charge_types_path, method: :get, remote: true, id: 'search-form', class: 'form-search' do %>
+  <%= text_field_tag 'search', params[:search], class: 'search-query' %>
+  <%= submit_tag 'Search', class: 'btn btn-primary' %>
 <% end %>
+
+<div class="search" id="charge_types"><center><%= image_tag "ajax-loader.gif" %></center></div>

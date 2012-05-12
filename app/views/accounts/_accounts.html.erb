@@ -1,11 +1,16 @@
-<div class="frame">
-  <table class="search"><tr><th>Account Name</th><th>Charge Types</th></tr>
+<table class="table table-striped table-bordered">
+  <thead>
+    <tr>
+      <th>Account Name</th>
+      <th>Charge Types</th>
+    </tr>
+  </thead>
   <% @accounts.each do |account| %>
     <tr>
       <td><%= link_to account.name, account %></td>
       <td><%= account.charge_types.collect{|charge_type| link_to charge_type.name, charge_type}.join(', ').html_safe %></td>
     </tr>
   <% end %>
-  </table>
-</div>
+</table>
+
 <center><%= paginate @accounts %></center>

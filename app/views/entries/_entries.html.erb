@@ -1,5 +1,5 @@
-<div class="frame">
-  <table class="search">
+<table class="table table-striped table-bordered">
+  <thead>
     <tr>
       <th>Entry Name</th>
       <th>Billing Date</th>
@@ -8,6 +8,7 @@
       <th>Charge Type</th>
       <th>Account</th>
     </tr>
+  </thead>
   <% @entries.each do |entry| %>
     <tr>
       <td><%= link_to entry.name, entry, title: entry.description %></td>
@@ -18,6 +19,5 @@
       <td><%= link_to entry.charge_type.account.name, entry.charge_type.account %></td>
     </tr>
   <% end %>
-  </table>
-</div>
+</table>
 <center><%= paginate @entries %></center>
