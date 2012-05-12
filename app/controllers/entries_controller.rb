@@ -2,12 +2,18 @@ class EntriesController < ApplicationController
   before_filter :authenticate_user!
 
   def calendar
-    params[:month] = Date.today.month if params[:month].blank?
-    params[:year] = Date.today.year if params[:year].blank?
-    if params[:month] and params[:year]
-      @start_date = Date.parse("#{params[:year]}-#{params[:month]}-01")
-      @end_date = Date.parse("#{params[:year].to_i+params[:month].to_i/12}-#{(params[:month].to_i)%12+1}-01")-1.day
-    end
+
+    @selected_date = begin Date.strptime(params[:selected_date], "%m/%d/%Y") rescue Date.today end
+    @start_date = @selected_date.beginning_of_month
+    @end_date = @selected_date.end_of_month
+
+
+    # params[:month] = Date.today.month if params[:month].blank?
+    # params[:year] = Date.today.year if params[:year].blank?
+    # if params[:month] and params[:year]
+    #   @start_date = Date.parse("#{params[:year]}-#{params[:month]}-01")
+    #   @end_date = Date.parse("#{params[:year].to_i+params[:month].to_i/12}-#{(params[:month].to_i)%12+1}-01")-1.day
+    # end
   end
 
   def averages

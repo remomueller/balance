@@ -5,10 +5,11 @@
 <% elsif params[:direction].to_i < 0 %>
   $("#month-breakdown").hide( 'slide', { direction: "right" }, 500 );
   $("#month-breakdown").html("<%= escape_javascript(render("entries/month_breakdown")) %>");
-  $("#month-breakdown").show( 'slide', { direction: "left" }, 500 );  
+  $("#month-breakdown").show( 'slide', { direction: "left" }, 500 );
 <% else %>
   $("#month-breakdown").html("<%= escape_javascript(render("entries/month_breakdown")) %>");
 <% end %>
 
+$("#calendar-title").html("<%= escape_javascript(render("calendar_title")) %>");
 $("#direction").val(0);
 $("#spending").html("<%= escape_javascript(render("accounts/month_spending")) %>");

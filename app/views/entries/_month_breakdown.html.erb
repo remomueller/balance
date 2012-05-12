@@ -12,11 +12,11 @@
   <b>Net <%= (net_profit < 0) ? "<span class='loss'>Loss</span>".html_safe : "<span class='gain'>Profit</span>".html_safe %></b> <span class="<%= (net_profit < 0) ? 'loss' : '' %><%= (net_profit > 0) ? 'gain' : '' %>"><%= net_profit.to_currency %></span>
 </div>
 
-<table style="width:100%;border-collapse:collapse;table-layout: fixed;"><%#= '<col width="14%"/>'*7 %>
+<table style="width:100%;border-collapse:collapse;table-layout: fixed;border: 1px solid #ddd"><%#= '<col width="14%"/>'*7 %>
   <thead>
-    <tr>
+    <tr style="border: 1px solid #ddd">
       <% (0..6).each do |iDay| %>
-        <th><%= Date::DAYNAMES[iDay] %></th>
+        <th><%= Date::ABBR_DAYNAMES[iDay] %></th>
       <% end %>
     </tr>
   </thead>
@@ -24,7 +24,7 @@
     <tr>
       <% (0..@last_saturday - @first_sunday).each do |first_day_offset| %>
         <% iDate = @first_sunday + first_day_offset.day %>
-        <td valign="top" style="padding:0px"
+        <td valign="top" style="padding:0px;border: 1px solid #ddd"
             class="<%= 'calendar-entry-body-today' if iDate == Date.today %>
                    <%= 'last-month' if iDate < @start_date %>
                    <%= 'next-month' if iDate > @end_date %>"

@@ -9,9 +9,9 @@
 # Mouse Out Functions to Show and Hide Divs
 
 # @isTrueMouseOut = (e, handler) ->
-#   if e.type != 'mouseout' 
+#   if e.type != 'mouseout'
 #     return false
-#   
+#
 #   # relTarget
 #   if e.relatedTarget
 #     relTarget = e.relatedTarget
@@ -22,7 +22,7 @@
 #   while relTarget && relTarget != handler
 #     relTarget = relTarget.parentNode
 #   relTarget != handler
-# 
+#
 # @hideOnMouseOut = (elements) ->
 #   $.each(elements, (index, value) ->
 #     element = $(value)
@@ -72,9 +72,31 @@
     unless $(this).is(':checked')
       mode = false
   )
-  if mode then $('.rule_group_'+index+'_parent').attr('checked','checked') else $('.rule_group_'+index+'_parent').removeAttr('checked')  
+  if mode then $('.rule_group_'+index+'_parent').attr('checked','checked') else $('.rule_group_'+index+'_parent').removeAttr('checked')
 
 @confirmMessage = (message) ->
   unless confirm(message)
     return false
   return true
+
+@goBackOneMonth = () ->
+  now = new Date $('#selected_date').val()
+  now = new Date() if isNaN(now.getFullYear())
+  new_month = new Date now.getFullYear(), now.getMonth()-1, 1
+  $('#selected_date').val((new_month.getMonth() + 1) + "/" + new_month.getDate() + "/" + new_month.getFullYear())
+  $('#direction').val(-1)
+  $('#selected_date').change()
+
+@goForwardOneMonth = () ->
+  now = new Date $('#selected_date').val()
+  now = new Date() if isNaN(now.getFullYear())
+  new_month = new Date now.getFullYear(), now.getMonth()+1, 1
+  $('#selected_date').val((new_month.getMonth() + 1) + "/" + new_month.getDate() + "/" + new_month.getFullYear())
+  $('#direction').val(1)
+  $('#selected_date').change()
+
+@getToday = () ->
+  now = new Date()
+  $('#selected_date').val((now.getMonth() + 1) + "/" + now.getDate() + "/" + now.getFullYear())
+  $('#direction').val(0)
+  $('#selected_date').change()
