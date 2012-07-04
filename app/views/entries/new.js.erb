@@ -1,0 +1,3 @@
+<% @entry.errors.each do |key, value| %>
+  $('#entry_<%= key %>').parent().parent().addClass('error');
+<% end %>

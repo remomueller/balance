@@ -3,15 +3,11 @@ Amount =
 
   validAmount: (number) -> false
 
+@openCalendarPopup = (selected_date) ->
+  $('#entry_billing_date').val(selected_date)
+  $('#new-entry-dialog').modal( dynamic: true )
+
 jQuery ->
-  $(".datepicker").datepicker
-    showOtherMonths: true
-    selectOtherMonths: true
-    changeMonth: true
-    changeYear: true
-
-  $("#ui-datepicker-div").hide()
-
   $("#entry_name")
     .bind("keydown", (event) ->
       if event.keyCode == $.ui.keyCode.TAB && $(this).data("autocomplete").menu.active
@@ -25,6 +21,32 @@ jQuery ->
   $("#search-form")
     .bind("change", (event) ->
       $.get($("#search-form").attr("action"), $("#search-form").serialize(), null, "script")
+    )
+
+  $(document)
+    .on('click', '[data-object~="calendar-next-month"]', () ->
+      goForwardOneMonth()
+      false
+    )
+    .on('click', '[data-object~="calendar-previous-month"]', () ->
+      goBackOneMonth()
+      false
+    )
+    .on('click', '[data-object~="calendar-today"]', () ->
+      getToday()
+      false
+    )
+    .on('click', '[data-object~="month-spending-calculate"]', () ->
+      calculateEndOfMonthSpending()
+      false
+    )
+    .on('click', '[data-object~="previous-year"]', () ->
+      goBackOneYear()
+      false
+    )
+    .on('click', '[data-object~="next-year"]', () ->
+      goForwardOneYear()
+      false
     )
 
   # $("#entry_name").bind( "keydown", ( event ) ->

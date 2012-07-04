@@ -49,7 +49,7 @@
         <tr>
           <td>Maximum Spending Per Day</td>
           <td id="left_to_spend_per_day_this_month" style="text-align:right"></td>
-          <td><%= link_to_function 'calculate', "calculateEndOfMonthSpending();" %></td>
+          <td><%= link_to 'calculate', '#', data: { object: 'month-spending-calculate' } %></td>
         </tr>
       </table>
     </td>

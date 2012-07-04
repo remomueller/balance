@@ -88,15 +88,19 @@ class EntriesController < ApplicationController
   def create
     @entry = current_user.entries.new(post_params)
 
-    if @entry.save
-      flash[:notice] = 'Entry was successfully created.'
-      if params[:from_calendar] == '1'
-        redirect_to calendar_entries_path(month: @entry.billing_date.month, year: @entry.billing_date.year)
+    respond_to do |format|
+      if @entry.save
+        flash[:notice] = 'Entry was successfully created.'
+        if params[:from_calendar] == '1'
+          format.js { render 'create' }
+          format.html { redirect_to calendar_entries_path(month: @entry.billing_date.month, year: @entry.billing_date.year) }
+        else
+          format.html { redirect_to @entry }
+        end
       else
-        redirect_to @entry
+        format.html { render 'new' }
+        format.js { render 'new' }
       end
-    else
-      render action: :new
     end
   end
 
@@ -136,6 +140,8 @@ class EntriesController < ApplicationController
       charge_type = current_user.charge_types.find_by_id(params[:entry][:charge_type_id])
       params[:entry][:charge_type_id] = charge_type ? charge_type.id : nil
     end
+
+    params[:entry][:decimal_amount] = params[:entry][:decimal_amount].to_s.gsub(/[\s$,]/, '')
 
     params[:entry].slice(
       :name, :charge_type_id, :billing_date, :decimal_amount, :description, :charged

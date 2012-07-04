@@ -20,10 +20,12 @@
         </tr>
       <% end %>
     <% end %>
-    <tr style="font-weight:bold; background-color: #DEDEDE">
+  </tbody>
+  <tfoot>
+    <tr style="font-weight:bold">
       <td>Total</td>
       <td style="text-align:right"><%= current_user.spent_in_time_period(@start_date, @end_date).to_currency %></td>
       <td style="text-align:right"><%= current_user.average_spent_over_time_period(@start_date, @end_date).to_currency %></td>
     </tr>
-  </tbody>
+  </tfoot>
 </table>

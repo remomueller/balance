@@ -11,7 +11,7 @@ class EntriesControllerTest < ActionController::TestCase
     assert_template 'calendar'
     assert_response :success
   end
-  
+
   test "should get calendar with month and year" do
     get :calendar, month: 1, year: 2011
     assert_template 'calendar'
@@ -110,6 +110,39 @@ class EntriesControllerTest < ActionController::TestCase
     assert_redirected_to entry_path(assigns(:entry))
   end
 
+  test "should create entry with amount that contains whitespace" do
+    assert_difference('Entry.count') do
+      post :create, entry: { billing_date: '10/29/2000', charge_type_id: charge_types(:bank_credit_card).to_param, name: 'Breakfast to Go', description: 'Coffee from the local coffee shop.', decimal_amount: ' 5.42 ' }
+    end
+
+    assert_not_nil assigns(:entry)
+    assert_equal 542, assigns(:entry).amount
+
+    assert_redirected_to entry_path(assigns(:entry))
+  end
+
+  test "should create entry with amount that contains commas" do
+    assert_difference('Entry.count') do
+      post :create, entry: { billing_date: '10/29/2000', charge_type_id: charge_types(:bank_credit_card).to_param, name: 'Breakfast to Go', description: 'Coffee from the local coffee shop.', decimal_amount: '5,235.42' }
+    end
+
+    assert_not_nil assigns(:entry)
+    assert_equal 523542, assigns(:entry).amount
+
+    assert_redirected_to entry_path(assigns(:entry))
+  end
+
+  test "should create entry with amount that contains dollar sign" do
+    assert_difference('Entry.count') do
+      post :create, entry: { billing_date: '10/29/2000', charge_type_id: charge_types(:bank_credit_card).to_param, name: 'Breakfast to Go', description: 'Coffee from the local coffee shop.', decimal_amount: '$3.00' }
+    end
+
+    assert_not_nil assigns(:entry)
+    assert_equal 300, assigns(:entry).amount
+
+    assert_redirected_to entry_path(assigns(:entry))
+  end
+
   test "should create entry and redirect to calendar overview" do
     assert_difference('Entry.count') do
       post :create, entry: {billing_date: '10/29/2000', charge_type_id: charge_types(:bank_credit_card).to_param, name: 'Breakfast to Go', description: 'Coffee from the local coffee shop.', decimal_amount: '5.42'}, from_calendar: '1'
@@ -123,7 +156,7 @@ class EntriesControllerTest < ActionController::TestCase
     assert_difference('Entry.count', 0) do
       post :create, entry: {billing_date: '10/29/2000', charge_type_id: charge_types(:bank_credit_card).to_param, name: '', description: '', decimal_amount: '5.42'}
     end
-    
+
     assert_not_nil assigns(:entry)
 
     assert_template 'new'
@@ -131,7 +164,7 @@ class EntriesControllerTest < ActionController::TestCase
 
   test "should not create entry with invalid decimal amount" do
     assert_difference('Entry.count', 0) do
-      post :create, entry: {billing_date: '10/29/2000', charge_type_id: charge_types(:bank_credit_card).to_param, name: 'Breakfast', description: '', decimal_amount: '$ 5.42'}
+      post :create, entry: {billing_date: '10/29/2000', charge_type_id: charge_types(:bank_credit_card).to_param, name: 'Breakfast', description: '', decimal_amount: '$ 5.42 invalid characters'}
     end
     assert_not_nil assigns(:entry)
     assert_template 'new'
@@ -165,30 +198,30 @@ class EntriesControllerTest < ActionController::TestCase
 
     assert_redirected_to entries_path
   end
-  
+
   test "should mark entry charged" do
     post :mark_charged, id: @entry.to_param, format: 'js'
     assert_equal true, assigns(:entry).charged
     assert_template 'mark_charged'
   end
-  
+
   test "should autocomplete based on search" do
     get :autocomplete, term: 'lunch', format: 'js'
     assert assigns(:entries)
     assert (assigns(:entries).size <= 8)
     assert_template 'autocomplete'
   end
-  
+
   test "should get averages" do
     get :averages
     assert_template 'averages'
     assert_response :success
   end
-  
+
   test "should get current balance" do
     get :current_balance
     assert_template 'current_balance'
     assert_response :success
   end
-  
+
 end

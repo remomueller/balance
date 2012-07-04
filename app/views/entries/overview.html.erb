@@ -3,14 +3,10 @@
 
 <div style="text-align:center;margin-top:-10px;float:middle">
   <%= form_tag earning_spending_graph_entries_path, remote: true, method: :get, id: 'search-form' do %>
-    <%= link_to_function '&laquo;'.html_safe, "goBackOneYear();", style: 'text-decoration:none', title: 'Previous Year' %>
-    <%#= link_to_function '&lsaquo;'.html_safe, "goBackOneMonth();", style: 'text-decoration:none', title: 'Previous Month' %>
-    <%#= select_tag :month, options_for_select( Date::MONTHNAMES[1..12].collect{|month| [month,Date::MONTHNAMES.index(month)]}, Date.today.month) %>
+    <%= link_to '&laquo;'.html_safe, '#', style: 'text-decoration:none', title: 'Previous Year', data: { object: 'previous-year' } %>
     <%= hidden_field_tag :month, '1' %>
     <%= select_tag :year, options_for_select( (current_user.first_billing_date.year..Date.today.year).to_a, Date.today.year ) %>
-    <%#= link_to_function image_tag('001_44.png', style: 'border:none', align: 'absmiddle', size: '15x15'), "goToCurrentMonth();", title: 'Go To Current Month' %>
-    <%#= link_to_function '&rsaquo;'.html_safe, "goForwardOneMonth();", style: 'text-decoration:none', title: 'Next Month' %>
-    <%= link_to_function '&raquo;'.html_safe, "goForwardOneYear();", style: 'text-decoration:none', title: 'Next Year' %>
+    <%= link_to '&raquo;'.html_safe, '#', style: 'text-decoration:none', title: 'Next Year', data: { object: 'next-year' } %>
   <% end %>
   <br /><br />
   <div id="earning_spending"></div>

@@ -7,14 +7,14 @@
     </div>
     <div class="span3">
       <div class="btn-group">
-        <%= link_to_function '&larr;'.html_safe, "goBackOneMonth();", style: 'text-decoration:none', title: 'Previous Month', class: 'btn' %>
-        <%= link_to_function 'Today', 'getToday()', class: 'btn' %>
-        <%= link_to_function '&rarr;'.html_safe, "goForwardOneMonth();", style: 'text-decoration:none', title: 'Next Month', class: 'btn' %>
+        <%= link_to '&larr;'.html_safe, '#', style: 'text-decoration:none', title: 'Previous Month', class: 'btn', data: { object: 'calendar-previous-month' } %>
+        <%= link_to 'Today', '#', class: 'btn', data: { object: 'calendar-today' } %>
+        <%= link_to '&rarr;'.html_safe, '#', style: 'text-decoration:none', title: 'Next Month', class: 'btn', data: { object: 'calendar-next-month' } %>
       </div>
     </div>
     <div class="span3" style="text-align:center">
-        <%= hidden_field_tag :direction, 0 %>
-        <%= text_field_tag :selected_date, @selected_date.strftime('%m/%d/%Y'), class: 'datepicker', style: 'width:68px' %>
+      <%= hidden_field_tag :direction, 0 %>
+      <%= text_field_tag :selected_date, @selected_date.strftime('%m/%d/%Y'), class: 'datepicker', style: 'width:68px' %>
     </div>
   </div>
 <% end %>
