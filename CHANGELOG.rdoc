@@ -15,7 +15,7 @@
   * Links with confirm: now use data: { confirm: } to account for deprecations in Rails 4.0
 
 * Bug Fix
-  * Entries amounts added with dollar signs, commas, and trailing or leading spaces are now correctly parsed
+  * Entries amounts added with dollar signs, commas, and trailing or leading spaces are now correctly parsed (by LisaM)
 
 == 1.6.0
 
