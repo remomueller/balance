@@ -1,5 +1,8 @@
-<% width = '914px' %>
-<%= form_for(@charge_type) do |f| %>
+<div class="page-header">
+  <h1><%= @title %></h1>
+</div>
+
+<%= form_for(@charge_type, html: { class: 'form-horizontal' }) do |f| %>
   <% if @charge_type.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@charge_type.errors.count, "error") %> prohibited this charge type from being saved:</h2>
@@ -11,37 +14,30 @@
       </ul>
     </div>
   <% end %>
-  <fieldset>
-    <legend><%= @title %></legend>
 
-    <div class="field">
-      <%= f.label :name %><br />
-      <%= f.text_field :name, style: "width:#{width}" %>
+  <div class="control-label">
+    <%= f.label :name, nil, class: 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :name, style: "width:95%" %>
     </div>
+  </div>
 
-    <div class="field">
-      <%= f.label :counts_towards_spending %><br />
+  <div class="control-label">
+    <%= f.label :counts_towards_spending, nil, class: 'control-label' %>
+    <div class="controls">
       <%= f.check_box :counts_towards_spending %>
     </div>
+  </div>
 
-    <div class="field">
-      <%= f.label :account_id %><br />
-      <%= f.select :account_id, [["----", nil]]  + current_user.accounts.find(:all, order: 'name').collect{|item| [item.name, item.id]} %>
+  <div class="control-label">
+    <%= f.label :account_id, nil, class: 'control-label' %>
+    <div class="controls">
+      <%= f.select :account_id, [["----", nil]]  + current_user.accounts.order(:name).collect{|a| [a.name, a.id]} %>
     </div>
+  </div>
 
-  </fieldset>
-
-  <div class="actions">
-    <% form_name = @charge_type.new_record? ? 'new_charge_type' : "edit_charge_type_#{@charge_type.id}" %>
-    <%= link_to_function image_tag('gentleface/16/checkmark.png', alt: '') + (@charge_type.new_record? ? "Create Charge Type" : "Update Charge Type"), "$('##{form_name}').submit();", class: "button positive" %>
+  <div class="form-actions">
+    <%= f.submit nil, class: 'btn btn-primary' %>
     <%= cancel %>
   </div>
-<% end %>
-
-<% content_for :script do %>
-  <%= javascript_tag do %>
-    Event.observe(window, 'load', function(){
-      new Form.Element.Observer('charge_type_name', 0.25, function(element, value) {checkLength('charge_type_name', 'name_status', 1);});
-    });
-  <% end %>
 <% end %>

@@ -1,5 +1,8 @@
-<% @width = '914px' %>
-<%= form_for(@entry) do |f| %>
+<div class="page-header">
+  <h1><%= @title %></h1>
+</div>
+
+<%= form_for(@entry, html: { class: 'form-horizontal' }) do |f| %>
   <% if @entry.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@entry.errors.count, "error") %> prohibited this entry from being saved:</h2>
@@ -12,23 +15,10 @@
     </div>
   <% end %>
 
-  <fieldset>
-    <legend><%= @title %></legend>
-    <%= render partial: 'entries/inner_form', locals: { f: f } %>
-  </fieldset>
+  <%= render partial: 'entries/inner_form', locals: { f: f } %>
 
-  <div class="actions">
-    <% form_name = @entry.new_record? ? 'new_entry' : "edit_entry_#{@entry.id}" %>
-    <%= link_to_function image_tag('gentleface/16/checkmark.png', alt: '') + (@entry.new_record? ? "Create Entry" : "Update Entry"), "$('##{form_name}').submit();", class: "button positive" %>
+  <div class="form-actions">
+    <%= f.submit nil, class: 'btn btn-primary' %>
     <%= cancel %>
   </div>
-<% end %>
-
-<% content_for :script do %>
-  <%= javascript_tag do %>
-    Event.observe(window, 'load', function(){
-      new Form.Element.Observer('entry_name', 0.25, function(element, value) {checkLength('entry_name', 'name_status', 1);});
-      new Form.Element.Observer('entry_decimal_amount', 0.25, function(element, value) {checkRegex('entry_decimal_amount', 'amount_status', /^([-])?([0-9]*)([.]+[0-9]{0,2})?$/ );});
-    });
-  <% end %>
 <% end %>

@@ -1,31 +1,43 @@
 <%= hidden_field_tag 'from_calendar', params[:from_calendar].to_i %>
 
-<div class="field">
-  <%= f.label :name %><br />
-  <%= f.text_field :name, style: "width:#{@width}" %>
+<div class="control-group">
+  <%= f.label :name, class: 'control-label' %>
+  <div class="controls">
+    <%= f.text_field :name, style: "width:95%" %>
+  </div>
 </div>
 
-<div class="field">
-  <%= f.label :description %><br />
-  <%= f.text_area :description, rows: 7, style: "width:#{@width}" %>
+<div class="control-group">
+  <%= f.label :description, class: 'control-label' %>
+  <div class="controls">
+    <%= f.text_area :description, rows: 7, style: "width:95%" %>
+  </div>
 </div>
 
-<div class="field">
-  <%= f.label :billing_date %><br />
-  <%= f.text_field :billing_date, class: 'datepicker', value: @entry.billing_date ? @entry.billing_date.strftime('%m/%d/%Y') : '' %>
+<div class="control-group">
+  <%= f.label :billing_date, class: 'control-label' %>
+  <div class="controls">
+    <%= f.text_field :billing_date, class: 'datepicker', value: @entry.billing_date ? @entry.billing_date.strftime('%m/%d/%Y') : '' %>
+  </div>
 </div>
 
-<div class="field">
-  <%= f.label :charged %><br />
-  <%= f.check_box :charged %>
+<div class="control-group">
+  <%= f.label :charged, class: 'control-label' %>
+  <div class="controls">
+    <%= f.check_box :charged %>
+  </div>
 </div>
 
-<div class="field">
-  <%= f.label :charge_type_id %><br />
-  <%= f.select :charge_type_id, [["----", nil]]  + current_user.charge_types.find(:all, order: 'name').collect{|item| [item.full_name, item.id]} %>
+<div class="control-group">
+  <%= f.label :charge_type_id, class: 'control-label' %>
+  <div class="controls">
+    <%= f.select :charge_type_id, [["----", nil]]  + current_user.charge_types.find(:all, order: 'name').collect{|item| [item.full_name, item.id]} %>
+  </div>
 </div>
 
-<div class="field">
-  <%= f.label :decimal_amount, 'Amount' %><br />
-  <%= f.text_field :decimal_amount, style: "width:#{@width}", default: '100' %>
+<div class="control-group">
+  <%= f.label :decimal_amount, 'Amount', class: 'control-label' %>
+  <div class="controls">
+    <%= f.text_field :decimal_amount, style: "width:95%", default: '100' %>
+  </div>
 </div>
