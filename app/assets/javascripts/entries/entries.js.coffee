@@ -48,6 +48,10 @@ jQuery ->
       goForwardOneYear()
       false
     )
+    .on('click', '[data-object~="copy"]', () ->
+      $($(this).data('target')).val($(this).data('amount'))
+      false
+    )
 
   # $("#entry_name").bind( "keydown", ( event ) ->
   #   if event.keyCode === $.ui.keyCode.TAB && $(this).data("autocomplete").menu.active

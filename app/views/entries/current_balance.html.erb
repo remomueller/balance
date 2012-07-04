@@ -11,7 +11,7 @@
           <tr>
             <td>Balance <%= link_to account.name, account %></td>
             <td id="account_<%= account.id %>_balance" style="text-align:right"><%= account.balance.to_currency %></td>
-            <td><%= link_to_function 'copy', "$('#amount_left').val(#{account.balance / 100.0});"  %></td>
+            <td><%= link_to 'copy', '#', data: { object: 'copy', amount: "#{account.balance / 100.0}", target: '#amount_left' } %></td>
           </tr>
         <% end %>
         <% total_assets = current_user.accounts.collect(&:balance).sum %>
