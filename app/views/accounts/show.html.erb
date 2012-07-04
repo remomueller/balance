@@ -1,36 +1,26 @@
 <% @title = "Account: #{@account.name}" %>
-
-<h1><%= @title %></h1>
-
-<%= link_to image_tag('gentleface/16/doc_edit.png', alt: '') + "Edit Account", edit_account_path(@account), class: 'button' %>
-<%= link_to image_tag('gentleface/16/doc_delete.png', alt: '') + "Delete Account", @account, confirm: "Are you sure you want to delete Account #{@account.name}?", method: :delete, class: 'button negative' %>
-<%= link_to image_tag('gentleface/16/folder_open.png', alt: '') + "View All Accounts", accounts_path, class: 'button' %>
-
-<div style="clear:both"></div>
-
-<div class="frame">
-  <table style="width:100%" class="padded blank">
-    <tr>
-      <td>
-        <p>
-          <b>Current Balance:</b>
-          <%= @account.balance.to_currency %>
-        </p>
-
-        <p>
-          <b>Total Spent:</b>
-          <%= @account.total_spent.to_currency %>
-        </p>
-
-        <p>
-          <b>Charge Types:</b>
-          <ul>
-          <% @account.charge_types.each do |charge_type| %>
-            <li><%= link_to charge_type.name, charge_type %></li>
-          <% end %>
-          </ul>
-        </p>
-      </td>
-    </tr>
-  </table>
+<div class="page-header">
+  <h1>
+    <%= @title %>
+    <%= link_to "Edit Account", edit_account_path(@account), class: 'btn btn-mini' %>
+    <%= link_to "Delete Account", @account, method: :delete, class: 'btn btn-mini btn-danger', data: { confirm: "Are you sure you want to delete Account #{@account.name}?" } %>
+    <%= link_to "View Accounts", accounts_path, class: 'btn btn-mini' %>
+  </h1>
 </div>
+
+<dl class="dl-horizontal">
+  <dt>Current Balance</dt>
+  <dd><%= @account.balance.to_currency %></dd>
+
+  <dt>Total Spent</dt>
+  <dd><%= @account.total_spent.to_currency %></dd>
+
+  <dt>Charge Types</dt>
+  <dd>
+    <ul>
+      <% @account.charge_types.each do |charge_type| %>
+        <li><%= link_to charge_type.name, charge_type %></li>
+      <% end %>
+    </ul>
+  </dd>
+</dl>

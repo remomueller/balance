@@ -2,18 +2,9 @@ class EntriesController < ApplicationController
   before_filter :authenticate_user!
 
   def calendar
-
-    @selected_date = begin Date.strptime(params[:selected_date], "%m/%d/%Y") rescue Date.today end
+    @selected_date = parse_date(params[:selected_date], Date.today)
     @start_date = @selected_date.beginning_of_month
     @end_date = @selected_date.end_of_month
-
-
-    # params[:month] = Date.today.month if params[:month].blank?
-    # params[:year] = Date.today.year if params[:year].blank?
-    # if params[:month] and params[:year]
-    #   @start_date = Date.parse("#{params[:year]}-#{params[:month]}-01")
-    #   @end_date = Date.parse("#{params[:year].to_i+params[:month].to_i/12}-#{(params[:month].to_i)%12+1}-01")-1.day
-    # end
   end
 
   def averages
@@ -64,6 +55,10 @@ class EntriesController < ApplicationController
     entry_scope = current_user.entries.with_charged(params[:charged] == "1")
     @search_terms = params[:search].to_s.gsub(/[^0-9a-zA-Z]/, ' ').split(' ')
     @search_terms.each{|search_term| entry_scope = entry_scope.search(search_term) }
+
+    @order = scrub_order(Entry, params[:order], 'billing_date desc, id desc')
+    entry_scope = entry_scope.order(@order)
+
     @entries = entry_scope.page(params[:page]).per(20) # current_user.entries_per_page)
   end
 
@@ -72,8 +67,7 @@ class EntriesController < ApplicationController
   end
 
   def new
-    params[:entry] = {} if params[:entry].blank?
-    @entry = current_user.entries.new(params[:entry])
+    @entry = current_user.entries.new(post_params)
     @entry.billing_date = Date.today if @entry.billing_date.blank?
   end
 
@@ -92,9 +86,8 @@ class EntriesController < ApplicationController
   end
 
   def create
-    params[:entry][:billing_date] = Date.strptime(params[:entry][:billing_date], "%m/%d/%Y") if params[:entry] and not params[:entry][:billing_date].blank?
+    @entry = current_user.entries.new(post_params)
 
-    @entry = current_user.entries.new(params[:entry])
     if @entry.save
       flash[:notice] = 'Entry was successfully created.'
       if params[:from_calendar] == '1'
@@ -108,10 +101,8 @@ class EntriesController < ApplicationController
   end
 
   def update
-    params[:entry][:billing_date] = Date.strptime(params[:entry][:billing_date], "%m/%d/%Y") if params[:entry] and not params[:entry][:billing_date].blank?
-
     @entry = current_user.entries.find_by_id(params[:id])
-    if @entry.update_attributes(params[:entry])
+    if @entry.update_attributes(post_params)
       flash[:notice] = 'Entry was successfully updated.'
       redirect_to @entry
     else
@@ -132,5 +123,22 @@ class EntriesController < ApplicationController
 
   def autocomplete
     @entries = Entry.with_user(current_user.id).group('name').order('COUNT(id) DESC, name ASC').where(['LOWER(name) LIKE ?', '%' + params[:term].downcase.split(' ').join('%') + '%']).limit(8)
+  end
+
+  private
+
+  def post_params
+    params[:entry] ||= {}
+
+    params[:entry][:billing_date] = parse_date(params[:entry][:billing_date])
+
+    unless params[:entry][:charge_type_id].blank?
+      charge_type = current_user.charge_types.find_by_id(params[:entry][:charge_type_id])
+      params[:entry][:charge_type_id] = charge_type ? charge_type.id : nil
+    end
+
+    params[:entry].slice(
+      :name, :charge_type_id, :billing_date, :decimal_amount, :description, :charged
+    )
   end
 end

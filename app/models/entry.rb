@@ -1,18 +1,25 @@
 class Entry < ActiveRecord::Base
-  validates_presence_of :name, :charge_type_id, :amount, :billing_date, :user_id
-  validates_numericality_of :amount
+  attr_accessible :name, :charge_type_id, :billing_date, :decimal_amount, :amount, :description, :charged
 
-  belongs_to :user
-  belongs_to :charge_type
-
+  # Named Scopes
   scope :current, conditions: { deleted: false }
   scope :search, lambda { |*args| {conditions: [ 'LOWER(name) LIKE ?', '%' + args.first.downcase.split(' ').join('%') + '%' ] } }
   scope :with_charged, lambda { |*args| { conditions: ["entries.charged = ? or 1 = ?", args.first, args.first]} }
   scope :with_date_for_calendar, lambda { |*args| { conditions: ["DATE(entries.billing_date) >= ? and DATE(entries.billing_date) <= ?", args.first, args[1]]}}
   scope :with_user, lambda { |*args| { conditions: ["user_id IN (?)", args.first] } }
 
+  # Model Validations
+  validates_presence_of :name, :charge_type_id, :amount, :billing_date, :user_id
+  validates_numericality_of :amount
+
+  # Model Relationships
+  belongs_to :user
+  belongs_to :charge_type
+
+  # Entry Methods
+
   def copyable_attributes
-    self.attributes.reject{|key, val| ['id', 'billing_date'].include?(key.to_s)}
+    self.attributes.reject{|key, val| ['id', 'billing_date', 'user_id', 'deleted'].include?(key.to_s)}
   end
 
   def destroy(real = false)

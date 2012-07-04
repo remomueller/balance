@@ -1,10 +1,18 @@
 class Account < ActiveRecord::Base
+  attr_accessible :name
+
+  # Named Scopes
+  scope :current, conditions: { deleted: false }
+  scope :search, lambda { |*args| {conditions: [ 'LOWER(accounts.name) LIKE ?', '%' + args.first.downcase.split(' ').join('%') + '%' ] } }
+
+  # Model Validation
   validates_presence_of :name
+
+  # Model Relationships
   belongs_to :user
   has_many :charge_types, order: :name, conditions: ['charge_types.deleted = ?', false]
 
-  scope :current, conditions: { deleted: false }
-  scope :search, lambda { |*args| {conditions: [ 'LOWER(accounts.name) LIKE ?', '%' + args.first.downcase.split(' ').join('%') + '%' ] } }
+  # Account Methods
 
   def destroy(real = false)
     unless real

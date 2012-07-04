@@ -6,6 +6,10 @@ class ChargeTypesController < ApplicationController
     charge_type_scope = current_user.charge_types
     @search_terms = params[:search].to_s.gsub(/[^0-9a-zA-Z]/, ' ').split(' ')
     @search_terms.each{|search_term| charge_type_scope = charge_type_scope.search(search_term) }
+
+    @order = scrub_order(ChargeType, params[:order], 'charge_types.name')
+    charge_type_scope = charge_type_scope.order(@order)
+
     @charge_types = charge_type_scope.page(params[:page]).per(20) # current_user.charge_types_per_page)
   end
 
@@ -22,7 +26,7 @@ class ChargeTypesController < ApplicationController
   end
 
   def create
-    @charge_type = current_user.charge_types.new(params[:charge_type])
+    @charge_type = current_user.charge_types.new(post_params)
 
     if @charge_type.save
       flash[:notice] = 'Charge Type was successfully created.'
@@ -35,7 +39,7 @@ class ChargeTypesController < ApplicationController
   def update
     @charge_type = current_user.charge_types.find(params[:id])
 
-    if @charge_type.update_attributes(params[:charge_type])
+    if @charge_type.update_attributes(post_params)
       flash[:notice] = 'Charge Type was successfully updated.'
       redirect_to @charge_type
     else
@@ -48,5 +52,20 @@ class ChargeTypesController < ApplicationController
     @charge_type.destroy
 
     redirect_to charge_types_path
+  end
+
+  private
+
+  def post_params
+    params[:charge_type] ||= {}
+
+    unless params[:charge_type][:account_id].blank?
+      account = current_user.accounts.find_by_id(params[:charge_type][:account_id])
+      params[:charge_type][:account_id] = account ? account.id : nil
+    end
+
+    params[:charge_type].slice(
+      :name, :account_id, :counts_towards_spending
+    )
   end
 end

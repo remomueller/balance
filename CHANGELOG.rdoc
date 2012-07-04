@@ -1,9 +1,11 @@
 == Planned
 
 * Enhancements
+  * Mass-assignment attr_accessible and params slicing implemented to leverage Rails 3.2.6 configuration defaults
   * Make Purchases with Cash Withdrawals easier
   * Automatically create a "Transfer" ChargeType when creating a new account.
   * Select Entries to put together as a PDF Report
+  * Links with confirm: now use data: { confirm: } to account for deprecations in Rails 4.0
 
 == 1.7.0
 

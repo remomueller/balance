@@ -6,6 +6,10 @@ class AccountsController < ApplicationController
     account_scope = current_user.accounts
     @search_terms = params[:search].to_s.gsub(/[^0-9a-zA-Z]/, ' ').split(' ')
     @search_terms.each{|search_term| account_scope = account_scope.search(search_term) }
+
+    @order = scrub_order(Account, params[:order], 'accounts.name')
+    account_scope = account_scope.order(@order)
+
     @accounts = account_scope.page(params[:page]).per(20) # current_user.accounts_per_page)
   end
 
@@ -22,7 +26,7 @@ class AccountsController < ApplicationController
   end
 
   def create
-    @account = current_user.accounts.new(params[:account])
+    @account = current_user.accounts.new(post_params)
     if @account.save
       flash[:notice] = 'Account was successfully created.'
       redirect_to @account
@@ -33,7 +37,7 @@ class AccountsController < ApplicationController
 
   def update
     @account = current_user.accounts.find(params[:id])
-    if @account.update_attributes(params[:account])
+    if @account.update_attributes(post_params)
       flash[:notice] = 'Account was successfully updated.'
       redirect_to @account
     else
@@ -46,4 +50,15 @@ class AccountsController < ApplicationController
     @account.destroy
     redirect_to accounts_path
   end
+
+  private
+
+  def post_params
+    params[:account] ||= {}
+
+    params[:account].slice(
+      :name
+    )
+  end
+
 end

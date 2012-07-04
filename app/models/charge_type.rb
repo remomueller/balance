@@ -1,10 +1,18 @@
 class ChargeType < ActiveRecord::Base
+  attr_accessible :name, :account_id, :counts_towards_spending
+
+  # Named Scopes
+  scope :current, conditions: { deleted: false }
+  scope :search, lambda { |*args| {conditions: [ 'LOWER(charge_types.name) LIKE ?', '%' + args.first.downcase.split(' ').join('%') + '%' ] } }
+
+  # Model Validations
   validates_presence_of :name, :account_id
+
+  # Model Relationships
   belongs_to :account
   has_many :entries, order: :billing_date, conditions: ['entries.deleted = ?', false]
 
-  scope :current, conditions: { deleted: false }
-  scope :search, lambda { |*args| {conditions: [ 'LOWER(charge_types.name) LIKE ?', '%' + args.first.downcase.split(' ').join('%') + '%' ] } }
+  # ChargeType Methods
 
   def destroy(real = false)
     unless real
