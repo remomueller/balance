@@ -1,18 +1,18 @@
 == Planned
 
 * Enhancements
-  * Mass-assignment attr_accessible and params slicing implemented to leverage Rails 3.2.6 configuration defaults
   * Make Purchases with Cash Withdrawals easier
   * Automatically create a "Transfer" ChargeType when creating a new account.
   * Select Entries to put together as a PDF Report
-  * Links with confirm: now use data: { confirm: } to account for deprecations in Rails 4.0
 
 == 1.7.0
 
 * Enhancements
+  * Mass-assignment attr_accessible and params slicing implemented to leverage Rails 3.2.6 configuration defaults
   * Updating to Contour 1.0.2 and Twitter Bootstrap CSS/JS framework
   * Updating to Ruby 1.9.3-p194
   * Updating to Rails 3.2.6
+  * Links with confirm: now use data: { confirm: } to account for deprecations in Rails 4.0
 
 * Bug Fix
   * Entries amounts added with dollar signs, commas, and trailing or leading spaces are now correctly parsed
