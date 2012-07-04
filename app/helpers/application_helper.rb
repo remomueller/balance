@@ -1,7 +1,4 @@
 module ApplicationHelper
-  def cancel
-    link_to image_tag('gentleface/16/cancel.png', alt: '') + 'Cancel', URI.parse(request.referer.to_s).path.blank? ? root_path : (URI.parse(request.referer.to_s).path), class: 'button negative'
-  end
 
   def draw_chart(chart_api, chart_type, values, chart_element_id, chart_params, categories)
     if chart_api == 'highcharts'
