@@ -1,9 +1,10 @@
 class Account < ActiveRecord::Base
   attr_accessible :name
 
+  # Concerns
+  include Searchable, Deletable
+
   # Named Scopes
-  scope :current, conditions: { deleted: false }
-  scope :search, lambda { |*args| {conditions: [ 'LOWER(accounts.name) LIKE ?', '%' + args.first.downcase.split(' ').join('%') + '%' ] } }
 
   # Model Validation
   validates_presence_of :name
@@ -13,14 +14,6 @@ class Account < ActiveRecord::Base
   has_many :charge_types, order: :name, conditions: ['charge_types.deleted = ?', false]
 
   # Account Methods
-
-  def destroy(real = false)
-    unless real
-      update_attribute :deleted, true
-    else
-      super()
-    end
-  end
 
   def total_spent
     @total_spent ||= begin

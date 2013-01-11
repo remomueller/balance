@@ -4,7 +4,6 @@ SimpleCov.command_name "test:units"
 
 class UserTest < ActiveSupport::TestCase
 
-
   test "should get total expenditures" do
     assert users(:valid).total_expenditures.kind_of?(Fixnum)
   end
