@@ -8,7 +8,11 @@
 == 1.8.0
 
 * Enhancements
+  * Updated to Rails 3.2.11
   * Updated Thin web server to 1.5.0
+
+* Testing
+  * Updated to SimpleCov 0.7.1
 
 == 1.7.0
 
