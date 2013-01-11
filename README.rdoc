@@ -1,4 +1,4 @@
-= Balance {<img src="https://secure.travis-ci.org/remomueller/balance.png"/>}[http://travis-ci.org/remomueller/balance] {<img src="https://gemnasium.com/remomueller/balance.png" alt="Dependency Status" />}[https://gemnasium.com/remomueller/balance]
+= Balance {<img src="https://secure.travis-ci.org/remomueller/balance.png"/>}[http://travis-ci.org/remomueller/balance] {<img src="https://gemnasium.com/remomueller/balance.png" alt="Dependency Status" />}[https://gemnasium.com/remomueller/balance] {<img src="https://codeclimate.com/badge.png" />}[https://codeclimate.com/github/remomueller/balance]
 
 Easy home finance tracker, using Rails 3.2+ and Ruby 1.9.3+.
 
