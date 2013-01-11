@@ -9,8 +9,8 @@ gem 'thin',                 '~> 1.5.0',     :platforms => [ :mswin, :mingw ]
 gem 'eventmachine',         '~> 1.0.0',     :platforms => [ :mswin, :mingw ]
 
 # Gems used by project
-gem 'contour',              '~> 1.0.2'
-gem 'kaminari',             '~> 0.13.0'
+gem 'contour',              '~> 1.1.2'
+gem 'kaminari',             '~> 0.14.1'
 
 # Gems used only for assets and not required
 # in production environments by default.
