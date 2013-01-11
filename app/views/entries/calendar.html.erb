@@ -1,6 +1,6 @@
 <% @title = 'Calendar' %>
 
-<%= form_tag calendar_entries_path, remote: true, update: 'spending', method: :get, id: 'search-form' do %>
+<%= form_tag calendar_entries_path, remote: true, method: :get, id: 'calendar-form', data: { object: 'form-load' } do %>
   <div class="row">
     <div class="span2">
       <h3 id="calendar-title"><%= render partial: 'calendar_title' %></h3>

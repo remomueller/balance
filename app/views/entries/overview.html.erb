@@ -2,7 +2,7 @@
 <h1><%= @title %></h1>
 
 <div style="text-align:center;margin-top:-10px;float:middle">
-  <%= form_tag earning_spending_graph_entries_path, remote: true, method: :get, id: 'search-form' do %>
+  <%= form_tag earning_spending_graph_entries_path, remote: true, method: :get, data: { object: 'form-load' } do %>
     <%= link_to '&laquo;'.html_safe, '#', style: 'text-decoration:none', title: 'Previous Year', data: { object: 'previous-year' } %>
     <%= hidden_field_tag :month, '1' %>
     <%= select_tag :year, options_for_select( (current_user.first_billing_date.year..Date.today.year).to_a, Date.today.year ) %>

@@ -18,11 +18,6 @@ jQuery ->
       html: true
     )
 
-  $("#search-form")
-    .bind("change", (event) ->
-      $.get($("#search-form").attr("action"), $("#search-form").serialize(), null, "script")
-    )
-
   $(document)
     .on('click', '[data-object~="calendar-next-month"]', () ->
       goForwardOneMonth()

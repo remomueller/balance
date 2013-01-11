@@ -75,8 +75,6 @@ jQuery ->
   $('#account_name').focus()
   $('#charge_type_name').focus()
 
-  $.get($("#search-form").attr("action"), $("#search-form").serialize(), null, "script")
-
   $(document)
     .keydown( (e) ->
       if $("input, textarea").is(":focus") then return
@@ -85,12 +83,7 @@ jQuery ->
       if e.which == 39
         goForwardOneMonth()
     )
-    .on('click', '[data-object~="modal-hide"]', () ->
-      $($(this).data('target')).modal('hide');
-      $('.' + $(this).data('remove-class')).removeClass($(this).data('remove-class'))
-      false
-    )
     .on('click', '[data-object~="submit"]', () ->
-      $($(this).data('target')).submit();
+      $($(this).data('target')).submit()
       false
     )

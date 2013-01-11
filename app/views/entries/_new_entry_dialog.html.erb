@@ -12,7 +12,7 @@
   </div>
 
   <div class="modal-footer">
-    <%= link_to 'Close', '#', class: 'btn', data: { target: '#new-entry-dialog', object: 'modal-hide' } %>
-    <%= link_to 'Create Entry', '#', class: 'btn btn-primary', data: { target: "#new_entry", object: 'submit' } %>
+    <%= link_to 'Close', '#', class: 'btn', data: { dismiss: 'modal' } %>
+    <%= link_to 'Create Entry', '#', class: 'btn btn-primary', data: { object: 'submit', target: "#new_entry" } %>
   </div>
 </div>
