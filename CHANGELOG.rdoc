@@ -5,6 +5,8 @@
   * Automatically create a "Transfer" ChargeType when creating a new account.
   * Select Entries to put together as a PDF Report
 
+== 1.8.0
+
 == 1.7.0
 
 * Enhancements
