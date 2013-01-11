@@ -8,16 +8,6 @@ Amount =
   $('#new-entry-dialog').modal( dynamic: true )
 
 jQuery ->
-  $("#entry_name")
-    .bind("keydown", (event) ->
-      if event.keyCode == $.ui.keyCode.TAB && $(this).data("autocomplete").menu.active
-        event.preventDefault()
-    )
-    .autocomplete(
-      source: root_url + "entries/autocomplete",
-      html: true
-    )
-
   $(document)
     .on('click', '[data-object~="calendar-next-month"]', () ->
       goForwardOneMonth()
@@ -47,13 +37,3 @@ jQuery ->
       $($(this).data('target')).val($(this).data('amount'))
       false
     )
-
-  # $("#entry_name").bind( "keydown", ( event ) ->
-  #   if event.keyCode === $.ui.keyCode.TAB && $(this).data("autocomplete").menu.active
-  #     event.preventDefault();
-  # )
-#     .autocomplete(
-# #     source: "<%= auto_complete_for_entry_name_path(autocomplete: true) %>",
-#       selectFirst: true,
-#       html: true,
-#   });
