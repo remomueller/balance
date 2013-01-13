@@ -114,6 +114,18 @@ class EntriesController < ApplicationController
     end
   end
 
+  def move
+    @entry = current_user.entries.find_by_id(params[:id])
+    params[:entry][:billing_date] = parse_date(params[:entry][:billing_date])
+
+    if @entry and not params[:entry][:billing_date].blank?
+      @entry.update_attributes billing_date: params[:entry][:billing_date]
+      render 'update'
+    else
+      render nothing: true
+    end
+  end
+
   def mark_charged
     @entry = current_user.entries.find_by_id(params[:id])
     @entry.update_attribute :charged, true if @entry

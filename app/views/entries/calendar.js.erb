@@ -13,3 +13,6 @@
 $("#calendar-title").html("<%= escape_javascript(render("calendar_title")) %>");
 $("#direction").val(0);
 $("#spending").html("<%= escape_javascript(render("accounts/month_spending")) %>");
+
+activateEntryDraggables();
+activateDayDroppables();

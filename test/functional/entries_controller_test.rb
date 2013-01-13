@@ -191,6 +191,23 @@ class EntriesControllerTest < ActionController::TestCase
     assert_template 'edit'
   end
 
+  test "should move entry on calendar" do
+    post :move, id: @entry, entry: { billing_date: "03/07/2012" }, format: 'js'
+
+    assert_not_nil assigns(:entry)
+    assert_equal "03/07/2012", assigns(:entry).billing_date.strftime("%m/%d/%Y")
+    assert_template 'update'
+    assert_response :success
+  end
+
+  test "should not move entry without billing date" do
+    post :move, id: @entry, entry: { billing_date: "" }, format: 'js'
+
+    assert_not_nil assigns(:entry)
+    assert_equal "10/28/2000", assigns(:entry).billing_date.strftime("%m/%d/%Y")
+    assert_response :success
+  end
+
   test "should destroy entry" do
     assert_difference('Entry.current.count', -1) do
       delete :destroy, id: @entry.to_param

@@ -12,6 +12,7 @@ Balance::Application.routes.draw do
     member do
       post :mark_charged
       get :copy
+      post :move
     end
     collection do
       get :calendar
