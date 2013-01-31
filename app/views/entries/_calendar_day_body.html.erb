@@ -2,7 +2,7 @@
   <% entries = @entries.select{ |e| e.billing_date == iDate and e.charge_type.counts_towards_spending? == spending }.sort{ |a,b| a.id <=> b.id } %>
 
   <% entries.each do |entry| %>
-    <div class="entry_draggable" style="cursor:move" data-title="<%= entry.name %><%= ('&#13;' + h(entry.description)).html_safe unless entry.description.blank? %>" rel="tooltip" data-entry-id="<%= entry.id %>" data-billing-date="<%= entry.billing_date.strftime("%m/%d/%Y") %>">
+    <div class="entry_draggable" style="cursor:move" data-title="<%= simple_format entry.description unless entry.description.blank? %>" rel="tooltip" data-entry-id="<%= entry.id %>" data-html="true" data-billing-date="<%= entry.billing_date.strftime("%m/%d/%Y") %>">
       <div class="calendar-entry-amount"><%= entry.amount.to_currency %></div>
       <div class="calendar-entry-name" style="cursor:move">
         <%= link_to(image_tag('001_15.png', style: 'border:none;vertical-align:baseline', size: '10x10', title: 'Not Charged'), mark_charged_entry_path(entry, authenticity_token: form_authenticity_token), remote: true, method: :post, confirm: "Are you sure you want to mark this entry as charged?\n\n#{entry.name}\n\n#{entry.amount.to_currency + ' ' + entry.charge_type.full_name}\n", id: "entry_#{entry.id}_mark_charged_link") unless entry.charged? %>
