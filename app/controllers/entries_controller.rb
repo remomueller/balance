@@ -138,7 +138,8 @@ class EntriesController < ApplicationController
   end
 
   def autocomplete
-    @entries = Entry.with_user(current_user.id).group('name').order('COUNT(id) DESC, name ASC').where(['LOWER(name) LIKE ?', '%' + params[:term].downcase.split(' ').join('%') + '%']).limit(8)
+    @entries = Entry.with_user(current_user.id).search(params[:search]).group('name').order('COUNT(id) DESC, name ASC').limit(8)
+    render json: @entries.collect(&:name)
   end
 
   private

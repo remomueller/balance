@@ -60,3 +60,11 @@ jQuery ->
       $($(this).data('target')).val($(this).data('amount'))
       false
     )
+
+  $('[data-object~="typeahead"]').each( () ->
+    $this = $(this)
+    $this.typeahead(
+      source: (query, process) ->
+        $.get($this.data('path'), { search: query }, (data) -> return process(data))
+    )
+  )

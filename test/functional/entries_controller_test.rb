@@ -226,7 +226,7 @@ class EntriesControllerTest < ActionController::TestCase
     get :autocomplete, term: 'lunch', format: 'js'
     assert assigns(:entries)
     assert (assigns(:entries).size <= 8)
-    assert_template 'autocomplete'
+    assert_response :success
   end
 
   test "should get averages" do
