@@ -15,7 +15,7 @@
 * Testing
   * Updated to SimpleCov 0.7.1
 
-== 1.7.0
+== 1.7.0 (July 4, 2012)
 
 * Enhancements
   * Mass-assignment attr_accessible and params slicing implemented to leverage Rails 3.2.6 configuration defaults
@@ -27,7 +27,7 @@
 * Bug Fix
   * Entries amounts added with dollar signs, commas, and trailing or leading spaces are now correctly parsed (by LisaM)
 
-== 1.6.0
+== 1.6.0 (March 4, 2012)
 
 * Enhancements
   * GUI updated to use contour-minimalist theme
@@ -35,12 +35,12 @@
 * Refactoring
   * Updated to Rails 3.2.2 and Contour 0.10.2
 
-== 1.5.1
+== 1.5.1 (February 7, 2012)
 
 * Bug Fix
   * Arrow keys no longer change the calendar month when focus is on a text input
 
-== 1.5.0
+== 1.5.0 (February 4, 2012)
 
 * Enhancements
   * Entries can now be created from the calendar by double clicking on a date
@@ -51,12 +51,12 @@
 * Bug Fix
   * Entry name autocomplete fixed
 
-== 1.4.2
+== 1.4.2 (January 23, 2012)
 
 * Bug Fix
   * Devise migrations fixed for Devise 2.0.0
 
-== 1.4.1
+== 1.4.1 (January 23, 2012)
 
 * Refactoring
   * Gem dependencies updated:
@@ -65,7 +65,7 @@
   * Devise migration and configuration file updated
   * Environment files updated to be in sync with Rails 3.2.0
 
-== 1.4.0
+== 1.4.0 (January 16, 2012)
 
 * Enhancements
   * Update to Rails 3.2.0.rc2 and Contour 0.9.0
@@ -84,7 +84,7 @@
   * Test Coverage is now at 100% with help of SimpleCov
   * Continuous integration using TravisCI, http://travis-ci.org/remomueller/balance
 
-== 1.3.0
+== 1.3.0 (October 16, 2011)
 
 * Enhancements
   * Update Rails to 3.1.1 and Contour 0.5.6
@@ -92,7 +92,7 @@
   * Clicking left and right in Month Overview will transition between months
   * Current Balance page now lets you calculate your maximum daily spending until your next paycheck (the default day is the beginning of the next month)
 
-== 1.2.0
+== 1.2.0 (August 28, 2011)
 
 * Enhancements
   * Update Rails to 3.1.0.rc6
@@ -105,7 +105,7 @@
 * Testing
   * Add Navigation integration tests for friendly forwarding and redirection to login page
 
-== 1.1.0
+== 1.1.0 (August 5, 2011)
 
 * Enhancements
   * Update Rails to 3.1.0.rc4
@@ -119,7 +119,7 @@
   * Fixtures updated
   * Test base cleaned up
 
-== 1.0.0
+== 1.0.0 (June 19, 2011)
 
 * Accounts can be created
 * Charge types can be added to accounts
