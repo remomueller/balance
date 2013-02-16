@@ -1,5 +1,6 @@
 class EntriesController < ApplicationController
   before_filter :authenticate_user!
+  before_filter :initialize_graph, only: [:overview, :earning_spending_graph]
 
   def calendar
     @selected_date = parse_date(params[:selected_date], Date.today)
@@ -16,37 +17,15 @@ class EntriesController < ApplicationController
   end
 
   def overview
-    @today = Date.today.year
-    @year = @today.year
-    @month = @today.month
-    @entries = []
-    @gross_spending = []
-    @gross_income = []
-    @net_profit = []
     (current_user.first_billing_date.year..Date.today.year).each do |year|
-      @entries << current_user.entries.with_date_for_calendar(year_start_date(year), year_end_date(year))
-      @gross_spending << -(@entries.last.select{|e| e.charge_type.counts_towards_spending?}.sum{|e| e.amount})
-      @gross_income << @entries.last.select{|e| not e.charge_type.counts_towards_spending?}.sum{|e| e.amount}
-      @net_profit << @gross_income.last + @gross_spending.last
+      add_to_graph(year_start_date(year), year_end_date(year))
     end
   end
 
   def earning_spending_graph
-    @year = params[:year].to_i
-    @month = params[:month].to_i
-    if params[:month] and params[:year]
-      @entries = []
-      @gross_spending = []
-      @gross_income = []
-      @net_profit = []
-      (1..12).each do |month|
-        @entries << current_user.entries.with_date_for_calendar(month_start_date(params[:year], month), month_end_date(params[:year], month))
-        @gross_spending << -(@entries.last.select{|e| e.charge_type.counts_towards_spending?}.sum{|e| e.amount})
-        @gross_income << @entries.last.select{|e| not e.charge_type.counts_towards_spending?}.sum{|e| e.amount}
-        @net_profit << @gross_income.last + @gross_spending.last
-      end
-    else
-      render nothing: true
+    params[:year] = Date.today.year if params[:year].blank?
+    (1..12).each do |month|
+      add_to_graph(month_start_date(params[:year], month), month_end_date(params[:year], month))
     end
   end
 
@@ -159,5 +138,17 @@ class EntriesController < ApplicationController
     params[:entry].slice(
       :name, :charge_type_id, :billing_date, :decimal_amount, :description, :charged
     )
+  end
+
+  def initialize_graph
+    @gross_spending = []
+    @gross_income = []
+    @net_profit = []
+  end
+
+  def add_to_graph(start_date, end_date)
+    @gross_spending << current_user.gross(start_date, end_date, true)
+    @gross_income << current_user.gross(start_date, end_date, false)
+    @net_profit << current_user.net_profit(start_date, end_date)
   end
 end

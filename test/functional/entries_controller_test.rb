@@ -32,14 +32,9 @@ class EntriesControllerTest < ActionController::TestCase
 
   test "should get overview" do
     get :overview
-    assert_not_nil assigns(:today)
-    assert_not_nil assigns(:year)
-    assert_not_nil assigns(:month)
-    assert_not_nil assigns(:entries)
     assert_not_nil assigns(:gross_spending)
     assert_not_nil assigns(:gross_income)
     assert_not_nil assigns(:net_profit)
-    assert assigns(:entries).kind_of?(Array)
     assert assigns(:gross_spending).kind_of?(Array)
     assert assigns(:gross_income).kind_of?(Array)
     assert assigns(:net_profit).kind_of?(Array)
@@ -47,29 +42,14 @@ class EntriesControllerTest < ActionController::TestCase
   end
 
   test "should get earning spending graph" do
-    get :earning_spending_graph, month: 1, year: 2011, format: 'js'
-    assert_not_nil assigns(:year)
-    assert_not_nil assigns(:month)
-    assert_not_nil assigns(:entries)
+    get :earning_spending_graph, year: 2011, format: 'js'
     assert_not_nil assigns(:gross_spending)
     assert_not_nil assigns(:gross_income)
     assert_not_nil assigns(:net_profit)
-    assert assigns(:entries).kind_of?(Array)
     assert assigns(:gross_spending).kind_of?(Array)
     assert assigns(:gross_income).kind_of?(Array)
     assert assigns(:net_profit).kind_of?(Array)
     assert_template 'earning_spending_graph'
-  end
-
-  test "should not get earning spending graph without month and year" do
-    get :earning_spending_graph, format: 'js'
-    assert_not_nil assigns(:year)
-    assert_not_nil assigns(:month)
-    assert_nil assigns(:entries)
-    assert_nil assigns(:gross_spending)
-    assert_nil assigns(:gross_income)
-    assert_nil assigns(:net_profit)
-    assert_response :success
   end
 
   test "should get index" do

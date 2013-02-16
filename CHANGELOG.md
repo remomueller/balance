@@ -12,6 +12,7 @@
 - Added `app/models/concerns`
   - `Searchable`: Allows models to be searched by name
   - `Deletable`: Allows models to be flagged as deleted and scoped by current
+- Simplified Overview calculations in `entries_controller.rb`
 
 ### Testing
 - Updated to SimpleCov 0.7.1

@@ -60,6 +60,9 @@ jQuery ->
       $($(this).data('target')).val($(this).data('amount'))
       false
     )
+    .on('change', '#year', () ->
+      $("#earning-spending-form").submit()
+    )
 
   $('[data-object~="typeahead"]').each( () ->
     $this = $(this)

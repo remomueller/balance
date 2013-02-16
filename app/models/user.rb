@@ -56,6 +56,22 @@ class User < ActiveRecord::Base
     end
   end
 
+  # gross_spending is true, gross_income is false
+  def gross(start_date, end_date, counts_towards_spending)
+    result = entries_in_time_period(start_date, end_date, counts_towards_spending).sum{|e| e.amount}
+    result = result * -1 if counts_towards_spending
+    result
+  end
+
+  def entries_in_time_period(start_date, end_date, counts_towards_spending)
+    self.entries.with_date_for_calendar(start_date, end_date).select{|e| e.charge_type.counts_towards_spending? == counts_towards_spending}
+  end
+
+  # Get the net_profit for a month or for a year...
+  def net_profit(start_date, end_date)
+    gross(start_date, end_date, true) + gross(start_date, end_date, false)
+  end
+
   def name
     first_name + ' ' + last_name
   end
