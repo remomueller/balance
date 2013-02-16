@@ -44,7 +44,7 @@ Run Rails Server (or use Apache or nginx)
 rails s -p80
 ```
 
-Open a browser and go to: http://localhost
+Open a browser and go to: [http://localhost](http://localhost)
 
 All done!
 
