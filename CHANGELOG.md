@@ -19,11 +19,12 @@
 ## 1.7.0 (July 4, 2012)
 
 ### Enhancements
-- Mass-assignment attr_accessible and params slicing implemented to leverage Rails 3.2.6 configuration defaults
-- Updating to Contour 1.0.2 and Twitter Bootstrap CSS/JS framework
-- Updating to Ruby 1.9.3-p194
-- Updating to Rails 3.2.6
+- Mass-assignment `attr_accessible` and params slicing implemented to leverage Rails 3.2.6 configuration defaults
 - Links with `confirm:` now use `data: { confirm: }` to account for deprecations in Rails 4.0
+- **Gem Changes**
+  - Updated to Contour 1.0.2 and Twitter Bootstrap CSS/JS framework
+  - Updated to Rails 3.2.6
+- Updating to Ruby 1.9.3-p194
 
 ### Bug Fix
 - Entries amounts added with dollar signs, commas, and trailing or leading spaces are now correctly parsed (by LisaM)
@@ -31,10 +32,9 @@
 ## 1.6.0 (March 4, 2012)
 
 ### Enhancements
-- GUI updated to use contour-minimalist theme
-
-### Refactoring
-- Updated to Rails 3.2.2 and Contour 0.10.2
+- GUI updated to use `contour-minimalist` theme
+- **Gem Changes**
+  - Updated to Rails 3.2.2 and Contour 0.10.2
 
 ## 1.5.1 (February 7, 2012)
 
@@ -45,9 +45,8 @@
 
 ### Enhancements
 - Entries can now be created from the calendar by double clicking on a date
-
-### Refactoring
-- Updated to Rails 3.2.1 and fixed Devise 2.0.0 locales file
+- **Gem Changes**
+  - Updated to Rails 3.2.1 and fixed Devise 2.0.0 locales file
 
 ### Bug Fix
 - Entry name autocomplete fixed
@@ -59,23 +58,25 @@
 
 ## 1.4.1 (January 23, 2012)
 
-### Refactoring
-- **Gem Changes**
-  - Rails 3.2.0
-  - Contour ~> 0.9.3
+### Enhancements
 - Devise migration and configuration file updated
 - Environment files updated to be in sync with Rails 3.2.0
+- **Gem Changes**
+  - Updated to Rails 3.2.0
+  - Updated to Contour 0.9.3
 
 ## 1.4.0 (January 16, 2012)
 
 ### Enhancements
-- Update to Rails 3.2.0.rc2 and Contour 0.9.0
 - Updated jQuery Calls to use jQuery 1.7 specification (`.live` to `.on`)
 - Removed JavaScript functions that are provided by Contour
 - Existing entries can now be copied as templates for new entries
+- **Gem Changes**
+  - Updated to Rails 3.2.0.rc2
+  - Updated to Contour 0.9.0
 
 ### Refactoring
-- Moved root path to be the entries calendar
+- Moved `root_path` to be the entries calendar
 
 ### Bug Fix
 - Graphs now render correctly in IE7 and IE8
@@ -88,20 +89,23 @@
 ## 1.3.0 (October 16, 2011)
 
 ### Enhancements
-- Update Rails to 3.1.1 and Contour 0.5.6
 - Changing months now uses jQuery Slide transition on the Month Overview
 - Clicking left and right in Month Overview will transition between months
 - Current Balance page now lets you calculate your maximum daily spending until your next paycheck (the default day is the beginning of the next month)
+- **Gem Changes**
+  - Updated to Rails 3.1.1
+  - Updated to Contour 0.5.6
 
 ## 1.2.0 (August 28, 2011)
 
 ### Enhancements
-- Update Rails to 3.1.0.rc6
 - Major redesign using a better CSS base template (BlueTrip CSS Framework)
 - New entries made from calendar are now redirected back to the calendar
 - Main dashboard page broken down to Month Overview, Averages, and Current Balance Pages
 - Links added for easier navigation to and from accounts and charge types
 - Validation errors now correctly highlight invalid fields
+- **Gem Changes**
+  - Updated to Rails 3.1.0.rc6
 
 ### Testing
 - Add Navigation integration tests for friendly forwarding and redirection to login page
@@ -109,12 +113,13 @@
 ## 1.1.0 (August 5, 2011)
 
 ### Enhancements
-- Update Rails to 3.1.0.rc4
 - Replace Prototype with jQuery
 - Replace WillPaginate with Kaminari
-- Update Devise to 1.3.4
 - Replace CalendarDateSelect with jQuery DatePicker
 - Sort Entry Autocomplete by most commonly used
+- **Gem Changes**
+  - Updated to Rails 3.1.0.rc4
+  - Updated to Devise 1.3.4
 
 ### Testing
 - Fixtures updated
