@@ -1,7 +1,6 @@
 @goBackOneYear = () ->
   year_selector = $('#year')
   year_selector.val(year_selector.val() - 1)
-  $('#direction').val(-1)
   year_selector.change()
 
 @goForwardOneYear = () ->
@@ -9,7 +8,6 @@
   num_years = $(year_selector).find('option').size()
   if parseInt(year_selector.val()) != num_years - 1
     year_selector.val(parseInt(year_selector.val()) + 1)
-    $('#direction').val(1)
     year_selector.change()
 
 @goBackOneMonth = () ->
@@ -21,7 +19,6 @@
       year_selector.val(year_selector.val() - 1)
   else
     month_selector.val(month_selector.val() - 1)
-  $('#direction').val(-1)
   month_selector.change()
 
 @goForwardOneMonth = () ->
@@ -34,7 +31,6 @@
       year_selector.val(parseInt(year_selector.val()) + 1)
   else
     month_selector.val(parseInt(month_selector.val()) + 1)
-  $('#direction').val(1)
   month_selector.change()
 
 @goToCurrentMonth = () ->
@@ -45,7 +41,6 @@
   available_years = new Array()
   available_years.push(item.value) for item in year_selector.options
   year_selector.attr('selectedIndex', available_years.indexOf(today.getFullYear().toString(10)))
-  $('#direction').val(0)
 
 @calculateEndOfMonthSpending = () ->
   per_day_spending = 0
@@ -61,6 +56,3 @@
   today = new Date()
   paycheck = Date.parse($('#paycheck_day').val())
   Math.ceil((paycheck-today.getTime())/(one_day))
-
-
-

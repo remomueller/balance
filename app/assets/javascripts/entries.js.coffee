@@ -63,6 +63,9 @@ jQuery ->
     .on('change', '#year', () ->
       $("#earning-spending-form").submit()
     )
+    .on('change', '#selected_date', () ->
+      $("#calendar-form").submit()
+    )
 
   $('[data-object~="typeahead"]').each( () ->
     $this = $(this)
