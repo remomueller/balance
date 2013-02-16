@@ -2,9 +2,10 @@
 
 ### Enhancements
 - Entries can now be dragged to a new date on the calendar
-- Updated to Rails 3.2.11
-- Updated Thin web server to 1.5.0
-- Updated to Contour 1.1.2 and use Contour pagination theme
+- **Gem Changes**
+  - Updated to Rails 3.2.12
+  - Updated Thin web server to 1.5.0
+  - Updated to Contour 1.2.0 and use Contour pagination theme
 - Updated to Ruby 1.9.3-p327
 
 ### Refactoring
