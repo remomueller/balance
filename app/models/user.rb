@@ -10,9 +10,9 @@ class User < ActiveRecord::Base
   scope :current, conditions: { deleted: false }
 
   has_many :authentications
-  has_many :accounts, order: :name, conditions: ['accounts.deleted = ?', false]
-  has_many :charge_types, through: :accounts, order: :name, conditions: ['charge_types.deleted = ?', false]
-  has_many :entries, order: 'billing_date desc, id desc', conditions: ['entries.deleted = ?', false]
+  has_many :accounts, conditions: { deleted: false } # ['accounts.deleted = ?', false]
+  has_many :charge_types, through: :accounts, conditions: { deleted: false } # ['charge_types.deleted = ?', false]
+  has_many :entries, conditions: { deleted: false } # ['entries.deleted = ?', false]
 
   def total_expenditures
     @total_spent ||= begin
@@ -21,9 +21,7 @@ class User < ActiveRecord::Base
   end
 
   def first_billing_date
-    @first_billing_date ||= begin
-      self.entries.collect{|a| a.billing_date}.min
-    end
+    self.entries.order(:billing_date).first.billing_date if self.entries.size > 0
   end
 
   def average_expenditures_per_day
