@@ -2,6 +2,7 @@
 
 ### Bug Fix
 - Fixed the ordering of Gross Income, Gross Spending, Net Profit for the Earning and Spending Graphs
+- Fixed search not working on accounts and charge types
 
 ## 1.8.0 (February 16, 2013)
 

@@ -1,20 +1,14 @@
 class ChargeTypesController < ApplicationController
   before_filter :authenticate_user!
+  before_filter :set_charge_type, only: [:show, :edit, :update, :destroy]
 
   def index
-    # current_user.update_attribute :charge_types_per_page, params[:charge_types_per_page].to_i if params[:charge_types_per_page].to_i >= 10 and params[:charge_types_per_page].to_i <= 200
-    charge_type_scope = current_user.charge_types
-    @search_terms = params[:search].to_s.gsub(/[^0-9a-zA-Z]/, ' ').split(' ')
-    @search_terms.each{|search_term| charge_type_scope = charge_type_scope.search(search_term) }
-
     @order = scrub_order(ChargeType, params[:order], 'charge_types.name')
-    charge_type_scope = charge_type_scope.order(@order)
-
-    @charge_types = charge_type_scope.page(params[:page]).per(20) # current_user.charge_types_per_page)
+    @charge_types = current_user.charge_types.search(params[:search]).order(@order).page(params[:page]).per(20)
   end
 
   def show
-    @charge_type = current_user.charge_types.find(params[:id])
+
   end
 
   def new
@@ -22,35 +16,29 @@ class ChargeTypesController < ApplicationController
   end
 
   def edit
-    @charge_type = current_user.charge_types.find(params[:id])
+
   end
 
   def create
     @charge_type = current_user.charge_types.new(post_params)
 
     if @charge_type.save
-      flash[:notice] = 'Charge Type was successfully created.'
-      redirect_to @charge_type
+      redirect_to @charge_type, notice: 'Charge Type was successfully created.'
     else
       render action: :new
     end
   end
 
   def update
-    @charge_type = current_user.charge_types.find(params[:id])
-
     if @charge_type.update_attributes(post_params)
-      flash[:notice] = 'Charge Type was successfully updated.'
-      redirect_to @charge_type
+      redirect_to @charge_type, notice: 'Charge Type was successfully updated.'
     else
       render action: :edit
     end
   end
 
   def destroy
-    @charge_type = current_user.charge_types.find(params[:id])
-    @charge_type.destroy
-
+    @charge_type.destroy if @charge_type
     redirect_to charge_types_path
   end
 
@@ -68,4 +56,9 @@ class ChargeTypesController < ApplicationController
       :name, :account_id, :counts_towards_spending
     )
   end
+
+  def set_charge_type
+    @charge_type = current_user.charge_types.find_by_id(params[:id])
+  end
+
 end
