@@ -1,5 +1,8 @@
 ## 1.8.1
 
+### Bug Fix
+- Fixed the ordering of Gross Income, Gross Spending, Net Profit for the Earning and Spending Graphs
+
 ## 1.8.0 (February 16, 2013)
 
 ### Enhancements
