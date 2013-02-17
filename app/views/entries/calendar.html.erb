@@ -1,19 +1,22 @@
 <% @title = 'Calendar' %>
 
 <%= form_tag calendar_entries_path, remote: true, method: :get, id: 'calendar-form', data: { object: 'form-load' } do %>
-  <div class="row">
-    <div class="span2">
-      <h3 id="calendar-title"><%= render partial: 'calendar_title' %></h3>
+  <div class="row" style="margin-top: -10px;">
+    <div class="span4 btn-toolbar">
+      <h4 id="calendar-title" style="font-size:27px;font-weight:300"><%= render partial: 'calendar_title' %></h4>
     </div>
-    <div class="span3">
-      <div class="btn-group">
-        <%= link_to '&larr;'.html_safe, '#', style: 'text-decoration:none', title: 'Previous Month', class: 'btn', data: { object: 'calendar-previous-month' } %>
-        <%= link_to 'Today', '#', class: 'btn', data: { object: 'calendar-today' } %>
-        <%= link_to '&rarr;'.html_safe, '#', style: 'text-decoration:none', title: 'Next Month', class: 'btn', data: { object: 'calendar-next-month' } %>
+    <div class="span4" style="text-align:center">
+      <div class="btn-toolbar">
+        <div class="btn-group" >
+          <%= link_to 'Today', '#', class: 'btn', data: { object: 'calendar-today' } %>
+        </div>
+        <div class="btn-group">
+          <%= link_to '&larr;'.html_safe, '#', title: 'Previous Month', class: 'btn', data: { object: 'calendar-previous-month' }, style: 'margin-right:-1px' %>
+          <%= hidden_field_tag :direction, 0 %>
+          <%= text_field_tag :selected_date, @selected_date.strftime('%m/%d/%Y'), class: 'datepicker btn', style: 'width:85px;margin-bottom:1px' %>
+          <%= link_to '&rarr;'.html_safe, '#', title: 'Next Month', class: 'btn', data: { object: 'calendar-next-month' }, style: '' %>
+        </div>
       </div>
-    </div>
-    <div class="span3" style="text-align:center">
-      <%= text_field_tag :selected_date, @selected_date.strftime('%m/%d/%Y'), class: 'datepicker', style: 'width:80px' %>
     </div>
   </div>
 <% end %>
