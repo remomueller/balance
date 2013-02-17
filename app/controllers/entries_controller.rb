@@ -1,6 +1,7 @@
 class EntriesController < ApplicationController
   before_filter :authenticate_user!
   before_filter :initialize_graph, only: [:overview, :earning_spending_graph]
+  before_filter :set_entry, only: [:show, :edit, :update, :move, :mark_charged, :destroy]
 
   def calendar
     @selected_date = parse_date(params[:selected_date], Date.today)
@@ -30,19 +31,19 @@ class EntriesController < ApplicationController
   end
 
   def index
-    # current_user.update_attribute :entries_per_page, params[:entries_per_page].to_i if params[:entries_per_page].to_i >= 10 and params[:entries_per_page].to_i <= 200
     entry_scope = current_user.entries.with_charged(params[:charged] == "1")
+
     @search_terms = params[:search].to_s.gsub(/[^0-9a-zA-Z]/, ' ').split(' ')
     @search_terms.each{|search_term| entry_scope = entry_scope.search(search_term) }
 
     @order = scrub_order(Entry, params[:order], 'billing_date desc, id desc')
     entry_scope = entry_scope.order(@order)
 
-    @entries = entry_scope.page(params[:page]).per(20) # current_user.entries_per_page)
+    @entries = entry_scope.page(params[:page]).per(20)
   end
 
   def show
-    @entry = current_user.entries.find_by_id(params[:id])
+
   end
 
   def new
@@ -61,7 +62,7 @@ class EntriesController < ApplicationController
   end
 
   def edit
-    @entry = current_user.entries.find_by_id(params[:id])
+
   end
 
   def create
@@ -84,17 +85,14 @@ class EntriesController < ApplicationController
   end
 
   def update
-    @entry = current_user.entries.find_by_id(params[:id])
     if @entry.update_attributes(post_params)
-      flash[:notice] = 'Entry was successfully updated.'
-      redirect_to @entry
+      redirect_to @entry, notice: 'Entry was successfully updated.'
     else
       render action: :edit
     end
   end
 
   def move
-    @entry = current_user.entries.find_by_id(params[:id])
     params[:entry][:billing_date] = parse_date(params[:entry][:billing_date])
 
     if @entry and not params[:entry][:billing_date].blank?
@@ -106,18 +104,16 @@ class EntriesController < ApplicationController
   end
 
   def mark_charged
-    @entry = current_user.entries.find_by_id(params[:id])
     @entry.update_attribute :charged, true if @entry
   end
 
   def destroy
-    @entry = current_user.entries.find_by_id(params[:id])
     @entry.destroy if @entry
     redirect_to entries_path
   end
 
   def autocomplete
-    @entries = Entry.with_user(current_user.id).search(params[:search]).group('name').order('COUNT(id) DESC, name ASC').limit(8)
+    @entries = current_user.entries.search(params[:search]).group('name').order('COUNT(id) DESC, name ASC').limit(8)
     render json: @entries.collect(&:name)
   end
 
@@ -150,5 +146,9 @@ class EntriesController < ApplicationController
     @gross_spending << current_user.gross(start_date, end_date, true)
     @gross_income << current_user.gross(start_date, end_date, false)
     @net_profit << current_user.net_profit(start_date, end_date)
+  end
+
+  def set_entry
+    @entry = current_user.entries.find_by_id(params[:id]) # show
   end
 end

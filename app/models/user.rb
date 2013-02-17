@@ -15,7 +15,7 @@ class User < ActiveRecord::Base
   has_many :entries, conditions: { deleted: false } # ['entries.deleted = ?', false]
 
   def total_expenditures
-    @total_spent ||= begin
+    @total_expenditures ||= begin
       self.accounts.collect(&:total_spent).sum
     end
   end
@@ -24,33 +24,33 @@ class User < ActiveRecord::Base
     self.entries.order(:billing_date).first.billing_date if self.entries.size > 0
   end
 
-  def average_expenditures_per_day
-    @average_expenditures_per_day ||= begin
-      (self.total_expenditures / (Date.today - first_billing_date)).to_f.to_currency
+  def total_spent_per_day
+    @total_spent_per_day ||= begin
+      self.entries.size > 0 ? (self.total_expenditures / (Date.today - first_billing_date)).to_f : 0.0
     end
+  end
+
+  def average_expenditures_per_day
+    self.total_spent_per_day.to_currency
   end
 
   def average_expenditures_per_month
-    @average_expenditures_per_month ||= begin
-      (self.total_expenditures / (Date.today - first_billing_date) * 30.0).to_f.to_currency
-    end
+    (self.total_spent_per_day * 30.0).to_currency
   end
 
   def average_expenditures_per_year
-    @average_expenditures_per_year ||= begin
-      (self.total_expenditures / (Date.today - first_billing_date) * 365.0).to_f.to_currency
-    end
+    (self.total_spent_per_day * 365.0).to_currency
   end
 
   def spent_in_time_period(start_date, end_date)
     @spent_in_time_period ||= begin
-      self.accounts.collect{|item| item.spent_in_time_period(start_date,end_date)}.sum
+      self.accounts.sum{|item| item.spent_in_time_period(start_date,end_date)}
     end
   end
 
   def average_spent_over_time_period(start_date, end_date)
     @average_spent_over_time_period ||= begin
-      self.accounts.collect{|item| item.average_spent_over_time_period(start_date,end_date)}.sum
+      self.accounts.sum{|item| item.average_spent_over_time_period(start_date,end_date)}
     end
   end
 
