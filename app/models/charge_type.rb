@@ -19,39 +19,17 @@ class ChargeType < ActiveRecord::Base
     self.name + ' - ' + self.account.name
   end
 
-  def balance_contribution
-    if self.counts_towards_spending
-      (self.entries.collect(&:amount).sum * -1)
-    else
-      self.entries.collect(&:amount).sum
-    end
-  end
-
-  def charged_balance_contribution
-    if self.counts_towards_spending
-      (self.entries.collect(&:charged_amount).sum * -1)
-    else
-      self.entries.collect(&:charged_amount).sum
-    end
+  # type: :amount, :charged_amount
+  def contribution(type)
+    result = self.entries.sum(&type)
+    self.counts_towards_spending ? result * -1 : result
   end
 
   def total_spent
-    @total_spent ||= begin
-      if self.counts_towards_spending
-        self.entries.collect(&:amount).sum
-      else
-        0
-      end
-    end
+    self.counts_towards_spending? ? self.entries.sum(&:amount) : 0
   end
 
   def spent_in_time_period(start_date, end_date)
-    @spent_in_time_period ||= begin
-      if self.counts_towards_spending
-        self.entries.where(['DATE(billing_date) >= ? and DATE(billing_date) <= ?', start_date, end_date]).collect(&:amount).sum
-      else
-        0
-      end
-    end
+    self.counts_towards_spending? ? self.entries.with_date_for_calendar(start_date, end_date).sum(&:amount) : 0
   end
 end

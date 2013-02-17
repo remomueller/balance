@@ -10,11 +10,11 @@
         <% current_user.accounts.each do |account| %>
           <tr>
             <td>Balance <%= link_to account.name, account %></td>
-            <td id="account_<%= account.id %>_balance" style="text-align:right"><%= account.balance.to_currency %></td>
-            <td><%= link_to 'copy', '#', data: { object: 'copy', amount: "#{account.balance / 100.0}", target: '#amount_left' } %></td>
+            <td id="account_<%= account.id %>_balance" style="text-align:right"><%= account.balance(:amount).to_currency %></td>
+            <td><%= link_to 'copy', '#', data: { object: 'copy', amount: "#{account.balance(:amount) / 100.0}", target: '#amount_left' } %></td>
           </tr>
         <% end %>
-        <% total_assets = current_user.accounts.collect(&:balance).sum %>
+        <% total_assets = current_user.accounts.sum{|a| a.balance(:amount)} %>
         <tr>
           <td>Total Assets</td>
           <td style="text-align:right"><%= total_assets.to_currency %></td>
@@ -58,7 +58,7 @@
         <% current_user.accounts.each do |account| %>
           <tr>
             <td>Charged Balance <%= link_to account.name, account %></td>
-            <td style="text-align:right"><%= account.charged_balance.to_currency %></td>
+            <td style="text-align:right"><%= account.balance(:charged_amount).to_currency %></td>
           </tr>
         <% end %>
       </table>

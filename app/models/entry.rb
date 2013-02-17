@@ -22,11 +22,7 @@ class Entry < ActiveRecord::Base
   end
 
   def charged_amount
-    if charged?
-      amount
-    else
-      0
-    end
+    charged? ? amount : 0
   end
 
   def decimal_amount

@@ -2,6 +2,7 @@
 
 ### Enhancements
 - Clarified filtering on the entries index
+- Refactored account, charge_type, and entry models and controllers
 
 ### Bug Fix
 - Fixed the ordering of Gross Income, Gross Spending, Net Profit for the Earning and Spending Graphs

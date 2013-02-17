@@ -17,25 +17,18 @@ class Account < ActiveRecord::Base
 
   def total_spent
     @total_spent ||= begin
-      self.charge_types.collect(&:total_spent).sum
+      self.charge_types.sum(&:total_spent)
     end
   end
 
-  def balance
-    @balance ||= begin
-      self.charge_types.collect(&:balance_contribution).sum
-    end
-  end
-
-  def charged_balance
-    @charged_balance ||= begin
-      self.charge_types.collect(&:charged_balance_contribution).sum
-    end
+  # type: :amount, :charged_amount
+  def balance(type)
+    self.charge_types.sum{|c| c.contribution(type)}
   end
 
   def spent_in_time_period(start_date, end_date)
     @spent_in_time_period ||= begin
-      self.charge_types.collect{|item| item.spent_in_time_period(start_date,end_date)}.sum
+      self.charge_types.sum{|item| item.spent_in_time_period(start_date,end_date)}
     end
   end
 
