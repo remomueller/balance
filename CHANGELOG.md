@@ -2,11 +2,11 @@
 
 ### Enhancements
 - Clarified filtering on the entries index
-- Refactored account, charge_type, and entry models and controllers
+- Refactored `account`, `charge_type`, and `entry` models and controllers
 
 ### Bug Fix
 - Fixed the ordering of Gross Income, Gross Spending, Net Profit for the Earning and Spending Graphs
-- Fixed search not working on accounts and charge types
+- Fixed search not working on `accounts` and `charge_types`
 
 ## 1.8.0 (February 16, 2013)
 
