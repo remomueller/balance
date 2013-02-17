@@ -1,4 +1,4 @@
-## 1.8.1
+## 1.8.1 (February 17, 2013)
 
 ### Enhancements
 - Clarified filtering on the entries index
