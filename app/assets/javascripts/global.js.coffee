@@ -51,7 +51,6 @@
   now = new Date() if isNaN(now.getFullYear())
   new_month = new Date now.getFullYear(), now.getMonth()-1, 1
   $('#selected_date').val((new_month.getMonth() + 1) + "/" + new_month.getDate() + "/" + new_month.getFullYear())
-  $('#direction').val(-1)
   $('#calendar-form').submit()
 
 @goForwardOneMonth = () ->
@@ -59,13 +58,11 @@
   now = new Date() if isNaN(now.getFullYear())
   new_month = new Date now.getFullYear(), now.getMonth()+1, 1
   $('#selected_date').val((new_month.getMonth() + 1) + "/" + new_month.getDate() + "/" + new_month.getFullYear())
-  $('#direction').val(1)
   $('#calendar-form').submit()
 
 @getToday = () ->
   now = new Date()
   $('#selected_date').val((now.getMonth() + 1) + "/" + now.getDate() + "/" + now.getFullYear())
-  $('#direction').val(0)
   $('#calendar-form').submit()
 
 jQuery ->
