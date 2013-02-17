@@ -1,4 +1,4 @@
-## 1.8.0
+## 1.8.0 (February 16, 2013)
 
 ### Enhancements
 - Entries can now be dragged to a new date on the calendar
