@@ -1,5 +1,8 @@
 ## 1.8.1
 
+### Enhancements
+- Clarified filtering on the entries index
+
 ### Bug Fix
 - Fixed the ordering of Gross Income, Gross Spending, Net Profit for the Earning and Spending Graphs
 - Fixed search not working on accounts and charge types

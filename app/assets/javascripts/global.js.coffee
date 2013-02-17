@@ -84,3 +84,7 @@ jQuery ->
       $($(this).data('target')).submit()
       false
     )
+    .on('click', '[data-object~="set-value"]', () ->
+      $($(this).data('target')).val($(this).data('value'))
+      $($(this).data('form')).submit()
+    )

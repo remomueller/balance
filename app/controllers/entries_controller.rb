@@ -31,15 +31,8 @@ class EntriesController < ApplicationController
   end
 
   def index
-    entry_scope = current_user.entries.with_charged(params[:charged] == "1")
-
-    @search_terms = params[:search].to_s.gsub(/[^0-9a-zA-Z]/, ' ').split(' ')
-    @search_terms.each{|search_term| entry_scope = entry_scope.search(search_term) }
-
     @order = scrub_order(Entry, params[:order], 'billing_date desc, id desc')
-    entry_scope = entry_scope.order(@order)
-
-    @entries = entry_scope.page(params[:page]).per(20)
+    @entries = current_user.entries.where(charged: (params[:charged] == 'uncharged' ? false : [true, false])).search(params[:search]).order(@order).page(params[:page]).per(20)
   end
 
   def show
@@ -149,6 +142,6 @@ class EntriesController < ApplicationController
   end
 
   def set_entry
-    @entry = current_user.entries.find_by_id(params[:id]) # show
+    @entry = current_user.entries.find_by_id(params[:id])
   end
 end

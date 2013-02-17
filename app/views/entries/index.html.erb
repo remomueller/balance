@@ -6,10 +6,16 @@
   </h1>
 </div>
 
-<%= form_tag entries_path, method: :get, remote: true, class: 'form-search', data: { object: 'form-load' } do %>
+<%= form_tag entries_path, method: :get, remote: true, class: 'form-search', data: { object: 'form-load' }, id: 'entry-form' do %>
   <%= text_field_tag 'search', params[:search], class: 'search-query' %>
   <%= submit_tag 'Search', class: 'btn btn-primary' %>
-  <label class="checkbox"><%= check_box_tag 'charged', '1', true %> charged</label>
+
+  <%= hidden_field_tag 'charged', params[:charged] %>
+
+  <div class="btn-group" data-toggle="buttons-radio">
+    <button data-object="set-value" data-value="all" data-target="#charged" data-form="#entry-form" class="btn <%= 'active' unless ['uncharged'].include?(params[:charged]) %>">All</button>
+    <button data-object="set-value" data-value="uncharged" data-target="#charged" data-form="#entry-form" class="btn <%= 'active' if ['uncharged'].include?(params[:charged]) %>">Not Charged</button>
+  </div>
 <% end %>
 
 <div class="search" id="entries"><center><%= image_tag "contour/ajax-loader.gif" %></center></div>
