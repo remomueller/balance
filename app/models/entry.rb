@@ -6,7 +6,6 @@ class Entry < ActiveRecord::Base
 
   # Named Scopes
   scope :with_date_for_calendar, lambda { |*args| { conditions: ["DATE(entries.billing_date) >= ? and DATE(entries.billing_date) <= ?", args.first, args[1]]}}
-  scope :with_user, lambda { |*args| { conditions: ["user_id IN (?)", args.first] } }
 
   # Model Validations
   validates_presence_of :name, :charge_type_id, :amount, :billing_date, :user_id
