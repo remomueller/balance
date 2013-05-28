@@ -4,7 +4,7 @@
 [![Dependency Status](https://gemnasium.com/remomueller/balance.png)](https://gemnasium.com/remomueller/balance)
 [![Code Climate](https://codeclimate.com/github/remomueller/balance.png)](https://codeclimate.com/github/remomueller/balance)
 
-Easy home finance tracker, using Rails 3.2+ and Ruby 1.9.3+.
+Easy home finance tracker, using Rails 4.0+ and Ruby 2.0.0+.
 
 ## Installation
 

@@ -30,7 +30,7 @@ Balance::Application.routes.draw do
                      path_names:  {       sign_up: 'register',
                                           sign_in: 'login' }
 
-  match "/about" => "sites#about", as: :about
+  get "/about" => "application#about", as: :about
 
   root to: "entries#calendar"
 
