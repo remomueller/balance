@@ -1,5 +1,8 @@
 ## 1.9.0
 
+### Enhancements
+- Updated to Ruby 2.0.0-p195
+
 ## 1.8.1 (February 17, 2013)
 
 ### Enhancements
