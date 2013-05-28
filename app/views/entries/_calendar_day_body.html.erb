@@ -13,7 +13,7 @@
     </div>
   <% end %>
   <% if entries.size > 0 %>
-    <% total_amount = entries.sum{|e| e.amount} %>
+    <% total_amount = entries.collect{|e| e.amount}.sum %>
     <div class="calendar-entry-amount<%= (total_amount > 0) ? (spending ? ' loss' : ' gain') : '' %><%= (total_amount < 0) ? (spending ? ' gain' : ' loss') : '' %>" style="border-top:1px solid #777; font-weight: bold">
       <%= total_amount.to_currency %>
     </div>

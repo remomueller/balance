@@ -4,15 +4,13 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable, :timeoutable, :token_authenticatable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me, :first_name, :last_name
-
-  scope :current, conditions: { deleted: false }
+  # Concerns
+  include Contourable, Deletable
 
   has_many :authentications
-  has_many :accounts, conditions: { deleted: false } # ['accounts.deleted = ?', false]
-  has_many :charge_types, through: :accounts, conditions: { deleted: false } # ['charge_types.deleted = ?', false]
-  has_many :entries, conditions: { deleted: false } # ['entries.deleted = ?', false]
+  has_many :accounts, -> { where deleted: false }
+  has_many :charge_types, -> { where deleted: false }, through: :accounts
+  has_many :entries, -> { where deleted: false }
 
   def total_expenditures
     @total_expenditures ||= begin
@@ -44,19 +42,19 @@ class User < ActiveRecord::Base
 
   def spent_in_time_period(start_date, end_date)
     @spent_in_time_period ||= begin
-      self.accounts.sum{|item| item.spent_in_time_period(start_date,end_date)}
+      self.accounts.collect{|item| item.spent_in_time_period(start_date,end_date)}.sum
     end
   end
 
   def average_spent_over_time_period(start_date, end_date)
     @average_spent_over_time_period ||= begin
-      self.accounts.sum{|item| item.average_spent_over_time_period(start_date,end_date)}
+      self.accounts.collect{|item| item.average_spent_over_time_period(start_date,end_date)}.sum
     end
   end
 
   # gross_spending is true, gross_income is false
   def gross(start_date, end_date, counts_towards_spending)
-    result = entries_in_time_period(start_date, end_date, counts_towards_spending).sum{|e| e.amount}
+    result = entries_in_time_period(start_date, end_date, counts_towards_spending).collect{|e| e.amount}.sum
     result = result * -1 if counts_towards_spending
     result
   end
@@ -78,21 +76,11 @@ class User < ActiveRecord::Base
     last_name + ', ' + first_name
   end
 
-  # Overriding Devise built-in active? method
-  def active_for_authentication?
-    super # and self.status == 'active' and not self.deleted?
-  end
-
   def apply_omniauth(omniauth)
     unless omniauth['info'].blank?
-      self.email = omniauth['info']['email'] if email.blank?
       self.first_name = omniauth['info']['first_name'] if first_name.blank?
       self.last_name = omniauth['info']['last_name'] if last_name.blank?
     end
-    authentications.build( provider: omniauth['provider'], uid: omniauth['uid'] )
-  end
-
-  def password_required?
-    (authentications.empty? || !password.blank?) && super
+    super
   end
 end

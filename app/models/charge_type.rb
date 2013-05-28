@@ -1,5 +1,4 @@
 class ChargeType < ActiveRecord::Base
-  attr_accessible :name, :account_id, :counts_towards_spending
 
   # Concerns
   include Searchable, Deletable
@@ -11,7 +10,7 @@ class ChargeType < ActiveRecord::Base
 
   # Model Relationships
   belongs_to :account
-  has_many :entries, order: :billing_date, conditions: ['entries.deleted = ?', false]
+  has_many :entries, -> { where(deleted: false).order(:billing_date) }
 
   # ChargeType Methods
 
@@ -21,15 +20,15 @@ class ChargeType < ActiveRecord::Base
 
   # type: :amount, :charged_amount
   def contribution(type)
-    result = self.entries.sum(&type)
+    result = self.entries.collect(&type).sum
     self.counts_towards_spending ? result * -1 : result
   end
 
   def total_spent
-    self.counts_towards_spending? ? self.entries.sum(&:amount) : 0
+    self.counts_towards_spending? ? self.entries.collect(&:amount).sum : 0
   end
 
   def spent_in_time_period(start_date, end_date)
-    self.counts_towards_spending? ? self.entries.with_date_for_calendar(start_date, end_date).sum(&:amount) : 0
+    self.counts_towards_spending? ? self.entries.with_date_for_calendar(start_date, end_date).collect(&:amount).sum : 0
   end
 end

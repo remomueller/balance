@@ -1,5 +1,4 @@
 class Account < ActiveRecord::Base
-  attr_accessible :name
 
   # Concerns
   include Searchable, Deletable
@@ -11,24 +10,24 @@ class Account < ActiveRecord::Base
 
   # Model Relationships
   belongs_to :user
-  has_many :charge_types, order: :name, conditions: ['charge_types.deleted = ?', false]
+  has_many :charge_types, -> { where(deleted: false).order(:name) }
 
   # Account Methods
 
   def total_spent
     @total_spent ||= begin
-      self.charge_types.sum(&:total_spent)
+      self.charge_types.collect(&:total_spent).sum
     end
   end
 
   # type: :amount, :charged_amount
   def balance(type)
-    self.charge_types.sum{|c| c.contribution(type)}
+    self.charge_types.collect{|c| c.contribution(type)}.sum
   end
 
   def spent_in_time_period(start_date, end_date)
     @spent_in_time_period ||= begin
-      self.charge_types.sum{|item| item.spent_in_time_period(start_date,end_date)}
+      self.charge_types.collect{|item| item.spent_in_time_period(start_date,end_date)}.sum
     end
   end
 

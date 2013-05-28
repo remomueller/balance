@@ -32,4 +32,15 @@ class ApplicationController < ActionController::Base
   def year_end_date(year)
     Date.parse("#{year.to_i+1}-01-01")-1.day
   end
+
+  private
+
+    def empty_response_or_root_path(path = root_path)
+      respond_to do |format|
+        format.html { redirect_to path }
+        format.js { render nothing: true }
+        format.json { head :no_content }
+      end
+    end
+
 end

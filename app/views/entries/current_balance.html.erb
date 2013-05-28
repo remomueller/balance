@@ -14,7 +14,7 @@
             <td><%= link_to 'copy', '#', data: { object: 'copy', amount: "#{account.balance(:amount) / 100.0}", target: '#amount_left' } %></td>
           </tr>
         <% end %>
-        <% total_assets = current_user.accounts.sum{|a| a.balance(:amount)} %>
+        <% total_assets = current_user.accounts.collect{|a| a.balance(:amount)}.sum %>
         <tr>
           <td>Total Assets</td>
           <td style="text-align:right"><%= total_assets.to_currency %></td>

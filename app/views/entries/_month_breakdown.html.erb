@@ -2,8 +2,8 @@
 <% @last_saturday = @end_date + (6 - @end_date.wday).day %>
 <% @entries = current_user.entries.with_date_for_calendar(@start_date, @end_date) %>
 
-<% gross_spending = @entries.select{|e| e.charge_type.counts_towards_spending?}.sum{|e| e.amount} %>
-<% gross_income = @entries.select{|e| not e.charge_type.counts_towards_spending?}.sum{|e| e.amount} %>
+<% gross_spending = @entries.select{|e| e.charge_type.counts_towards_spending?}.collect{|e| e.amount}.sum %>
+<% gross_income = @entries.select{|e| not e.charge_type.counts_towards_spending?}.collect{|e| e.amount}.sum %>
 <% net_profit = gross_income - gross_spending %>
 
 <div style="float:right;text-align:right;margin-top:-70px">
