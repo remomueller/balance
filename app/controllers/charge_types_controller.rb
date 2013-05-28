@@ -1,6 +1,6 @@
 class ChargeTypesController < ApplicationController
-  before_filter :authenticate_user!
-  before_filter :set_charge_type, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
+  before_action :set_charge_type, only: [:show, :edit, :update, :destroy]
 
   def index
     @order = scrub_order(ChargeType, params[:order], 'charge_types.name')

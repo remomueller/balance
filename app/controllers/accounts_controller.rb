@@ -1,6 +1,6 @@
 class AccountsController < ApplicationController
-  before_filter :authenticate_user!
-  before_filter :set_account, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
+  before_action :set_account, only: [:show, :edit, :update, :destroy]
 
   def index
     @order = scrub_order(Account, params[:order], 'accounts.name')

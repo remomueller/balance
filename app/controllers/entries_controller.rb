@@ -1,7 +1,7 @@
 class EntriesController < ApplicationController
-  before_filter :authenticate_user!
-  before_filter :initialize_graph, only: [:overview, :earning_spending_graph]
-  before_filter :set_entry, only: [:show, :edit, :update, :move, :mark_charged, :destroy]
+  before_action :authenticate_user!
+  before_action :initialize_graph, only: [:overview, :earning_spending_graph]
+  before_action :set_entry, only: [:show, :edit, :update, :move, :mark_charged, :destroy]
 
   def calendar
     @selected_date = parse_date(params[:selected_date], Date.today)
