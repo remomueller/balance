@@ -1,11 +1,12 @@
 class EntriesController < ApplicationController
   before_action :authenticate_user!
-  before_action :initialize_graph, only: [:overview, :earning_spending_graph]
+  before_action :initialize_graph, only: [ :overview, :earning_spending_graph ]
   before_action :set_entry, only: [ :show, :edit, :update, :move, :mark_charged, :destroy ]
   before_action :redirect_without_entry, only: [ :show, :edit, :update, :move, :mark_charged, :destroy ]
 
   def calendar
-    @selected_date = parse_date(params[:selected_date], Date.today)
+    @date = Date.strptime(params[:date], "%Y%m%d") rescue @date = Date.today
+    @selected_date = @date # parse_date(params[:selected_date], Date.today)
     @start_date = @selected_date.beginning_of_month
     @end_date = @selected_date.end_of_month
   end

@@ -65,26 +65,34 @@
   $('#selected_date').val((now.getMonth() + 1) + "/" + now.getDate() + "/" + now.getFullYear())
   $('#calendar-form').submit()
 
-jQuery ->
-
+@globalReady = () ->
   $('#user_email').focus()
   $('#entry_name').focus()
   $('#account_name').focus()
   $('#charge_type_name').focus()
 
-  $(document)
-    .keydown( (e) ->
-      if $("input, textarea").is(":focus") then return
-      if e.which == 37
-        goBackOneMonth()
-      if e.which == 39
-        goForwardOneMonth()
-    )
-    .on('click', '[data-object~="submit"]', () ->
-      $($(this).data('target')).submit()
-      false
-    )
-    .on('click', '[data-object~="set-value"]', () ->
-      $($(this).data('target')).val($(this).data('value'))
-      $($(this).data('form')).submit()
-    )
+@ready = () ->
+  contourReady()
+  $(document).off("click", ".pagination a, .page a, .next a, .prev a")
+  $(document).off("click", ".per_page a")
+  globalReady()
+  entriesReady()
+
+$(document).ready(ready)
+$(document)
+  .on('page:load', ready)
+  .keydown( (e) ->
+    if $("input, textarea").is(":focus") then return
+    if e.which == 37
+      goBackOneMonth()
+    if e.which == 39
+      goForwardOneMonth()
+  )
+  .on('click', '[data-object~="submit"]', () ->
+    $($(this).data('target')).submit()
+    false
+  )
+  .on('click', '[data-object~="set-value"]', () ->
+    $($(this).data('target')).val($(this).data('value'))
+    $($(this).data('form')).submit()
+  )

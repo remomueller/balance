@@ -6,6 +6,7 @@
   - Updated to contour 2.3.0
   - Updated to mysql2 0.3.15
   - Updated to kaminari 0.15.1
+- Enabled turbolinks
 - Use of Ruby 2.1.0 is now recommended
 
 ## 1.8.1 (February 17, 2013)

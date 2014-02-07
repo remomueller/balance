@@ -31,6 +31,7 @@ Balance::Application.routes.draw do
                                           sign_in: 'login' }
 
   get "/about" => "application#about", as: :about
+  get "/month" => "entries#calendar", as: :calendar
 
   root to: "entries#calendar"
 
