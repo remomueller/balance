@@ -2,9 +2,10 @@
 
 ### Enhancements
 - **Gem Changes**
-  - Updated to Rails 4.0.0.rc1
-  - Updated to Contour 2.0.0.beta.8
+  - Updated to rails 4.0.2
+  - Updated to contour 2.3.0
   - Updated to mysql2 0.3.15
+  - Updated to kaminari 0.15.1
 - Use of Ruby 2.1.0 is now recommended
 
 ## 1.8.1 (February 17, 2013)
