@@ -1,18 +1,22 @@
-<div id="new-entry-dialog" class="modal" style="display:none">
-  <div class="modal-header">
-    <a class="close" data-dismiss="modal">x</a>
-    <h3>Create Entry</h3>
-  </div>
+<div class="modal" id="new-entry-dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title">Create Entry</h4>
+      </div>
 
-  <div class="modal-body">
-    <% @entry = current_user.entries.new %>
-    <%= form_for(@entry, remote: true, html: { class: 'form-horizontal' }) do |f| %>
-      <%= params[:from_calendar] = '1'; render partial: 'entries/inner_form', locals: { f: f } %>
-    <% end %>
-  </div>
+      <div class="modal-body">
+        <% @entry = current_user.entries.new %>
+        <%= form_for(@entry, remote: true, html: { class: 'form-horizontal' }) do |f| %>
+          <%= params[:from_calendar] = '1'; render partial: 'entries/inner_form', locals: { f: f } %>
+        <% end %>
+      </div>
 
-  <div class="modal-footer">
-    <%= link_to 'Close', '#', class: 'btn', data: { dismiss: 'modal' } %>
-    <%= link_to 'Create Entry', '#', class: 'btn btn-primary', data: { object: 'submit', target: "#new_entry" } %>
+      <div class="modal-footer">
+        <%= link_to 'Close', '#', class: 'btn', data: { dismiss: 'modal' } %>
+        <%= link_to 'Create Entry', '#', class: 'btn btn-primary', data: { object: 'submit', target: "#new_entry" } %>
+      </div>
+    </div>
   </div>
 </div>
