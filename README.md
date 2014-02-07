@@ -4,7 +4,7 @@
 [![Dependency Status](https://gemnasium.com/remomueller/balance.png)](https://gemnasium.com/remomueller/balance)
 [![Code Climate](https://codeclimate.com/github/remomueller/balance.png)](https://codeclimate.com/github/remomueller/balance)
 
-Easy home finance tracker, using Rails 4.0+ and Ruby 2.0.0+.
+Easy home finance tracker, using Rails 4.0+ and Ruby 2.1.0+.
 
 ## Installation
 
@@ -12,16 +12,16 @@ Easy home finance tracker, using Rails 4.0+ and Ruby 2.0.0+.
 
 Once you have the prerequisites in place, you can proceed to install bundler which will handle most of the remaining dependencies.
 
-```console
+```
 gem install bundler
 ```
 
 This README assumes the following installation directory: `/var/www/balance`
 
-```console
+```
 cd /var/www
 
-git clone git://github.com/remomueller/balance.git
+git clone https://github.com/remomueller/balance.git
 
 cd balance
 
@@ -30,17 +30,17 @@ bundle install
 
 Install default configuration files for database connection, email server connection, server url, and application name.
 
-```console
+```
 ruby lib/initial_setup.rb
 
 bundle exec rake db:migrate RAILS_ENV=production
 
-bundle exec rake assets:precompile
+bundle exec rake assets:precompile RAILS_ENV=production
 ```
 
 Run Rails Server (or use Apache or nginx)
 
-```console
+```
 rails s -p80
 ```
 
@@ -60,4 +60,4 @@ All done!
 
 ## Copyright [![Creative Commons 3.0](http://i.creativecommons.org/l/by-nc-sa/3.0/80x15.png)](http://creativecommons.org/licenses/by-nc-sa/3.0)
 
-Copyright (c) 2013 Remo Mueller. See [LICENSE](https://github.com/remomueller/balance/blob/master/LICENSE) for further details.
+Copyright (c) 2014 Remo Mueller. See [LICENSE](https://github.com/remomueller/balance/blob/master/LICENSE) for further details.
