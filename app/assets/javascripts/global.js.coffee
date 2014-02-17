@@ -65,11 +65,16 @@
   $('#selected_date').val((now.getMonth() + 1) + "/" + now.getDate() + "/" + now.getFullYear())
   $('#calendar-form').submit()
 
+@setFocusToField = (element_id) ->
+  val = $(element_id).val()
+  $(element_id).focus().val('').val(val)
+
 @globalReady = () ->
   $('#user_email').focus()
   $('#entry_name').focus()
   $('#account_name').focus()
   $('#charge_type_name').focus()
+  setFocusToField("#search")
 
 @ready = () ->
   contourReady()

@@ -7,7 +7,7 @@ class AccountsController < ApplicationController
   # GET /accounts.json
   def index
     @order = scrub_order(Account, params[:order], 'accounts.name')
-    @accounts = current_user.accounts.search(params[:search]).order(@order).page(params[:page]).per(20)
+    @accounts = current_user.accounts.search(params[:search]).order(@order).page(params[:page]).per( 40 )
   end
 
   # GET /accounts/1

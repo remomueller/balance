@@ -35,7 +35,7 @@ class EntriesController < ApplicationController
   # GET /entries.json
   def index
     @order = scrub_order(Entry, params[:order], 'billing_date desc, id desc')
-    @entries = current_user.entries.where(charged: (params[:charged] == 'uncharged' ? false : [true, false])).search(params[:search]).order(@order).page(params[:page]).per(20)
+    @entries = current_user.entries.where(charged: (params[:charged] == 'uncharged' ? false : [true, false])).search(params[:search]).order(@order).page(params[:page]).per( 40 )
   end
 
   # GET /entries/1

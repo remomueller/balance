@@ -7,7 +7,7 @@ class ChargeTypesController < ApplicationController
   # GET /charge_types.json
   def index
     @order = scrub_order(ChargeType, params[:order], 'charge_types.name')
-    @charge_types = current_user.charge_types.search(params[:search]).order(@order).page(params[:page]).per(20)
+    @charge_types = current_user.charge_types.search(params[:search]).order(@order).page(params[:page]).per( 40 )
   end
 
   # GET /charge_types/1
