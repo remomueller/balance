@@ -1,12 +1,11 @@
-<% @title = "Entry: #{@entry.name}" %>
+<% @title = @entry.name %>
 <div class="page-header">
   <h1>
-    <%= @title %>
-    <%= link_to "Edit Entry", edit_entry_path(@entry), class: 'btn btn-mini' %>
-    <%= link_to "Delete Entry", @entry, method: :delete, class: 'btn btn-mini btn-danger', data: { confirm: "Are you sure you want to delete Entry #{@entry.name}?" } %>
-    <%= link_to "View Entries", entries_path, class: 'btn btn-mini' %>
-    <%= link_to "Copy Entry", copy_entry_path(@entry), class: 'btn btn-mini' %>
+    <%= link_to 'Entries', entries_path %> &middot; <%= @title %>
   </h1>
+  <%= link_to "Edit Entry", edit_entry_path(@entry), class: 'btn btn-xs btn-default' %>
+  <%= link_to "Delete Entry", @entry, method: :delete, class: 'btn btn-xs btn-danger-inverse', data: { confirm: "Are you sure you want to delete Entry #{@entry.name}?" } %>
+  <%= link_to "Copy Entry", copy_entry_path(@entry), class: 'btn btn-xs btn-default' %>
 </div>
 
 <dl class="dl-horizontal">
