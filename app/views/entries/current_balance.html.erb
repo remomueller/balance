@@ -11,7 +11,7 @@
           <tr>
             <td>Balance <%= link_to account.name, account %></td>
             <td id="account_<%= account.id %>_balance" style="text-align:right"><%= account.balance(:amount).to_currency %></td>
-            <td><%= link_to 'copy', '#', data: { object: 'copy', amount: "#{account.balance(:amount) / 100.0}", target: '#amount_left' } %></td>
+            <td><%= link_to 'copy', '#', data: { object: 'copy', amount: "#{account.balance(:amount) / 100.0}", target: '#amount_left' }, class: 'btn btn-xs btn-default btn-block' %></td>
           </tr>
         <% end %>
         <% total_assets = current_user.accounts.collect{|a| a.balance(:amount)}.sum %>
@@ -25,31 +25,31 @@
           <td>Amount Left</td>
           <td colspan="2" style="text-align:right">
             <% today = Date.today %>
-            <%= text_field_tag 'amount_left' %>
+            <%= text_field_tag 'amount_left', nil, class: 'form-control' %>
           </td>
         </tr>
 
         <tr>
           <td>Estimated Spending</td>
-          <td colspan="2" style="text-align:right"><%= text_field_tag 'estimated_spending' %></td>
+          <td colspan="2" style="text-align:right"><%= text_field_tag 'estimated_spending', nil, class: 'form-control' %></td>
         </tr>
 
         <tr>
           <td>Amount Left Over</td>
-          <td colspan="2" style="text-align:right"><%= text_field_tag 'amount_left_over', 0 %></td>
+          <td colspan="2" style="text-align:right"><%= text_field_tag 'amount_left_over', 0, class: 'form-control' %></td>
         </tr>
 
         <tr>
           <td>Next Pay Check</td>
           <td colspan="2" style="text-align:right">
-            <%= text_field_tag 'paycheck_day', (Date.parse("#{today.year}/#{today.month}/01")+1.month).strftime('%m/%d/%Y'), class: 'datepicker' %>
+            <%= text_field_tag 'paycheck_day', (Date.parse("#{today.year}/#{today.month}/01")+1.month).strftime('%m/%d/%Y'), class: 'datepicker form-control' %>
           </td>
         </tr>
 
         <tr>
           <td>Maximum Spending Per Day</td>
           <td id="left_to_spend_per_day_this_month" style="text-align:right"></td>
-          <td><%= link_to 'calculate', '#', data: { object: 'month-spending-calculate' } %></td>
+          <td><%= link_to 'calculate', '#', data: { object: 'month-spending-calculate' }, class: 'btn btn-primary btn-xs btn-block' %></td>
         </tr>
       </table>
     </td>
