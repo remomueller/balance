@@ -17,8 +17,10 @@
 
   <%= render partial: 'entries/inner_form', locals: { f: f } %>
 
-  <div class="form-actions">
-    <%= f.submit nil, class: 'btn btn-primary' %>
-    <%= cancel %>
+  <div class="form-group">
+    <div class="col-md-10 col-md-offset-2">
+      <%= f.submit nil, class: 'btn btn-primary' %>
+      <%= cancel %>
+    </div>
   </div>
 <% end %>

@@ -15,15 +15,17 @@
     </div>
   <% end %>
 
-  <div class="control-group">
-    <%= f.label :name, nil, class: 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :name, style: "width:95%" %>
+  <div class="form-group">
+    <%= f.label :name, nil, class: 'col-md-2 control-label' %>
+    <div class="col-md-10">
+      <%= f.text_field :name, class: 'form-control' %>
     </div>
   </div>
 
-  <div class="form-actions">
-    <%= f.submit nil, class: 'btn btn-primary' %>
-    <%= cancel %>
+  <div class="form-group">
+    <div class="col-md-10 col-md-offset-2">
+      <%= f.submit nil, class: 'btn btn-primary' %>
+      <%= cancel %>
+    </div>
   </div>
 <% end %>

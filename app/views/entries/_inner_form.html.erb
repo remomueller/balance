@@ -1,43 +1,47 @@
 <%= hidden_field_tag 'from_calendar', params[:from_calendar].to_i %>
 
-<div class="control-group">
-  <%= f.label :name, class: 'control-label' %>
-  <div class="controls">
-    <%= f.text_field :name, style: "width:95%", data: { object: 'typeahead', path: autocomplete_entries_path }, autocomplete: 'off' %>
+<div class="form-group">
+  <%= f.label :name, class: 'col-md-2 control-label' %>
+  <div class="col-md-10">
+    <%= f.text_field :name, class: 'form-control', data: { object: 'typeahead', path: autocomplete_entries_path }, autocomplete: 'off' %>
   </div>
 </div>
 
-<div class="control-group">
-  <%= f.label :description, class: 'control-label' %>
-  <div class="controls">
-    <%= f.text_area :description, rows: 7, style: "width:95%" %>
+<div class="form-group">
+  <%= f.label :description, class: 'col-md-2 control-label' %>
+  <div class="col-md-10">
+    <%= f.text_area :description, rows: 7, class: 'form-control' %>
   </div>
 </div>
 
-<div class="control-group">
-  <%= f.label :billing_date, class: 'control-label' %>
-  <div class="controls">
-    <%= f.text_field :billing_date, class: 'datepicker', value: @entry.billing_date ? @entry.billing_date.strftime('%m/%d/%Y') : '' %>
+<div class="form-group">
+  <%= f.label :billing_date, class: 'col-md-2 control-label' %>
+  <div class="col-md-10">
+    <%= f.text_field :billing_date, class: 'datepicker form-control', value: @entry.billing_date ? @entry.billing_date.strftime('%m/%d/%Y') : '' %>
   </div>
 </div>
 
-<div class="control-group">
-  <%= f.label :charged, class: 'control-label' %>
-  <div class="controls">
-    <%= f.check_box :charged %>
+<div class="form-group">
+  <div class="col-md-10 col-md-offset-2">
+    <div class="checkbox">
+      <label>
+        <%= f.check_box :charged %>
+        Charged
+      </label>
+    </div>
   </div>
 </div>
 
-<div class="control-group">
-  <%= f.label :charge_type_id, class: 'control-label' %>
-  <div class="controls">
-    <%= f.select :charge_type_id, [["----", nil]]  + current_user.charge_types.order(:name).collect{|item| [item.full_name, item.id]} %>
+<div class="form-group">
+  <%= f.label :charge_type_id, class: 'col-md-2 control-label' %>
+  <div class="col-md-10">
+    <%= f.select :charge_type_id, [["----", nil]]  + current_user.charge_types.order(:name).collect{|item| [item.full_name, item.id]}, {}, class: 'form-control' %>
   </div>
 </div>
 
-<div class="control-group">
-  <%= f.label :decimal_amount, 'Amount', class: 'control-label' %>
-  <div class="controls">
-    <%= f.text_field :decimal_amount, style: "width:95%", default: '100' %>
+<div class="form-group">
+  <%= f.label :decimal_amount, 'Amount', class: 'col-md-2 control-label' %>
+  <div class="col-md-10">
+    <%= f.text_field :decimal_amount, class: 'form-control' %>
   </div>
 </div>
