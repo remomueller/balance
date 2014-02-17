@@ -8,6 +8,7 @@
   - Updated to kaminari 0.15.1
 - Enabled turbolinks
 - Use of Ruby 2.1.0 is now recommended
+- Updated to Highcharts JS 3.0.9
 
 ## 1.8.1 (February 17, 2013)
 
