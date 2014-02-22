@@ -32,6 +32,8 @@
       remote: $this.data('path') + '?search=%QUERY'
     )
   )
+  activateEntryDraggables()
+  activateDayDroppables()
 
 
 $(document)

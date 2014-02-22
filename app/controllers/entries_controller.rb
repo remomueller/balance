@@ -72,7 +72,7 @@ class EntriesController < ApplicationController
       if @entry.save
         flash[:notice] = 'Entry was successfully created.'
         if params[:from_calendar] == '1'
-          format.js { render 'create' }
+          format.js { redirect_via_turbolinks_to calendar_entries_path(month: @entry.billing_date.month, year: @entry.billing_date.year) }
           format.html { redirect_to calendar_entries_path(month: @entry.billing_date.month, year: @entry.billing_date.year) }
         else
           format.html { redirect_to @entry }
@@ -103,7 +103,8 @@ class EntriesController < ApplicationController
 
     if @entry and not params[:entry][:billing_date].blank?
       @entry.update billing_date: params[:entry][:billing_date]
-      render 'update'
+      redirect_via_turbolinks_to calendar_entries_path(month: @entry.billing_date.month, year: @entry.billing_date.year)
+      # render 'update'
     else
       render nothing: true
     end
