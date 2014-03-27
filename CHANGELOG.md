@@ -2,7 +2,7 @@
 
 ### Enhancements
 - **Gem Changes**
-  - Updated to rails 4.0.2
+  - Updated to rails 4.0.4
   - Updated to contour 2.4.0
   - Updated to mysql2 0.3.15
   - Updated to kaminari 0.15.1
