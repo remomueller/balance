@@ -9,7 +9,7 @@ gem 'thin',                 '~> 1.5.0',           platforms: [ :mswin, :mingw ]
 gem 'eventmachine',         '~> 1.0.0',           platforms: [ :mswin, :mingw ]
 
 # Gems used by project
-gem 'contour',              '2.4.0.beta3' # up from 2.0.0.beta.8
+gem 'contour',              '~> 2.4.0'
 gem 'kaminari',             '~> 0.15.1'
 
 # Rails Defaults
