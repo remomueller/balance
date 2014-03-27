@@ -8,7 +8,8 @@ Date::DATE_FORMATS[:long_date] = "%d %B %Y"
 
 class Integer
   def to_currency
-    "$ %0.02f" % (self / 100.0)
+    number = "%0.02f" % (self / 100.0)
+    "$ " + number.reverse.gsub(/(\d{3})(?=\d)/, '\\1,').reverse
   end
 end
 

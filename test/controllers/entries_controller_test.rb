@@ -177,8 +177,8 @@ class EntriesControllerTest < ActionController::TestCase
     assert_not_nil assigns(:entry)
     assert_equal "03/07/2012", assigns(:entry).billing_date.strftime("%m/%d/%Y")
     # assert_template 'update'
-    # assert_response :success
-    assert_redirected_to calendar_path(date: assigns(:entry).billing_date.strftime("%Y%m%d"))
+    assert_response :success
+    # assert_redirected_to calendar_path(date: assigns(:entry).billing_date.strftime("%Y%m%d"))
   end
 
   test "should not move entry without billing date" do
