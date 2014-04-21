@@ -2,10 +2,12 @@
 
 ### Enhancements
 - **Gem Changes**
-  - Updated to rails 4.0.4
-  - Updated to contour 2.4.0
+  - Updated to rails 4.1.0
+  - Updated to contour 2.5.0.beta1
   - Updated to mysql2 0.3.15
   - Updated to kaminari 0.15.1
+  - Removed turn, and replaced with minitest and minitest-reporters
+  - Removed Windows-specific gems
 - Enabled turbolinks
 - Use of Ruby 2.1.0 is now recommended
 - Updated to Highcharts JS 3.0.9
