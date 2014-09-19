@@ -31,6 +31,7 @@
 /public/cache/*
 /public/stylesheets/cache/*
 /public/javascripts/cache/*
+/public/assets/*
 
 # Other Files
 
