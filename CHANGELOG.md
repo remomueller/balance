@@ -9,7 +9,7 @@
   - Removed turn, and replaced with minitest and minitest-reporters
   - Removed Windows-specific gems
 - Enabled turbolinks
-- Use of Ruby 2.1.0 is now recommended
+- Use of Ruby 2.1.3 is now recommended
 - Updated to Highcharts JS 3.0.9
 
 ## 1.8.1 (February 17, 2013)
