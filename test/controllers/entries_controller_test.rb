@@ -90,6 +90,18 @@ class EntriesControllerTest < ActionController::TestCase
     assert_redirected_to entry_path(assigns(:entry))
   end
 
+  test "should create entry from calendar" do
+    assert_difference('Entry.count') do
+      post :create, entry: { billing_date: '10/29/2000', charge_type_id: charge_types(:bank_credit_card).to_param, name: 'Breakfast to Go', description: 'Coffee from the local coffee shop.', decimal_amount: '5.42' }, format: 'js'
+    end
+
+    assert_not_nil assigns(:entry)
+    # assert_not_nil assigns(:entries)
+
+    assert_template 'create'
+    assert_response :success
+  end
+
   test "should create entry with amount that contains whitespace" do
     assert_difference('Entry.count') do
       post :create, entry: { billing_date: '10/29/2000', charge_type_id: charge_types(:bank_credit_card).to_param, name: 'Breakfast to Go', description: 'Coffee from the local coffee shop.', decimal_amount: ' 5.42 ' }
@@ -121,15 +133,6 @@ class EntriesControllerTest < ActionController::TestCase
     assert_equal 300, assigns(:entry).amount
 
     assert_redirected_to entry_path(assigns(:entry))
-  end
-
-  test "should create entry and redirect to calendar overview" do
-    assert_difference('Entry.count') do
-      post :create, entry: {billing_date: '10/29/2000', charge_type_id: charge_types(:bank_credit_card).to_param, name: 'Breakfast to Go', description: 'Coffee from the local coffee shop.', decimal_amount: '5.42'}, from_calendar: '1'
-    end
-
-    assert_not_nil assigns(:entry)
-    assert_redirected_to calendar_path(date: assigns(:entry).billing_date.strftime("%Y%m%d"))
   end
 
   test "should not create entry without name" do

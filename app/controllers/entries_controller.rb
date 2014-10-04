@@ -7,8 +7,12 @@ class EntriesController < ApplicationController
   def calendar
     @date = Date.strptime(params[:date], "%Y%m%d") rescue @date = Date.today
     @selected_date = @date # parse_date(params[:selected_date], Date.today)
-    @start_date = @selected_date.beginning_of_month
-    @end_date = @selected_date.end_of_month
+
+    @start_month = @selected_date.beginning_of_month
+    @end_month = @selected_date.end_of_month
+
+    @start_date = @start_month.beginning_of_week - 1.day
+    @end_date = @end_month.end_of_week - 1.day
   end
 
   def averages
@@ -70,13 +74,8 @@ class EntriesController < ApplicationController
 
     respond_to do |format|
       if @entry.save
-        flash[:notice] = 'Entry was successfully created.'
-        if params[:from_calendar] == '1'
-          format.js { redirect_via_turbolinks_to calendar_path(date: @entry.billing_date.strftime("%Y%m%d")) }
-          format.html { redirect_to calendar_path(date: @entry.billing_date.strftime("%Y%m%d")) }
-        else
-          format.html { redirect_to @entry }
-        end
+        format.js { render 'create' }
+        format.html { redirect_to @entry, notice: 'Entry was successfully created.' }
       else
         format.html { render 'new' }
         format.js { render 'new' }

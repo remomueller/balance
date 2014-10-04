@@ -80,6 +80,7 @@
   contourReady()
   globalReady()
   entriesReady()
+  $("[rel=tooltip]").tooltip()
 
 $(document).ready(ready)
 $(document)

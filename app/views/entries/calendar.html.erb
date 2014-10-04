@@ -9,9 +9,9 @@
         <%= link_to 'Today', root_path, class: 'btn btn-xs btn-default' %>
       </div>
       <div class="btn-group" style="white-space:nowrap">
-        <%= link_to '&larr;'.html_safe, calendar_path(date: (@start_date - 1.month).strftime("%Y%m%d")), title: 'Previous Month', class: 'btn btn-xs btn-default', style: 'margin-right:-1px' %>
+        <%= link_to '&larr;'.html_safe, calendar_path(date: (@start_month - 1.month).strftime("%Y%m%d")), title: 'Previous Month', class: 'btn btn-xs btn-default', style: 'margin-right:-1px' %>
         <%= text_field_tag :selected_date, @selected_date.strftime('%m/%d/%Y'), class: 'datepicker btn btn-xs btn-default', style: 'width:85px;margin-bottom:1px;z-index:2 !important' %>
-        <%= link_to '&rarr;'.html_safe, calendar_path(date: (@start_date + 1.month).strftime("%Y%m%d")), class: 'btn btn-xs btn-default' %>
+        <%= link_to '&rarr;'.html_safe, calendar_path(date: (@start_month + 1.month).strftime("%Y%m%d")), class: 'btn btn-xs btn-default' %>
       </div>
     </div>
   </div>
@@ -21,4 +21,6 @@
 
 <%= render partial: 'new_entry_dialog' %>
 
-<%= render partial: 'accounts/month_spending' %>
+<div id="month-spending">
+  <%= render partial: 'accounts/month_spending' %>
+</div>
