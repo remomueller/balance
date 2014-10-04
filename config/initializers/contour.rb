@@ -32,9 +32,13 @@ Contour.setup do |config|
               { name: 'Logout', path: 'destroy_user_session_path' }]
     },
     {
-      name: 'Calendar', display: 'always', path: 'root_path', position: 'left',
-      links: [{ name: 'Current Balance', path: 'current_balance_entries_path' },
-              { name: 'Averages', path: 'averages_entries_path' }]
+      name: 'Calendar', display: 'always', path: 'root_path', position: 'left'
+    },
+    {
+      name: 'Current Balance', display: 'signed_in', path: 'current_balance_entries_path', position: 'left'
+    },
+    {
+      name: 'Averages', display: 'signed_in', path: 'averages_entries_path', position: 'left'
     },
     {
       name: 'Graphs', display: 'signed_in', path: 'overview_entries_path', position: 'left'
