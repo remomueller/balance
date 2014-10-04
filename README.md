@@ -1,8 +1,8 @@
 # Balance
 
-[![Build Status](https://travis-ci.org/remomueller/balance.png?branch=master)](https://travis-ci.org/remomueller/balance)
-[![Dependency Status](https://gemnasium.com/remomueller/balance.png)](https://gemnasium.com/remomueller/balance)
-[![Code Climate](https://codeclimate.com/github/remomueller/balance.png)](https://codeclimate.com/github/remomueller/balance)
+[![Build Status](https://travis-ci.org/remomueller/balance.svg?branch=master)](https://travis-ci.org/remomueller/balance)
+[![Dependency Status](https://gemnasium.com/remomueller/balance.svg)](https://gemnasium.com/remomueller/balance)
+[![Code Climate](https://codeclimate.com/github/remomueller/balance/badges/gpa.svg)](https://codeclimate.com/github/remomueller/balance)
 
 Easy home finance tracker, using Rails 4.2+ and Ruby 2.1+.
 
