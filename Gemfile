@@ -7,7 +7,7 @@ gem 'mysql2',               '0.3.15'
 
 # Gems used by project
 gem 'contour',              '~> 2.5.0.beta1'
-gem 'kaminari',             '~> 0.15.1'
+gem 'kaminari',             '~> 0.16.1'
 
 # Rails Defaults
 gem 'coffee-rails',         '~> 4.0.1'

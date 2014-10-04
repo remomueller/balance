@@ -5,7 +5,7 @@
   - Updated to rails 4.1.0
   - Updated to contour 2.5.0.beta1
   - Updated to mysql2 0.3.15
-  - Updated to kaminari 0.15.1
+  - Updated to kaminari 0.16.1
   - Updated to simplecov 0.9.1
   - Removed turn, and replaced with minitest and minitest-reporters
   - Removed Windows-specific gems
