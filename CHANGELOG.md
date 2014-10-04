@@ -1,6 +1,8 @@
 ## 1.9.0
 
 ### Enhancements
+- **General Changes**
+  - Updated menu bar to highlight commonly used pages
 - **Gem Changes**
   - Updated to rails 4.2.0.beta2
   - Updated to contour 2.6.0.beta6
