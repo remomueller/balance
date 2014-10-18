@@ -43,14 +43,14 @@ Contour.setup do |config|
     {
       name: 'Graphs', display: 'signed_in', path: 'overview_entries_path', position: 'left'
     },
-    {
-      name: 'Accounts', display: 'signed_in', path: 'accounts_path', position: 'left',
-      links: [{ name: 'Create', path: 'new_account_path' }]
-    },
-    {
-      name: 'Charge Types', display: 'signed_in', path: 'charge_types_path', position: 'left',
-      links: [{ name: 'Create', path: 'new_charge_type_path' }]
-    },
+    # {
+    #   name: 'Accounts', display: 'signed_in', path: 'accounts_path', position: 'left',
+    #   links: [{ name: 'Create', path: 'new_account_path' }]
+    # },
+    # {
+    #   name: 'Charge Types', display: 'signed_in', path: 'charge_types_path', position: 'left',
+    #   links: [{ name: 'Create', path: 'new_charge_type_path' }]
+    # },
     {
       name: 'Entries', display: 'signed_in', path: 'entries_path', position: 'left',
       links: [{ name: 'Create', path: 'new_entry_path' }]
