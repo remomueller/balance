@@ -1,12 +1,12 @@
 source 'https://rubygems.org'
 
-gem 'rails',                '4.2.0.beta2'
+gem 'rails',                '4.2.0.beta4'
 
 # Database Adapter
-gem 'mysql2',               '0.3.16'
+gem 'mysql2',               '0.3.17'
 
 # Gems used by project
-gem 'contour',              '~> 2.6.0.beta7'
+gem 'contour',              '~> 2.6.0.beta8'
 gem 'kaminari',             '~> 0.16.1'
 
 # Rails Defaults
