@@ -25,6 +25,29 @@ class EntriesController < ApplicationController
     (current_user.first_billing_date.year..Date.today.year).each do |year|
       add_to_graph(year_start_date(year), year_end_date(year))
     end
+    @year_json = {
+      title: "Full Overview",
+      y_title: "Dollars",
+      categories: (current_user.first_billing_date.year..Date.today.year).to_a,
+      series: [
+        {
+          name: 'Gross Income',
+          data: @gross_income,
+          color: '#3c763d'
+        },
+        {
+          name: 'Gross Spending',
+          data: @gross_spending,
+          color: '#a94442'
+        },
+        {
+          name: 'Net Profit',
+          data: @net_profit,
+          color: '#5cb85c',
+          negativeColor: '#d9534f'
+        }
+      ]
+    }
   end
 
   def earning_spending_graph
@@ -32,6 +55,29 @@ class EntriesController < ApplicationController
     (1..12).each do |month|
       add_to_graph(month_start_date(params[:year], month), month_end_date(params[:year], month))
     end
+    @month_json = {
+      title: "#{params[:year]} Overview",
+      y_title: "Dollars",
+      categories: ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],
+      series: [
+        {
+          name: 'Gross Income',
+          data: @gross_income,
+          color: '#3c763d'
+        },
+        {
+          name: 'Gross Spending',
+          data: @gross_spending,
+          color: '#a94442'
+        },
+        {
+          name: 'Net Profit',
+          data: @net_profit,
+          color: '#5cb85c',
+          negativeColor: '#d9534f'
+        }
+      ]
+    }
   end
 
 

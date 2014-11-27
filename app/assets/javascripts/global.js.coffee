@@ -80,6 +80,7 @@
   contourReady()
   globalReady()
   entriesReady()
+  graphsReady()
   $("[rel=tooltip]").tooltip()
 
 $(document).ready(ready)

@@ -56,7 +56,7 @@ class User < ActiveRecord::Base
   def gross(start_date, end_date, counts_towards_spending)
     result = entries_in_time_period(start_date, end_date, counts_towards_spending).collect{|e| e.amount}.sum
     result = result * -1 if counts_towards_spending
-    result
+    (result / 100.0).round(2)
   end
 
   def entries_in_time_period(start_date, end_date, counts_towards_spending)
@@ -65,7 +65,7 @@ class User < ActiveRecord::Base
 
   # Get the net_profit for a month or for a year...
   def net_profit(start_date, end_date)
-    gross(start_date, end_date, true) + gross(start_date, end_date, false)
+    (gross(start_date, end_date, true) + gross(start_date, end_date, false)).round(2)
   end
 
   def name

@@ -1,32 +1,21 @@
 <% @title = 'Earning and Spending' %>
 <h1><%= @title %></h1>
 
-<%= form_tag earning_spending_graph_entries_path, remote: true, method: :get, data: { object: 'form-load' }, id: 'earning-spending-form' do %>
-  <%= link_to '&laquo;'.html_safe, '#', style: 'text-decoration:none', title: 'Previous Year', data: { object: 'previous-year' } %>
-  <%= select_tag :year, options_for_select( (current_user.first_billing_date.year..Date.today.year).to_a, Date.today.year ) %>
-  <%= link_to '&raquo;'.html_safe, '#', style: 'text-decoration:none', title: 'Next Year', data: { object: 'next-year' } %>
+<%= form_tag earning_spending_graph_entries_path, remote: true, method: :get, data: { object: 'form-load' }, id: 'earning-spending-form', class: 'form-inline' do %>
+
+  <div class="form-group">
+    <%= link_to '&laquo;'.html_safe, '#', data: { object: 'previous-year' }, class: 'btn btn-default' %>
+  </div>
+  <div class="form-group">
+    <%= select_tag :year, options_for_select( (current_user.first_billing_date.year..Date.today.year).to_a, Date.today.year ), class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= link_to '&raquo;'.html_safe, '#', data: { object: 'next-year' }, class: 'btn btn-default' %>
+  </div>
+
 <% end %>
 
-<div id="month_chart" style="margin-bottom:50px"></div>
 
-<div id="earning_spending"></div>
+<div id="month_chart" data-object="chart-container" data-chart="" style="margin-bottom:50px" style="width: 100%;height: 450px"></div>
 
-
-
-<%= javascript_tag do %>
-function addLoadEvent(func) {
-  var oldonload = window.onload;
-  if (typeof window.onload != 'function') {
-      window.onload = func;
-    } else {
-      window.onload = function() {
-        if (oldonload) {
-          oldonload();
-        }
-        func();
-      }
-    }
-  }
-<% end %>
-
-<%= draw_chart('highcharts', 'column', {'Gross Spending' => @gross_spending, 'Gross Income' => @gross_income, 'Net Profit' => @net_profit}, "year_chart", {title: "Full Overview", width: '100%', height: 450}, (current_user.first_billing_date.year..Date.today.year).to_a) %>
+<div data-object="chart-container" data-chart="<%= @year_json.to_json %>" style="width: 100%;height: 450px"></div>
