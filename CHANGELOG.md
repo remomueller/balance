@@ -14,6 +14,7 @@
 - Enabled turbolinks
 - Use of Ruby 2.1.5 is now recommended
 - Updated to Highcharts JS 3.0.9
+- Updated Google Omniauth to no longer write to disk
 
 ## 1.8.1 (February 17, 2013)
 
