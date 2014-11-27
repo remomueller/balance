@@ -10,7 +10,7 @@ gem 'contour',              '~> 2.6.0.beta8'
 gem 'kaminari',             '~> 0.16.1'
 
 # Rails Defaults
-gem 'coffee-rails',         '~> 4.0.1'
+gem 'coffee-rails',         '~> 4.1.0'
 gem 'sass-rails',           '~> 5.0.0.beta1'
 gem 'uglifier',             '>= 1.3.0'
 
