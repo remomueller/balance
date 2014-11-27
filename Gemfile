@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'rails',                '4.2.0.beta4'
+gem 'arel', '6.0.0.beta2' # Temporary fix until activerecord > 4.2.0.beta4 is released
 
 # Database Adapter
 gem 'mysql2',               '0.3.17'
