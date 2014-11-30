@@ -81,3 +81,16 @@ a:active, a:focus { text-decoration: none; color: #000; }
      -moz-box-shadow: 5px 5px 3px -3px rgba(0, 0, 0, 0.075);
           box-shadow: 5px 5px 3px -3px rgba(0, 0, 0, 0.075);
 }
+
+.navbar-nav > .active > a, .navbar-nav > .active > a:hover {
+  color: #3c763d !important;
+  background-color: #dff0d8 !important;
+}
+
+a.logout-button {
+  color: lighten($brand-danger, 15%) !important;
+}
+
+a.logout-button:hover {
+  color: $brand-danger !important;
+}

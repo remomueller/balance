@@ -75,6 +75,7 @@
   $('#account_name').focus()
   $('#charge_type_name').focus()
   setFocusToField("#search")
+  Turbolinks.enableProgressBar()
 
 @ready = () ->
   contourReady()
