@@ -5,7 +5,7 @@
   - Updated menu bar to highlight commonly used pages
   - Updated the yearly and monthly overview graph
 - **Gem Changes**
-  - Updated to rails 4.2.0.beta4
+  - Updated to rails 4.2.0.rc1
   - Updated to contour 2.6.0.beta8
   - Updated to mysql2 0.3.17
   - Updated to kaminari 0.16.1
