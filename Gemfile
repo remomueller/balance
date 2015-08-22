@@ -9,6 +9,7 @@ gem 'mysql2',               '0.3.17'
 gem 'contour',              '~> 3.0.1'
 gem 'kaminari',             '~> 0.16.1'
 gem 'haml'
+gem 'figaro',               '~> 1.1.1'
 
 # Rails Defaults
 gem 'coffee-rails',         '~> 4.1.0'

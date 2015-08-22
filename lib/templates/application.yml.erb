@@ -1,0 +1,13 @@
+website_url:          "<%= print "Enter Website URL: "; gets.chomp.gsub(/(\/)*$/, '') %>"
+website_name:         "<%= print "Enter Website Name: [Balance]"; s = gets.chomp; s == '' ? 'Balance' : s %>"
+
+smtp_address:         "<%= print "Enter SMTP Address [localhost]: "; s = gets.chomp; s == '' ? 'localhost' : s %>"
+smtp_port:            "<%= print "Enter SMTP Port [25]: "; s = gets.chomp; s == '' ? '25' : s %>"
+smtp_authentication:  "<%= print "Enter SMTP Authentication [plain]: "; s = gets.chomp; s == '' ? 'plain' : s %>"
+smtp_email:           "<%= print "Enter SMTP Email Address: "; gets.chomp %>"
+smtp_user_name:       "<%= print "Enter SMTP User Name [username]: "; s = gets.chomp.gsub('"', '\"').gsub("\\", "\\\\"); s == '' ? 'username' : s %>"
+smtp_password:        "<%= print "Enter SMTP Password [password]: "; s = gets.chomp.gsub('"', '\"').gsub("\\", "\\\\"); s == '' ? 'password' : s %>"
+
+devise_pepper:        "<%= SecureRandom.hex(64) %>"
+website_secret:       "<%= SecureRandom.hex(64) %>"
+cookie_store_key:     "_balance_session"

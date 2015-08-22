@@ -9,6 +9,7 @@
   - Updated to simplecov 0.10.0
   - Added web-console
   - Added haml
+  - Use Figaro to centralize application configuration
 
 ## 1.9.0 (November 30, 2014)
 

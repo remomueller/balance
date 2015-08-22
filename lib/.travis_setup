@@ -1,12 +1,12 @@
-
-
-
-
+http://localhost
+Balance
 localhost
 25
+plain
+smtp@example.com
+smtp_username
+smtp_password
 
-travis-ci@example.com
 
 
-Balance
-http://localhost
+
