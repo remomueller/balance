@@ -24,7 +24,4 @@ class UserTest < ActiveSupport::TestCase
     assert_equal 'LastName, FirstName', users(:valid).reverse_name
   end
 
-  test "should apply omniauth" do
-    assert_not_nil users(:valid).apply_omniauth({'info' => {'email' => 'Email', 'first_name' => 'First Name', 'last_name' => 'Last Name'}})
-  end
 end

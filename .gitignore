@@ -25,7 +25,6 @@
 /config/initializers/00_site_name.rb
 /config/initializers/action_mailer.rb
 /config/initializers/devise.rb
-/config/initializers/omniauth.rb
 /config/initializers/secret_token.rb
 
 /public/cache/*

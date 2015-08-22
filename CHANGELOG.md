@@ -4,6 +4,8 @@
 - Simplified login routes for devise
 - **Gem Changes**
   - Use of Ruby 2.2.3 is now recommended
+  - Updated to rails 4.2.3
+  - Updated to contour 3.0.1
   - Updated to simplecov 0.10.0
   - Added web-console
   - Added haml

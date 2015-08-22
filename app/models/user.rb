@@ -5,9 +5,8 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   # Concerns
-  include Contourable, Deletable
+  include Deletable
 
-  has_many :authentications
   has_many :accounts, -> { where deleted: false }
   has_many :charge_types, -> { where deleted: false }, through: :accounts
   has_many :entries, -> { where deleted: false }
@@ -74,13 +73,5 @@ class User < ActiveRecord::Base
 
   def reverse_name
     last_name + ', ' + first_name
-  end
-
-  def apply_omniauth(omniauth)
-    unless omniauth['info'].blank?
-      self.first_name = omniauth['info']['first_name'] if first_name.blank?
-      self.last_name = omniauth['info']['last_name'] if last_name.blank?
-    end
-    super
   end
 end
