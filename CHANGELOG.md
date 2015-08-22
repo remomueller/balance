@@ -7,6 +7,7 @@
   - Updated to rails 4.2.3
   - Updated to contour 3.0.1
   - Updated to simplecov 0.10.0
+  - Updated to mysql2 0.3.19
   - Added web-console
   - Added haml
   - Use Figaro to centralize application configuration
