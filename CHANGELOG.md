@@ -1,4 +1,4 @@
-## 1.10.0
+## 1.10.0 (August 22, 2015)
 
 ### Enhancements
 - **General Changes**
