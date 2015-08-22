@@ -1,7 +1,8 @@
 ## 1.10.0
 
 ### Enhancements
-- Simplified login routes for devise
+- **General Changes**
+  - Simplified login routes for devise
 - **Gem Changes**
   - Use of Ruby 2.2.3 is now recommended
   - Updated to rails 4.2.3
@@ -12,6 +13,9 @@
   - Added web-console
   - Added haml
   - Use Figaro to centralize application configuration
+
+### Refactoring
+- Updated asset files to match new Rails file extension naming convention
 
 ## 1.9.0 (November 30, 2014)
 
