@@ -1,4 +1,4 @@
-source 'http://rubygems.org'
+source 'https://rubygems.org'
 
 gem 'rails',                '4.2.3'
 
@@ -7,7 +7,7 @@ gem 'mysql2',               '0.3.19'
 
 # Gems used by project
 gem 'contour',              '~> 3.0.1'
-gem 'kaminari',             '~> 0.16.1'
+gem 'kaminari',             '~> 0.16.3'
 gem 'haml'
 gem 'figaro',               '~> 1.1.1'
 
