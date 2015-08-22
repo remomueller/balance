@@ -1,8 +1,11 @@
 ## 1.10.0
 
 ### Enhancements
+- Simplified login routes for devise
 - **Gem Changes**
   - Use of Ruby 2.2.3 is now recommended
+  - Updated to simplecov 0.10.0
+  - Added web-console
 
 ## 1.9.0 (November 30, 2014)
 

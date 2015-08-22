@@ -24,11 +24,12 @@ Rails.application.routes.draw do
     end
   end
 
-  devise_for :users, controllers: { registrations: 'contour/registrations',
-                                         sessions: 'contour/sessions',
-                                        passwords: 'contour/passwords' },
-                     path_names:  {       sign_up: 'register',
-                                          sign_in: 'login' }
+  devise_for :users,  controllers: { registrations: 'contour/registrations',
+                                          sessions: 'contour/sessions',
+                                         passwords: 'contour/passwords' },
+                      path_names:  {       sign_up: 'register',
+                                           sign_in: 'login' },
+                      path: ""
 
   get "/about" => "application#about", as: :about
   get "/month" => "entries#calendar", as: :calendar
