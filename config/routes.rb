@@ -34,6 +34,10 @@ Rails.application.routes.draw do
   get "/about" => "application#about", as: :about
   get "/month" => "entries#calendar", as: :calendar
 
+  scope module: 'application' do
+    get :version
+  end
+
   root to: "entries#calendar"
 
   # See how all your routes lay out with "rake routes"

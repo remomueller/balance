@@ -8,6 +8,7 @@ gem 'mysql2',               '0.3.17'
 # Gems used by project
 gem 'contour',              '~> 2.6.0.beta8'
 gem 'kaminari',             '~> 0.16.1'
+gem 'haml'
 
 # Rails Defaults
 gem 'coffee-rails',         '~> 4.1.0'

@@ -6,6 +6,7 @@
   - Use of Ruby 2.2.3 is now recommended
   - Updated to simplecov 0.10.0
   - Added web-console
+  - Added haml
 
 ## 1.9.0 (November 30, 2014)
 
