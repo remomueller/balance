@@ -3,6 +3,7 @@
 ### Enhancements
 - **Gem Changes**
   - Updated to simplecov 0.11.1
+  - Removed minitest-reporters
 
 ## 1.10.0 (August 22, 2015)
 
