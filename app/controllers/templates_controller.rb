@@ -3,6 +3,27 @@ class TemplatesController < ApplicationController
   before_action :authenticate_user!
   before_action :set_template, only: [:show, :edit, :update, :destroy]
 
+  # POST /template/add_item.js
+  def add_item
+  end
+
+  def launch_template
+    @template = current_user.templates.find_by_id(params[:template_id])
+    billing_date = parse_date(params[:template_billing_date])
+    if @template && billing_date
+      @template.template_items.each do |template_item|
+        @entry = current_user.entries.create(
+          amount: template_item.amount,
+          billing_date: billing_date,
+          charge_type_id: template_item.charge_type_id,
+          description: template_item.description,
+          name: template_item.name
+        )
+      end
+      render 'entries/create' if @entry
+    end
+  end
+
   # GET /templates
   def index
     @templates = current_user.templates.page(params[:page]).per(40)
@@ -54,6 +75,7 @@ class TemplatesController < ApplicationController
   end
 
   def template_params
-    params.require(:template).permit(:name)
+    params.require(:template).permit(:name,
+    { item_hashes: [:charge_type_id, :name, :decimal_amount, :description] })
   end
 end

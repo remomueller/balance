@@ -1,5 +1,6 @@
 @openCalendarPopup = (selected_date) ->
   $('#entry_billing_date').val(selected_date)
+  $('#template_billing_date').val(selected_date)
   $('#new-entry-dialog').modal( dynamic: true )
 
 @activateEntryDraggables = () ->

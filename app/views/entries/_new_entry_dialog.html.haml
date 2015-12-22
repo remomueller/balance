@@ -1,0 +1,37 @@
+#new-entry-dialog.modal
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %button.close{ type: 'button', data: { dismiss: 'modal' }, aria: { hidden: 'true' } } &times;
+        .entry-contents
+          %h4.modal-title
+            Create Entry
+            - if current_user.templates.count > 0
+              &middot;
+              = link_to 'Launch Template', '#', data: { object: 'template-modal' }
+        .template-contents{ style: 'display:none' }
+          %h4.modal-title
+            = link_to 'Create Entry', '#', data: { object: 'entry-modal' }
+            &middot;
+            Launch Template
+      .modal-body
+        .entry-contents
+          - @entry = current_user.entries.new
+          = form_for(@entry, remote: true, html: { class: 'form-horizontal' }) do |f|
+            = params[:from_calendar] = '1'; render 'entries/inner_form', f: f
+        .template-contents{ style: 'display:none' }
+          = form_tag launch_template_templates_path, remote: true, class: 'form-horizontal', id: 'launch_template' do
+            .form-group
+              = label_tag :template_id, 'Template', class: 'col-md-2 control-label'
+              .col-md-10
+                = select_tag :template_id, options_for_select([['----', nil]] + current_user.templates.order(:name).pluck(:name, :id)), class: 'form-control'
+            .form-group
+              = label_tag :template_billing_date, 'Billing Date', class: 'col-md-2 control-label'
+              .col-md-10
+                = text_field_tag :template_billing_date, (@entry.billing_date ? @entry.billing_date.strftime('%m/%d/%Y') : ''),  class: 'datepicker form-control'
+      .modal-footer
+        = link_to 'Close', '#', class: 'btn btn-default', data: { dismiss: 'modal' }
+        %span.entry-contents
+          = link_to 'Create Entry', '#', class: 'btn btn-primary', data: { object: 'submit', target: '#new_entry', disable_with: 'Creating...' }, id: 'entry-submit-button'
+        %span.template-contents{ style: 'display:none' }
+          = link_to 'Launch Template', '#', class: 'btn btn-primary', data: { object: 'submit', target: '#launch_template', disable_with: 'Launching...' }, id: 'template-submit-button'

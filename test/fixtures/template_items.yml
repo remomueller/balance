@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  charge_type_id: 1
+  amount: 1
+  description: MyText
+  template_id: 1
+  position: 1
+
+two:
+  name: MyString
+  charge_type_id: 1
+  amount: 1
+  description: MyText
+  template_id: 1
+  position: 1

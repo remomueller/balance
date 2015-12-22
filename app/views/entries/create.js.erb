@@ -1,14 +1,15 @@
+showEntryContents();
 $('#new-entry-dialog').modal('hide');
 $('#new_entry')[0].reset();
 $('.error').removeClass('error');
 
 <% @entries = current_user.entries.with_date_for_calendar(@entry.billing_date, @entry.billing_date) %>
-$("[data-date='<%= @entry.billing_date.strftime("%m/%d/%Y") %>']").html('<%= escape_javascript(render partial: 'calendar_day_body', locals: { iDate: @entry.billing_date }) %>');
+$("[data-date='<%= @entry.billing_date.strftime("%m/%d/%Y") %>']").html("<%=j render 'entries/calendar_day_body', iDate: @entry.billing_date %>");
 
 <% @start_month = @entry.billing_date.beginning_of_month %>
 <% @end_month = @entry.billing_date.end_of_month %>
-$("#month-spending").html('<%= escape_javascript( render partial: 'accounts/month_spending' ) %>')
-$("#month-income-loss").html('<%= escape_javascript( render partial: 'entries/month_income_loss' ) %>')
+$("#month-spending").html("<%=j render 'accounts/month_spending' %>")
+$("#month-income-loss").html("<%=j render 'entries/month_income_loss' %>")
 
 activateEntryDraggables();
 $("[rel=tooltip]").tooltip();

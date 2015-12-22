@@ -23,7 +23,12 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :templates
+  resources :templates do
+    collection do
+      post :add_item
+      post :launch_template
+    end
+  end
 
   devise_for :users, controllers: { registrations: 'contour/registrations',
                                     sessions: 'contour/sessions',

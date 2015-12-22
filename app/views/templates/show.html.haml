@@ -1,9 +1,24 @@
-%h1
-  = link_to 'Templates', templates_path
-  &middot;
-  = @template.name
-  = link_to 'Edit', edit_template_path(@template), class: 'btn btn-xs btn-default'
+.page-header
+  %h1
+    = link_to 'Templates', templates_path
+    &middot;
+    = @template.name
+    = link_to 'Edit', edit_template_path(@template), class: 'btn btn-xs btn-default'
 
 %p
   %strong Name
   = @template.name
+
+%table.table.table-striped
+  %thead
+    %tr
+      %th Name
+      %th Amount
+      %th Charge Type
+      %th Description
+  - @template.template_items.each do |template_item|
+    %tr
+      %td= template_item.name
+      %td= template_item.amount.to_currency
+      %td= template_item.charge_type.name
+      %td= template_item.description

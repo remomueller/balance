@@ -76,6 +76,7 @@
   $('#charge_type_name').focus()
   setFocusToField("#search")
   Turbolinks.enableProgressBar()
+  templatesReady()
 
 @ready = () ->
   contourReady()

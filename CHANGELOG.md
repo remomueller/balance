@@ -2,7 +2,8 @@
 
 ### Enhancements
 - **Templates Added**
-  - Templates can now be created that define a group of entries
+  - Templates can be created that define a group of entries
+  - Templates can be launched from the calendar
 - Added a version JSON API
 - **Gem Changes**
   - Updated to rails 4.2.5

@@ -1,8 +1,9 @@
 - @title = 'New Template'
 
-%h1
-  = link_to 'Templates', templates_path
-  &middot;
-  = @title
+.page-header
+  %h1
+    = link_to 'Templates', templates_path
+    &middot;
+    = @title
 
 = render 'form'

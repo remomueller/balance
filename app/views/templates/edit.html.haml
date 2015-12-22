@@ -1,11 +1,12 @@
 - @title = "Edit Template: #{@template.name_was}"
 
-%h1
-  = link_to 'Templates', templates_path
-  &middot;
-  = link_to @template.name_was, @template
-  &middot;
-  Edit
+.page-header
+  %h1
+    = link_to 'Templates', templates_path
+    &middot;
+    = link_to @template.name_was, @template
+    &middot;
+    Edit
 
 = render 'form'
 

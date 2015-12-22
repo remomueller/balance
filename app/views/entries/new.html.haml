@@ -1,0 +1,9 @@
+- @title = 'New Entry'
+
+.page-header
+  %h1
+    = link_to 'Entries', entries_path
+    &middot;
+    = @title
+
+= render 'form'
