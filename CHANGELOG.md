@@ -1,5 +1,9 @@
 ## 1.11.0
 
+### Enhancements
+- **Gem Changes**
+  - Updated to simplecov 0.11.1
+
 ## 1.10.0 (August 22, 2015)
 
 ### Enhancements
