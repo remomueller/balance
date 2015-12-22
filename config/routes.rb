@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-
   resources :accounts do
     get :search, on: :collection
   end
@@ -29,16 +28,14 @@ Rails.application.routes.draw do
                                          passwords: 'contour/passwords' },
                       path_names:  {       sign_up: 'register',
                                            sign_in: 'login' },
-                      path: ""
+                      path: ''
 
-  get "/about" => "application#about", as: :about
-  get "/month" => "entries#calendar", as: :calendar
+  get '/about' => 'application#about', as: :about
+  get '/month' => 'entries#calendar', as: :calendar
 
   scope module: 'application' do
     get :version
   end
 
-  root to: "entries#calendar"
-
-  # See how all your routes lay out with "rake routes"
+  root to: 'entries#calendar'
 end

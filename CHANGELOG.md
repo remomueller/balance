@@ -1,6 +1,7 @@
 ## 1.11.0
 
 ### Enhancements
+- Added a version JSON API
 - **Gem Changes**
   - Updated to rails 4.2.5
   - Updated to mysql2 0.4.2
