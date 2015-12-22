@@ -1,9 +1,9 @@
 module Balance
   module VERSION #:nodoc:
     MAJOR = 1
-    MINOR = 10
+    MINOR = 11
     TINY = 0
-    BUILD = nil # nil, "pre", "beta1", "beta2", "rc", "rc2"
+    BUILD = 'pre' # 'pre', 'beta1', 'beta2', 'rc', 'rc2', nil
 
     STRING = [MAJOR, MINOR, TINY, BUILD].compact.join('.')
   end
