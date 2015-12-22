@@ -5,6 +5,7 @@
   - Updated to rails 4.2.5
   - Updated to simplecov 0.11.1
   - Updated to web-console 3.0
+  - Updated to haml 4.0.7
   - Removed minitest-reporters
 
 ### Testing

@@ -8,7 +8,7 @@ gem 'mysql2',               '0.3.19'
 # Gems used by project
 gem 'contour',              '~> 3.0.1'
 gem 'kaminari',             '~> 0.16.3'
-gem 'haml'
+gem 'haml',                 '~> 4.0.7'
 gem 'figaro',               '~> 1.1.1'
 
 # Rails Defaults
