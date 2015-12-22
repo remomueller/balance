@@ -1,3 +1,16 @@
-@import 'balance-variables';
+// Bootstrap and general variable definitions
+@import 'variables/all';
 
-@import 'tree';
+// // Core Bootstrap styles
+// @import 'bootstrap-sprockets';
+// @import 'bootstrap';
+@import 'contour'; // TODO REMOVE and uncomment above
+
+// App Mixins
+@import 'mixins/all';
+
+// App specific styles
+@import 'components/all';
+
+
+@import 'custom'; // TODO REMOVE

@@ -11,3 +11,8 @@ invalid:
   last_name: MyString
   deleted: false
   email: EmailTwo
+
+regular:
+  first_name: Regular
+  last_name: User
+  email: regular@example.com

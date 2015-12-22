@@ -1,5 +1,4 @@
 class Entry < ActiveRecord::Base
-
   # Concerns
   include Searchable, Deletable
 

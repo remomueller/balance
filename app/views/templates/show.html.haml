@@ -1,0 +1,9 @@
+%h1
+  = link_to 'Templates', templates_path
+  &middot;
+  = @template.name
+  = link_to 'Edit', edit_template_path(@template), class: 'btn btn-xs btn-default'
+
+%p
+  %strong Name
+  = @template.name

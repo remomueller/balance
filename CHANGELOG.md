@@ -1,6 +1,8 @@
 ## 1.11.0
 
 ### Enhancements
+- **Templates Added**
+  - Templates can now be created that define a group of entries
 - Added a version JSON API
 - **Gem Changes**
   - Updated to rails 4.2.5

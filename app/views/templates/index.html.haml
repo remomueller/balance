@@ -1,0 +1,23 @@
+- @title = 'Templates'
+%h1
+  Templates
+  = link_to 'New Template', new_template_path, class: 'btn btn-xs btn-default'
+
+
+%table.table.table-striped
+  %col
+  %col{ width: '105px' }
+  %thead
+    %tr
+      %th Name
+      %th
+
+  %tbody
+    - @templates.each do |template|
+      %tr
+        %td= link_to template.name, template
+        %td
+          = link_to 'Edit', edit_template_path(template), class: 'btn btn-xs btn-default'
+          = link_to 'Delete', template, method: :delete, data: { confirm: "Are you sure you want to delete Template #{template.name}?" }, class: 'btn btn-xs btn-danger-inverse'
+
+.center= paginate @templates, theme: 'contour'
