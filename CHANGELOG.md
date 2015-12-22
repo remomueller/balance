@@ -7,6 +7,7 @@
 
 ### Testing
 - Added CodeClimate configuration
+- Added RuboCop configuration
 
 ## 1.10.0 (August 22, 2015)
 
