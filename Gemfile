@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 gem 'rails',                '4.2.5'
 
 # Database Adapter
-gem 'mysql2',               '0.3.19'
+gem 'mysql2',               '0.4.2'
 
 # Gems used by project
 gem 'contour',              '~> 3.0.1'
