@@ -2,6 +2,7 @@
 
 ### Enhancements
 - **Gem Changes**
+  - Updated to rails 4.2.5
   - Updated to simplecov 0.11.1
   - Removed minitest-reporters
 
