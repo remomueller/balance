@@ -5,6 +5,9 @@
   - Updated to simplecov 0.11.1
   - Removed minitest-reporters
 
+### Testing
+- Added CodeClimate configuration
+
 ## 1.10.0 (August 22, 2015)
 
 ### Enhancements
