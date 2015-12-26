@@ -21,4 +21,4 @@
       %td= template_item.name
       %td= template_item.amount.to_currency
       %td= template_item.charge_type.name
-      %td= template_item.description
+      %td= simple_format template_item.description
