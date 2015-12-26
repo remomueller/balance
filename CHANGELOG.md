@@ -6,6 +6,7 @@
   - Templates can be launched from the calendar
 - Added a version JSON API
 - **Gem Changes**
+  - Use of Ruby 2.3.0 is now recommended
   - Updated to rails 4.2.5
   - Updated to mysql2 0.4.2
   - Updated to simplecov 0.11.1
