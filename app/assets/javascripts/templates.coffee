@@ -7,8 +7,7 @@
   resetEntryTemplateButtons()
 
 @resetEntryTemplateButtons = () ->
-  # $('#entry-submit-button').attr('disabled', 'disabled');
-  # $('#template-submit-button').attr('disabled', 'disabled');
+  $.rails.enableElement($('a[data-disable-with]'))
 
 $(document)
   .on('click', '[data-object~="template-modal"]', () ->

@@ -17,7 +17,8 @@ class TemplatesController < ApplicationController
           billing_date: billing_date,
           charge_type_id: template_item.charge_type_id,
           description: template_item.description,
-          name: template_item.name
+          name: template_item.name,
+          charged: false
         )
       end
       render 'entries/create' if @entry
