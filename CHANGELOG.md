@@ -5,6 +5,7 @@
   - Updated to rails 4.2.6
   - Updated to pg 0.18.4
   - Updated to simplecov 0.11.2
+  - Updated to jquery-rails 4.1.1
 
 ## 1.11.0
 
