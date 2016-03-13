@@ -1,6 +1,9 @@
+# frozen_string_literal: true
+
+# Allows users to modify and edit existing accounts.
 class AccountsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_account, only: [ :show, :edit, :update, :destroy ]
+  before_action :set_account, only: [:show, :edit, :update, :destroy]
   before_action :redirect_without_account, only: [ :show, :edit, :update, :destroy ]
 
   # GET /accounts
@@ -67,16 +70,15 @@ class AccountsController < ApplicationController
 
   private
 
-    def set_account
-      @account = current_user.accounts.find_by_id(params[:id])
-    end
+  def set_account
+    @account = current_user.accounts.find_by_id params[:id]
+  end
 
-    def redirect_without_account
-      empty_response_or_root_path(accounts_path) unless @account
-    end
+  def redirect_without_account
+    empty_response_or_root_path(accounts_path) unless @account
+  end
 
-    def account_params
-      params.require(:account).permit( :name )
-    end
-
+  def account_params
+    params.require(:account).permit(:name)
+  end
 end
