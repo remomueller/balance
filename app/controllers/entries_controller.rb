@@ -120,8 +120,8 @@ class EntriesController < ApplicationController
 
     respond_to do |format|
       if @entry.save
-        format.js { render 'create' }
         format.html { redirect_to @entry, notice: 'Entry was successfully created.' }
+        format.js { render 'create' }
       else
         format.html { render 'new' }
         format.js { render 'new' }
@@ -171,7 +171,8 @@ class EntriesController < ApplicationController
   end
 
   def autocomplete
-    @entries = current_user.entries.search(params[:search]).group('name').order('COUNT(id) DESC, name ASC').limit(8)
+    # TODO: Change to make sure it lists the most commonly entered first.
+    @entries = current_user.entries.search(params[:search]).group('name, id').order('COUNT(id) DESC, name ASC').limit(8)
     render json: @entries.collect(&:name)
   end
 

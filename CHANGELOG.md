@@ -3,6 +3,7 @@
 ### Enhancements
 - **Gem Changes**
   - Updated to rails 4.2.6
+  - Updated to pg 0.18.4
 
 ## 1.11.0
 
