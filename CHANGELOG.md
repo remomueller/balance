@@ -1,5 +1,9 @@
 ## 2.0.0
 
+### Enhancements
+- **Gem Changes**
+  - Updated to rails 4.2.6
+
 ## 1.11.0
 
 ### Enhancements
