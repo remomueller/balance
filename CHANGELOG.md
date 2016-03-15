@@ -1,6 +1,8 @@
 ## 2.0.0
 
 ### Enhancements
+- **General Changes**
+  - Started rewriting views using haml
 - **Gem Changes**
   - Updated to rails 4.2.6
   - Updated to pg 0.18.4

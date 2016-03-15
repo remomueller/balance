@@ -1,0 +1,21 @@
+.page-header
+  %h3 Spending This Month
+
+%table.table.table-striped.table-bordered
+  %thead
+    %tr
+      %th Account
+      %th Spending
+      %th Daily Average
+  %tbody
+    - current_user.accounts.each do |account|
+      - unless account.spent_in_time_period(@start_month, @end_month) == 0
+        %tr
+          %td= link_to account.name, account
+          %td.text-right= account.spent_in_time_period(@start_month, @end_month).to_currency
+          %td.text-right= account.average_spent_over_time_period(@start_month, @end_month).to_currency
+  %tfoot
+    %tr
+      %th Total
+      %th.text-right= current_user.spent_in_time_period(@start_month, @end_month).to_currency
+      %th.text-right= current_user.average_spent_over_time_period(@start_month, @end_month).to_currency

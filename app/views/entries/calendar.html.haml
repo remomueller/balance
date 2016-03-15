@@ -1,0 +1,22 @@
+- @title = 'Calendar'
+
+%h4{ style: 'font-size:27px;font-weight:300' }
+  = render 'calendar_title'
+
+.row{ style: 'margin-top: -10px;' }
+  .col-xs-8.center
+    .btn-toolbar
+      .btn-group
+        = link_to 'Today', root_path, class: 'btn btn-xs btn-default'
+      .btn-group.nowrap
+        = link_to calendar_path(date: (@start_month - 1.month).strftime("%Y%m%d")), title: 'Previous Month', class: 'btn btn-xs btn-default', style: 'margin-right:-1px' do
+          &larr;
+        = text_field_tag :selected_date, @selected_date.strftime('%m/%d/%Y'), class: 'datepicker btn btn-xs btn-default', style: 'width:85px;margin-bottom:1px;z-index:2 !important'
+        = link_to calendar_path(date: (@start_month + 1.month).strftime("%Y%m%d")), class: 'btn btn-xs btn-default' do
+          &rarr;
+
+= render 'entries/month_breakdown'
+= render 'entries/new_entry_dialog'
+
+#month-spending
+  = render 'accounts/month_spending'
