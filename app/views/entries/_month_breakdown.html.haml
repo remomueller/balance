@@ -15,7 +15,6 @@
         %td{ valign: 'top', style: 'padding:0px;border: 1px solid #ddd', class: "#{'calendar-entry-body-today' if iDate == Date.today} #{'last-month' if iDate < @start_month} #{'next-month' if iDate > @end_month} day_droppable", data: { billing_date: iDate.strftime('%m/%d/%Y') }, onmouseover: "$('#calendar_box_#{first_day_offset}_new_entry_link').show();", onmouseout: "$('#calendar_box_#{first_day_offset}_new_entry_link').hide();", ondblclick: "openCalendarPopup('#{iDate.strftime('%m/%d/%Y')}');" }
           %div{ style: 'width:100%' }
             .calendar-entry-heading
-              = link_to image_tag('001_46.png', style: 'border:none;vertical-align:text-bottom', size: '11x11', title: "New Entry for #{iDate.strftime("%B %e, %Y")}"), new_entry_path(entry: {billing_date: iDate}, from_calendar: 1), style: 'display:none', id: "calendar_box_#{first_day_offset}_new_entry_link"
               - if [@start_date, @start_month, (@end_month + 1.day)].include?(iDate)
                 = iDate.strftime '%b %e'
               - else
