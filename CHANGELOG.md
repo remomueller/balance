@@ -9,6 +9,9 @@
   - Updated to simplecov 0.11.2
   - Updated to jquery-rails 4.1.1
 
+### Bug Fix
+- Fixed a bug that caused double quotes in tooltips to break tooltips
+
 ## 1.11.0
 
 ### Enhancements
