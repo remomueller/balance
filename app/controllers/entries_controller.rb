@@ -1,8 +1,11 @@
+# frozen_string_literal: true
+
+# Allows a user to view and modify entries.
 class EntriesController < ApplicationController
   before_action :authenticate_user!
-  before_action :initialize_graph, only: [ :overview, :earning_spending_graph ]
-  before_action :set_entry, only: [ :show, :edit, :update, :move, :mark_charged, :destroy ]
-  before_action :redirect_without_entry, only: [ :show, :edit, :update, :move, :mark_charged, :destroy ]
+  before_action :initialize_graph, only: [:overview, :earning_spending_graph]
+  before_action :find_entry_or_redirect, only: [:show, :edit, :update, :move, :mark_charged, :destroy]
+  before_action :redirect_without_entry, only: [:show, :edit, :update, :move, :mark_charged, :destroy]
 
   def calendar
     @date = Date.strptime(params[:date], "%Y%m%d") rescue @date = Date.today
@@ -144,15 +147,13 @@ class EntriesController < ApplicationController
   end
 
   def move
+    @from_date = @entry.billing_date
     params[:entry][:billing_date] = parse_date(params[:entry][:billing_date])
-
-    if @entry and not params[:entry][:billing_date].blank?
+    if @entry && params[:entry][:billing_date].present?
       @entry.update billing_date: params[:entry][:billing_date]
-      redirect_via_turbolinks_to calendar_path(date: @entry.billing_date.strftime("%Y%m%d"))
-      # render 'update'
-    else
-      render nothing: true
+      @to_date = @entry.billing_date
     end
+    render :update
   end
 
   def mark_charged
@@ -178,41 +179,37 @@ class EntriesController < ApplicationController
 
   private
 
-    def set_entry
-      @entry = current_user.entries.find_by_id(params[:id])
+  def find_entry_or_redirect
+    @entry = current_user.entries.find_by_id params[:id]
+    redirect_without_entry
+  end
+
+  def redirect_without_entry
+    empty_response_or_root_path(entries_path) unless @entry
+  end
+
+  def entry_params
+    params[:entry] ||= {}
+    params[:entry][:billing_date] = parse_date(params[:entry][:billing_date])
+    unless params[:entry][:charge_type_id].blank?
+      charge_type = current_user.charge_types.find_by_id(params[:entry][:charge_type_id])
+      params[:entry][:charge_type_id] = charge_type ? charge_type.id : nil
     end
+    params[:entry][:decimal_amount] = params[:entry][:decimal_amount].to_s.gsub(/[\s$,]/, '')
+    params.require(:entry).permit(
+      :name, :charge_type_id, :billing_date, :decimal_amount, :description, :charged
+    )
+  end
 
-    def redirect_without_entry
-      empty_response_or_root_path(entries_path) unless @entry
-    end
+  def initialize_graph
+    @gross_spending = []
+    @gross_income = []
+    @net_profit = []
+  end
 
-    def entry_params
-      params[:entry] ||= {}
-
-      params[:entry][:billing_date] = parse_date(params[:entry][:billing_date])
-
-      unless params[:entry][:charge_type_id].blank?
-        charge_type = current_user.charge_types.find_by_id(params[:entry][:charge_type_id])
-        params[:entry][:charge_type_id] = charge_type ? charge_type.id : nil
-      end
-
-      params[:entry][:decimal_amount] = params[:entry][:decimal_amount].to_s.gsub(/[\s$,]/, '')
-
-      params.require(:entry).permit(
-        :name, :charge_type_id, :billing_date, :decimal_amount, :description, :charged
-      )
-    end
-
-    def initialize_graph
-      @gross_spending = []
-      @gross_income = []
-      @net_profit = []
-    end
-
-    def add_to_graph(start_date, end_date)
-      @gross_spending << current_user.gross(start_date, end_date, true)
-      @gross_income << current_user.gross(start_date, end_date, false)
-      @net_profit << current_user.net_profit(start_date, end_date)
-    end
-
+  def add_to_graph(start_date, end_date)
+    @gross_spending << current_user.gross(start_date, end_date, true)
+    @gross_income << current_user.gross(start_date, end_date, false)
+    @net_profit << current_user.net_profit(start_date, end_date)
+  end
 end

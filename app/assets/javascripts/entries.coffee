@@ -20,7 +20,9 @@
       billing_date = $(this).data('billing-date')
       element_id = ui.draggable.attr('id')
       entry_id = ui.draggable.data('entry-id')
-      $.post(root_url + 'entries/' + entry_id + '/move', "entry[billing_date]="+billing_date, null, "script")
+      $.post(
+        "#{root_url}entries/#{entry_id}/move",
+        "entry[billing_date]=#{billing_date}", null, "script")
       false
     accept: ( draggable ) ->
       $(this).data('billing-date') != draggable.data('billing-date')

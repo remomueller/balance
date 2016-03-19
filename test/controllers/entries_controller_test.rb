@@ -65,7 +65,7 @@ class EntriesControllerTest < ActionController::TestCase
   end
 
   test 'should copy existing' do
-    get :copy, id: @entry.to_param
+    get :copy, id: @entry
     assert_not_nil assigns(:entry)
     assert_equal @entry.name, assigns(:entry).name
     assert_equal @entry.description, assigns(:entry).description
@@ -155,54 +155,52 @@ class EntriesControllerTest < ActionController::TestCase
   end
 
   test 'should show entry' do
-    get :show, id: @entry.to_param
+    get :show, id: @entry
     assert_response :success
   end
 
   test 'should get edit' do
-    get :edit, id: @entry.to_param
+    get :edit, id: @entry
     assert_response :success
   end
 
   test 'should update entry' do
-    put :update, id: @entry.to_param, entry: { billing_date: '10/28/2000', charge_type_id: charge_types(:bank_credit_card).to_param, name: 'Lunch', description: '$10.58 for Lunch at Restaurant', decimal_amount: '10.58' }
+    put :update, id: @entry, entry: { billing_date: '10/28/2000', charge_type_id: charge_types(:bank_credit_card).to_param, name: 'Lunch', description: '$10.58 for Lunch at Restaurant', decimal_amount: '10.58' }
     assert_redirected_to entry_path(assigns(:entry))
   end
 
   test 'should not update entry without name' do
-    put :update, id: @entry.to_param, entry: { billing_date: '10/28/2000', charge_type_id: charge_types(:bank_credit_card).to_param, name: '', description: '', decimal_amount: '10.58' }
+    put :update, id: @entry, entry: { billing_date: '10/28/2000', charge_type_id: charge_types(:bank_credit_card).to_param, name: '', description: '', decimal_amount: '10.58' }
     assert_not_nil assigns(:entry)
     assert_template 'edit'
   end
 
   test 'should move entry on calendar' do
     post :move, id: @entry, entry: { billing_date: '03/07/2012' }, format: 'js'
-
     assert_not_nil assigns(:entry)
     assert_equal '03/07/2012', assigns(:entry).billing_date.strftime('%m/%d/%Y')
-    # assert_template 'update'
+    assert_template 'update'
     assert_response :success
-    # assert_redirected_to calendar_path(date: assigns(:entry).billing_date.strftime('%Y%m%d'))
   end
 
   test 'should not move entry without billing date' do
     post :move, id: @entry, entry: { billing_date: '' }, format: 'js'
-
     assert_not_nil assigns(:entry)
     assert_equal '10/28/2000', assigns(:entry).billing_date.strftime('%m/%d/%Y')
+    assert_template 'update'
     assert_response :success
   end
 
   test 'should destroy entry' do
     assert_difference('Entry.current.count', -1) do
-      delete :destroy, id: @entry.to_param
+      delete :destroy, id: @entry
     end
 
     assert_redirected_to entries_path
   end
 
   test 'should mark entry charged' do
-    post :mark_charged, id: @entry.to_param, format: 'js'
+    post :mark_charged, id: @entry, format: 'js'
     assert_equal true, assigns(:entry).charged
     assert_template 'mark_charged'
   end

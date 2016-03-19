@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
 
   has_many :accounts, -> { where deleted: false }
   has_many :charge_types, -> { where deleted: false }, through: :accounts
-  has_many :entries, -> { where deleted: false }
+  has_many :entries, -> { current }
   has_many :templates, -> { current }
 
   def total_expenditures

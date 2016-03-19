@@ -1,6 +1,16 @@
-<%# Temporary, full form submit for simplicity %>
-$('#calendar-form').submit();
-
-
 <%# Refresh both dates %>
 // alert('update.js.erb <%= @entry.id %>')
+
+<% if @from_date %>
+  <% @entries = current_user.entries.where(billing_date: @from_date) %>
+  $("[data-object~='day-body'][data-date='<%= @from_date.strftime('%m/%d/%Y') %>']")
+    .html("<%=j render 'entries/calendar_day_body', iDate: @from_date %>");
+<% end %>
+
+<% if @to_date %>
+  <% @entries = current_user.entries.where(billing_date: @to_date) %>
+  $("[data-object~='day-body'][data-date='<%= @to_date.strftime('%m/%d/%Y') %>']")
+    .html("<%=j render 'entries/calendar_day_body', iDate: @to_date %>");
+<% end %>
+
+entriesReady();
