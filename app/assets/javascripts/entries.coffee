@@ -4,7 +4,7 @@
   $('#new-entry-dialog').modal( dynamic: true )
 
 @activateEntryDraggables = () ->
-  $('.entry_draggable').draggable(
+  $('.entry-draggable').draggable(
     revert: 'invalid'
     helper: () ->
       $(this).children('[data-object~="entry-helper"]').first().html()

@@ -5,6 +5,7 @@
   - Started rewriting views using haml
 - **Entry Changes**
   - Entry description fields now expand automatically to fit longer descriptions
+  - Hovering mouse over entries now highlights the entry on the calendar
 - **Gem Changes**
   - Updated to rails 4.2.6
   - Updated to pg 0.18.4
