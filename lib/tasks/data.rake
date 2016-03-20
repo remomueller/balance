@@ -32,7 +32,6 @@ namespace :data do
           user.deleted
         ]
       end
-    puts 'create'.colorize(:green) + ' ' + File.basename(csv_file)
     end
   end
 
