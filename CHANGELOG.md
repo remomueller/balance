@@ -4,7 +4,10 @@
 - **Templates Added**
   - Templates can be created that define a group of entries
   - Templates can be launched from the calendar
-- Added a version JSON API
+- **General Changes**
+  - Added a version JSON API
+  - Added a task to export data to CSVs
+    - `bundle exec rake data:export`
 - **Gem Changes**
   - Use of Ruby 2.3.0 is now recommended
   - Updated to rails 4.2.5
@@ -12,6 +15,7 @@
   - Updated to simplecov 0.11.1
   - Updated to web-console 3.0
   - Updated to haml 4.0.7
+  - Added colorize
   - Removed minitest-reporters
 
 ### Testing
