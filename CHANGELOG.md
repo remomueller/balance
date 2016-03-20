@@ -3,6 +3,8 @@
 ### Enhancements
 - **General Changes**
   - Started rewriting views using haml
+  - Added a task to import data from CSVs
+    - `bundle exec rake backup:import FOLDER=20160320173700`
 - **Entry Changes**
   - Entry description fields now expand automatically to fit longer descriptions
   - Hovering mouse over entries now highlights the entry on the calendar
