@@ -1,3 +1,5 @@
+require 'csv'
+
 Time::DATE_FORMATS[:on_at] = "on %b %d, %Y at %I:%M %p"
 Time::DATE_FORMATS[:on] = "on %m.%d.%Y"
 Time::DATE_FORMATS[:date] = "%m.%d.%Y"
