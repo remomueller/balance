@@ -18,7 +18,7 @@
 ### Bug Fix
 - Fixed a bug that caused double quotes in tooltips to break tooltips
 
-## 1.11.0
+## 1.11.0 (March 26, 2016)
 
 ### Enhancements
 - **Templates Added**
@@ -30,9 +30,10 @@
     - `bundle exec rake data:export`
 - **Gem Changes**
   - Use of Ruby 2.3.0 is now recommended
-  - Updated to rails 4.2.5
-  - Updated to mysql2 0.4.2
-  - Updated to simplecov 0.11.1
+  - Updated to rails 4.2.6
+  - Updated to jquery-rails 4.1.1
+  - Updated to mysql2 0.4.3
+  - Updated to simplecov 0.11.2
   - Updated to web-console 3.0
   - Updated to haml 4.0.7
   - Added colorize
