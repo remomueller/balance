@@ -13,7 +13,7 @@
   - Updated to rails 4.2.6
   - Updated to jquery-rails 4.1.1
   - Updated to mysql2 0.4.3
-  - Updated to simplecov 0.11.1
+  - Updated to simplecov 0.11.2
   - Updated to web-console 3.0
   - Updated to haml 4.0.7
   - Added colorize
