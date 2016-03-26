@@ -1,4 +1,4 @@
-## 1.11.0
+## 1.11.0 (March 26, 2016)
 
 ### Enhancements
 - **Templates Added**
