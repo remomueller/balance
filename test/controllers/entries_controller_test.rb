@@ -207,8 +207,8 @@ class EntriesControllerTest < ActionController::TestCase
 
   test 'should autocomplete based on search' do
     get :autocomplete, term: 'lunch', format: 'js'
-    assert assigns(:entries)
-    assert (assigns(:entries).size <= 8)
+    assert assigns(:entry_names)
+    assert (assigns(:entry_names).size <= 8)
     assert_response :success
   end
 
