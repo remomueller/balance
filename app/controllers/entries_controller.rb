@@ -172,9 +172,10 @@ class EntriesController < ApplicationController
   end
 
   def autocomplete
-    # TODO: Change to make sure it lists the most commonly entered first.
-    @entries = current_user.entries.search(params[:search]).group('name, id').order('COUNT(id) DESC, name ASC').limit(8)
-    render json: @entries.collect(&:name)
+    @entry_names = current_user.entries.search(params[:search])
+                               .group(:name).order('count(entries.name) desc', :name)
+                               .limit(8).count.collect(&:first)
+    render json: @entry_names
   end
 
   private
