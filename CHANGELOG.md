@@ -10,6 +10,7 @@
   - Hovering mouse over entries now highlights the entry on the calendar
   - Moving entries on calendar no longer refreshes the entire page
 - **Gem Changes**
+  - Updated to Ruby 2.3.1
   - Updated to rails 4.2.6
   - Updated to pg 0.18.4
   - Updated to simplecov 0.11.2
