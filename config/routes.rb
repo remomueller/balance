@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  root 'entries#calendar'
+
   resources :accounts do
     get :search, on: :collection
   end
@@ -39,9 +41,15 @@ Rails.application.routes.draw do
   get '/about' => 'application#about', as: :about
   get '/month' => 'entries#calendar', as: :calendar
 
-  scope module: 'application' do
+  scope module: :application do
     get :version
   end
 
-  root to: 'entries#calendar'
+  scope module: :internal do
+    get :backup
+    get :backup_failed, path: 'backup/failed'
+    get :backup_succeeded, path: 'backup/succeeded'
+    get :generate_backup, to: redirect('backup')
+    post :generate_backup
+  end
 end
