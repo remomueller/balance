@@ -1,0 +1,21 @@
+- @title = 'Entries'
+.page-header
+  %h1
+    = @title
+    = link_to "Create Entry", new_entry_path, class: 'btn btn-xs btn-primary'
+
+= form_tag entries_path, method: :get, class: 'form-inline', id: 'entry-form' do
+  = hidden_field_tag :order, params[:order]
+  = text_field_tag 'search', params[:search], class: 'form-control'
+  = submit_tag 'Search', class: 'btn btn-primary', name: nil
+  = link_to 'Reset', entries_path, class: 'btn btn-default'
+
+  = hidden_field_tag :charged, params[:charged]
+
+  .btn-group{ data: { toggle: 'buttons' } }
+    %label.btn.btn-default{ class: ('active' unless ['uncharged'].include?(params[:charged])), data: { object: 'set-value', target: '#charged', form: '#entry-form', value: 'all' } }
+      All
+    %label.btn.btn-default{ class: ('active' if ['uncharged'].include?(params[:charged])), data: { object: 'set-value', target: '#charged', form: '#entry-form', value: 'uncharged' } }
+      Not Charged
+
+= render 'entries/entries'

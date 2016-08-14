@@ -1,0 +1,22 @@
+= render 'contour/layouts/per_page', per_page: 40, object_count: @entries.total_count
+
+%table.table.table-striped
+  %thead
+    %tr
+      %th.nowrap= sort_field_helper @order, 'entries.name', 'Entry Name'
+      %th.nowrap= sort_field_helper @order, 'entries.billing_date', 'Billing Date'
+      %th.nowrap= sort_field_helper @order, 'entries.amount', 'Amount'
+      %th Charged
+      %th Charge Type
+      %th Account
+  %tbody
+    - @entries.each do |entry|
+      %tr
+        %td= link_to entry.name, entry, title: entry.description
+        %td= simple_date entry.billing_date
+        %td.text-right= entry.amount.to_currency
+        %td.text-center= check_box_tag 'entry', 'charged', entry.charged?, disabled: true
+        %td= link_to entry.charge_type.name, entry.charge_type
+        %td= link_to entry.charge_type.account.name, entry.charge_type.account
+
+.center= paginate @entries, theme: 'contour'

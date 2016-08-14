@@ -1,0 +1,14 @@
+= render 'contour/layouts/per_page', per_page: 40, object_count: @accounts.total_count
+
+%table.table.table-striped
+  %thead
+    %tr
+      %th Account Name
+      %th Charge Types
+  %tbody
+    - @accounts.each do |account|
+      %tr
+        %td= link_to account.name, account
+        %td= account.charge_types.collect { |charge_type| link_to charge_type.name, charge_type }.join(', ').html_safe
+
+.center= paginate @accounts, theme: 'contour'
