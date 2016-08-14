@@ -16,7 +16,7 @@
   - Updated to pg 0.18.4
   - Updated to simplecov 0.11.2
   - Updated to jquery-rails 4.1.1
-  - Updated to turbolinks 2.5.3
+  - Updated to turbolinks 5
 
 ### Bug Fix
 - Fixed a bug that caused double quotes in tooltips to break tooltips

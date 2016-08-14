@@ -75,7 +75,6 @@
   $('#account_name').focus()
   $('#charge_type_name').focus()
   setFocusToField("#search")
-  Turbolinks.enableProgressBar()
   templatesReady()
 
 @ready = () ->
@@ -87,7 +86,7 @@
 
 $(document).ready(ready)
 $(document)
-  .on('page:load', ready)
+  .on('turbolinks:load', ready)
   .keydown( (e) ->
     if $("input, textarea").is(":focus") then return
     if e.which == 37
