@@ -1,0 +1,16 @@
+$entry-heading-color: #E1EAF9;
+$today-bg-color: #C6CAF5;
+$today-heading-color: #9999CC;
+
+.calendar-entry-heading {
+  text-align: right;
+  background-color: $entry-heading-color;
+}
+
+.calendar-entry-body-today {
+  background-color: $today-bg-color;
+}
+
+.calendar-entry-body-today .calendar-entry-heading {
+  background-color: $today-heading-color;
+}

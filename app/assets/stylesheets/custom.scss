@@ -1,29 +1,3 @@
-/**************************************/
-/*              GLOBALS               */
-/**************************************/
-/*
-a:link { text-decoration: none; color: #FDB000; }
-a:visited { text-decoration: none; color: #FDB000; }
-a:hover { text-decoration: none; color: #EB6C20; }
-a:active, a:focus { text-decoration: none; color: #000; }
-*/
-
-/**************************************/
-/*            MAIN CONTENT            */
-/**************************************/
-
-.calendar-entry-heading{
-  text-align: right;
-  background-color: #E1EAF9;
-}
-
-.calendar-entry-body-today{
-  background-color: #C6CAF5;
-}
-
-.calendar-entry-body-today .calendar-entry-heading{
-  background-color: #9999CC;
-}
 
 /* Other Month */
 .last-month .calendar-entry-heading, .next-month .calendar-entry-heading{
