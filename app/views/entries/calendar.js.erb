@@ -1,7 +1,7 @@
-$("#month-breakdown").html("<%= escape_javascript(render("entries/month_breakdown")) %>");
+$("#month-breakdown").html("<%=j render 'entries/month_breakdown' %>");
 
-$("#calendar-title").html("<%= escape_javascript(render("calendar_title")) %>");
-$("#spending").html("<%= escape_javascript(render("accounts/month_spending")) %>");
+$("#calendar-title").html("<%=j render 'calendar_title' %>");
+$("#spending").html("<%=j render 'accounts/month_spending' %>");
 
 activateEntryDraggables();
 activateDayDroppables();
