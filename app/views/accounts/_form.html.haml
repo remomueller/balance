@@ -1,0 +1,23 @@
+.page-header
+  %h1= @title
+
+= form_for @account, html: { class: 'form-horizontal' } do |f|
+  - if @account.errors.any?
+    .callout.callout-danger
+      %strong
+        = pluralize @account.errors.count, 'error'
+        prohibited this account from being saved
+
+      %ul
+        - @account.errors.full_messages.each do |message|
+          %li= message
+
+  .form-group
+    = f.label :name, nil, class: 'col-md-2 control-label'
+    .col-md-10
+      = f.text_field :name, class: 'form-control'
+
+  .form-group
+    .col-md-offset-2.col-md-10
+      = f.submit nil, class: 'btn btn-primary'
+      = cancel
