@@ -46,20 +46,6 @@
     return false
   return true
 
-@goBackOneMonth = () ->
-  now = new Date $('#selected_date').val()
-  now = new Date() if isNaN(now.getFullYear())
-  new_month = new Date now.getFullYear(), now.getMonth()-1, 1
-  $('#selected_date').val((new_month.getMonth() + 1) + "/" + new_month.getDate() + "/" + new_month.getFullYear())
-  $('#calendar-form').submit()
-
-@goForwardOneMonth = () ->
-  now = new Date $('#selected_date').val()
-  now = new Date() if isNaN(now.getFullYear())
-  new_month = new Date now.getFullYear(), now.getMonth()+1, 1
-  $('#selected_date').val((new_month.getMonth() + 1) + "/" + new_month.getDate() + "/" + new_month.getFullYear())
-  $('#calendar-form').submit()
-
 @getToday = () ->
   now = new Date()
   $('#selected_date').val((now.getMonth() + 1) + "/" + now.getDate() + "/" + now.getFullYear())
@@ -87,13 +73,6 @@
 $(document).ready(ready)
 $(document)
   .on('turbolinks:load', ready)
-  .keydown( (e) ->
-    if $("input, textarea").is(":focus") then return
-    if e.which == 37
-      goBackOneMonth()
-    if e.which == 39
-      goForwardOneMonth()
-  )
   .on('click', '[data-object~="submit"]', () ->
     $($(this).data('target')).submit()
     false

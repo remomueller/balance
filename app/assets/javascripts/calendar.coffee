@@ -1,14 +1,16 @@
-@goBackOneYear = ->
-  year_selector = $('#year')
-  year_selector.val(year_selector.val() - 1)
-  year_selector.change()
-
-@goForwardOneYear = ->
+@moveYear = (offset) ->
   year_selector = $('#year')
   num_years = $(year_selector).find('option').size()
-  if parseInt(year_selector.val()) != num_years - 1
-    year_selector.val(parseInt(year_selector.val()) + 1)
+  next_year = parseInt(year_selector.val()) + offset
+  if $("#year option[value=#{next_year}]").length != 0
+    year_selector.val(next_year)
     year_selector.change()
+
+@goBackOneYear = ->
+  moveYear(-1)
+
+@goForwardOneYear = ->
+  moveYear(1)
 
 @goBackOneMonth = ->
   month_selector = $("#month")
