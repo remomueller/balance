@@ -19,6 +19,7 @@
   - Updated to simplecov 0.11.2
   - Updated to jquery-rails 4.1.1
   - Updated to turbolinks 5
+  - Updated to kaminari 0.17.0
 
 ### Bug Fix
 - Fixed a bug that caused double quotes in tooltips to break tooltips
