@@ -16,7 +16,7 @@
   %dd= @entry.amount.to_currency
 
   %dt Charged
-  %dd= check_box_tag 'entry', 'charged', @entry.charged?, disabled: true
+  %dd= simple_check @entry.charged?
 
   %dt Charge Type
   %dd= @entry.charge_type.full_name

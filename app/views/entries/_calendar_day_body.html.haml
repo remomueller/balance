@@ -7,7 +7,7 @@
       .calendar-entry-name{ style: 'cursor:move' }
         - unless entry.charged?
           = link_to mark_charged_entry_path(entry, authenticity_token: form_authenticity_token), remote: true, method: :post, confirm: "Are you sure you want to mark this entry as charged?\n\n#{entry.name}\n\n#{entry.amount.to_currency + ' ' + entry.charge_type.full_name}\n", id: "entry_#{entry.id}_mark_charged_link" do
-            = image_tag '001_15.png', style: 'border:none;vertical-align:baseline', size: '10x10', title: 'Not Charged'
+            %span.glyphicon.glyphicon-star>
         = link_to entry.name, entry, style: "text-decoration:none;color:#{entry.charged? ? '#404040' : '#FFB475'};", id: "entry_#{entry.id}_name"
       %div{ style: 'display:none', data: { object: 'entry-helper' } }
         .entry-box

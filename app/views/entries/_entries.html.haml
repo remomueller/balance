@@ -12,10 +12,10 @@
   %tbody
     - @entries.each do |entry|
       %tr
-        %td= link_to entry.name, entry, title: entry.description
+        %td= link_to entry.name, entry
         %td= simple_date entry.billing_date
         %td.text-right= entry.amount.to_currency
-        %td.text-center= check_box_tag 'entry', 'charged', entry.charged?, disabled: true
+        %td.text-center= simple_check entry.charged?
         %td= link_to entry.charge_type.name, entry.charge_type
         %td= link_to entry.charge_type.account.name, entry.charge_type.account
 
