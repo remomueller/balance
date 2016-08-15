@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 require 'test_helper'
 
-# Tests for modifying and displaying entries
+# Tests for modifying and displaying entries.
 class EntriesControllerTest < ActionController::TestCase
   setup do
     login(users(:valid))

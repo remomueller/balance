@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# Defines the user login, accounts, and entries.
 class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :encryptable, :confirmable, :lockable and :omniauthable
@@ -69,10 +72,10 @@ class User < ActiveRecord::Base
   end
 
   def name
-    first_name + ' ' + last_name
+    "#{first_name} #{last_name}"
   end
 
   def reverse_name
-    last_name + ', ' + first_name
+    "#{last_name}, #{first_name}"
   end
 end

@@ -1,5 +1,8 @@
+# frozen_string_literal: true
+
 require 'test_helper'
 
+# Tests to assure that templates can be created and modified.
 class TemplatesControllerTest < ActionController::TestCase
   setup do
     @template = templates(:one)

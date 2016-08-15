@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# Handles creation of transfer and charge types for accounts.
 class ChargeTypesController < ApplicationController
   before_action :authenticate_user!
   before_action :set_charge_type, only: [ :show, :edit, :update, :destroy ]

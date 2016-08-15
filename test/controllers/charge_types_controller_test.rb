@@ -1,5 +1,8 @@
+# frozen_string_literal: true
+
 require 'test_helper'
 
+# Tests to assure that charge types can be created and edited.
 class ChargeTypesControllerTest < ActionController::TestCase
   setup do
     login(users(:valid))

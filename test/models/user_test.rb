@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 require 'test_helper'
 
 SimpleCov.command_name 'test:models'
 
-# Tests for user methods
+# Unit tests for user methods
 class UserTest < ActiveSupport::TestCase
   test 'should get total expenditures' do
     assert users(:valid).total_expenditures.is_a?(Fixnum)

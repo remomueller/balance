@@ -1,4 +1,6 @@
-# Allows templates to be viewed and modified
+# frozen_string_literal: true
+
+# Allows templates to be viewed and modified.
 class TemplatesController < ApplicationController
   before_action :authenticate_user!
   before_action :set_template, only: [:show, :edit, :update, :destroy]

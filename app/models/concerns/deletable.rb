@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Allows database rows to be scoped and marked as deleted
 module Deletable
   extend ActiveSupport::Concern

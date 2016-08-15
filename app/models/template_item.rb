@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Defines a templated entry
 class TemplateItem < ActiveRecord::Base
   # Model Validation

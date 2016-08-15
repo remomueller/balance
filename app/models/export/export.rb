@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# Handles exporting user data.
 module Export
   def self.launch_export!
     @time = Time.zone.now.strftime('%Y%m%d%H%M%S')

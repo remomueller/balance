@@ -1,6 +1,10 @@
+# frozen_string_literal: true
+
 require 'test_helper'
 
-# Main web application controller for Balance
+SimpleCov.command_name 'test:controllers'
+
+# Main web application controller for Balance.
 class ApplicationControllerTest < ActionController::TestCase
   test 'should get version' do
     get :version

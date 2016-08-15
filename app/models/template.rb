@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Defines a group of entry templates that can be launched starting on a specific
 # date.
 class Template < ActiveRecord::Base
