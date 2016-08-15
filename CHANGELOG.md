@@ -20,6 +20,7 @@
   - Updated to jquery-rails 4.1.1
   - Updated to turbolinks 5
   - Updated to kaminari 0.17.0
+  - Updated to colorize 0.8.1
 
 ### Bug Fix
 - Fixed a bug that caused double quotes in tooltips to break tooltips

@@ -12,7 +12,7 @@ gem 'contour',              '~> 3.0.1'
 gem 'kaminari',             '~> 0.17.0'
 gem 'haml',                 '~> 4.0.7'
 gem 'figaro',               '~> 1.1.1'
-gem 'colorize',             '~> 0.7.5'
+gem 'colorize',             '~> 0.8.1'
 
 # Rails Defaults
 gem 'coffee-rails',         '~> 4.1.0'
