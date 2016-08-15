@@ -1,0 +1,26 @@
+- @title = 'Current Balance'
+.page-header
+  %h1= @title
+
+%table.table-fixed{ style: 'width: 100%;' }
+  %tr
+    %td{ valign: 'top', style: 'border-width: 0' }
+      %table.table.table-striped.table-bordered
+        - current_user.accounts.each do |account|
+          %tr
+            %td
+              Balance
+              = link_to account.name, account
+            %td.text-right= account.balance(:amount).to_currency
+        - total_assets = current_user.accounts.collect { |a| a.balance(:amount) }.sum
+        %tr
+          %td Total Assets
+          %td.text-right= total_assets.to_currency
+    %td{ valign: 'top', style: 'border-width: 0' }
+      %table.table.table-striped.table-bordered
+        - current_user.accounts.each do |account|
+          %tr
+            %td
+              Charged Balance
+              = link_to account.name, account
+            %td.text-right= account.balance(:charged_amount).to_currency

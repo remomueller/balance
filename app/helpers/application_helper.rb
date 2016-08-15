@@ -1,12 +1,14 @@
-module ApplicationHelper
+# frozen_string_literal: true
 
+# Methods to help across all application views.
+module ApplicationHelper
   def simple_date(past_date)
     return '' if past_date.blank?
-    if past_date.year == Date.today.year
-      past_date.strftime("%b %d")
-    else
-      past_date.strftime("%b %d, %Y")
-    end
+    format = if past_date.year == Time.zone.today.year
+               '%b %d'
+             else
+               '%b %d, %Y'
+             end
+    past_date.strftime(format)
   end
-
 end

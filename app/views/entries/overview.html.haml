@@ -1,0 +1,17 @@
+- @title = 'Earning and Spending'
+
+%h1= @title
+
+= form_tag earning_spending_graph_entries_path, remote: true, method: :get, data: { object: 'form-load' }, id: 'earning-spending-form', class: 'form-inline' do
+  .form-group
+    = link_to '&laquo;'.html_safe, '#', data: { object: 'previous-year' }, class: 'btn btn-default'
+
+  .form-group
+    = select_tag :year, options_for_select( (current_user.first_billing_date.year..Date.today.year).to_a, Date.today.year ), class: 'form-control'
+
+  .form-group
+    = link_to '&raquo;'.html_safe, '#', data: { object: 'next-year' }, class: 'btn btn-default'
+
+#month_chart{ style: 'height: 450px; margin-bottom: 50px;', data: { object: 'chart-container', chart: '' } }
+
+%div{ style: 'height: 450px', data: { object: 'chart-container', chart: "#{@year_json.to_json}" } }

@@ -1,0 +1,17 @@
+- @title = 'Average Spending'
+.page-header
+  %h1= @title
+
+%table.table.table-striped.table-fixed
+  %thead
+    %tr
+      %th.text-right Total Expenditures
+      %th.text-right Avg Per Day
+      %th.text-right Avg Per Month
+      %th.text-right Avg Per Year
+  %tbody
+    %tr
+      %td.text-right= current_user.total_expenditures.to_currency
+      %td.text-right= current_user.average_expenditures_per_day
+      %td.text-right= current_user.average_expenditures_per_month
+      %td.text-right= current_user.average_expenditures_per_year

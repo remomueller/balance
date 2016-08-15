@@ -52,10 +52,6 @@ $(document)
     getToday()
     false
   )
-  .on('click', '[data-object~="month-spending-calculate"]', () ->
-    calculateEndOfMonthSpending()
-    false
-  )
   .on('click', '[data-object~="previous-year"]', () ->
     goBackOneYear()
     false

@@ -1,0 +1,25 @@
+- @title = @entry.name
+.page-header
+  %h1
+    = link_to 'Entries', entries_path
+    &middot;
+    = @title
+  = link_to 'Edit Entry', edit_entry_path(@entry), class: 'btn btn-xs btn-default'
+  = link_to 'Delete Entry', @entry, method: :delete, class: 'btn btn-xs btn-danger-inverse', data: { confirm: "Are you sure you want to delete Entry #{@entry.name}?" }
+  = link_to 'Copy Entry', copy_entry_path(@entry), class: 'btn btn-xs btn-default'
+
+%dl.dl-horizontal
+  %dt Billing Date
+  %dd= simple_date @entry.billing_date
+
+  %dt Amount
+  %dd= @entry.amount.to_currency
+
+  %dt Charged
+  %dd= check_box_tag 'entry', 'charged', @entry.charged?, disabled: true
+
+  %dt Charge Type
+  %dd= @entry.charge_type.full_name
+
+  %dt Description
+  %dd= simple_format @entry.description
