@@ -6,6 +6,8 @@
   - Added a task to import data from CSVs
     - `bundle exec rake backup:import FOLDER=20160320173700`
   - Users can backup data from their account
+- **Account Changes**
+  - Accounts can be archived to hide them on the current balance
 - **Entry Changes**
   - Entry description fields now expand automatically to fit longer descriptions
   - Hovering mouse over entries now highlights the entry on the calendar

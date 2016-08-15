@@ -5,10 +5,12 @@
     %tr
       %th Account Name
       %th Charge Types
+      %th.center Archived
   %tbody
     - @accounts.each do |account|
       %tr
         %td= link_to account.name, account
         %td= account.charge_types.collect { |charge_type| link_to charge_type.name, charge_type }.join(', ').html_safe
+        %td.center= simple_check account.archived?
 
 .center= paginate @accounts, theme: 'contour'

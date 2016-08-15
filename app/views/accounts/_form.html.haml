@@ -19,5 +19,12 @@
 
   .form-group
     .col-md-offset-2.col-md-10
+      .checkbox
+        %label
+          = f.check_box :archived
+          Archive to Hide Account From Current Balance
+
+  .form-group
+    .col-md-offset-2.col-md-10
       = f.submit nil, class: 'btn btn-primary'
       = cancel

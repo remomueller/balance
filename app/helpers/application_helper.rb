@@ -11,4 +11,12 @@ module ApplicationHelper
              end
     past_date.strftime(format)
   end
+
+  def simple_check(checked)
+    if checked
+      '<span class="glyphicon glyphicon-ok"></span>'.html_safe
+    else
+      '<span class="glyphicon glyphicon-unchecked text-muted"></span>'.html_safe
+    end
+  end
 end
