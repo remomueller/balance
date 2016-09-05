@@ -12,6 +12,7 @@
   - Entry description fields now expand automatically to fit longer descriptions
   - Hovering mouse over entries now highlights the entry on the calendar
   - Moving entries on calendar no longer refreshes the entire page
+  - Earning and spending graphs now load more quickly
 - **Gem Changes**
   - Updated to Ruby 2.3.1
   - Updated to rails 4.2.6
