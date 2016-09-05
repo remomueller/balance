@@ -1,8 +1,12 @@
 - @title = 'Entries'
-.page-header
-  %h1
-    = @title
-    = link_to "Create Entry", new_entry_path, class: 'btn btn-xs btn-primary'
+
+- content_for :header do
+  .background-gradient
+  .header-container
+    .container
+      %h1.page-heading
+        = @title
+        = link_to 'Create Entry', new_entry_path, class: 'btn btn-xs btn-accent'
 
 = form_tag entries_path, method: :get, class: 'form-inline', id: 'entry-form' do
   = hidden_field_tag :order, params[:order]

@@ -1,8 +1,13 @@
 - @title = 'Version'
 
-%h1 Version
+- content_for :header do
+  .background-gradient
+  .header-container
+    .container
+      %h1.page-heading= @title
 
 .text-center{ style: 'margin-top:40px' }
   %p.lead
-    Current version
-    %strong= Balance::VERSION::STRING
+    %span.transparent-stamp
+      Version
+      %strong= Balance::VERSION::STRING

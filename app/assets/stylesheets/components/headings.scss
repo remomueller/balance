@@ -1,0 +1,61 @@
+.header-container {
+  background-color: $P500;
+  color: $brand-white;
+  padding: 20px 0;
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin: 0;
+  }
+
+  h1 {
+    font-size: 30px;
+  }
+}
+
+@media screen and (min-width: $screen-sm-min) {
+  .header-container {
+    h1 {
+      font-size: 38px
+    }
+  }
+}
+
+@media screen and (min-width: $screen-md-min) {
+  .header-container {
+    h1 {
+      font-size: 41px
+    }
+  }
+}
+
+.header-container-hide {
+  h1 {
+    visibility: hidden;
+  }
+}
+
+.navbar-header {
+  .navbar-brand {
+    display: block;
+
+    &.page-title {
+      display: none;
+    }
+  }
+}
+
+.navbar-header.navbar-page-title {
+  .navbar-brand {
+    display: none;
+
+    &.page-title {
+      color: $brand-white;
+      display: block;
+    }
+  }
+}

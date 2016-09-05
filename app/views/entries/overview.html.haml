@@ -1,6 +1,10 @@
-- @title = 'Earning and Spending'
+- @title = 'Overview'
 
-%h1= @title
+- content_for :header do
+  .background-gradient
+  .header-container
+    .container
+      %h1.page-heading= @title
 
 = form_tag earning_spending_graph_entries_path, remote: true, method: :get, data: { object: 'form-load' }, id: 'earning-spending-form', class: 'form-inline' do
   .form-group

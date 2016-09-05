@@ -1,6 +1,10 @@
-- @title = 'Current Balance'
-.page-header
-  %h1= @title
+- @title = 'Balance'
+
+- content_for :header do
+  .background-gradient
+  .header-container
+    .container
+      %h1.page-heading= @title
 
 - unarchived_accounts = current_user.accounts.where(archived: false)
 

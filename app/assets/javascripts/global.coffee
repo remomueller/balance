@@ -26,7 +26,6 @@
   element.attr('selectedIndex', next_index)
   element.change()
 
-
 @toggleCheckboxGroup = (index) ->
   mode = $('.rule_group_'+index+'_parent').is(':checked');
   $('.rule_group_'+index).each( ->
@@ -61,7 +60,6 @@
   $('#account_name').focus()
   $('#charge_type_name').focus()
   setFocusToField("#search")
-  templatesReady()
   $('[data-object~="form-load"]').submit()
 
 @extensionsReady = ->
@@ -69,11 +67,19 @@
   tooltipsReady()
   typeaheadReady()
 
+@componentsReady = ->
+  false
+
+@objectsReady = ->
+  templatesReady()
+
 @ready = ->
   globalReady()
   entriesReady()
   graphsReady()
   extensionsReady()
+  componentsReady()
+  objectsReady()
 
 $(document).ready(ready)
 $(document)

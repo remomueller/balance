@@ -22,7 +22,7 @@
     = stylesheet_link_tag 'application', media: 'all', data: { turbolinks_track: 'reload' }
     = javascript_include_tag 'application', data: { turbolinks_track: 'reload' }
     = javascript_tag "var root_url='#{request.script_name + '/'}';"
-  %body{ class: yield(:body_class) }
+  %body#top{ class: yield(:body_class) }
     - unless @simple_layout
       = render 'layouts/menu'
       = render 'layouts/flash_messages'

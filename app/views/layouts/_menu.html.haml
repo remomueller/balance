@@ -7,6 +7,7 @@
         %span.icon-bar
         %span.icon-bar
       = link_to 'Balance', root_path, class: 'navbar-brand'
+      = link_to @title, '#top', data: { object: 'remove-collapse-in scroll-anchor', target: '.navbar-full-menu' }, class: 'navbar-brand page-title' if @title
 
     .collapse.navbar-collapse.navbar-full-menu
       %ul.nav.navbar-nav
