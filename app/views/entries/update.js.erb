@@ -1,5 +1,4 @@
 <%# Refresh both dates %>
-// alert('update.js.erb <%= @entry.id %>')
 
 <% if @from_date %>
   <% @entries = current_user.entries.where(billing_date: @from_date) %>
@@ -14,3 +13,4 @@
 <% end %>
 
 entriesReady();
+tooltipsReady();

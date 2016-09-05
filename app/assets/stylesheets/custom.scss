@@ -1,23 +1,23 @@
 
-/* Other Month */
-.last-month .calendar-entry-heading, .next-month .calendar-entry-heading{
+// Other Month
+.last-month .calendar-entry-heading, .next-month .calendar-entry-heading {
   background-color: #FBF8F2;
 }
 
-.last-month.calendar-entry-body-today, .next-month.calendar-entry-body-today{
+.last-month.calendar-entry-body-today, .next-month.calendar-entry-body-today {
   background-color: #F9E0C8;
 }
 
-.calendar-entry-body-today.last-month .calendar-entry-heading, .calendar-entry-body-today.next-month .calendar-entry-heading{
+.calendar-entry-body-today.last-month .calendar-entry-heading, .calendar-entry-body-today.next-month .calendar-entry-heading {
   background-color: #FFB475;
 }
 
-/* Hover */
-.hover{
+// Hover
+.hover {
   background-color: #CCFFCC;
 }
 
-.hover .calendar-entry-heading{
+.hover .calendar-entry-heading {
   background-color: #669966;
 }
 
@@ -33,38 +33,18 @@
   white-space: nowrap;
 }
 
-.loss{
+.loss {
   color: #FF6666;
 }
 
-.gain{
+.gain {
   color: #669966;
 }
 
 .entry-box {
   background-color: white;
-
   padding: 3px 5px;
-
   border: 1px solid #bbb;
-  -moz-border-radius: 3px; /* Mozilla */
-  -webkit-border-radius: 3px; /* Webkit */
   border-radius: 3px;
-
-  -webkit-box-shadow: 5px 5px 3px -3px rgba(0, 0, 0, 0.075);
-     -moz-box-shadow: 5px 5px 3px -3px rgba(0, 0, 0, 0.075);
-          box-shadow: 5px 5px 3px -3px rgba(0, 0, 0, 0.075);
-}
-
-.navbar-nav > .active > a, .navbar-nav > .active > a:hover {
-  color: #3c763d !important;
-  background-color: #dff0d8 !important;
-}
-
-a.logout-button {
-  color: lighten($brand-danger, 15%) !important;
-}
-
-a.logout-button:hover {
-  color: $brand-danger !important;
+  box-shadow: 5px 5px 3px -3px rgba(0, 0, 0, 0.075);
 }

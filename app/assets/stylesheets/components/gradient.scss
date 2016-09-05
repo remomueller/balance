@@ -1,0 +1,10 @@
+.background-gradient {
+  background-color: $A200;
+  background-image: linear-gradient(180deg, $A100, $A700 31%, $P400 65%, $P500);
+  position: absolute;
+  bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: -2;
+}

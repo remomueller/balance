@@ -1,16 +1,19 @@
+@import 'themes/default';
+
 // Bootstrap and general variable definitions
 @import 'variables/all';
 
-// // Core Bootstrap styles
-// @import 'bootstrap-sprockets';
-// @import 'bootstrap';
-@import 'contour'; // TODO REMOVE and uncomment above
+// Core Bootstrap styles
+@import 'bootstrap-sprockets';
+@import 'bootstrap';
 
 // App Mixins
 @import 'mixins/all';
 
 // App specific styles
 @import 'components/all';
+@import 'extensions/all';
+@import 'fixes/all';
 @import 'objects/all';
 
 @import 'custom'; // TODO REMOVE

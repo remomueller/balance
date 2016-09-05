@@ -1,0 +1,27 @@
+- @title = 'Forgot your password?'
+
+- @simple_layout = true
+
+.background-gradient
+
+%p.lead.center.brand-white-text
+  If we didn't have brains, we wouldn't need passwords.
+
+.sign-up-form
+  .sign-up-form-title
+    Reset Password
+
+  %p.lead.center
+    Enter your email address to receive a password reset email.
+
+  = form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post, class: 'form-vertical' }) do |f|
+    - error_message = resource.errors.full_messages.join(',') if resource.errors.any?
+
+    .form-group
+      = f.label :email, error_message, class: 'control-label'
+      = f.email_field :email, class: 'form-control'
+
+    .form-group.submit-btn-container
+      = f.submit 'Send me reset password instructions', class: 'btn btn-primary btn-block btn-shadow'
+
+=# render 'layouts/simple_footer'

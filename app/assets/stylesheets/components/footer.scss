@@ -1,0 +1,13 @@
+.footer-container {
+  background-color: $brand-black;
+  bottom: 0;
+  color: $brand-white;
+  height: $footer-height;
+  position: absolute;
+  width: 100%;
+}
+
+.footer {
+  height: $footer-height;
+  padding: 40px 0;
+}

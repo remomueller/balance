@@ -8,7 +8,7 @@ class EntriesController < ApplicationController
   before_action :redirect_without_entry, only: [:show, :edit, :update, :move, :mark_charged, :destroy]
 
   def calendar
-    @date = Date.strptime(params[:date], "%Y%m%d") rescue @date = Date.today
+    @date = Date.strptime(params[:date], '%Y%m%d') rescue @date = Date.today
     @selected_date = @date # parse_date(params[:selected_date], Date.today)
 
     @start_month = @selected_date.beginning_of_month
@@ -85,14 +85,14 @@ class EntriesController < ApplicationController
 
 
   # GET /entries
-  # GET /entries.json
   def index
     @order = scrub_order(Entry, params[:order], 'billing_date desc, id desc')
-    @entries = current_user.entries.where(charged: (params[:charged] == 'uncharged' ? false : [true, false])).search(params[:search]).order(@order).page(params[:page]).per( 40 )
+    @entries = current_user.entries
+                           .where(charged: (params[:charged] == 'uncharged' ? false : [true, false]))
+                           .search(params[:search]).order(@order).page(params[:page]).per(40)
   end
 
   # GET /entries/1
-  # GET /entries/1.json
   def show
   end
 
@@ -102,11 +102,12 @@ class EntriesController < ApplicationController
     @entry.billing_date = Date.today if @entry.billing_date.blank?
   end
 
+  # GET /entries/1/copy
   def copy
     entry = current_user.entries.find_by_id(params[:id])
     if entry
       @entry = current_user.entries.new(entry.copyable_attributes)
-      render 'new'
+      render :new
     else
       redirect_to new_entry_path
     end
@@ -117,35 +118,30 @@ class EntriesController < ApplicationController
   end
 
   # POST /entries
-  # POST /entries.json
   def create
     @entry = current_user.entries.new(entry_params)
 
     respond_to do |format|
       if @entry.save
         format.html { redirect_to @entry, notice: 'Entry was successfully created.' }
-        format.js { render 'create' }
+        format.js { render :create }
       else
-        format.html { render 'new' }
-        format.js { render 'new' }
+        format.html { render :new }
+        format.js { render :new }
       end
     end
   end
 
-  # PUT /entries/1
-  # PUT /entries/1.json
+  # PATCH /entries/1
   def update
-    respond_to do |format|
-      if @entry.update(entry_params)
-        format.html { redirect_to @entry, notice: 'Entry was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: 'edit' }
-        format.json { render json: @entry.errors, status: :unprocessable_entity }
-      end
+    if @entry.update(entry_params)
+      redirect_to @entry, notice: 'Entry was successfully updated.'
+    else
+      render :edit
     end
   end
 
+  # POST /entries/1/move
   def move
     @from_date = @entry.billing_date
     params[:entry][:billing_date] = parse_date(params[:entry][:billing_date])
@@ -156,19 +152,15 @@ class EntriesController < ApplicationController
     render :update
   end
 
+  # POST /entries/1/mark_charged
   def mark_charged
     @entry.update charged: true
   end
 
   # DELETE /entries/1
-  # DELETE /entries/1.json
   def destroy
     @entry.destroy
-
-    respond_to do |format|
-      format.html { redirect_to entries_path }
-      format.json { head :no_content }
-    end
+    redirect_to entries_path
   end
 
   def autocomplete

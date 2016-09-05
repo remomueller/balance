@@ -3,10 +3,10 @@
 %table.table.table-striped
   %thead
     %tr
-      %th.nowrap= sort_field_helper @order, 'entries.name', 'Entry Name'
-      %th.nowrap= sort_field_helper @order, 'entries.billing_date', 'Billing Date'
-      %th.nowrap= sort_field_helper @order, 'entries.amount', 'Amount'
-      %th Charged
+      = th_sort_field @order, 'entries.name', 'Entry Name', extra_class: 'nowrap'
+      = th_sort_field @order, 'entries.billing_date', 'Billing Date', extra_class: 'nowrap'
+      = th_sort_field @order, 'entries.amount', 'Amount', extra_class: 'nowrap'
+      %th.center Charged
       %th Charge Type
       %th Account
   %tbody
@@ -15,7 +15,7 @@
         %td= link_to entry.name, entry
         %td= simple_date entry.billing_date
         %td.text-right= entry.amount.to_currency
-        %td.text-center= simple_check entry.charged?
+        %td.center= simple_check entry.charged?
         %td= link_to entry.charge_type.name, entry.charge_type
         %td= link_to entry.charge_type.account.name, entry.charge_type.account
 

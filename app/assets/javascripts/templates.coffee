@@ -1,21 +1,21 @@
-@templatesReady = () ->
+@templatesReady = ->
   $('#items[data-object~="sortable"]').sortable(handle: '.item-handle')
 
-@showEntryContents = () ->
+@showEntryContents = ->
   $('.template-contents').hide()
   $('.entry-contents').show()
   resetEntryTemplateButtons()
 
-@resetEntryTemplateButtons = () ->
+@resetEntryTemplateButtons = ->
   $.rails.enableElement($('a[data-disable-with]'))
 
 $(document)
-  .on('click', '[data-object~="template-modal"]', () ->
+  .on('click', '[data-object~="template-modal"]', ->
     $('.entry-contents').hide()
     $('.template-contents').show()
     false
   )
-  .on('click', '[data-object~="entry-modal"]', () ->
+  .on('click', '[data-object~="entry-modal"]', ->
     showEntryContents()
     false
   )

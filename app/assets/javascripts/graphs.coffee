@@ -29,7 +29,7 @@
   else
     $('#chart-container').html('')
 
-@graphsReady = () ->
-  $('[data-object~="chart-container"]').each( () ->
+@graphsReady = ->
+  $('[data-object~="chart-container"]').each( ->
     drawChart($(this))
   )

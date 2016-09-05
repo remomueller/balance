@@ -29,13 +29,13 @@
 
 @toggleCheckboxGroup = (index) ->
   mode = $('.rule_group_'+index+'_parent').is(':checked');
-  $('.rule_group_'+index).each( () ->
+  $('.rule_group_'+index).each( ->
     if mode then $(this).attr('checked','checked') else $(this).removeAttr('checked')
   )
 
 @toggleCheckboxGroupParent = (index) ->
   mode = true
-  $('.rule_group_'+index).each( () ->
+  $('.rule_group_'+index).each( ->
     unless $(this).is(':checked')
       mode = false
   )
@@ -46,7 +46,7 @@
     return false
   return true
 
-@getToday = () ->
+@getToday = ->
   now = new Date()
   $('#selected_date').val((now.getMonth() + 1) + "/" + now.getDate() + "/" + now.getFullYear())
   $('#calendar-form').submit()
@@ -55,29 +55,34 @@
   val = $(element_id).val()
   $(element_id).focus().val('').val(val)
 
-@globalReady = () ->
+@globalReady = ->
   $('#user_email').focus()
   $('#entry_name').focus()
   $('#account_name').focus()
   $('#charge_type_name').focus()
   setFocusToField("#search")
   templatesReady()
+  $('[data-object~="form-load"]').submit()
 
-@ready = () ->
-  contourReady()
+@extensionsReady = ->
+  datepickerReady()
+  tooltipsReady()
+  typeaheadReady()
+
+@ready = ->
   globalReady()
   entriesReady()
   graphsReady()
-  $("[rel=tooltip]").tooltip()
+  extensionsReady()
 
 $(document).ready(ready)
 $(document)
   .on('turbolinks:load', ready)
-  .on('click', '[data-object~="submit"]', () ->
+  .on('click', '[data-object~="submit"]', ->
     $($(this).data('target')).submit()
     false
   )
-  .on('click', '[data-object~="set-value"]', () ->
+  .on('click', '[data-object~="set-value"]', ->
     $($(this).data('target')).val($(this).data('value'))
     $($(this).data('form')).submit()
   )

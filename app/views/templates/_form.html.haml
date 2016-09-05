@@ -26,4 +26,4 @@
   .form-group
     .col-md-10.col-md-offset-2
       = f.submit nil, class: 'btn btn-primary'
-      = cancel
+      = link_to 'Cancel', @template.new_record? ? templates_path : @template, class: 'btn btn-default'

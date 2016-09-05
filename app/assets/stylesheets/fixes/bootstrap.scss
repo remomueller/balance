@@ -1,0 +1,17 @@
+// Fixes for bootstrap to make sure popups and tooltips display over modals
+
+.popover,
+.tooltip {
+  z-index: 2000;
+}
+
+.jumbotron {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.navbar a,
+.navbar-header,
+.navbar-header img {
+  @include ignore-selection;
+}

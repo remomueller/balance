@@ -19,6 +19,11 @@ module Balance
     # config.time_zone = 'Central Time (US & Canada)'
     config.time_zone = 'Eastern Time (US & Canada)'
 
+    # Overwrite Rails errors to use Bootstrap CSS classes
+    config.action_view.field_error_proc = Proc.new do |html_tag, instance|
+      "<span class=\"has-error\">#{html_tag}</span>".html_safe
+    end
+
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de

@@ -16,12 +16,14 @@
   - Updated to Ruby 2.3.1
   - Updated to rails 4.2.6
   - Updated to pg 0.18.4
+  - Updated to devise 4.2.0
   - Updated to simplecov 0.11.2
   - Updated to jquery-rails 4.1.1
   - Updated to turbolinks 5
   - Updated to kaminari 0.17.0
   - Updated to colorize 0.8.1
   - Updated to simplecov 0.12.0
+  - Removed dependency on contour
 
 ### Bug Fix
 - Fixed a bug that caused double quotes in tooltips to break tooltips
