@@ -1,7 +1,10 @@
 - @title = 'Backup'
-.page-header
-  %h1
-    Backup
+
+- content_for :header do
+  .background-gradient
+  .header-container
+    .container
+      %h1.page-heading= @title
 
 .center
   = link_to 'Generate a New Data Backup', generate_backup_path, method: :post, class: 'btn btn-lg btn-primary'

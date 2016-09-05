@@ -1,11 +1,14 @@
 - @title = 'Backup Succeeded'
-.page-header
-  %h1
-    = link_to 'Backup', backup_path
+
+- content_for :header do
+  .background-gradient
+  .header-container
+    .container
+      %h1.page-heading= @title
 
 .jumbotron
   %p.lead.center{ style: 'margin: 0' }
     Your data backup
     = succeed '.' do
-      %span.label.label-success succeeded
+      %span.label.label-accent succeeded
 

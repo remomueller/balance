@@ -7,7 +7,7 @@ Rails.application.routes.draw do
     get :search, on: :collection
   end
 
-  resources :charge_types do
+  resources :charge_types, path: 'charge-types' do
     get :search, on: :collection
   end
 
@@ -23,7 +23,7 @@ Rails.application.routes.draw do
       get :earning_spending_graph
       get :autocomplete
       get :averages
-      get :current_balance
+      get :current_balance, path: 'current-balance'
     end
   end
 
