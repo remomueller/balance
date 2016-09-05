@@ -30,6 +30,10 @@
     $('#chart-container').html('')
 
 @graphsReady = ->
+  Highcharts.setOptions(
+    lang:
+      thousandsSep: ','
+  )
   $('[data-object~="chart-container"]').each( ->
     drawChart($(this))
   )
