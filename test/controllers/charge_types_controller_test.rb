@@ -52,7 +52,7 @@ class ChargeTypesControllerTest < ActionController::TestCase
   end
 
   test 'should update charge type' do
-    put :update, params: {
+    patch :update, params: {
       id: @charge_type,
       charge_type: @charge_type.attributes
     }
@@ -60,7 +60,7 @@ class ChargeTypesControllerTest < ActionController::TestCase
   end
 
   test 'should not update charge type without name' do
-    put :update, params: {
+    patch :update, params: {
       id: @charge_type,
       charge_type: { name: '', account_id: accounts(:my_bank).to_param }
     }

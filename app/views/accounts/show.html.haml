@@ -1,21 +1,32 @@
 - @title = @account.name
-.page-header
-  %h1
-    = link_to 'Accounts', accounts_path
-    &middot;
-    = @title
-  = link_to 'Edit Account', edit_account_path(@account), class: 'btn btn-xs btn-default'
-  = link_to 'Delete Account', @account, method: :delete, class: 'btn btn-xs btn-danger-inverse', data: { confirm: "Are you sure you want to delete Account #{@account.name}?" }
 
-%dl.dl-horizontal
-  %dt Current Balance
-  %dd= @account.balance(:amount).to_currency
+- content_for :header do
+  .background-gradient
+  .header-container
+    .container
+      %h1.page-heading
+        = link_to 'Accounts', accounts_path
+        &middot;
+        = @title
+        = link_to 'Edit Account', edit_account_path(@account), class: 'btn btn-xs btn-default'
+        = link_to 'Delete Account', @account, method: :delete, class: 'btn btn-xs btn-danger-inverse', data: { confirm: "Are you sure you want to delete Account #{@account.name}?" }
 
-  %dt Total Spent
-  %dd= @account.total_spent.to_currency
+.jumbotron.jumbotron-white.shadow
+  %table.table.table-borderless
+    %col.hidden-xs{ width: '30%' }
+    %col.hidden-sm.hidden-md.hidden-lg{ width: '50%' }
+    %tr
+      %th Category
+      %td= @account.category_name
 
-  %dt Charge Types
-  %dd
-    %ul
-      - @account.charge_types.each do |charge_type|
-        %li= link_to charge_type.name, charge_type
+    %tr
+      %th Current Balance
+      %td= @account.balance(:amount).to_currency
+
+    %tr
+      %th Total Spent
+      %td= @account.total_spent.to_currency
+
+    %tr
+      %th Charge Types
+      %td= @account.charge_types.collect { |charge_type| link_to charge_type.name, charge_type }.join(', ').html_safe

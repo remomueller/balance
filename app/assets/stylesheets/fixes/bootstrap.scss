@@ -6,8 +6,14 @@
 }
 
 .jumbotron {
+  @include remove-last-child-bottom-margin;
+
   padding-left: 15px;
   padding-right: 15px;
+
+  &.jumbotron-white {
+    background-color: $brand-white;
+  }
 }
 
 .navbar a,

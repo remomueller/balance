@@ -1,7 +1,10 @@
 ## 2.1.0
 
 ### Enhancements
-- **Gem Updates**
+- **Account Changes**
+  - Accounts can now be categorized as "Savings" or "Investments"
+  - Current balance page subtotals accounts by category
+- **Gem Changes**
   - Updated to rails 5.0.0.1
   - Updated to coffee-rails 4.2
   - Updated to jquery-rails 4.2.1

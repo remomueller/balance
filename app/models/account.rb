@@ -3,11 +3,15 @@
 # Stores the total value of a single account. Can have multiple charge types
 # that can count towards spending or be transfers.
 class Account < ApplicationRecord
+  # Constants
+  CATEGORIES = [%w(Savings savings), %w(Investments investments)]
+
   # Concerns
   include Searchable, Deletable
 
   # Model Validation
   validates :name, presence: true
+  validates :category, inclusion: { in: CATEGORIES.collect(&:second) }
 
   # Model Relationships
   belongs_to :user
@@ -36,5 +40,15 @@ class Account < ApplicationRecord
     @average_spent_over_time_period ||= begin
       spent_in_time_period(start_date, end_date) / (end_date - start_date + 1.0)
     end
+  end
+
+  def category_name
+    Account.category_name(category)
+  end
+
+  def self.category_name(category)
+    CATEGORIES.find { |_name, value| value == category }.first
+  rescue
+    'Uncategorized'
   end
 end

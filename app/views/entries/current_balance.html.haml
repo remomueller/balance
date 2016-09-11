@@ -9,19 +9,40 @@
 
 - unarchived_accounts = current_user.accounts.where(archived: false)
 
-%table.table.table-striped.table-hover.table-fixed
-  %thead
-    %tr
-      %th Account
-      %th.text-right Charged Balance
-      %th.text-right Final Balance
-  - total_assets = unarchived_accounts.collect { |a| a.balance(:amount) }.sum
-  %tfoot
-    %th{ colspan: 2 } Total Assets
-    %th.text-right= total_assets.to_currency
-  %tbody
-    - unarchived_accounts.order(:archived, :name).each do |account|
+- unarchived_accounts.order('category desc', :name).group_by(&:category).each do |category, accounts|
+  - total_amount = 0
+  - total_charged_amount = 0
+  %h2.brand-white-text= Account.category_name(category)
+  %table.table.table-striped.table-hover.table-fixed.shadow
+    %thead
       %tr
-        %td= link_to account.name, account
-        %td.text-right= account.balance(:charged_amount).to_currency
-        %td.text-right= account.balance(:amount).to_currency
+        %th Account
+        %th.text-right Charged Balance
+        %th.text-right Final Balance
+    %tbody
+      - accounts.each do |account|
+        %tr
+          %td= link_to account.name, account
+          %td.text-right
+            - account_charged_amount = account.balance(:charged_amount)
+            - total_charged_amount += account_charged_amount
+            = account_charged_amount.to_currency
+          %td.text-right
+            - account_amount = account.balance(:amount)
+            - total_amount += account_amount
+            = account_amount.to_currency
+    %tfoot
+      %tr
+        %th Total
+        %th.text-right=# total_charged_amount.to_currency
+        %th.text-right= total_amount.to_currency
+
+%h2.brand-white-text Total
+%table.table.table-striped.table-hover.table-fixed.shadow
+  %tbody
+    %tr
+      %th Final Balance
+      %th.text-right
+      %th.text-right
+        - total_assets = unarchived_accounts.collect { |a| a.balance(:amount) }.sum
+        = total_assets.to_currency

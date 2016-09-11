@@ -3,9 +3,9 @@
 my_bank:
   user: valid
   name: My Bank
-  deleted: false
-    
+  category: savings
+
 my_sofa:
   user: valid
   name: Money Under My Sofa
-  deleted: false
+  category: savings

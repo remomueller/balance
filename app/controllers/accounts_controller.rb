@@ -7,7 +7,10 @@ class AccountsController < ApplicationController
 
   # GET /accounts
   def index
-    @order = scrub_order(Account, params[:order], 'accounts.archived, accounts.name')
+    @order = scrub_order(
+      Account, params[:order],
+      'accounts.archived, accounts.category desc, accounts.name'
+    )
     @accounts = current_user.accounts.search(params[:search])
                             .order(@order)
                             .page(params[:page]).per(40)
@@ -63,6 +66,6 @@ class AccountsController < ApplicationController
   end
 
   def account_params
-    params.require(:account).permit(:name, :archived)
+    params.require(:account).permit(:name, :category, :archived)
   end
 end

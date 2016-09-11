@@ -9,6 +9,14 @@ class AccountsControllerTest < ActionController::TestCase
     login(users(:valid))
   end
 
+  def account_params
+    {
+      name: 'My Bank',
+      category: 'savings',
+      archived: '0'
+    }
+  end
+
   test 'should get index' do
     get :index
     assert_response :success
@@ -22,15 +30,14 @@ class AccountsControllerTest < ActionController::TestCase
 
   test 'should create account' do
     assert_difference('Account.count') do
-      post :create, params: { account: @account.attributes }
+      post :create, params: { account: account_params }
     end
-
     assert_redirected_to account_path(Account.last)
   end
 
   test 'should not create account without name' do
     assert_difference('Account.count', 0) do
-      post :create, params: { account: { name: '' } }
+      post :create, params: { account: account_params.merge(name: '') }
     end
     assert_not_nil assigns(:account)
     assert_template 'new'
@@ -48,12 +55,14 @@ class AccountsControllerTest < ActionController::TestCase
   end
 
   test 'should update account' do
-    put :update, params: { id: @account, account: @account.attributes }
+    patch :update, params: { id: @account, account: account_params }
     assert_redirected_to @account
   end
 
   test 'should not update account with blank name' do
-    put :update, params: { id: @account, account: { name: '' } }
+    patch :update, params: {
+      id: @account, account: account_params.merge(name: '')
+    }
     assert_not_nil assigns(:account)
     assert_template 'edit'
     assert_response :success
