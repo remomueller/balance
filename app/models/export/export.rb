@@ -49,12 +49,13 @@ module Export
     puts 'export '.colorize(:blue) + object
     csv_file = file_base(object)
     CSV.open(csv_file, 'wb') do |csv|
-      csv << ['Account ID', 'User ID', 'Name', 'Archived', 'Deleted']
+      csv << ['Account ID', 'User ID', 'Name', 'Category', 'Archived', 'Deleted']
       Account.order(:id).each do |account|
         csv << [
           account.id,
           account.user_id,
           account.name,
+          account.category,
           account.archived,
           account.deleted
         ]

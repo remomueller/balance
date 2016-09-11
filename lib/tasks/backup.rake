@@ -48,6 +48,7 @@ namespace :backup do
         id: line['Account ID'],
         user_id: line['User ID'],
         name: line['Name'],
+        category: (line['Category'].present? ? line['Category'] : 'savings'),
         archived: (line['Archived'] == 'true'),
         deleted: (line['Deleted'] == 'true')
       )
