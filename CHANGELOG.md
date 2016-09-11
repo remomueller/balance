@@ -4,6 +4,8 @@
 - **Account Changes**
   - Accounts can now be categorized as "Savings" or "Investments"
   - Current balance page subtotals accounts by category
+- **Charge Type Changes**
+  - Charge types are now sorted by account name as well as charge type name
 - **Gem Changes**
   - Updated to rails 5.0.0.1
   - Updated to coffee-rails 4.2

@@ -25,7 +25,7 @@
 .form-group
   = f.label :charge_type_id, class: 'col-md-2 control-label'
   .col-md-10
-    = f.select :charge_type_id, [["----", nil]]  + current_user.charge_types.order(:name).collect{|item| [item.full_name, item.id]}, {}, class: 'form-control'
+    = f.select :charge_type_id, [["----", nil]]  + current_user.charge_types.order(:name, 'accounts.name').collect{|item| [item.full_name, item.id]}, {}, class: 'form-control'
 
 .form-group
   = f.label :decimal_amount, 'Amount', class: 'col-md-2 control-label'

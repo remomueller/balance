@@ -3,12 +3,11 @@
 # Handles creation of transfer and charge types for accounts.
 class ChargeTypesController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_charge_type, only: [ :show, :edit, :update, :destroy ]
-  before_action :redirect_without_charge_type, only: [ :show, :edit, :update, :destroy ]
+  before_action :find_charge_type_or_redirect, only: [:show, :edit, :update, :destroy]
 
   # GET /charge_types
   def index
-    @order = scrub_order(ChargeType, params[:order], 'charge_types.name')
+    @order = scrub_order(ChargeType, params[:order], 'charge_types.name, accounts.name')
     @charge_types = current_user.charge_types.search(params[:search]).order(@order).page(params[:page]).per( 40 )
   end
 
@@ -52,8 +51,9 @@ class ChargeTypesController < ApplicationController
 
   private
 
-  def set_charge_type
-    @charge_type = current_user.charge_types.find_by_id(params[:id])
+  def find_charge_type_or_redirect
+    @charge_type = current_user.charge_types.find_by_id params[:id]
+    redirect_without_charge_type
   end
 
   def redirect_without_charge_type
@@ -62,12 +62,10 @@ class ChargeTypesController < ApplicationController
 
   def charge_type_params
     params[:charge_type] ||= {}
-
     unless params[:charge_type][:account_id].blank?
       account = current_user.accounts.find_by_id(params[:charge_type][:account_id])
       params[:charge_type][:account_id] = account ? account.id : nil
     end
-
     params.require(:charge_type).permit(
       :name, :account_id, :counts_towards_spending
     )
