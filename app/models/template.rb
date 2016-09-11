@@ -2,7 +2,7 @@
 
 # Defines a group of entry templates that can be launched starting on a specific
 # date.
-class Template < ActiveRecord::Base
+class Template < ApplicationRecord
   # Concerns
   include Deletable
 

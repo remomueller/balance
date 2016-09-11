@@ -1,9 +1,5 @@
-class EntryCharged < ActiveRecord::Migration
-  def self.up
-    add_column :entries, :charged, :boolean, :null => false, :default => true
-  end
-
-  def self.down
-    remove_column :entries, :charged
+class EntryCharged < ActiveRecord::Migration[4.2]
+  def change
+    add_column :entries, :charged, :boolean, null: false, default: true
   end
 end

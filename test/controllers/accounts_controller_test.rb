@@ -22,7 +22,7 @@ class AccountsControllerTest < ActionController::TestCase
 
   test 'should create account' do
     assert_difference('Account.count') do
-      post :create, account: @account.attributes
+      post :create, params: { account: @account.attributes }
     end
 
     assert_redirected_to account_path(Account.last)
@@ -30,7 +30,7 @@ class AccountsControllerTest < ActionController::TestCase
 
   test 'should not create account without name' do
     assert_difference('Account.count', 0) do
-      post :create, account: { name: '' }
+      post :create, params: { account: { name: '' } }
     end
     assert_not_nil assigns(:account)
     assert_template 'new'
@@ -38,22 +38,22 @@ class AccountsControllerTest < ActionController::TestCase
   end
 
   test 'should show account' do
-    get :show, id: @account
+    get :show, params: { id: @account }
     assert_response :success
   end
 
   test 'should get edit' do
-    get :edit, id: @account
+    get :edit, params: { id: @account }
     assert_response :success
   end
 
   test 'should update account' do
-    put :update, id: @account, account: @account.attributes
+    put :update, params: { id: @account, account: @account.attributes }
     assert_redirected_to @account
   end
 
   test 'should not update account with blank name' do
-    put :update, id: @account, account: { name: '' }
+    put :update, params: { id: @account, account: { name: '' } }
     assert_not_nil assigns(:account)
     assert_template 'edit'
     assert_response :success
@@ -61,7 +61,7 @@ class AccountsControllerTest < ActionController::TestCase
 
   test 'should destroy account' do
     assert_difference('Account.current.count', -1) do
-      delete :destroy, id: @account.to_param
+      delete :destroy, params: { id: @account.to_param }
     end
     assert_redirected_to accounts_path
   end

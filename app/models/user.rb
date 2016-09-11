@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # Defines the user login, accounts, and entries.
-class User < ActiveRecord::Base
+class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :encryptable, :confirmable, :lockable and :omniauthable
   devise :database_authenticatable, :registerable, :timeoutable,

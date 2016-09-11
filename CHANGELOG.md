@@ -1,5 +1,11 @@
 ## 2.1.0
 
+### Enhancements
+- **Gem Updates**
+  - Updated to rails 5.0.0.1
+  - Updated to coffee-rails 4.2
+  - Updated to jquery-rails 4.2.1
+
 ## 2.0.0 (September 5, 2016)
 
 ### Enhancements

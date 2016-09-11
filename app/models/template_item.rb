@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # Defines a templated entry
-class TemplateItem < ActiveRecord::Base
+class TemplateItem < ApplicationRecord
   # Model Validation
   validates :name, :template_id, :charge_type_id, presence: true
 

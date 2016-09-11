@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # Defines a certain amount and description of the charge or transfer.
-class Entry < ActiveRecord::Base
+class Entry < ApplicationRecord
   # Concerns
   include Searchable, Deletable
 

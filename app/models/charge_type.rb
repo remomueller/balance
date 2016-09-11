@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # Associates entries as transfers or charges to related accounts.
-class ChargeType < ActiveRecord::Base
+class ChargeType < ApplicationRecord
   # Concerns
   include Searchable, Deletable
 

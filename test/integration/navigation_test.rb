@@ -19,7 +19,7 @@ class NavigationTest < ActionDispatch::IntegrationTest
   end
 
   test 'friendly url forwarding after login' do
-    get '/entries'
+    get entries_path
     assert_redirected_to new_user_session_path
     sign_in_as(@valid, '123456')
     assert_equal '/entries', path
@@ -32,13 +32,13 @@ class NavigationTest < ActionDispatch::IntegrationTest
   end
 
   test 'should register new account' do
-    post user_registration_path(
+    post user_registration_path, params: {
       user: {
         first_name: 'register', last_name: 'account',
         email: 'register@account.com', password: 'registerpassword098765',
         password_confirmation: 'registerpassword098765'
       }
-    )
+    }
     assert_equal I18n.t('devise.registrations.signed_up'), flash[:notice]
     assert_redirected_to root_path
   end

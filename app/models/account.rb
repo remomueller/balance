@@ -2,7 +2,7 @@
 
 # Stores the total value of a single account. Can have multiple charge types
 # that can count towards spending or be transfers.
-class Account < ActiveRecord::Base
+class Account < ApplicationRecord
   # Concerns
   include Searchable, Deletable
 
