@@ -14,6 +14,7 @@
   - Updated to rails 5.0.0.1
   - Updated to coffee-rails 4.2
   - Updated to jquery-rails 4.2.1
+  - Updated to pg 0.19.0
 
 ### Bug Fix
 - Fixed entry name autocomplete from rendering dropdown multiple times
