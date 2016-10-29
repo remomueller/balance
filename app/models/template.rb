@@ -4,7 +4,9 @@
 # date.
 class Template < ApplicationRecord
   # Concerns
-  include Deletable
+  include Deletable, Squishable
+
+  squish :name
 
   attr_accessor :item_hashes
   after_save :set_items

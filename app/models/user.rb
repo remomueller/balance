@@ -8,7 +8,9 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
 
   # Concerns
-  include Deletable
+  include Deletable, Squishable
+
+  squish :first_name, :last_name
 
   has_many :accounts, -> { where deleted: false }
   has_many :charge_types, -> { where deleted: false }, through: :accounts

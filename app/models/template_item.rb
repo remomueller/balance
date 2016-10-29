@@ -2,6 +2,11 @@
 
 # Defines a templated entry
 class TemplateItem < ApplicationRecord
+  # Concerns
+  include Squishable
+
+  squish :name
+
   # Model Validation
   validates :name, :template_id, :charge_type_id, presence: true
 

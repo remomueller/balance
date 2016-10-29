@@ -3,7 +3,9 @@
 # Associates entries as transfers or charges to related accounts.
 class ChargeType < ApplicationRecord
   # Concerns
-  include Searchable, Deletable
+  include Searchable, Deletable, Squishable
+
+  squish :name
 
   # Named Scopes
 

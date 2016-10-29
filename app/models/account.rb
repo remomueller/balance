@@ -7,7 +7,9 @@ class Account < ApplicationRecord
   CATEGORIES = [%w(Savings savings), %w(Investments investments)]
 
   # Concerns
-  include Searchable, Deletable
+  include Searchable, Deletable, Squishable
+
+  squish :name
 
   # Model Validation
   validates :name, presence: true

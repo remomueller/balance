@@ -3,7 +3,9 @@
 # Defines a certain amount and description of the charge or transfer.
 class Entry < ApplicationRecord
   # Concerns
-  include Searchable, Deletable
+  include Searchable, Deletable, Squishable
+
+  squish :name
 
   # Named Scopes
   scope :with_date_for_calendar, lambda { |*args|
