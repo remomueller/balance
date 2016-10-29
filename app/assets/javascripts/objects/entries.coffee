@@ -28,13 +28,22 @@
       $(this).data('billing-date') != draggable.data('billing-date')
   )
 
-@entriesReady = ->
-  $('[data-object~="typeahead"]').each( ->
+@entriesTypeahead = ->
+  $("[data-object~='typeahead-entries']").typeahead('destroy')
+  $("[data-object~='typeahead-entries']").each( ->
     $this = $(this)
-    $this.typeahead(
-      remote: $this.data('path') + '?search=%QUERY'
+    bloodhound = new Bloodhound(
+      datumTokenizer: Bloodhound.tokenizers.whitespace
+      queryTokenizer: Bloodhound.tokenizers.whitespace
+      remote:
+        url: "#{$this.data('path')}?search=%QUERY"
+        wildcard: '%QUERY'
     )
+    $this.typeahead({ hint: true }, { source: bloodhound })
   )
+
+@entriesReady = ->
+  @entriesTypeahead()
   activateEntryDraggables()
   activateDayDroppables()
 

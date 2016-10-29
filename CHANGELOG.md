@@ -11,6 +11,9 @@
   - Updated to coffee-rails 4.2
   - Updated to jquery-rails 4.2.1
 
+### Bug Fix
+- Fixed entry name autocomplete from rendering dropdown multiple times
+
 ## 2.0.0 (September 5, 2016)
 
 ### Enhancements

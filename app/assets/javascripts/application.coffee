@@ -23,7 +23,7 @@
 # External
 #= require external/bootstrap-datepicker.js
 #= require external/highcharts-4.2.3.src.js
-#= require external/typeahead.js
+#= require external/typeahead-0.11.1-corejavascript.src.js
 
 # Other
 #= require_tree .
