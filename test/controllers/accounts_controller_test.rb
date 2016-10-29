@@ -29,8 +29,10 @@ class AccountsControllerTest < ActionController::TestCase
   end
 
   test 'should create account' do
-    assert_difference('Account.count') do
-      post :create, params: { account: account_params }
+    assert_difference('ChargeType.count') do
+      assert_difference('Account.count') do
+        post :create, params: { account: account_params }
+      end
     end
     assert_redirected_to account_path(Account.last)
   end

@@ -7,6 +7,7 @@
 - **Account Changes**
   - Accounts can now be categorized as "Savings" or "Investments"
   - Current balance page subtotals accounts by category
+  - Creating a new account generates a default transfer charge type
 - **Charge Type Changes**
   - Charge types are now sorted by account name as well as charge type name
 - **Gem Changes**

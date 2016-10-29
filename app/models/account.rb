@@ -3,6 +3,9 @@
 # Stores the total value of a single account. Can have multiple charge types
 # that can count towards spending or be transfers.
 class Account < ApplicationRecord
+  # Triggers
+  after_create_commit :create_transfer_charge_type
+
   # Constants
   CATEGORIES = [%w(Savings savings), %w(Investments investments)]
 
@@ -52,5 +55,9 @@ class Account < ApplicationRecord
     CATEGORIES.find { |_name, value| value == category }.first
   rescue
     'Uncategorized'
+  end
+
+  def create_transfer_charge_type
+    charge_types.create(name: 'Transfer', counts_towards_spending: false)
   end
 end
