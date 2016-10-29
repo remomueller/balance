@@ -1,0 +1,28 @@
+.dashboard-container {
+  @include remove-last-child-bottom-margin;
+  @include scale-images;
+
+  background-color: $dashboard-bg;
+  border-radius: 3px;
+  box-shadow: 0 30px 60px $standard-shadow-color;
+  color: $text-color;
+  margin-bottom: 40px;
+  padding: 10px;
+
+  > div,
+  > table {
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  + .center > .pagination {
+    margin-top: 0;
+  }
+}
+
+@media screen and (min-width: $screen-sm-min) {
+  .dashboard-container {
+    padding: 30px;
+  }
+}

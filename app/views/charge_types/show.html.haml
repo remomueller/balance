@@ -1,18 +1,41 @@
 - @title = @charge_type.name
-.page-header
-  %h1
-    = link_to 'Charge Types', charge_types_path
-    &middot;
-    = @title
-  = link_to 'Edit Charge Type', edit_charge_type_path(@charge_type), class: 'btn btn-xs btn-default'
-  = link_to 'Delete Charge Type', @charge_type, method: :delete, class: 'btn btn-xs btn-danger-inverse', data: { confirm: "Are you sure you want to delete Charge Type #{@charge_type.name}?" }
 
-%dl.dl-horizontal
-  %dt Account
-  %dd= link_to @charge_type.account.name, @charge_type.account
+- content_for :header do
+  .background-gradient
+  .header-container
+    .container
+      %h1.page-heading
+        .pull-right
+          .dropdown
+            = link_to '#', class: 'btn btn-default dropdown-toggle', data: { toggle: 'dropdown' } do
+              Actions
+              %strong.caret
 
-  %dt Counts Towards Spending
-  %dd= check_box_tag 'counts', 'towards_spending', @charge_type.counts_towards_spending?, disabled: true
+            %ul.dropdown-menu.dropdown-menu-right
+              %li
+                = link_to edit_charge_type_path(@charge_type) do
+                  %span.glyphicon.glyphicon-edit
+                  Edit
+              %li.divider{ role: 'separator' }
+              %li
+                = link_to @charge_type, method: :delete, data: { confirm: "Delete #{@charge_type.name}?" } do
+                  .text-danger
+                    %span.glyphicon.glyphicon-trash
+                    Delete
+        = @title
 
-  %dt Total Spent
-  %dd= @charge_type.total_spent.to_currency
+.dashboard-container
+  %table.table.table-borderless
+    %col.hidden-xs{ width: '30%' }
+    %col.hidden-sm.hidden-md.hidden-lg{ width: '50%' }
+    %tr
+      %th Account
+      %td= link_to @charge_type.account.name, @charge_type.account
+
+    %tr
+      %th Counts Towards Spending
+      %td= check_box_tag 'counts', 'towards_spending', @charge_type.counts_towards_spending?, disabled: true
+
+    %tr
+      %th Total Spent
+      %td= @charge_type.total_spent.to_currency

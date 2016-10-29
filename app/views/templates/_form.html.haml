@@ -1,18 +1,9 @@
 = form_for @template, html: { class: 'form-horizontal' } do |f|
-  - if @template.errors.any?
-    .callout.callout-danger
-      %strong
-        = pluralize @template.errors.count, 'error'
-        prohibited this template from being saved
-
-      %ul
-        - @template.errors.full_messages.each do |message|
-          %li= message
-
   .form-group
     = f.label :name, class: 'col-md-2 control-label'
     .col-md-10
       = f.text_field :name, class: 'form-control'
+      = render 'layouts/errors', object: @template, key: :name
 
   .form-group
     %label.col-md-2.control-label Items

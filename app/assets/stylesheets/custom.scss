@@ -1,20 +1,20 @@
 
 // Other Month
 .last-month .calendar-entry-heading, .next-month .calendar-entry-heading {
-  background-color: #FBF8F2;
+  background-color: #fbf8f2;
 }
 
 .last-month.calendar-entry-body-today, .next-month.calendar-entry-body-today {
-  background-color: #F9E0C8;
+  background-color: #f9e0c8;
 }
 
 .calendar-entry-body-today.last-month .calendar-entry-heading, .calendar-entry-body-today.next-month .calendar-entry-heading {
-  background-color: #FFB475;
+  background-color: #ffb475;
 }
 
 // Hover
 .hover {
-  background-color: #CCFFCC;
+  background-color: #ccffcc;
 }
 
 .hover .calendar-entry-heading {
@@ -34,11 +34,18 @@
 }
 
 .loss {
-  color: #FF6666;
+  color: #ff6666;
 }
 
 .gain {
   color: #669966;
+}
+
+.text-shadow {
+  .gain,
+  .loss {
+    text-shadow: 0 0 4px $brand-white !important;
+  }
 }
 
 .entry-box {

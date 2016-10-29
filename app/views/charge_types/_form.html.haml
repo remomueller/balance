@@ -1,21 +1,9 @@
-.page-header
-  %h1= @title
-
 = form_for @charge_type, html: { class: 'form-horizontal' } do |f|
-  - if @charge_type.errors.any?
-    .callout.callout-danger
-      %strong
-        = pluralize @charge_type.errors.count, 'error'
-        prohibited this charge type from being saved
-
-      %ul
-        - @charge_type.errors.full_messages.each do |message|
-          %li= message
-
   .form-group
     = f.label :name, nil, class: 'col-md-2 control-label'
     .col-md-10
       = f.text_field :name, class: 'form-control'
+      = render 'layouts/errors', object: @charge_type, key: :name
 
   .form-group
     .col-md-offset-2.col-md-10
@@ -28,6 +16,7 @@
     = f.label :account_id, nil, class: 'col-md-2 control-label'
     .col-md-10
       = f.select :account_id, [['----', nil]]  + current_user.accounts.order(:name).pluck(:name, :id), {}, class: 'form-control'
+      = render 'layouts/errors', object: @charge_type, key: :account_id
 
   .form-group
     .col-md-offset-2.col-md-10

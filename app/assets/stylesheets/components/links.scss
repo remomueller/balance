@@ -8,3 +8,26 @@
     color: darken($brand-accent, 10%);
   }
 }
+
+.link-unstyled {
+  color: $text-color;
+
+  &:hover,
+  &:focus,
+  &:active {
+    color: $text-color;
+    text-decoration: none;
+  }
+}
+
+.link-white {
+  @include ignore-selection;
+
+  color: $brand-white;
+
+  &:hover,
+  &:focus,
+  &:active {
+    color: $brand-white;
+  }
+}

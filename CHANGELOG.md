@@ -3,6 +3,7 @@
 ### Enhancements
 - **General Changes**
   - Extra spaces are now removed when saving names
+  - Improved styling across several pages
 - **Account Changes**
   - Accounts can now be categorized as "Savings" or "Investments"
   - Current balance page subtotals accounts by category

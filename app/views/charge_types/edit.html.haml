@@ -1,3 +1,12 @@
-- @title = "Edit Charge Type: #{@charge_type.name_was}"
+- @title =  "#{@charge_type.name_was} Edit"
 
-= render 'form'
+- content_for :header do
+  .background-gradient
+  .header-container
+    .container
+      %h1.page-heading
+        = link_to @charge_type.name_was, @charge_type
+        Edit
+
+.jumbotron.jumbotron-white.shadow
+  = render 'form'

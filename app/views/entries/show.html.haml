@@ -1,25 +1,46 @@
 - @title = @entry.name
-.page-header
-  %h1
-    = link_to 'Entries', entries_path
-    &middot;
-    = @title
-  = link_to 'Edit Entry', edit_entry_path(@entry), class: 'btn btn-xs btn-default'
-  = link_to 'Delete Entry', @entry, method: :delete, class: 'btn btn-xs btn-danger-inverse', data: { confirm: "Are you sure you want to delete Entry #{@entry.name}?" }
-  = link_to 'Copy Entry', copy_entry_path(@entry), class: 'btn btn-xs btn-default'
 
-%dl.dl-horizontal
-  %dt Billing Date
-  %dd= simple_date @entry.billing_date
+- content_for :header do
+  .background-gradient
+  .header-container
+    .container
+      %h1.page-heading
+        .pull-right
+          .dropdown
+            = link_to '#', class: 'btn btn-default dropdown-toggle', data: { toggle: 'dropdown' } do
+              Actions
+              %strong.caret
 
-  %dt Amount
-  %dd= @entry.amount.to_currency
+            %ul.dropdown-menu.dropdown-menu-right
+              %li
+                = link_to edit_entry_path(@entry) do
+                  %span.glyphicon.glyphicon-edit
+                  Edit
+              %li
+                = link_to copy_entry_path(@entry) do
+                  %span.glyphicon.glyphicon-copy
+                  Copy
+              %li.divider{ role: 'separator' }
+              %li
+                = link_to @entry, method: :delete, data: { confirm: "Delete #{@entry.name}?" } do
+                  .text-danger
+                    %span.glyphicon.glyphicon-trash
+                    Delete
+        = @title
 
-  %dt Charged
-  %dd= simple_check @entry.charged?
+.dashboard-container
+  %dl.dl-horizontal
+    %dt Billing Date
+    %dd= simple_date @entry.billing_date
 
-  %dt Charge Type
-  %dd= @entry.charge_type.full_name
+    %dt Amount
+    %dd= @entry.amount.to_currency
 
-  %dt Description
-  %dd= simple_format @entry.description
+    %dt Charged
+    %dd= simple_check @entry.charged?
+
+    %dt Charge Type
+    %dd= @entry.charge_type.full_name
+
+    %dt Description
+    %dd= simple_format @entry.description

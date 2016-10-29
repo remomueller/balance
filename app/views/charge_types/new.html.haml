@@ -1,3 +1,11 @@
 - @title = 'New Charge Type'
 
-= render 'form'
+- content_for :header do
+  .background-gradient
+  .header-container
+    .container
+      %h1.page-heading
+        = @title
+
+.dashboard-container
+  = render 'form'

@@ -1,12 +1,12 @@
-.page-header
-  %h3 Spending This Month
+%h2.brand-white-text.text-shadow
+  Spending This Month
 
-%table.table.table-striped.table-bordered
+%table.table.table-striped.table-borderless.shadow
   %thead
     %tr
       %th Account
-      %th Spending
-      %th Daily Average
+      %th.text-right Spending
+      %th.text-right Daily Average
   %tbody
     - current_user.accounts.each do |account|
       - unless account.spent_in_time_period(@start_month, @end_month) == 0

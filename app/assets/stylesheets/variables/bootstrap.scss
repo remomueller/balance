@@ -25,13 +25,13 @@
 // $brand-danger:          #d9534f !default;
 $brand-white:           #fff;
 $brand-gray:            #ccc;
-$brand-black:           $P900;
+$brand-black:           $p900;
 
-$brand-primary:         $P500 !default;
-$brand-accent:          $A200 !default;
-$brand-accent-text:     $A200-text !default;
-$link-color:            $A700 !default;
-$brand-muted:           $P300 !default;
+$brand-primary:         $p500 !default;
+$brand-accent:          $a200 !default;
+$brand-accent-text:     $a200-text !default;
+$link-color:            $a700 !default;
+$brand-muted:           $p300 !default;
 
 // //== Scaffolding
 // //
@@ -360,7 +360,7 @@ $input-border-focus:             $brand-accent;
 // $navbar-collapse-max-height:       340px !default;
 
 $navbar-default-color:             $brand-white;
-$navbar-default-bg:                $P600 !default;
+$navbar-default-bg:                $p600 !default;
 // $navbar-default-border:            darken($navbar-default-bg, 6.5%) !default;
 
 // Navbar links
@@ -378,9 +378,9 @@ $navbar-default-brand-hover-color:         $navbar-default-link-hover-color;
 // $navbar-default-brand-hover-bg:            transparent !default;
 
 // // Navbar toggle
-$navbar-default-toggle-hover-bg:           $P700 !default;
-$navbar-default-toggle-icon-bar-bg:        $P300 !default;
-$navbar-default-toggle-border-color:       $P800 !default;
+$navbar-default-toggle-hover-bg:           $p700 !default;
+$navbar-default-toggle-icon-bar-bg:        $p300 !default;
+$navbar-default-toggle-border-color:       $p800 !default;
 
 
 // // Inverted navbar
@@ -483,7 +483,7 @@ $navbar-default-toggle-border-color:       $P800 !default;
 
 // $jumbotron-padding:              30px !default;
 // $jumbotron-color:                inherit !default;
-$jumbotron-bg:                   $P50 !default; // $gray-lighter !default;
+$jumbotron-bg:                   $p50 !default; // $gray-lighter !default;
 // $jumbotron-heading-color:        inherit !default;
 // $jumbotron-font-size:            ceil(($font-size-base * 1.5)) !default;
 

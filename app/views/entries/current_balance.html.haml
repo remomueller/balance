@@ -12,7 +12,7 @@
 - unarchived_accounts.order('category desc', :name).group_by(&:category).each do |category, accounts|
   - total_amount = 0
   - total_charged_amount = 0
-  %h2.brand-white-text= Account.category_name(category)
+  %h2.brand-white-text.text-shadow= Account.category_name(category)
   %table.table.table-striped.table-hover.table-fixed.shadow
     %thead
       %tr
@@ -37,7 +37,7 @@
         %th.text-right=# total_charged_amount.to_currency
         %th.text-right= total_amount.to_currency
 
-%h2.brand-white-text Total
+%h2.brand-white-text.text-shadow Total
 %table.table.table-striped.table-hover.table-fixed.shadow
   %tbody
     %tr

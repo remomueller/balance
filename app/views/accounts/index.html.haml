@@ -5,14 +5,27 @@
   .header-container
     .container
       %h1.page-heading
+        .pull-right
+          = link_to plus_or('New Account'), new_account_path, class: 'btn btn-accent btn-shadow'
+          .per-page= render 'layouts/per_page', per_page: 40, object_count: @accounts.total_count
         = @title
-        = link_to 'Create Account', new_account_path, class: 'btn btn-xs btn-accent'
-        .per-page= render 'layouts/per_page', per_page: 40, object_count: @accounts.total_count
+        = render 'search/toggle'
 
-= form_tag accounts_path, method: :get, class: 'form-inline', style: 'margin-bottom: 20px' do
-  = hidden_field_tag :order, params[:order]
-  = text_field_tag 'search', params[:search], class: 'form-control'
-  = submit_tag 'Search', class: 'btn btn-primary', name: nil
-  = link_to 'Reset', accounts_path, class: 'btn btn-default'
+= render 'search/simple', url: accounts_path
 
-= render 'accounts/accounts'
+%table.table.table-striped.shadow
+  %thead
+    %tr
+      %th Account Name
+      %th Category
+      %th Charge Types
+      %th.center Archived
+  %tbody
+    - @accounts.each do |account|
+      %tr
+        %td= link_to account.name, account
+        %td= account.category_name
+        %td= account.charge_types.collect { |charge_type| link_to charge_type.name, charge_type }.join(', ').html_safe
+        %td.center= simple_check account.archived?
+
+.center= paginate @accounts, theme: 'bootstrap'

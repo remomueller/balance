@@ -1,15 +1,25 @@
 .page-heading {
   font-weight: normal !important;
   position: relative;
-  text-shadow: 0 2px 3px rgba(0, 0, 0, 0.3);
+  text-shadow: 0 2px 3px $standard-shadow-color;
+  word-break: break-word;
 
-  .btn {
+  .btn,
+  .dropdown-menu {
     text-shadow: none;
+  }
+
+  > a {
+    color: $breadcrumb-link-color;
+  }
+
+  > a:hover {
+    color: darken($breadcrumb-link-color, 10%);
   }
 }
 
 .header-container {
-  background-color: $P500;
+  background-color: $p500;
   color: $brand-white;
   padding: 20px 0;
 

@@ -1,0 +1,7 @@
+// Make sure images fit in parent container.
+@mixin scale-images {
+  img {
+    height: auto;
+    max-width: 100%;
+  }
+}

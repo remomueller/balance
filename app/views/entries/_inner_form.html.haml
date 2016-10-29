@@ -4,6 +4,7 @@
   = f.label :name, class: 'col-md-2 control-label'
   .col-md-10
     = f.text_field :name, class: 'form-control', data: { object: 'typeahead-entries', path: autocomplete_entries_path }, autocomplete: 'off'
+    = render 'layouts/errors', object: @entry, key: :name
 
 .form-group
   = f.label :description, class: 'col-md-2 control-label'
@@ -14,6 +15,7 @@
   = f.label :billing_date, class: 'col-md-2 control-label'
   .col-md-10
     = f.text_field :billing_date, class: 'datepicker form-control', value: @entry.billing_date ? @entry.billing_date.strftime('%m/%d/%Y') : ''
+    = render 'layouts/errors', object: @entry, key: :billing_date
 
 .form-group
   .col-md-10.col-md-offset-2
@@ -26,6 +28,7 @@
   = f.label :charge_type_id, class: 'col-md-2 control-label'
   .col-md-10
     = f.select :charge_type_id, [["----", nil]]  + current_user.charge_types.order(:name, 'accounts.name').collect{|item| [item.full_name, item.id]}, {}, class: 'form-control'
+    = render 'layouts/errors', object: @entry, key: :charge_type_id
 
 .form-group
   = f.label :decimal_amount, 'Amount', class: 'col-md-2 control-label'

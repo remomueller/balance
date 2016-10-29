@@ -1,12 +1,12 @@
-- @title = "Edit Template: #{@template.name_was}"
+- @title =  "#{@template.name_was} Edit"
 
-.page-header
-  %h1
-    = link_to 'Templates', templates_path
-    &middot;
-    = link_to @template.name_was, @template
-    &middot;
-    Edit
+- content_for :header do
+  .background-gradient
+  .header-container
+    .container
+      %h1.page-heading
+        = link_to @template.name_was, @template
+        Edit
 
-= render 'form'
-
+.jumbotron.jumbotron-white.shadow
+  = render 'form'

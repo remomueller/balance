@@ -4,7 +4,7 @@
 - gross_income = @month_entries.select{|e| not e.charge_type.counts_towards_spending?}.collect{|e| e.amount}.sum
 - net_profit = gross_income - gross_spending
 
-%div{ style: 'float: right;text-align: right;margin-top: -70px;' }
+%div.text-shadow{ style: 'float: right;text-align: right;margin-top: -120px;' }
   %b Gross Income
   = gross_income.to_currency
   %br

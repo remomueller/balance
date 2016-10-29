@@ -1,14 +1,11 @@
-- @title =  "Edit Account: #{@account.name_was}"
+- @title =  "#{@account.name_was} Edit"
 
 - content_for :header do
   .background-gradient
   .header-container
     .container
       %h1.page-heading
-        = link_to 'Accounts', accounts_path
-        &middot;
         = link_to @account.name_was, @account
-        &middot;
         Edit
 
 .jumbotron.jumbotron-white.shadow
