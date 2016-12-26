@@ -18,7 +18,11 @@ class ApplicationControllerTest < ActionController::TestCase
     assert_equal Balance::VERSION::MAJOR, version['version']['major']
     assert_equal Balance::VERSION::MINOR, version['version']['minor']
     assert_equal Balance::VERSION::TINY, version['version']['tiny']
-    assert_equal Balance::VERSION::BUILD, version['version']['build']
+    if Balance::VERSION::BUILD.nil?
+      assert_nil version['version']['build']
+    else
+      assert_equal Balance::VERSION::BUILD, version['version']['build']
+    end
     assert_response :success
   end
 end
