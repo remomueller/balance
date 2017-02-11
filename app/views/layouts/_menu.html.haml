@@ -13,7 +13,7 @@
           = @menu_title || @title
     .collapse.navbar-collapse.navbar-full-menu
       %ul.nav.navbar-nav.navbar-hide-scrolled
-        %li{ class: "#{'active' if current_page?(root_path) || current_page?(calendar_path)}" }
+        %li{ class: "#{'active' if current_page?(root_url) || current_page?(calendar_path)}" }
           = link_to root_path do
             %span.glyphicon.glyphicon-calendar
             Calendar
