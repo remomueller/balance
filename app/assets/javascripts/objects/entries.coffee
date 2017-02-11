@@ -14,7 +14,8 @@
 
 @activateDayDroppables = ->
   $('.day_droppable').droppable(
-    hoverClass: "hover"
+    classes:
+      'ui-droppable-hover': 'hover'
     tolerance: "pointer"
     drop: ( event, ui ) ->
       billing_date = $(this).data('billing-date')

@@ -14,7 +14,7 @@ gem 'kaminari',             '~> 0.17.0'
 gem 'haml',                 '~> 4.0.7'
 gem 'figaro',               '~> 1.1.1'
 gem 'colorize',             '~> 0.8.1'
-gem 'jquery-ui-rails',      '~> 5.0.5'
+gem 'jquery-ui-rails',      '~> 6.0.1'
 
 # Rails Defaults
 gem 'coffee-rails',         '~> 4.2'
