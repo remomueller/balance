@@ -10,7 +10,7 @@ gem 'pg',                   '0.19.0'
 # Gems used by project
 gem 'devise',               '~> 4.2.0'
 gem 'bootstrap-sass',       '~> 3.3.7'
-gem 'kaminari',             '~> 0.17.0'
+gem 'kaminari',             '~> 1.0.1'
 gem 'haml',                 '~> 4.0.7'
 gem 'figaro',               '~> 1.1.1'
 gem 'colorize',             '~> 0.8.1'

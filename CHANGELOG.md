@@ -5,6 +5,7 @@
   - Updated to Ruby 2.4.0
   - Updated to rails 5.0.1
   - Updated to jquery-ui-rails 6.0.1
+  - Updated to kaminari 1.0.1
 
 ## 2.1.0 (November 5, 2016)
 
