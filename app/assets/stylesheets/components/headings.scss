@@ -59,23 +59,32 @@
   }
 }
 
-.navbar-header {
-  .navbar-brand {
-    display: block;
+#top-menu {
+  .navbar-show-scrolled {
+    display: none;
+  }
 
-    &.page-title {
+  &.navbar-scrolled {
+    .navbar-hide-scrolled {
       display: none;
+    }
+    .navbar-show-scrolled {
+      color: $brand-white;
+      display: block;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      max-width: 80%;
     }
   }
 }
 
-.navbar-header.navbar-page-title {
-  .navbar-brand {
-    display: none;
-
-    &.page-title {
-      color: $brand-white;
-      display: block;
+@media screen and (min-width: $screen-sm-min) {
+  #top-menu {
+    &.navbar-scrolled {
+      .navbar-show-scrolled {
+        max-width: initial;
+      }
     }
   }
 }
