@@ -6,6 +6,7 @@
   - Updated to rails 5.0.1
   - Updated to jquery-ui-rails 6.0.1
   - Updated to kaminari 1.0.1
+  - Updated to simplecov 0.13.0
 
 ## 2.1.0 (November 5, 2016)
 
