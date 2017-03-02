@@ -4,6 +4,10 @@
 - **Gem Changes**
   - Updated to rails 5.0.2
 
+### Bug Fix
+- Fixed a bug that reloaded the templates page when removing an item from an
+  existing template
+
 ### Refactoring
 - Refactored controllers and models based on Rubocop recommendations
 

@@ -92,3 +92,7 @@ $(document)
     $($(this).data('target')).val($(this).data('value'))
     $($(this).data('form')).submit()
   )
+  .on('click', '[data-object~="remove"]', ->
+    $($(this).data('target')).remove()
+    false
+  )
