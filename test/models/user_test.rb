@@ -7,7 +7,7 @@ SimpleCov.command_name 'test:models'
 # Unit tests for user methods
 class UserTest < ActiveSupport::TestCase
   test 'should get total expenditures' do
-    assert users(:valid).total_expenditures.is_a?(Fixnum)
+    assert users(:valid).total_expenditures.is_a?(Integer)
   end
 
   test 'should get average expenditures per day' do
