@@ -78,4 +78,12 @@ class User < ApplicationRecord
   def reverse_name
     "#{last_name}, #{first_name}"
   end
+
+  def last_entry_id
+    entries.order(id: :desc).limit(1).pluck(:id).first || 0
+  end
+
+  def no_recent_backup?
+    last_backup_at.nil? || last_backup_entry_id < last_entry_id
+  end
 end

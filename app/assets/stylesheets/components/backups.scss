@@ -1,0 +1,18 @@
+@keyframes pulse-backup {
+  from {
+    color: $state-warning-bg;
+  }
+
+  to {
+    color: $p100;
+  }
+}
+
+.navbar-default .navbar-nav .backup-link span {
+  animation: pulse-backup 2s ease-in infinite alternate;
+  color: $state-warning-bg;
+}
+
+.navbar-default .navbar-nav .backup-link:hover span {
+  color: darken($state-warning-bg, 15%);
+}

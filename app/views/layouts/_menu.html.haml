@@ -55,6 +55,10 @@
           = link_to 'Logout', destroy_user_session_path, class: 'btn btn-primary-dark'
 
         %ul.nav.navbar-nav.navbar-right
+          - if current_user.no_recent_backup?
+            %li.hidden-xs
+              = link_to generate_backup_path, method: :post, class: 'backup-link' do
+                %span.glyphicon.glyphicon-bell{ rel: 'tooltip', data: { title: 'Backup now', container: 'body', placement: 'left' } }
           %li.dropdown.hidden-xs
             = link_to '#', class: 'dropdown-toggle', data: { object: 'dropdown', toggle: 'dropdown' } do
               = current_user.first_name

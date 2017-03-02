@@ -1,6 +1,8 @@
 ## 2.3.0
 
 ### Enhancements
+- **General Changes**
+  - Time of last backup is now tracked
 - **Gem Changes**
   - Updated to rails 5.0.2
 
