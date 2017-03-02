@@ -12,8 +12,8 @@ class User < ApplicationRecord
 
   squish :first_name, :last_name
 
-  has_many :accounts, -> { where deleted: false }
-  has_many :charge_types, -> { where deleted: false }, through: :accounts
+  has_many :accounts, -> { current }
+  has_many :charge_types, -> { current }, through: :accounts
   has_many :entries, -> { current }
   has_many :templates, -> { current }
 
@@ -27,7 +27,7 @@ class User < ApplicationRecord
 
   def total_spent_per_day
     if entries.size > 0
-      (total_expenditures / (Date.today - first_billing_date)).to_f
+      (total_expenditures / (Time.zone.today - first_billing_date)).to_f
     else
       0.0
     end

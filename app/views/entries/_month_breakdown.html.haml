@@ -12,7 +12,7 @@
     %tr
       - (0..@end_date - @start_date).each do |first_day_offset|
         - iDate = @start_date + first_day_offset.day
-        %td{ valign: 'top', style: 'border: 1px solid #ddd', class: "#{'calendar-entry-body-today' if iDate == Date.today} #{'last-month' if iDate < @start_month} #{'next-month' if iDate > @end_month} day_droppable", data: { billing_date: iDate.strftime('%m/%d/%Y') }, onmouseover: "$('#calendar_box_#{first_day_offset}_new_entry_link').show();", onmouseout: "$('#calendar_box_#{first_day_offset}_new_entry_link').hide();", ondblclick: "openCalendarPopup('#{iDate.strftime('%m/%d/%Y')}');" }
+        %td{ valign: 'top', style: 'border: 1px solid #ddd', class: "#{'calendar-entry-body-today' if iDate == Time.zone.today} #{'last-month' if iDate < @start_month} #{'next-month' if iDate > @end_month} day_droppable", data: { billing_date: iDate.strftime('%m/%d/%Y') }, onmouseover: "$('#calendar_box_#{first_day_offset}_new_entry_link').show();", onmouseout: "$('#calendar_box_#{first_day_offset}_new_entry_link').hide();", ondblclick: "openCalendarPopup('#{iDate.strftime('%m/%d/%Y')}');" }
           %div{ style: 'width:100%' }
             .calendar-entry-heading
               - if [@start_date, @start_month, (@end_month + 1.day)].include?(iDate)

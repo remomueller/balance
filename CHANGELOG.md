@@ -4,6 +4,9 @@
 - **Gem Changes**
   - Updated to rails 5.0.2
 
+### Refactoring
+- Refactored controllers and models based on Rubocop recommendations
+
 ## 2.2.0 (February 11, 2017)
 
 ### Enhancements

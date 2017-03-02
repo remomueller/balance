@@ -4,7 +4,7 @@
 # date.
 class Template < ApplicationRecord
   # Concerns
-  include Deletable, Squishable
+  include Deletable, Squishable, Searchable
 
   squish :name
 

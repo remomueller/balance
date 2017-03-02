@@ -7,27 +7,24 @@ class AccountsController < ApplicationController
 
   # GET /accounts
   def index
-    @order = scrub_order(
-      Account, params[:order],
-      'accounts.archived, accounts.category desc, accounts.name'
-    )
-    @accounts = current_user.accounts.search(params[:search])
-                            .order(@order)
-                            .page(params[:page]).per(40)
+    scope = current_user.accounts
+    scope = scope_includes(scope)
+    scope = scope_filter(scope)
+    @accounts = scope_order(scope).page(params[:page]).per(40)
   end
 
-  # GET /accounts/1
-  def show
-  end
+  # # GET /accounts/1
+  # def show
+  # end
 
   # GET /accounts/new
   def new
     @account = current_user.accounts.new
   end
 
-  # GET /accounts/1/edit
-  def edit
-  end
+  # # GET /accounts/1/edit
+  # def edit
+  # end
 
   # POST /accounts
   def create
@@ -57,7 +54,7 @@ class AccountsController < ApplicationController
   private
 
   def find_account_or_redirect
-    @account = current_user.accounts.find_by_id params[:id]
+    @account = current_user.accounts.find_by(id: params[:id])
     redirect_without_account
   end
 
@@ -67,5 +64,21 @@ class AccountsController < ApplicationController
 
   def account_params
     params.require(:account).permit(:name, :category, :archived)
+  end
+
+  def scope_includes(scope)
+    scope.includes(:charge_types)
+  end
+
+  def scope_filter(scope)
+    scope.search(params[:search])
+  end
+
+  def scope_order(scope)
+    @order = scrub_order(
+      Account, params[:order],
+      'accounts.archived, accounts.category desc, accounts.name'
+    )
+    scope.order(@order)
   end
 end

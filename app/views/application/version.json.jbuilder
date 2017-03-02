@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 json.version do
   json.string Balance::VERSION::STRING
   json.major Balance::VERSION::MAJOR

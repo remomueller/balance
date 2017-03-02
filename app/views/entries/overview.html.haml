@@ -10,7 +10,7 @@
             .form-group.hidden-xs
               = link_to '&laquo;'.html_safe, '#', data: { object: 'previous-year' }, class: 'btn btn-default'
             .form-group
-              = select_tag :year, options_for_select( (current_user.first_billing_date.year..Date.today.year).to_a, Date.today.year ), class: 'form-control'
+              = select_tag :year, options_for_select( (current_user.first_billing_date.year..Time.zone.today.year).to_a, Time.zone.today.year ), class: 'form-control'
             .form-group.hidden-xs
               = link_to '&raquo;'.html_safe, '#', data: { object: 'next-year' }, class: 'btn btn-default'
         = @title

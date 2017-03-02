@@ -8,30 +8,34 @@ class EntriesController < ApplicationController
   before_action :redirect_without_entry, only: [:show, :edit, :update, :move, :mark_charged, :destroy]
 
   def calendar
-    @date = Date.strptime(params[:date], '%Y%m%d') rescue @date = Date.today
-    @selected_date = @date # parse_date(params[:selected_date], Date.today)
-
-    @start_month = @selected_date.beginning_of_month
-    @end_month = @selected_date.end_of_month
-
+    begin
+      @date = Date.strptime(params[:date], '%Y%m%d')
+    rescue
+      @date = Time.zone.today
+    end
+    @start_month = @date.beginning_of_month
+    @end_month = @date.end_of_month
     @start_date = @start_month.beginning_of_week - 1.day
     @end_date = @end_month.end_of_week - 1.day
   end
 
-  def averages
-  end
+  # # GET /entries/averages
+  # def averages
+  # end
 
-  def current_balance
-  end
+  # # GET /entries/current-balance
+  # def current_balance
+  # end
 
+  # GET /entries/overview
   def overview
-    (current_user.first_billing_date.year..Date.today.year).each do |year|
+    (current_user.first_billing_date.year..Time.zone.today.year).each do |year|
       add_to_graph(year_start_date(year), year_end_date(year))
     end
     @year_json = {
       title: "Full Overview",
       y_title: "Dollars",
-      categories: (current_user.first_billing_date.year..Date.today.year).to_a,
+      categories: (current_user.first_billing_date.year..Time.zone.today.year).to_a,
       series: [
         {
           name: 'Gross Income',
@@ -53,15 +57,16 @@ class EntriesController < ApplicationController
     }
   end
 
+  # GET /entries/earning_spending_graph.js
   def earning_spending_graph
-    params[:year] = Date.today.year if params[:year].blank?
+    params[:year] = Time.zone.today.year if params[:year].blank?
     (1..12).each do |month|
       add_to_graph(month_start_date(params[:year], month), month_end_date(params[:year], month))
     end
     @month_json = {
       title: "#{params[:year]} Overview",
-      y_title: "Dollars",
-      categories: ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],
+      y_title: 'Dollars',
+      categories: Date::ABBR_MONTHNAMES.last(12),
       series: [
         {
           name: 'Gross Income',
@@ -83,28 +88,27 @@ class EntriesController < ApplicationController
     }
   end
 
-
   # GET /entries
   def index
-    @order = scrub_order(Entry, params[:order], 'billing_date desc, id desc')
-    @entries = current_user.entries
-                           .where(charged: (params[:charged] == 'uncharged' ? false : [true, false]))
-                           .search(params[:search]).order(@order).page(params[:page]).per(40)
+    scope = current_user.entries
+    scope = scope_includes(scope)
+    scope = scope_filter(scope)
+    @entries = scope_order(scope).page(params[:page]).per(40)
   end
 
-  # GET /entries/1
-  def show
-  end
+  # # GET /entries/1
+  # def show
+  # end
 
   # GET /entries/new
   def new
     @entry = current_user.entries.new(entry_params)
-    @entry.billing_date = Date.today if @entry.billing_date.blank?
+    @entry.billing_date = Time.zone.today if @entry.billing_date.blank?
   end
 
   # GET /entries/1/copy
   def copy
-    entry = current_user.entries.find_by_id(params[:id])
+    entry = current_user.entries.find_by(id: params[:id])
     if entry
       @entry = current_user.entries.new(entry.copyable_attributes)
       render :new
@@ -113,18 +117,17 @@ class EntriesController < ApplicationController
     end
   end
 
-  # GET /entries/1/edit
-  def edit
-  end
+  # # GET /entries/1/edit
+  # def edit
+  # end
 
   # POST /entries
   def create
     @entry = current_user.entries.new(entry_params)
-
     respond_to do |format|
       if @entry.save
         format.html { redirect_to @entry, notice: 'Entry was successfully created.' }
-        format.js { render :create }
+        format.js
       else
         format.html { render :new }
         format.js { render :new }
@@ -146,7 +149,7 @@ class EntriesController < ApplicationController
     @from_date = @entry.billing_date
     params[:entry][:billing_date] = parse_date(params[:entry][:billing_date])
     if @entry && params[:entry][:billing_date].present?
-      @entry.update billing_date: params[:entry][:billing_date]
+      @entry.update(billing_date: params[:entry][:billing_date])
       @to_date = @entry.billing_date
     end
     render :update
@@ -154,7 +157,7 @@ class EntriesController < ApplicationController
 
   # POST /entries/1/mark_charged
   def mark_charged
-    @entry.update charged: true
+    @entry.update(charged: true)
   end
 
   # DELETE /entries/1
@@ -173,7 +176,7 @@ class EntriesController < ApplicationController
   private
 
   def find_entry_or_redirect
-    @entry = current_user.entries.find_by_id params[:id]
+    @entry = current_user.entries.find_by(id: params[:id])
     redirect_without_entry
   end
 
@@ -184,8 +187,8 @@ class EntriesController < ApplicationController
   def entry_params
     params[:entry] ||= {}
     params[:entry][:billing_date] = parse_date(params[:entry][:billing_date])
-    unless params[:entry][:charge_type_id].blank?
-      charge_type = current_user.charge_types.find_by_id(params[:entry][:charge_type_id])
+    if params[:entry][:charge_type_id].present?
+      charge_type = current_user.charge_types.find_by(id: params[:entry][:charge_type_id])
       params[:entry][:charge_type_id] = charge_type ? charge_type.id : nil
     end
     params[:entry][:decimal_amount] = params[:entry][:decimal_amount].to_s.gsub(/[\s$,]/, '')
@@ -204,5 +207,19 @@ class EntriesController < ApplicationController
     @gross_spending << current_user.gross(start_date, end_date, true)
     @gross_income << current_user.gross(start_date, end_date, false)
     @net_profit << current_user.net_profit(start_date, end_date)
+  end
+
+  def scope_includes(scope)
+    scope.includes(charge_type: :account)
+  end
+
+  def scope_filter(scope)
+    scope = scope.where(charged: false) if params[:charged] == 'uncharged'
+    scope.search(params[:search])
+  end
+
+  def scope_order(scope)
+    @order = scrub_order(Entry, params[:order], 'billing_date desc, id desc')
+    scope.order(@order)
   end
 end

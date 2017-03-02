@@ -38,7 +38,6 @@ class TemplatesControllerTest < ActionController::TestCase
       post :create, params: { template: { name: '' } }
     end
     assert_not_nil assigns(:template)
-    assert assigns(:template).errors.size > 0
     assert_equal ["can't be blank"], assigns(:template).errors[:name]
     assert_response :success
   end
@@ -49,7 +48,6 @@ class TemplatesControllerTest < ActionController::TestCase
       post :create, params: { template: { name: 'monthly bills' } }
     end
     assert_not_nil assigns(:template)
-    assert assigns(:template).errors.size > 0
     assert_equal ['has already been taken'], assigns(:template).errors[:name]
     assert_response :success
   end

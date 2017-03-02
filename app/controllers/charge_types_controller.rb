@@ -7,22 +7,24 @@ class ChargeTypesController < ApplicationController
 
   # GET /charge_types
   def index
-    @order = scrub_order(ChargeType, params[:order], 'charge_types.name, accounts.name')
-    @charge_types = current_user.charge_types.search(params[:search]).order(@order).page(params[:page]).per( 40 )
+    scope = current_user.charge_types
+    scope = scope_includes(scope)
+    scope = scope_filter(scope)
+    @charge_types = scope_order(scope).page(params[:page]).per(40)
   end
 
-  # GET /charge_types/1
-  def show
-  end
+  # # GET /charge_types/1
+  # def show
+  # end
 
   # GET /charge_types/new
   def new
     @charge_type = current_user.charge_types.new
   end
 
-  # GET /charge_types/1/edit
-  def edit
-  end
+  # # GET /charge_types/1/edit
+  # def edit
+  # end
 
   # POST /charge_types
   def create
@@ -52,7 +54,7 @@ class ChargeTypesController < ApplicationController
   private
 
   def find_charge_type_or_redirect
-    @charge_type = current_user.charge_types.find_by_id params[:id]
+    @charge_type = current_user.charge_types.find_by(id: params[:id])
     redirect_without_charge_type
   end
 
@@ -63,11 +65,24 @@ class ChargeTypesController < ApplicationController
   def charge_type_params
     params[:charge_type] ||= {}
     unless params[:charge_type][:account_id].blank?
-      account = current_user.accounts.find_by_id(params[:charge_type][:account_id])
+      account = current_user.accounts.find_by(id: params[:charge_type][:account_id])
       params[:charge_type][:account_id] = account ? account.id : nil
     end
     params.require(:charge_type).permit(
       :name, :account_id, :counts_towards_spending
     )
+  end
+
+  def scope_includes(scope)
+    scope.includes(:account)
+  end
+
+  def scope_filter(scope)
+    scope.search(params[:search])
+  end
+
+  def scope_order(scope)
+    @order = scrub_order(ChargeType, params[:order], 'charge_types.name, accounts.name')
+    scope.order(@order)
   end
 end

@@ -25,7 +25,7 @@ namespace :backup do
     object = 'users'
     csv_file = file_base(object)
     ActiveRecord::Base.connection.execute("TRUNCATE #{object} RESTART IDENTITY")
-    CSV.parse(File.open(csv_file, 'r:iso-8859-1:utf-8') { |f| f.read }, headers: true) do |line|
+    CSV.parse(File.open(csv_file, 'r:iso-8859-1:utf-8', &:read), headers: true) do |line|
       User.create(
         id: line['User ID'],
         first_name: line['First Name'],
@@ -43,7 +43,7 @@ namespace :backup do
     object = 'accounts'
     csv_file = file_base(object)
     ActiveRecord::Base.connection.execute("TRUNCATE #{object} RESTART IDENTITY")
-    CSV.parse(File.open(csv_file, 'r:iso-8859-1:utf-8') { |f| f.read }, headers: true) do |line|
+    CSV.parse(File.open(csv_file, 'r:iso-8859-1:utf-8', &:read), headers: true) do |line|
       Account.create(
         id: line['Account ID'],
         user_id: line['User ID'],
@@ -61,7 +61,7 @@ namespace :backup do
     object = 'charge_types'
     csv_file = file_base(object)
     ActiveRecord::Base.connection.execute("TRUNCATE #{object} RESTART IDENTITY")
-    CSV.parse(File.open(csv_file, 'r:iso-8859-1:utf-8') { |f| f.read }, headers: true) do |line|
+    CSV.parse(File.open(csv_file, 'r:iso-8859-1:utf-8', &:read), headers: true) do |line|
       ChargeType.create(
         id: line['Charge Type ID'],
         name: line['Name'],
@@ -78,7 +78,7 @@ namespace :backup do
     object = 'entries'
     csv_file = file_base(object)
     ActiveRecord::Base.connection.execute("TRUNCATE #{object} RESTART IDENTITY")
-    CSV.parse(File.open(csv_file, 'r:iso-8859-1:utf-8') { |f| f.read }, headers: true) do |line|
+    CSV.parse(File.open(csv_file, 'r:iso-8859-1:utf-8', &:read), headers: true) do |line|
       Entry.create(
         id: line['Entry ID'],
         user_id: line['User ID'],
@@ -99,7 +99,7 @@ namespace :backup do
     object = 'templates'
     csv_file = file_base(object)
     ActiveRecord::Base.connection.execute("TRUNCATE #{object} RESTART IDENTITY")
-    CSV.parse(File.open(csv_file, 'r:iso-8859-1:utf-8') { |f| f.read }, headers: true) do |line|
+    CSV.parse(File.open(csv_file, 'r:iso-8859-1:utf-8', &:read), headers: true) do |line|
       Template.create(
         id: line['Template ID'],
         name: line['Name'],
@@ -115,7 +115,7 @@ namespace :backup do
     object = 'template_items'
     csv_file = file_base(object)
     ActiveRecord::Base.connection.execute("TRUNCATE #{object} RESTART IDENTITY")
-    CSV.parse(File.open(csv_file, 'r:iso-8859-1:utf-8') { |f| f.read }, headers: true) do |line|
+    CSV.parse(File.open(csv_file, 'r:iso-8859-1:utf-8', &:read), headers: true) do |line|
       TemplateItem.create(
         id: line['Template Item ID'].to_i,
         name: line['Name'],
