@@ -7,6 +7,7 @@
   - Updated to Ruby 2.4.1
   - Updated to pg 0.20.0
   - Updated to rails 5.0.2
+  - Updated to jquery-rails 4.3.1
 
 ### Bug Fix
 - Fixed a bug that reloaded the templates page when removing an item from an
