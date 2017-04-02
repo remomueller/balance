@@ -8,6 +8,7 @@
   - Updated to pg 0.20.0
   - Updated to rails 5.0.2
   - Updated to jquery-rails 4.3.1
+  - Updated to simplecov 0.14.1
 
 ### Bug Fix
 - Fixed a bug that reloaded the templates page when removing an item from an
