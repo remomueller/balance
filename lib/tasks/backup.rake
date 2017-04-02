@@ -5,7 +5,7 @@ namespace :backup do
   task import: :environment do
     if folder.blank?
       puts "Please specify a folder, ex:\n" +
-           '  bundle exec rake backup:import FOLDER=20160320173700'.colorize(:blue)
+           '  rails backup:import FOLDER=20160320173700'.colorize(:blue)
       next
     elsif !File.exist? data_folder
       puts 'Folder ' + data_folder.to_s.colorize(:red) + ' does not exist.'

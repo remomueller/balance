@@ -59,7 +59,7 @@
 - **General Changes**
   - Started rewriting views using haml
   - Added a task to import data from CSVs
-    - `bundle exec rake backup:import FOLDER=20160320173700`
+    - `rails backup:import FOLDER=20160320173700`
   - Users can backup data from their account
 - **Account Changes**
   - Accounts can be archived to hide them on the current balance
@@ -93,7 +93,7 @@
 - **General Changes**
   - Added a version JSON API
   - Added a task to export data to CSVs
-    - `bundle exec rake data:export`
+    - `rails data:export`
 - **Gem Changes**
   - Use of Ruby 2.3.0 is now recommended
   - Updated to rails 4.2.6
