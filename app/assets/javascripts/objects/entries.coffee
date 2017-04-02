@@ -44,7 +44,7 @@
   )
 
 @entriesReady = ->
-  @entriesTypeahead()
+  entriesTypeahead()
   activateEntryDraggables()
   activateDayDroppables()
 
