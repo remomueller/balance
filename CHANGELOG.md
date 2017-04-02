@@ -11,6 +11,7 @@
 ### Bug Fix
 - Fixed a bug that reloaded the templates page when removing an item from an
   existing template
+- Turbolinks no longer runs ready script twice
 
 ### Refactoring
 - Refactored controllers and models based on Rubocop recommendations
