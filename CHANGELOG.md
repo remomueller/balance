@@ -4,6 +4,7 @@
 - **General Changes**
   - Time of last backup is now tracked
 - **Gem Changes**
+  - Updated to pg 0.20.0
   - Updated to rails 5.0.2
 
 ### Bug Fix
