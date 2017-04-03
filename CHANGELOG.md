@@ -1,4 +1,4 @@
-## 2.3.0
+## 2.3.0 (April 3, 2017)
 
 ### Enhancements
 - **General Changes**
