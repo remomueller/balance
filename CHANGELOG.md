@@ -1,5 +1,8 @@
 ## 2.3.1
 
+### Bug Fix
+- Fixed a bug that did not display the last week for months ending on a Sunday
+
 ## 2.3.0 (April 3, 2017)
 
 ### Enhancements

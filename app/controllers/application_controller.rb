@@ -45,7 +45,7 @@ class ApplicationController < ActionController::Base
   end
 
   def month_end_date(year, month)
-    Date.parse("#{year.to_i + month.to_i / 12}-#{month.to_i % 12 + 1}-01") - 1.day
+    month_start_date(year, month).end_of_month
   end
 
   def year_start_date(year)
@@ -53,7 +53,7 @@ class ApplicationController < ActionController::Base
   end
 
   def year_end_date(year)
-    Date.parse("#{year.to_i + 1}-01-01") - 1.day
+    year_start_date(year).end_of_year
   end
 
   private

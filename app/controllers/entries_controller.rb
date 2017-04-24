@@ -4,8 +4,9 @@
 class EntriesController < ApplicationController
   before_action :authenticate_user!
   before_action :initialize_graph, only: [:overview, :earning_spending_graph]
-  before_action :find_entry_or_redirect, only: [:show, :edit, :update, :move, :mark_charged, :destroy]
-  before_action :redirect_without_entry, only: [:show, :edit, :update, :move, :mark_charged, :destroy]
+  before_action :find_entry_or_redirect, only: [
+    :show, :edit, :update, :move, :mark_charged, :destroy
+  ]
 
   def calendar
     begin
@@ -15,8 +16,8 @@ class EntriesController < ApplicationController
     end
     @start_month = @date.beginning_of_month
     @end_month = @date.end_of_month
-    @start_date = @start_month.beginning_of_week - 1.day
-    @end_date = @end_month.end_of_week - 1.day
+    @start_date = @start_month.beginning_of_week(:sunday)
+    @end_date = @end_month.end_of_week(:sunday)
   end
 
   # # GET /entries/averages
