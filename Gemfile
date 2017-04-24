@@ -8,6 +8,7 @@ gem 'rails',                '5.0.2'
 gem 'pg',                   '0.20.0'
 
 # Gems used by project
+gem 'autoprefixer-rails'
 gem 'bootstrap-sass',       '~> 3.3.7'
 gem 'colorize',             '~> 0.8.1'
 gem 'devise',               '~> 4.2.0'

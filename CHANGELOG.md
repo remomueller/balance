@@ -1,5 +1,9 @@
 ## 2.3.1
 
+### Enhancements
+- **Gem Changes**
+  - Added autoprefixer-rails
+
 ### Bug Fix
 - Fixed a bug that did not display the last week for months ending on a Sunday
 
