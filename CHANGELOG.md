@@ -1,5 +1,10 @@
 ## 2.4.0
 
+### Enhancements
+- **Gem Changes**
+  - Updated to rails 5.1.0.rc2
+  - Updated to haml 5.0.0.beta.2
+
 ## 2.3.1 (April 24, 2017)
 
 ### Enhancements
