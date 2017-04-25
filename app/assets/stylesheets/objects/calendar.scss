@@ -4,9 +4,7 @@
 }
 
 .calendar-entry-body-today {
-  background-color: $today-bg-color;
-}
-
-.calendar-entry-body-today .calendar-entry-heading {
-  background-color: $today-heading-color;
+  .calendar-entry-heading {
+    background-color: $today-heading-color;
+  }
 }
