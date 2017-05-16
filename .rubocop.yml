@@ -27,3 +27,8 @@ Style/FrozenStringLiteralComment:
 # This can be removed after Ruby 3 is released.
 Style/MutableConstant:
   Enabled: false
+
+# Check quotes usage according to lint rule below.
+Style/StringLiterals:
+  Enabled: true
+  EnforcedStyle: double_quotes
