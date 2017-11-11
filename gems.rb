@@ -17,7 +17,7 @@ gem "colorize",             "~> 0.8.1"
 gem "devise",               "~> 4.3.0"
 gem "figaro",               "~> 1.1.1"
 gem "font-awesome-rails",   "~> 4.7.0"
-gem "haml",                 "~> 5.0.1"
+gem "haml",                 "~> 5.0.4"
 gem "jquery-ui-rails",      "~> 6.0.1"
 gem "kaminari",             "~> 1.1.1"
 
