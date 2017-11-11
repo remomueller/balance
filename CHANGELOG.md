@@ -2,6 +2,7 @@
 
 ### Enhancements
 - **Gem Changes**
+  - Updated to ruby 2.4.2
   - Updated `Gemfile` to `gems.rb`
   - Added bootsnap
   - Updated to rails 5.1.4
