@@ -5,6 +5,7 @@
   - Updated `Gemfile` to `gems.rb`
   - Added bootsnap
   - Updated to kaminari 1.1.1
+  - Updated to pg 0.21.0
 
 ### Bug Fix
 - Entry tooltips are now properly escaped
