@@ -43,10 +43,17 @@
     $this.typeahead({ hint: true }, { source: bloodhound })
   )
 
+@submitEarningSpendingForm = ->
+  if $("#earning-spending-form").length > 0
+    changes = {}
+    changes["year"] = $("#year").val()
+    $.post($("#earning-spending-form").attr("action"), changes, null, "script")
+
 @entriesReady = ->
   entriesTypeahead()
   activateEntryDraggables()
   activateDayDroppables()
+  submitEarningSpendingForm()
 
 $(document)
   .on('click', '[data-object~="previous-year"]', ->
@@ -62,5 +69,5 @@ $(document)
     false
   )
   .on('change', '#year', ->
-    $("#earning-spending-form").submit()
+    submitEarningSpendingForm()
   )

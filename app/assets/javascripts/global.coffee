@@ -8,7 +8,6 @@
   $('#account_name').focus()
   $('#charge_type_name').focus()
   setFocusToField("#search")
-  $('[data-object~="form-load"]').submit()
 
 @extensionsReady = ->
   datepickerReady()

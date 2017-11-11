@@ -58,7 +58,7 @@ class EntriesController < ApplicationController
     }
   end
 
-  # GET /entries/earning_spending_graph.js
+  # POST /entries/earning_spending_graph.js
   def earning_spending_graph
     params[:year] = Time.zone.today.year if params[:year].blank?
     (1..12).each do |month|

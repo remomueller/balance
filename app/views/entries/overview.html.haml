@@ -1,4 +1,4 @@
-- @title = 'Earning and Spending'
+- @title = "Earning and Spending"
 
 - content_for :header do
   .background-gradient
@@ -6,16 +6,15 @@
     .container
       %h1.page-heading
         .pull-right
-          = form_tag earning_spending_graph_entries_path, remote: true, method: :get, data: { object: 'form-load' }, id: 'earning-spending-form', class: 'form-inline' do
+          = form_with url: earning_spending_graph_entries_path(format: "js"), method: :post, data: { object: "form-load" }, id: "earning-spending-form", class: "form-inline" do
             .form-group.hidden-xs
-              = link_to '&laquo;'.html_safe, '#', data: { object: 'previous-year' }, class: 'btn btn-default'
+              = link_to "&laquo;".html_safe, "#", data: { object: "previous-year" }, class: "btn btn-default"
             .form-group
-              = select_tag :year, options_for_select( (current_user.first_billing_date.year..Time.zone.today.year).to_a, Time.zone.today.year ), class: 'form-control'
+              = select_tag :year, options_for_select( (current_user.first_billing_date.year..Time.zone.today.year).to_a, Time.zone.today.year ), class: "form-control"
             .form-group.hidden-xs
-              = link_to '&raquo;'.html_safe, '#', data: { object: 'next-year' }, class: 'btn btn-default'
+              = link_to "&raquo;".html_safe, "#", data: { object: "next-year" }, class: "btn btn-default"
         = @title
 
+#month_chart{ style: "height: 450px; margin-bottom: 50px;", data: { object: "chart-container", chart: "" } }
 
-#month_chart{ style: 'height: 450px; margin-bottom: 50px;', data: { object: 'chart-container', chart: '' } }
-
-%div{ style: 'height: 450px', data: { object: 'chart-container', chart: "#{@year_json.to_json}" } }
+%div{ style: "height: 450px", data: { object: "chart-container", chart: "#{@year_json.to_json}" } }
