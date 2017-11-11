@@ -1,3 +1,19 @@
-.entry-draggable:hover {
-  background-color: $state-warning-bg;
+.entry-draggable {
+  cursor: move;
+
+  &:hover {
+    background-color: $state-warning-bg;
+  }
+}
+
+.entry-helper {
+  display: none;
+}
+
+.entry-box {
+  background-color: $brand-white;
+  padding: 3px 5px;
+  border: 1px solid #bbb;
+  border-radius: 3px;
+  box-shadow: 5px 5px 3px -3px rgba(0, 0, 0, 0.075);
 }

@@ -1,5 +1,8 @@
 ## 2.4.1
 
+### Bug Fix
+- Entry tooltips are now properly escaped
+
 ## 2.4.0 (May 20, 2017)
 
 ### Enhancements

@@ -1,10 +1,37 @@
 .calendar-entry-heading {
-  text-align: right;
   background-color: $entry-heading-color;
+  text-align: right;
 }
 
 .calendar-entry-body-today {
   .calendar-entry-heading {
     background-color: $today-heading-color;
   }
+}
+
+.calendar-entry-name {
+  cursor: move;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.calendar-entry-amount,
+.calendar-entry-amount-total {
+  float: left;
+  margin-right: 5px;
+  text-align: right;
+  width: 65px;
+}
+
+.calendar-entry-amount-total {
+  border-top: 1px solid #777;
+  font-weight: bold;
+}
+
+.loss {
+  color: $loss;
+}
+
+.gain {
+  color: $gain;
 }

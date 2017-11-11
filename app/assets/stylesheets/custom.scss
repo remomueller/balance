@@ -18,27 +18,7 @@
 }
 
 .hover .calendar-entry-heading {
-  background-color: #669966;
-}
-
-.calendar-entry-amount{
-  width: 65px;
-  text-align: right;
-  float: left;
-  margin-right: 5px;
-}
-
-.calendar-entry-name{
-  overflow: hidden;
-  white-space: nowrap;
-}
-
-.loss {
-  color: #ff6666;
-}
-
-.gain {
-  color: #669966;
+  background-color: $gain;
 }
 
 .text-shadow {
@@ -46,12 +26,4 @@
   .loss {
     text-shadow: 0 0 4px $brand-white !important;
   }
-}
-
-.entry-box {
-  background-color: white;
-  padding: 3px 5px;
-  border: 1px solid #bbb;
-  border-radius: 3px;
-  box-shadow: 5px 5px 3px -3px rgba(0, 0, 0, 0.075);
 }

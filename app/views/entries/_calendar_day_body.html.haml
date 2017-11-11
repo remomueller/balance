@@ -2,23 +2,23 @@
   - entries = @entries.select { |e| e.billing_date == iDate && e.charge_type.counts_towards_spending? == spending }.sort { |a, b| a.id <=> b.id }
 
   - entries.each do |entry|
-    .entry-draggable{ style: 'cursor:move', rel: 'tooltip', data: { title: (simple_format(entry.description) unless entry.description.blank?), entry_id: entry.id, html: 'true', billing_date: entry.billing_date.strftime('%m/%d/%Y') } }
+    .entry-draggable{ rel: "tooltip", data: { title: entry.description.present? ? "#{simple_format(entry.description)}" : nil, entry_id: entry.id, html: "true", billing_date: entry.billing_date.strftime("%m/%d/%Y") } }
       .calendar-entry-amount= entry.amount.to_currency
-      .calendar-entry-name{ style: 'cursor:move' }
+      .calendar-entry-name
         - unless entry.charged?
           = link_to mark_charged_entry_path(entry, authenticity_token: form_authenticity_token), remote: true, method: :post, id: "entry_#{entry.id}_mark_charged_link" do
             %span.glyphicon.glyphicon-star>
-        = link_to entry.name, entry, style: "text-decoration:none;color:#{entry.charged? ? '#404040' : '#FFB475'};", id: "entry_#{entry.id}_name"
-      %div{ style: 'display:none', data: { object: 'entry-helper' } }
+        = link_to entry.name, entry, style: "text-decoration:none;color:#{entry.charged? ? "#404040" : "#FFB475"};", id: "entry_#{entry.id}_name"
+      .entry-helper{ data: { object: "entry-helper" } }
         .entry-box
           = entry.amount.to_currency
           = entry.name
-      %div{ style: 'clear:both' }
+      %div{ style: "clear: both;" }
   - if entries.size > 0
     - total_amount = entries.collect { |e| e.amount }.sum
-    .calendar-entry-amount{ class: "#{(total_amount > 0) ? (spending ? 'loss' : 'gain') : '' } #{total_amount < 0 ? (spending ? ' gain' : ' loss') : '' }", style: 'border-top:1px solid #777; font-weight: bold' }
+    .calendar-entry-amount-total{ class: "#{total_amount.positive? ? (spending ? "loss" : "gain") : nil } #{total_amount.negative? ? (spending ? " gain" : " loss") : nil }" }
       = total_amount.to_currency
     .calendar-entry-name
       Total
-      = spending ? 'Spent' : 'Earned'
-  %div{ style: 'clear:both' }
+      = spending ? "Spent" : "Earned"
+  %div{ style: "clear:both" }
