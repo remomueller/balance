@@ -7,6 +7,7 @@
   - Updated to rails 5.1.4
   - Updated to kaminari 1.1.1
   - Updated to pg 0.21.0
+  - Updated to simplecov 0.15.1
 
 ### Bug Fix
 - Entry tooltips are now properly escaped
