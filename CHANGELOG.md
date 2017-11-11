@@ -14,6 +14,9 @@
 ### Bug Fix
 - Entry tooltips are now properly escaped
 
+### Tests
+- Added tests to assure user passwords can be reset
+
 ## 2.4.0 (May 20, 2017)
 
 ### Enhancements
