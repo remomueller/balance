@@ -19,7 +19,7 @@ gem "figaro",               "~> 1.1.1"
 gem "font-awesome-rails",   "~> 4.7.0"
 gem "haml",                 "~> 5.0.1"
 gem "jquery-ui-rails",      "~> 6.0.1"
-gem "kaminari",             "~> 1.0.1"
+gem "kaminari",             "~> 1.1.1"
 
 # Rails Defaults
 gem "coffee-rails",         "~> 4.2"
