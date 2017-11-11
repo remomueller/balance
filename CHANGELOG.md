@@ -4,6 +4,7 @@
 - **Gem Changes**
   - Updated `Gemfile` to `gems.rb`
   - Added bootsnap
+  - Updated to rails 5.1.4
   - Updated to kaminari 1.1.1
   - Updated to pg 0.21.0
 
