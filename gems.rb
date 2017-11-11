@@ -4,6 +4,9 @@ source "https://rubygems.org"
 
 gem "rails",                "5.1.1"
 
+# Speed Up Loading Times
+gem "bootsnap",             "1.1.5", require: false
+
 # Database Adapter
 gem "pg",                   "0.20.0"
 

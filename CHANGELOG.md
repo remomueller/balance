@@ -3,6 +3,7 @@
 ### Enhancements
 - **Gem Changes**
   - Updated `Gemfile` to `gems.rb`
+  - Added bootsnap
 
 ### Bug Fix
 - Entry tooltips are now properly escaped
