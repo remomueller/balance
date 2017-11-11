@@ -1,5 +1,9 @@
 ## 2.4.1
 
+### Enhancements
+- **Gem Changes**
+  - Updated `Gemfile` to `gems.rb`
+
 ### Bug Fix
 - Entry tooltips are now properly escaped
 
