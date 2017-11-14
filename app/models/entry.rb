@@ -13,7 +13,7 @@ class Entry < ApplicationRecord
   }
 
   # Model Validations
-  validates :name, :charge_type_id, :amount, :billing_date, :user_id, presence: true
+  validates :name, :amount, :billing_date, presence: true
   validates :amount, numericality: true
 
   # Model Relationships

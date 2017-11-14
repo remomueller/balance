@@ -14,7 +14,7 @@ class Template < ApplicationRecord
   # Named Scopes
 
   # Model Validations
-  validates :name, :user_id, presence: true
+  validates :name, presence: true
   validates :name, uniqueness: { scope: [:user_id, :deleted], case_sensitive: false }
 
   # Model Relationships

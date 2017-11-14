@@ -8,7 +8,7 @@ class TemplateItem < ApplicationRecord
   squish :name
 
   # Model Validation
-  validates :name, :template_id, :charge_type_id, presence: true
+  validates :name, presence: true
 
   # Model Relationships
   belongs_to :template

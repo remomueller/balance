@@ -10,7 +10,7 @@ class ChargeType < ApplicationRecord
   # Named Scopes
 
   # Model Validations
-  validates :name, :account_id, presence: true
+  validates :name, presence: true
 
   # Model Relationships
   belongs_to :account
