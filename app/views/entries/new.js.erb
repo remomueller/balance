@@ -1,5 +1,4 @@
 <% @entry.errors.each do |key, value| %>
-  $('#entry_<%= key %>').parent().parent().addClass('has-error');
+$("#entry_<%= key %>").parent().parent().addClass("has-error");
 <% end %>
-
 resetEntryTemplateButtons();

@@ -41,7 +41,8 @@ $(document).ready(initialLoadReady)
 $(document)
   .on('turbolinks:load', turbolinksReady)
   .on('click', '[data-object~="submit"]', ->
-    $($(this).data('target')).submit()
+    element = $($(this).data('target'))[0]
+    Rails.fire(element, 'submit')
     false
   )
   .on('click', '[data-object~="set-value"]', ->

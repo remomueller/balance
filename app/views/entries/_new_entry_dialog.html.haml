@@ -17,8 +17,8 @@
       .modal-body
         .entry-contents
           - @entry = current_user.entries.new
-          = form_for(@entry, remote: true, html: { class: 'form-horizontal' }) do |f|
-            = params[:from_calendar] = '1'; render 'entries/inner_form', f: f
+          = form_with model: @entry, class: 'form-horizontal', id: "new_entry" do |form|
+            = render "entries/inner_form", form: form
         .template-contents{ style: 'display:none' }
           = form_tag launch_template_templates_path, remote: true, class: 'form-horizontal', id: 'launch_template' do
             .form-group

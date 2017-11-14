@@ -127,7 +127,7 @@ class EntriesController < ApplicationController
     @entry = current_user.entries.new(entry_params)
     respond_to do |format|
       if @entry.save
-        format.html { redirect_to @entry, notice: 'Entry was successfully created.' }
+        format.html { redirect_to @entry, notice: "Entry was successfully created." }
         format.js
       else
         format.html { render :new }

@@ -7,7 +7,10 @@
   resetEntryTemplateButtons()
 
 @resetEntryTemplateButtons = ->
-  $.rails.enableElement($('a[data-disable-with]'))
+  selectors = [Rails.linkDisableSelector, Rails.formEnableSelector].join(', ')
+  $(selectors).each(->
+    Rails.enableElement(this)
+  )
 
 $(document)
   .on('click', '[data-object~="template-modal"]', ->

@@ -43,17 +43,17 @@
     $this.typeahead({ hint: true }, { source: bloodhound })
   )
 
-@submitEarningSpendingForm = ->
-  if $("#earning-spending-form").length > 0
-    changes = {}
-    changes["year"] = $("#year").val()
-    $.post($("#earning-spending-form").attr("action"), changes, null, "script")
+@formsLoad = ->
+  $('[data-object~="form-load"]').each(->
+    element = $(this)[0]
+    Rails.fire(element, 'submit')
+  )
 
 @entriesReady = ->
   entriesTypeahead()
   activateEntryDraggables()
   activateDayDroppables()
-  submitEarningSpendingForm()
+  formsLoad()
 
 $(document)
   .on('click', '[data-object~="previous-year"]', ->
@@ -69,5 +69,5 @@ $(document)
     false
   )
   .on('change', '#year', ->
-    submitEarningSpendingForm()
+    formsLoad()
   )
