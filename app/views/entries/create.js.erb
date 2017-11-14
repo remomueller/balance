@@ -1,7 +1,7 @@
 showEntryContents();
 $('#new-entry-dialog').modal('hide');
 $('#new_entry')[0].reset();
-$('.error').removeClass('error');
+$('.has-error').removeClass('has-error');
 
 <% @entries = current_user.entries.with_date_for_calendar(@entry.billing_date, @entry.billing_date) %>
 $("[data-date='<%= @entry.billing_date.strftime("%m/%d/%Y") %>']").html("<%=j render 'entries/calendar_day_body', iDate: @entry.billing_date %>");
