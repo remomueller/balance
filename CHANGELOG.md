@@ -1,4 +1,4 @@
-## 2.4.1
+## 2.4.1 (November 16, 2017)
 
 ### Enhancements
 - **Gem Changes**
