@@ -28,7 +28,7 @@
 ### Enhancements
 - **Gem Changes**
   - Updated to rails 5.1.1
-  - Updated to devise 3.4.0
+  - Updated to devise 4.3.0
   - Updated to haml 5.0.1
 
 ## 2.3.1 (April 24, 2017)
