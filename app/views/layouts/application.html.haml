@@ -17,7 +17,7 @@
     = javascript_tag "var root_url='#{request.script_name + "/"}';"
   %body#top{ class: yield(:body_class) }
     - unless @simple_layout
-      #top-menu= render "layouts/menu"
+      #top-menu.top-menu= render "layouts/menu"
       = render "layouts/flash_messages"
     = yield :header
     .container.body-content

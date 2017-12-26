@@ -1,0 +1,61 @@
+%li.nav-item.dropdown.d-none.d-lg-block
+  .btn-group.nav-item
+    = link_to "#", class: "nav-link dropdown-toggle", data: { toggle: "dropdown" }, aria: { haspopup: "true", expanded: "false" } do
+      = current_user.first_name
+    .dropdown-menu.dropdown-menu-right.dropdown-menu-balance
+      .dropdown-menu-balance-inner
+        = link_to accounts_path, class: "dropdown-item" do
+          Accounts
+
+        = link_to charge_types_path, class: "dropdown-item" do
+          Charge Types
+
+        = link_to templates_path, class: "dropdown-item" do
+          Templates
+
+        .dropdown-divider
+
+        = link_to backup_path, class: "dropdown-item" do
+          Backup Data
+
+        .dropdown-divider
+
+        = link_to version_path, class: "dropdown-item disabled", data: { object: "suppress-click" } do
+          Balance
+          = "v#{Balance::VERSION::STRING}"
+
+        .dropdown-divider
+
+        = link_to destroy_user_session_path, class: "dropdown-item" do
+          Sign out
+
+%li.nav-item
+  %hr
+
+%li.nav-item.d-lg-none{ class: current_page?(accounts_path) ? "active" : nil }
+  = link_to accounts_path, class: "nav-link" do
+    Accounts
+  - if current_page?(accounts_path)
+    %span.sr-only (current)
+
+%li.nav-item.d-lg-none{ class: current_page?(charge_types_path) ? "active" : nil }
+  = link_to charge_types_path, class: "nav-link" do
+    Charge Types
+  - if current_page?(charge_types_path)
+    %span.sr-only (current)
+
+%li.nav-item.d-lg-none{ class: current_page?(templates_path) ? "active" : nil }
+  = link_to templates_path, class: "nav-link" do
+    Templates
+  - if current_page?(templates_path)
+    %span.sr-only (current)
+
+%li.nav-item.d-lg-none{ class: current_page?(backup_path) ? "active" : nil }
+  = link_to backup_path, class: "nav-link" do
+    Backup Data
+  - if current_page?(backup_path)
+    %span.sr-only (current)
+
+%li.nav-item.d-lg-none
+  = link_to destroy_user_session_path, class: "nav-link" do
+    Sign out

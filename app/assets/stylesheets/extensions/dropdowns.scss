@@ -1,0 +1,40 @@
+.dropdown-menu-balance {
+  border-width: 0;
+  // box-shadow: 0 5px 10px 0 $box-shadow-color;
+  margin-top: 0;
+  padding: 0;
+  position: relative;
+
+  .dropdown-menu-balance-inner {
+    background-color: rgba($p700-blue, .9);
+    border-radius: 0 0 $border-radius $border-radius;
+    padding: .5rem 0;
+  }
+
+  .dropdown-item {
+    border-left: 2px solid transparent;
+    color: $brand-white;
+
+    &:focus,
+    &:hover {
+      background-color: rgba($brand-black, .2);
+      border-color: $p500-purple;
+      text-decoration: none;
+    }
+  }
+
+  .dropdown-divider {
+    border-color: rgba($brand-white, .2);
+  }
+
+  &::after {
+    content: "";
+    border: 7px solid transparent;
+    border-bottom-color: rgba($p700-blue, .9);
+    display: inline-block;
+    left: auto;
+    position: absolute;
+    right: 29px;
+    top: -14px;
+  }
+}
