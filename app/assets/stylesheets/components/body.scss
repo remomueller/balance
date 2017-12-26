@@ -14,10 +14,10 @@ body {
 }
 
 ::selection {
-  background-color: $brand-accent;
-  color: $text-color;
+  background-color: rgba($p200-purple, .99);
+  color: $body-color;
 }
 
 :focus {
-  outline-color: $brand-accent !important;
+  outline-color: $p200-purple !important;
 }

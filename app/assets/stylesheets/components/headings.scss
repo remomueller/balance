@@ -19,7 +19,7 @@
 }
 
 .header-container {
-  background-color: $p500;
+  background-color: $p500-blue;
   color: $brand-white;
   padding: 20px 0;
 
@@ -37,7 +37,7 @@
   }
 }
 
-@media screen and (min-width: $screen-sm-min) {
+@include media-breakpoint-up(sm) {
   .header-container {
     h1 {
       font-size: 38px
@@ -45,7 +45,7 @@
   }
 }
 
-@media screen and (min-width: $screen-md-min) {
+@include media-breakpoint-up(md) {
   .header-container {
     h1 {
       font-size: 41px
@@ -79,7 +79,7 @@
   }
 }
 
-@media screen and (min-width: $screen-sm-min) {
+@include media-breakpoint-up(sm) {
   #top-menu {
     &.navbar-scrolled {
       .navbar-show-scrolled {

@@ -1,8 +1,14 @@
-$link-color: $a700 !default;
+// Branding
+$brand-white: #fff;
+$brand-black: #333;
+$brand-primary: $p500-blue;
+
+$link-color: $p500-blue;
+
 $breadcrumb-link-color: $link-color !default;
 
-$entry-heading-color: $p50;
-$today-heading-color: $p200;
+$entry-heading-color: $p50-blue;
+$today-heading-color: $p200-blue;
 
 $dashboard-bg: $body-bg;
 

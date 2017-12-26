@@ -1,10 +1,8 @@
-@import 'themes/default';
-
 // Bootstrap and general variable definitions
+@import 'themes/default';
 @import 'variables/all';
 
 // Core Bootstrap styles
-@import 'bootstrap-sprockets';
 @import 'bootstrap';
 
 // Font Awesome Icons

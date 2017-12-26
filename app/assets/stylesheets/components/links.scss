@@ -1,21 +1,21 @@
 .link-accent {
-  color: $brand-accent;
+  color: $p500-purple;
 
   &:hover,
   &:focus,
   &:active,
   &:visited {
-    color: darken($brand-accent, 10%);
+    color: darken($p500-purple, 10%);
   }
 }
 
 .link-unstyled {
-  color: $text-color;
+  color: $body-color;
 
   &:hover,
   &:focus,
   &:active {
-    color: $text-color;
+    color: $body-color;
     text-decoration: none;
   }
 }

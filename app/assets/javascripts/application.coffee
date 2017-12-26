@@ -15,8 +15,10 @@
 #
 #= require jquery3
 #= require rails-ujs
-#= require bootstrap-sprockets
 #= require turbolinks
+#= require popper
+#= require bootstrap
+
 #= require jquery-ui/widgets/droppable
 #= require jquery-ui/widgets/sortable
 
