@@ -169,7 +169,7 @@ class EntriesController < ApplicationController
 
   def autocomplete
     @entry_names = current_user.entries.search(params[:search])
-                               .group(:name).order('count(entries.name) desc', :name)
+                               .group(:name).order(Arel.sql("count(entries.name) desc"), :name)
                                .limit(8).count.collect(&:first)
     render json: @entry_names
   end

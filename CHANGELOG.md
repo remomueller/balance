@@ -3,6 +3,7 @@
 ### Enhancements
 - **Gem Changes**
   - Updated to ruby 2.5.0
+  - Updated to rails 5.2.0.beta2
   - Updated to bootsnap 1.1.7
 
 ## 2.4.1 (November 16, 2017)
