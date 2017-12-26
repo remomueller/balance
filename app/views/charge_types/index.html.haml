@@ -5,7 +5,7 @@
   .header-container
     .container
       %h1.page-heading
-        .pull-right
+        .float-right
           = link_to plus_or('New Charge Type'), new_charge_type_path, class: 'btn btn-accent btn-shadow'
           .per-page= render 'layouts/per_page', per_page: 40, object_count: @charge_types.total_count
         = @title

@@ -5,7 +5,7 @@
   .header-container
     .container
       %h1.page-heading
-        .pull-right
+        .float-right
           = form_with url: earning_spending_graph_entries_path, data: { object: "form-load" }, class: "form-inline" do
             .form-group.hidden-xs
               = link_to "&laquo;".html_safe, "#", data: { object: "previous-year" }, class: "btn btn-default"
