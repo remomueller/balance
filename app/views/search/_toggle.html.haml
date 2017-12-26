@@ -1,3 +1,2 @@
-%small
-  = link_to '#', data: { object: 'toggle-search-container', target: '#search' } do
-    %span.glyphicon.glyphicon-search
+= link_to "#", data: { object: "toggle-search-container", target: "#search" }, class: "btn btn-sm #{defined?(btn_class) ? btn_class : "btn-outline-light"}" do
+  %i.fa.fa-search

@@ -1,97 +1,97 @@
-%nav.navbar.navbar-default.navbar-fixed-top{ role: 'navigation' }
+%nav.navbar.navbar-default.navbar-fixed-top{ role: "navigation" }
   .container
     .navbar-header
-      %button.navbar-toggle{ type: 'button', data: { toggle: 'collapse', target: '.navbar-full-menu' } }
+      %button.navbar-toggle{ type: "button", data: { toggle: "collapse", target: ".navbar-full-menu" } }
         %span.sr-only Toggle navigation
         %span.icon-bar
         %span.icon-bar
         %span.icon-bar
-      = link_to 'Balance', root_path, class: 'navbar-brand navbar-hide-scrolled'
+      = link_to "Balance", root_path, class: "navbar-brand navbar-hide-scrolled"
       - if @menu_title || @title
-        = link_to '#top', data: { object: 'remove-collapse-in scroll-anchor', target: '.navbar-full-menu' }, class: 'navbar-brand navbar-show-scrolled' do
-          %i.fa.fa-level-up.fa-flip-horizontal{ aria: { hidden: 'true' } }
+        = link_to "#top", data: { object: "remove-collapse-in scroll-anchor", target: ".navbar-full-menu" }, class: "navbar-brand navbar-show-scrolled" do
+          %i.fa.fa-level-up.fa-flip-horizontal{ aria: { hidden: "true" } }
           = @menu_title || @title
     .collapse.navbar-collapse.navbar-full-menu
       %ul.nav.navbar-nav.navbar-hide-scrolled
-        %li{ class: "#{'active' if current_page?(root_url) || current_page?(calendar_path)}" }
+        %li{ class: "#{"active" if current_page?(root_url) || current_page?(calendar_path)}" }
           = link_to root_path do
-            %span.glyphicon.glyphicon-calendar
+            %i.fa.fa-calendar
             Calendar
-        %li{ class: "#{'active' if current_page?(current_balance_entries_path)}" }
+        %li{ class: "#{"active" if current_page?(current_balance_entries_path)}" }
           = link_to current_balance_entries_path do
-            %span.glyphicon.glyphicon-usd
+            %i.fa.fa-usd
             Balance
-        %li{ class: "#{'active' if current_page?(averages_entries_path)}" }
+        %li{ class: "#{"active" if current_page?(averages_entries_path)}" }
           = link_to averages_entries_path do
-            %span.glyphicon.glyphicon-dashboard
+            %i.fa.fa-tachometer
             Averages
-        %li{ class: "#{'active' if current_page?(overview_entries_path)}" }
+        %li{ class: "#{"active" if current_page?(overview_entries_path)}" }
           = link_to overview_entries_path do
-            %span.glyphicon.glyphicon-stats
+            %i.fa.fa-bar-chart
             Graphs
-        %li{ class: "#{'active' if current_page?(entries_path) || (params[:controller] == 'entries' && ['new', 'create', 'edit', 'update', 'destroy'].include?(params[:action]))}" }
+        %li{ class: "#{"active" if current_page?(entries_path) || (params[:controller] == "entries" && ["new", "create", "edit", "update", "destroy"].include?(params[:action]))}" }
           = link_to entries_path do
-            %span.glyphicon.glyphicon-list
+            %i.fa.fa-list
             Entries
         %li.visible-xs
           = link_to accounts_path do
-            %span.glyphicon.glyphicon-book
+            %i.fa.fa-book
             Accounts
         %li.visible-xs
           = link_to charge_types_path do
-            %span.glyphicon.glyphicon-credit-card
+            %i.fa.fa-credit-card
             Charge Types
         %li.visible-xs
           = link_to templates_path do
-            %span.glyphicon.glyphicon-th-list
+            %i.fa.fa-th-list
             Templates
         %li.visible-xs
           = link_to backup_path do
-            %span.glyphicon.glyphicon-cloud-upload
+            %i.fa.fa-cloud-upload
             Backup Data
 
       - if current_user
         %form.navbar-form.navbar-right.hidden-sm
-          = link_to 'Logout', destroy_user_session_path, class: 'btn btn-primary-dark'
+          = link_to "Logout", destroy_user_session_path, class: "btn btn-primary-dark"
 
         %ul.nav.navbar-nav.navbar-right
           - if current_user.no_recent_backup?
             %li.hidden-xs
-              = link_to generate_backup_path, method: :post, class: 'backup-link' do
-                %span.glyphicon.glyphicon-bell{ rel: 'tooltip', data: { title: 'Backup now', container: 'body', placement: 'left' } }
+              = link_to generate_backup_path, method: :post, class: "backup-link" do
+                %i.fa.fa-bell{ rel: "tooltip", data: { title: "Backup now", container: "body", placement: "left" } }
           %li.dropdown.hidden-xs
-            = link_to '#', class: 'dropdown-toggle', data: { object: 'dropdown', toggle: 'dropdown' } do
+            = link_to "#", class: "dropdown-toggle", data: { object: "dropdown", toggle: "dropdown" } do
               = current_user.first_name
               %span.caret
-            %ul.dropdown-menu{ role: 'menu' }
+            %ul.dropdown-menu{ role: "menu" }
               %li
                 = link_to accounts_path do
-                  %span.glyphicon.glyphicon-book
+                  %i.fa.fa-book
                   Accounts
               %li
                 = link_to charge_types_path do
-                  %span.glyphicon.glyphicon-credit-card
+                  %i.fa.fa-credit-card
                   Charge Types
               %li
                 = link_to templates_path do
-                  %span.glyphicon.glyphicon-th-list
+                  %i.fa.fa-th-list
                   Templates
               %li.divider
               %li
                 = link_to backup_path do
-                  %span.glyphicon.glyphicon-cloud-upload
+                  %i.fa.fa-cloud-upload
                   Backup Data
               %li.divider
               %li.disabled
-                = link_to '#', data: { object: 'suppress-click' } do
-                  %span.glyphicon.glyphicon-tree-conifer
+                = link_to "#", data: { object: "suppress-click" } do
+                  %i.fa.fa-tree
                   Balance
                   = "v#{Balance::VERSION::STRING}"
               %li.divider.visible-sm
               %li.visible-sm
                 = link_to destroy_user_session_path do
-                  %span.glyphicon.glyphicon-log-out
+                  %i.fa.fa-sign-out
                   Logout
       - else
         %form.navbar-form.navbar-right
-          = link_to 'Sign in', new_user_session_path, class: 'btn btn-primary-dark'
+          = link_to "Sign in", new_user_session_path, class: "btn btn-primary-dark"

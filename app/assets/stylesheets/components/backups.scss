@@ -8,11 +8,11 @@
   }
 }
 
-.navbar-default .navbar-nav .backup-link span {
+.navbar-default .navbar-nav .backup-link i {
   animation: pulse-backup 2s ease-in infinite alternate;
   color: $state-warning-bg;
 }
 
-.navbar-default .navbar-nav .backup-link:hover span {
+.navbar-default .navbar-nav .backup-link:hover i {
   color: darken($state-warning-bg, 15%);
 }

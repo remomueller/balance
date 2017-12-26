@@ -14,13 +14,13 @@
             %ul.dropdown-menu.dropdown-menu-right
               %li
                 = link_to edit_charge_type_path(@charge_type) do
-                  %span.glyphicon.glyphicon-edit
+                  %i.fa.fa-edit
                   Edit
               %li.divider{ role: 'separator' }
               %li
                 = link_to @charge_type, method: :delete, data: { confirm: "Delete #{@charge_type.name}?" } do
                   .text-danger
-                    %span.glyphicon.glyphicon-trash
+                    %i.fa.fa-trash
                     Delete
         = @title
 
