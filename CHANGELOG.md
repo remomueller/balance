@@ -6,7 +6,7 @@
   - Updated to rails 5.2.0.beta2
   - Updated to bootsnap 1.1.7
   - Replaced glyphicons with font awesome icons
-  - Updated to bootstrap 4.0.0.beta2
+  - Updated to bootstrap 4.0.0.beta3
 
 ## 2.4.1 (November 16, 2017)
 

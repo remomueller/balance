@@ -12,7 +12,7 @@ gem "pg",                   "0.21.0"
 
 # Gems used by project
 gem "autoprefixer-rails"
-gem "bootstrap",            "~> 4.0.0.beta2"
+gem "bootstrap",            "~> 4.0.0.beta3"
 gem "colorize",             "~> 0.8.1"
 # gem "devise",               "~> 4.3.0"
 gem "devise", git: "https://github.com/plataformatec/devise", ref: "135d898"
