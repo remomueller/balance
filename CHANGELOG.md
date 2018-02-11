@@ -4,6 +4,7 @@
 - **Gem Changes**
   - Updated to ruby 2.5.0
   - Updated to rails 5.2.0.rc1
+  - Updated to pg 1.0.0
   - Updated to devise 4.4.0
   - Replaced glyphicons with font awesome icons
   - Updated to bootstrap 4.0.0.beta3
