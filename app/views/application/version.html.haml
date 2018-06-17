@@ -1,13 +1,8 @@
-- @title = 'Version'
+- @title = "Version"
 
-- content_for :header do
-  .background-gradient
-  .header-container
-    .container
-      %h1.page-heading= @title
+- @random_theme ? render("themes/random") : render("themes/theme")
 
-.text-center{ style: 'margin-top:40px' }
-  %p.lead
-    %span.transparent-stamp
-      Version
-      %strong= Balance::VERSION::STRING
+.page-box.last-box.d-flex.align-items-center.theme-bg{ class: "theme-#{@theme}-focus-bg" }
+  .container
+    .text-center{ class: @theme != "default" ? "text-white" : nil, style: "font-size: 2rem;" }
+      = "v#{Balance::VERSION::STRING}"

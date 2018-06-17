@@ -2,12 +2,12 @@
 
 ### Enhancements
 - **Gem Changes**
-  - Updated to ruby 2.5.0
-  - Updated to rails 5.2.0.rc1
+  - Updated to ruby 2.5.1
+  - Updated to rails 5.2.0
   - Updated to pg 1.0.0
-  - Updated to devise 4.4.0
+  - Updated to devise 4.4.3
   - Replaced glyphicons with font awesome icons
-  - Updated to bootstrap 4.0.0.beta3
+  - Updated to bootstrap 4.1.1
   - Removed bootsnap
 
 ## 2.4.1 (November 16, 2017)

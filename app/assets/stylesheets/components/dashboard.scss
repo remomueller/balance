@@ -1,13 +1,11 @@
+.dashboard-container-margins,
 .dashboard-container {
-  @include remove-last-child-bottom-margin;
   @include scale-images;
 
-  background-color: $dashboard-bg;
-  border-radius: 3px;
-  box-shadow: 0 30px 60px $standard-shadow-color;
-  color: $body-color;
-  margin-bottom: 40px;
+  border-radius: $border-radius;
+  margin-bottom: map-get($spacers, 4);
   padding: 10px;
+  transition: $transition-bg;
 
   > div,
   > table {
@@ -16,13 +14,72 @@
     }
   }
 
-  + .center-horizontally > .pagination {
-    margin-top: 0;
+  @include media-breakpoint-up(sm) {
+    padding: 30px;
   }
 }
 
-@include media-breakpoint-up(sm) {
-  .dashboard-container {
-    padding: 30px;
+.dashboard-container {
+  @include remove-last-child-bottom-margin;
+}
+
+.dashboard-table {
+  padding: map-get($spacers, 1) 0;
+}
+
+.dashboard-lead {
+  border-top-left-radius: $border-radius;
+  border-top-right-radius: $border-radius;
+  padding: 15px;
+
+  + .dashboard-container {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+  }
+}
+
+.section-lead {
+  border-radius: $border-radius;
+  margin-bottom: 20px;
+  padding: 15px;
+
+  > div {
+    margin-bottom: 0 !important;
+  }
+
+  .section-header,
+  .sub-section-header {
+    border: 0;
+    font-weight: initial;
+    margin-bottom: 0;
+    margin-top: 0;
+    padding: 0;
+  }
+}
+
+
+@each $name, $theme in $themes {
+  .theme-#{$name}-bg {
+    .dashboard-container-margins,
+    .dashboard-container {
+      background-color: map-get($theme, dashboard-bg);
+      box-shadow: 0 0 5px map-get($theme, box-shadow-color);
+      color: map-get($theme, body-color);
+    }
+
+    .dashboard-lead {
+      background-color: map-get($theme, dashboard-bg);
+      color: map-get($theme, body-color);
+    }
+
+    .section-lead {
+      background-color: map-get($theme, dashboard-bg);
+      color: map-get($theme, body-color);
+
+      .section-header,
+      .sub-section-header {
+        color: map-get($theme, body-color);
+      }
+    }
   }
 }

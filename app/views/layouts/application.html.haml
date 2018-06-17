@@ -4,9 +4,7 @@
     %meta{ charset: "utf-8" }
     %meta{ content: "IE=Edge,chrome=1", http: { equiv: "X-UA-Compatible" } }
     %meta{ name: "viewport", content: "width=device-width, initial-scale=1, shrink-to-fit=no" }
-    %meta{ name: "description", content: "A home finance tracker using Ruby on Rails. Calendar views to see spending and overall charts to see monthly and yearly spending." }
-    %meta{ name: "author", content: "Remo Mueller" }
-    %meta{ name: "keywords", content: "personal balance, budget tracking, multiple accounts, daily spending" }
+    = render "layouts/meta/general"
     -# Don't cache any pages
     %meta{ name: "turbolinks-cache-control", content: "no-cache" }
     %title= [@title, ENV["website_name"]].compact.join(" - ").html_safe
@@ -14,12 +12,17 @@
     = csrf_meta_tags
     = stylesheet_link_tag "application", media: "all", data: { turbolinks_track: "reload" }
     = javascript_include_tag "application", data: { turbolinks_track: "reload" }
-    = javascript_tag "var root_url='#{request.script_name + "/"}';"
-  %body#top{ class: yield(:body_class) }
-    - unless @simple_layout
-      #top-menu.top-menu= render "layouts/menu"
-      = render "layouts/flash_messages"
-    = yield :header
-    .container.body-content
-      = yield
+    = javascript_tag "var root_url=\"#{request.script_name + "/"}\";"
+  - @random_theme ? render("themes/random") : render("themes/theme")
+  %body#top.full-page.theme-bg{ class: @theme ? "theme-#{@theme}-bg" : nil, data: { theme: @theme } }
+    = render "layouts/flash_bar"
+    #top-menu.top-menu= render "layouts/menu", menu: @menu ? "menu-#{@menu}" : nil, hide_logo: false
+    - if content_for?(:header)
+      .header-container
+        %div{ class: defined?(container) && container.present? ? container : "container" }
+          %h1.page-heading
+            = yield :header
+    .py-3
+      .container= yield
     = yield :footer
+    = render "layouts/footer", footer: @footer ? "footer-#{@footer}" : nil

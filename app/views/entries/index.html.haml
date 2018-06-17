@@ -1,35 +1,32 @@
-- @title = 'Entries'
+- @title = "Entries"
 
 - content_for :header do
-  .background-gradient
-  .header-container
-    .container
-      %h1.page-heading
-        .float-right
-          = link_to plus_or('New Entry'), new_entry_path, class: 'btn btn-accent btn-shadow'
-          .per-page= render 'layouts/per_page', per_page: 40, object_count: @entries.total_count
-        = @title
-        = render 'search/toggle'
+  .float-right
+    = link_to plus_or("New Entry"), new_entry_path, class: "btn btn-primary"
+    .per-page= render "layouts/per_page", per_page: 40, object_count: @entries.total_count
+  = @title
+  = render "search/toggle"
 
-= render 'search/simple', url: entries_path
+= render "search/simple", url: entries_path
 
-%table.table.table-striped.shadow
-  %thead
-    %tr
-      = th_sort_field @order, 'entries.name', 'Entry Name', extra_class: 'nowrap'
-      = th_sort_field @order, 'entries.billing_date', 'Billing Date', extra_class: 'nowrap'
-      = th_sort_field @order, 'entries.amount', 'Amount', extra_class: 'text-right'
-      %th.text-center Charged
-      %th Charge Type
-      %th Account
-  %tbody
-    - @entries.each do |entry|
+.dashboard-container.dashboard-table
+  %table.table.table-striped.table-borderless.table-hover.table-sticky
+    %thead
       %tr
-        %td= link_to entry.name, entry
-        %td= simple_date entry.billing_date
-        %td.text-right.nowrap= entry.amount.to_currency
-        %td.text-center= simple_check entry.charged?
-        %td= link_to entry.charge_type.name, entry.charge_type
-        %td= link_to entry.charge_type.account.name, entry.charge_type.account
+        = th_sort_field @order, "entries.name", "Entry Name", extra_class: "nowrap"
+        = th_sort_field @order, "entries.billing_date", "Billing Date", extra_class: "nowrap"
+        = th_sort_field @order, "entries.amount", "Amount", extra_class: "text-right"
+        %th.text-center Charged
+        %th Charge Type
+        %th Account
+    %tbody
+      - @entries.each do |entry|
+        %tr
+          %td= link_to entry.name, entry
+          %td= simple_date entry.billing_date
+          %td.text-right.nowrap= entry.amount.to_currency
+          %td.text-center= simple_check entry.charged?
+          %td= link_to entry.charge_type.name, entry.charge_type
+          %td= link_to entry.charge_type.account.name, entry.charge_type.account
 
-.center-horizontally= paginate @entries, theme: 'bootstrap'
+.center-horizontally= paginate @entries, theme: "bootstrap"

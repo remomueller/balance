@@ -1,13 +1,13 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  root 'entries#calendar'
+  root "entries#calendar"
 
   resources :accounts do
     get :search, on: :collection
   end
 
-  resources :charge_types, path: 'charge-types' do
+  resources :charge_types, path: "charge-types" do
     get :search, on: :collection
   end
 
@@ -23,7 +23,7 @@ Rails.application.routes.draw do
       post :earning_spending_graph
       get :autocomplete
       get :averages
-      get :current_balance, path: 'current-balance'
+      get :current_balance, path: "current-balance"
     end
   end
 
@@ -34,10 +34,18 @@ Rails.application.routes.draw do
     end
   end
 
-  devise_for :users, path_names: { sign_up: 'join', sign_in: 'login' }, path: ''
+  devise_for :users,
+             controllers: {
+               passwords: "passwords",
+               registrations: "registrations",
+               sessions: "sessions",
+               unlocks: "unlocks"
+             },
+             path_names: { sign_up: "join", sign_in: "login" },
+             path: ""
 
-  get '/about' => 'application#about', as: :about
-  get '/month' => 'entries#calendar', as: :calendar
+  get "/about" => "application#about", as: :about
+  get "/month" => "entries#calendar", as: :calendar
 
   scope module: :application do
     get :version
@@ -45,9 +53,9 @@ Rails.application.routes.draw do
 
   scope module: :internal do
     get :backup
-    get :backup_failed, path: 'backup/failed'
-    get :backup_succeeded, path: 'backup/succeeded'
-    get :generate_backup, to: redirect('backup')
+    get :backup_failed, path: "backup/failed"
+    get :backup_succeeded, path: "backup/succeeded"
+    get :generate_backup, to: redirect("backup")
     post :generate_backup
   end
 end

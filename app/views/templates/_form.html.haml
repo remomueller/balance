@@ -8,7 +8,7 @@
   .form-group
     %label.col-md-2.control-label Items
     .col-md-10
-      = link_to 'Add Item', add_item_templates_path, method: :post, remote: true, class: 'btn btn-xs btn-default', style: 'margin-top: 6px'
+      = link_to 'Add Item', add_item_templates_path, method: :post, remote: true, class: 'btn btn-sm btn-light', style: 'margin-top: 6px'
       #items{ data: { object: 'sortable' } }
         = hidden_field_tag 'template[item_ids][]', nil
         - @template.template_items.each do |template_item|
@@ -17,4 +17,4 @@
   .form-group
     .col-md-10.col-md-offset-2
       = f.submit nil, class: 'btn btn-primary'
-      = link_to 'Cancel', @template.new_record? ? templates_path : @template, class: 'btn btn-default'
+      = link_to 'Cancel', @template.new_record? ? templates_path : @template, class: 'btn btn-light'

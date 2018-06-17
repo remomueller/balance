@@ -1,7 +1,3 @@
-= form_for @entry, html: { class: "form-horizontal" } do |form|
-  = render "entries/inner_form", form: form
-
-  .form-group
-    .col-md-10.col-md-offset-2
-      = form.submit nil, class: "btn btn-primary"
-      = link_to "Cancel", @entry.new_record? ? entries_path : @entry, class: "btn btn-default"
+= form_with model: entry, local: true do |form|
+  = render "entries/inner_form", form: form, entry: entry
+  = render "forms/horizontal/submit", form: form, object: entry

@@ -2,16 +2,16 @@
 
 source "https://rubygems.org"
 
-gem "rails",                "5.2.0.rc1"
+gem "rails",                "5.2.0"
 
 # Database Adapter
 gem "pg",                   "1.0.0"
 
 # Gems used by project
 gem "autoprefixer-rails"
-gem "bootstrap",            "~> 4.0.0.beta3"
+gem "bootstrap",            "~> 4.1.1"
 gem "colorize",             "~> 0.8.1"
-gem "devise",               "~> 4.4.0"
+gem "devise",               "~> 4.4.3"
 gem "figaro",               "~> 1.1.1"
 gem "font-awesome-rails",   "~> 4.7.0"
 gem "haml",                 "~> 5.0.4"
@@ -23,7 +23,7 @@ gem "coffee-rails",         "~> 4.2"
 gem "sass-rails",           "~> 5.0"
 gem "uglifier",             ">= 1.3.0"
 
-gem "jbuilder",             "~> 2.0"
+gem "jbuilder",             "~> 2.5"
 gem "jquery-rails",         "~> 4.3.1"
 gem "turbolinks",           "~> 5"
 
@@ -31,7 +31,7 @@ gem "turbolinks",           "~> 5"
 group :test do
   gem "minitest"
   gem "rails-controller-testing"
-  gem "simplecov", "~> 0.15.1", require: false
+  gem "simplecov", "~> 0.16.1", require: false
 end
 
 group :development do

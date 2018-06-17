@@ -1,32 +1,25 @@
 - @title = @entry.name
 
 - content_for :header do
-  .background-gradient
-  .header-container
-    .container
-      %h1.page-heading
-        .float-right
-          .dropdown
-            = link_to '#', class: 'btn btn-default dropdown-toggle', data: { toggle: 'dropdown' } do
-              Actions
-              %strong.caret
+  .float-right
+    .dropdown
+      = link_to "#", class: "btn btn-light dropdown-toggle", data: { toggle: "dropdown" } do
+        .d-inline-block.d-sm-none
+          %i.fa.fa-cog
+        .d-none.d-sm-inline-block Actions
 
-            %ul.dropdown-menu.dropdown-menu-right
-              %li
-                = link_to edit_entry_path(@entry) do
-                  %i.fa.fa-edit
-                  Edit
-              %li
-                = link_to copy_entry_path(@entry) do
-                  %i.fa.fa-clipboard
-                  Copy
-              %li.divider{ role: 'separator' }
-              %li
-                = link_to @entry, method: :delete, data: { confirm: "Delete #{@entry.name}?" } do
-                  .text-danger
-                    %i.fa.fa-trash
-                    Delete
-        = @title
+      .dropdown-menu.dropdown-menu-right
+        = link_to edit_entry_path(@entry), class: "dropdown-item" do
+          %i.fa.fa-edit
+          Edit
+        = link_to copy_entry_path(@entry), class: "dropdown-item" do
+          %i.fa.fa-clipboard
+          Copy
+        .dropdown-divider
+        = link_to @entry, method: :delete, data: { confirm: "Delete #{@entry.name}?" }, class: "dropdown-item text-danger" do
+          %i.fa.fa-trash
+          Delete
+  = @title
 
 .dashboard-container
   %dl.dl-horizontal

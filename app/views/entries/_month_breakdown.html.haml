@@ -1,24 +1,24 @@
 #month-income-loss
-  = render 'entries/month_income_loss'
+  = render "entries/month_income_loss"
 
 - @entries = current_user.entries.with_date_for_calendar(@start_date, @end_date)
 
-%table.table-fixed.shadow{ style: 'width: 100%;' }
+%table.table-fixed.mb-3{ style: "width: 100%;" }
   %thead
-    %tr{ style: 'border: 1px solid transparent' }
+    %tr{ style: "border: 1px solid transparent" }
       - (0..6).each do |day_index|
         %th= Date::ABBR_DAYNAMES[day_index]
-  %tbody{ style: 'font-size:11px' }
+  %tbody{ style: "font-size: 11px;" }
     %tr
       - (0..@end_date - @start_date).each do |first_day_offset|
         - iDate = @start_date + first_day_offset.day
-        %td{ valign: 'top', style: 'border: 1px solid #ddd', class: "#{'calendar-entry-body-today' if iDate == Time.zone.today} #{'last-month' if iDate < @start_month} #{'next-month' if iDate > @end_month} day_droppable", data: { billing_date: iDate.strftime('%m/%d/%Y') }, onmouseover: "$('#calendar_box_#{first_day_offset}_new_entry_link').show();", onmouseout: "$('#calendar_box_#{first_day_offset}_new_entry_link').hide();", ondblclick: "openCalendarPopup('#{iDate.strftime('%m/%d/%Y')}');" }
-          %div{ style: 'width:100%' }
+        %td{ valign: "top", style: "border: 1px solid #ddd", class: "#{'calendar-entry-body-today' if iDate == Time.zone.today} #{'last-month' if iDate < @start_month} #{'next-month' if iDate > @end_month} day_droppable", data: { billing_date: iDate.strftime('%m/%d/%Y') }, onmouseover: "$('#calendar_box_#{first_day_offset}_new_entry_link').show();", onmouseout: "$('#calendar_box_#{first_day_offset}_new_entry_link').hide();", ondblclick: "openCalendarPopup('#{iDate.strftime('%m/%d/%Y')}');" }
+          %div{ style: "width: 100%;" }
             .calendar-entry-heading
               - if [@start_date, @start_month, (@end_month + 1.day)].include?(iDate)
-                = iDate.strftime '%b %e'
+                = iDate.strftime "%b %e"
               - else
-                = iDate.strftime '%e'
-            %div{ style: 'min-height:60px', data: { object: 'day-body', date: iDate.strftime('%m/%d/%Y') } }
-              = render 'calendar_day_body', iDate: iDate
+                = iDate.strftime "%e"
+            %div{ style: "min-height:60px", data: { object: "day-body", date: iDate.strftime("%m/%d/%Y") } }
+              = render "calendar_day_body", iDate: iDate
         = "</tr><tr>".html_safe if first_day_offset % 7 == 6 && first_day_offset != @end_date - @start_date

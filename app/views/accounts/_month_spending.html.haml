@@ -1,7 +1,7 @@
-%h2.brand-white-text.text-shadow
+%h2
   Spending This Month
 
-%table.table.table-striped.table-borderless.shadow
+%table.table.table-striped.table-borderless
   %thead
     %tr
       %th Account
@@ -9,7 +9,7 @@
       %th.text-right Daily Average
   %tbody
     - current_user.accounts.each do |account|
-      - unless account.spent_in_time_period(@start_month, @end_month) == 0
+      - unless account.spent_in_time_period(@start_month, @end_month).zero?
         %tr
           %td= link_to account.name, account
           %td.text-right= account.spent_in_time_period(@start_month, @end_month).to_currency

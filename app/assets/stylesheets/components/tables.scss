@@ -8,5 +8,43 @@
     th {
       border-width: 0;
     }
+
+    > tbody + tbody {
+      border-width: 0;
+    }
+  }
+}
+
+.table-sticky {
+  position: relative;
+  z-index: 1;
+
+  th {
+    position: sticky;
+    top: $header-height - 1px;
+    z-index: $zindex-sticky;
+  }
+}
+
+.tr-align-middle {
+  td,
+  th {
+    vertical-align: middle;
+  }
+}
+
+@each $name, $theme in $themes {
+  .theme-#{$name}-bg {
+    .table-sticky {
+      th {
+        background-color: map-get($theme, dashboard-bg);
+      }
+    }
+    .table-striped tbody tr:nth-of-type(odd) {
+      background-color: theme-color($theme, table-accent-bg, $table-accent-bg);
+    }
+    .table-hover tbody tr:hover {
+      background-color: theme-color($theme, table-hover-bg, $table-hover-bg);
+    }
   }
 }

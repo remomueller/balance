@@ -1,36 +1,20 @@
 = hidden_field_tag "from_calendar", params[:from_calendar].to_i
 
-.form-group
-  = form.label :name, class: "col-md-2 control-label"
-  .col-md-10
-    = form.text_field :name, class: "form-control", data: { object: "typeahead-entries", path: autocomplete_entries_path }, autocomplete: "off", id: "entry_name"
-    = render "layouts/errors", object: @entry, key: :name
 
-.form-group
-  = form.label :description, class: "col-md-2 control-label"
+.form-group.row
+  = form.label :name, class: "col-md-2 col-form-label"
   .col-md-10
-    = form.text_area :description, rows: [[7, @entry.description.to_s.count("\n") + 1].max, 25].min, class: "form-control", data: { object: "expandable-text-area", default_rows: 7 }, id: "entry_description"
+    = form.text_field :name, class: "form-control#{" is-invalid" if entry.errors[:name].present?}", data: { object: "typeahead-entries", path: autocomplete_entries_path }, autocomplete: "off", id: "entry_name"
+    = render "forms/invalid_feedback", object: entry, key: :name
 
-.form-group
-  = form.label :billing_date, class: "col-md-2 control-label"
+.form-group.row
+  = form.label :description, class: "col-md-2 col-form-label"
   .col-md-10
-    = form.text_field :billing_date, class: "datepicker form-control", value: @entry.billing_date ? @entry.billing_date.strftime("%m/%d/%Y") : "", id: "entry_billing_date"
-    = render "layouts/errors", object: @entry, key: :billing_date
+    = form.text_area :description, rows: [[7, entry.description.to_s.count("\n") + 1].max, 25].min, class: "form-control", data: { object: "expandable-text-area", default_rows: 7 }, id: "entry_description"
 
-.form-group
-  .col-md-10.col-md-offset-2
-    .checkbox
-      %label
-        = form.check_box :charged
-        Charged
+= render "forms/horizontal/date_field", form: form, object: entry, key: :billing_date
+= render "forms/horizontal/check_box", form: form, object: entry, key: :charged
 
-.form-group
-  = form.label :charge_type_id, class: "col-md-2 control-label"
-  .col-md-10
-    = form.select :charge_type_id, [["----", nil]]  + current_user.charge_types.order(:name, "accounts.name").collect{|item| [item.full_name, item.id]}, {}, class: "form-control", id: "entry_charge_type"
-    = render "layouts/errors", object: @entry, key: :charge_type_id
+= render "forms/horizontal/select", form: form, object: entry, key: :charge_type_id, options: current_user.charge_types.order(:name, "accounts.name").collect{ |item| [item.full_name, item.id] }, include_blank: "Select charge type", id: true
 
-.form-group
-  = form.label :decimal_amount, "Amount", class: "col-md-2 control-label"
-  .col-md-10
-    = form.text_field :decimal_amount, class: "form-control", autocomplete: "off", id: "entry_amount"
+= render "forms/horizontal/text_field", form: form, object: entry, key: :decimal_amount, key_name: "Amount", autocomplete: "off"

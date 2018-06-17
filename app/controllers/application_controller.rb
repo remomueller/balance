@@ -6,6 +6,10 @@ class ApplicationController < ActionController::Base
   skip_before_action :verify_authenticity_token, if: :devise_login?
   before_action :configure_permitted_parameters, if: :devise_controller?
 
+  def version
+    render layout: "layouts/full_page"
+  end
+
   protected
 
   def devise_login?

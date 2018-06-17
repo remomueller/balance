@@ -1,19 +1,15 @@
 - @title = "Earning and Spending"
 
 - content_for :header do
-  .background-gradient
-  .header-container
-    .container
-      %h1.page-heading
-        .float-right
-          = form_with url: earning_spending_graph_entries_path, data: { object: "form-load" }, class: "form-inline" do
-            .form-group.hidden-xs
-              = link_to "&laquo;".html_safe, "#", data: { object: "previous-year" }, class: "btn btn-default"
-            .form-group
-              = select_tag :year, options_for_select( (current_user.first_billing_date.year..Time.zone.today.year).to_a, Time.zone.today.year ), class: "form-control"
-            .form-group.hidden-xs
-              = link_to "&raquo;".html_safe, "#", data: { object: "next-year" }, class: "btn btn-default"
-        = @title
+  .float-right
+    = form_with url: earning_spending_graph_entries_path, data: { object: "form-load" }, class: "form-inline" do
+      .form-group.d-none.d-sm-flex
+        = link_to "&laquo;".html_safe, "#", data: { object: "previous-year" }, class: "btn btn-light"
+      .form-group
+        = select_tag :year, options_for_select( (current_user.first_billing_date.year..Time.zone.today.year).to_a, Time.zone.today.year ), class: "form-control"
+      .form-group.d-none.d-sm-flex
+        = link_to "&raquo;".html_safe, "#", data: { object: "next-year" }, class: "btn btn-light"
+  = @title
 
 #month_chart{ style: "height: 450px; margin-bottom: 50px;", data: { object: "chart-container", chart: "" } }
 

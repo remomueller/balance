@@ -1,4 +1,5 @@
-%nav.navbar.navbar-expand-lg.navbar-dark.navbar-balance
+- menu = "menu-default" unless defined?(menu) && menu.present?
+%nav.navbar.navbar-expand-lg.navbar-dark.navbar-custom{ class: menu }
   %div{ class: defined?(container) && container.present? ? container : "container" }
     = link_to "Balance", root_path, class: "navbar-brand navbar-hide-scrolled"
     - if @menu_title || @title

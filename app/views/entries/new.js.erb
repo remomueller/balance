@@ -1,4 +1,2 @@
-<% @entry.errors.each do |key, value| %>
-$("#entry_<%= key %>").parent().parent().addClass("has-error");
-<% end %>
+$("#new-entry-form").html("<%=j render "entries/new_entry_form", entry: @entry %>");
 resetEntryTemplateButtons();

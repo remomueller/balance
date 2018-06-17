@@ -1,0 +1,51 @@
+.footer-spring {
+  &::before {
+    background-image: asset-url('themes/spring/grass-color.png');
+    background-repeat: repeat-x;
+    content: ' ';
+    position: absolute;
+    top: -45px;
+    left: 0;
+    right: 0;
+    height: 120px;
+    background-size: 60px;
+  }
+}
+
+// .theme-spring-focus-bg
+.theme-spring-bg {
+  background-color: $a700-light-blue;
+  background-image: linear-gradient(180deg, $a100-light-blue, $a200-light-blue 60%, $a400-light-blue 80%, $a700-light-blue 90%, $a700-light-blue);
+}
+
+@keyframes flow-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(359deg); }
+}
+
+.flower-spin {
+  animation: flow-spin 3s linear infinite;
+}
+
+.flower-stack {
+  height: 1em;
+  line-height: 1em;
+  width: 1em;
+
+  .fa-circle {
+    color: $p700-pink;
+    font-size: .9em;
+  }
+
+  .fa-sun-o {
+    color: $p200-pink;
+  }
+
+  .fa-pagelines {
+    color: $p500-green;
+    font-size: 1.3em;
+    left: -6px;
+    top: 10px;
+    transform: rotate(30deg);
+  }
+}

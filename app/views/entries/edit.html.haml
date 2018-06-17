@@ -1,12 +1,8 @@
 - @title = "#{@entry.name_was} Edit"
 
 - content_for :header do
-  .background-gradient
-  .header-container
-    .container
-      %h1.page-heading
-        = link_to @entry.name_was, @entry
-        Edit
+  = link_to @entry.name_was, @entry
+  Edit
 
-.dashboard-container= render 'form'
+.dashboard-container= render "form", entry: @entry
 

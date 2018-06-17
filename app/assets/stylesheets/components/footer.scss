@@ -1,13 +1,31 @@
 .footer-container {
-  background-color: $brand-black;
   bottom: 0;
-  color: $brand-white;
   height: $footer-height;
   position: absolute;
+  transition: background-color .5s ease-out;
   width: 100%;
+
+  .footer {
+    height: $footer-height;
+    padding: 40px 0;
+  }
+
+  img {
+    @include ignore-selection;
+  }
+
+  > div {
+    position: relative;
+  }
 }
 
-.footer {
-  height: $footer-height;
-  padding: 40px 0;
+@each $name, $theme in $themes {
+  .footer-#{$name} {
+    background-color: theme-color($theme, footer-bg, $p100-grey);
+    color: theme-color($theme, footer-color, $p900-grey);
+
+    a {
+      color: theme-color($theme, footer-color, $p900-grey) !important;
+    }
+  }
 }

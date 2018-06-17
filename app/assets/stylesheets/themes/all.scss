@@ -1,0 +1,11 @@
+// Variables
+
+@import 'themes/colors';
+@import 'themes/default';
+@import 'themes/winter';
+
+
+$themes: (
+  default: $default,
+  winter: $winter,
+)

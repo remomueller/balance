@@ -1,0 +1,10 @@
+- footer = "footer-default" unless defined?(footer) && footer.present?
+.footer-container{ class: footer }
+  %div{ class: defined?(container) && container.present? ? container : "container" }
+    .footer
+      .nowrap.row
+
+        .col
+          &copy;
+          = Time.zone.today.year
+          = link_to ENV["website_name"], root_path

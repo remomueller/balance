@@ -1,7 +1,6 @@
 - @title = 'Templates'
 
 - content_for :header do
-  .background-gradient
   .header-container
     .container
       %h1.page-heading
@@ -26,7 +25,7 @@
       %tr
         %td= link_to template.name, template
         %td
-          = link_to 'Edit', edit_template_path(template), class: 'btn btn-xs btn-default'
-          = link_to 'Delete', template, method: :delete, data: { confirm: "Delete #{template.name}?" }, class: 'btn btn-xs btn-danger-inverse'
+          = link_to 'Edit', edit_template_path(template), class: 'btn btn-sm btn-light'
+          = link_to 'Delete', template, method: :delete, data: { confirm: "Delete #{template.name}?" }, class: 'btn btn-sm btn-danger-inverse'
 
 .center-horizontally= paginate @templates, theme: 'bootstrap'

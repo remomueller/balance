@@ -2,8 +2,8 @@
   .btn-group.nav-item
     = link_to "#", class: "nav-link dropdown-toggle", data: { toggle: "dropdown" }, aria: { haspopup: "true", expanded: "false" } do
       = current_user.first_name
-    .dropdown-menu.dropdown-menu-right.dropdown-menu-balance
-      .dropdown-menu-balance-inner
+    .dropdown-menu.dropdown-menu-right.dropdown-menu-custom
+      .dropdown-menu-custom-inner
         = link_to accounts_path, class: "dropdown-item" do
           Accounts
 

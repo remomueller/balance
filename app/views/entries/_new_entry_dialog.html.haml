@@ -1,37 +1,37 @@
 #new-entry-dialog.modal
-  .modal-dialog
+  .modal-dialog.modal-lg
     .modal-content
       .modal-header
-        %button.close{ type: 'button', data: { dismiss: 'modal' }, aria: { hidden: 'true' } } &times;
         .entry-contents
-          %h4.modal-title
+          %h5.modal-title
             Create Entry
             - if current_user.templates.count > 0
               &middot;
-              = link_to 'Launch Template', '#', data: { object: 'template-modal' }
-        .template-contents{ style: 'display:none' }
-          %h4.modal-title
-            = link_to 'Create Entry', '#', data: { object: 'entry-modal' }
+              = link_to "Launch Template", "#", data: { object: "template-modal" }
+        .template-contents{ style: "display:none" }
+          %h5.modal-title
+            = link_to "Create Entry", "#", data: { object: "entry-modal" }
             &middot;
             Launch Template
+        %button.close{ type: "button", data: { dismiss: "modal" }, aria: { hidden: "true" } } &times;
       .modal-body
-        .entry-contents
+        #new-entry-form.entry-contents
+          = render "entries/new_entry_form", entry: current_user.entries.new
+        .template-contents{ style: "display:none" }
           - @entry = current_user.entries.new
-          = form_with model: @entry, class: 'form-horizontal', id: "new_entry" do |form|
-            = render "entries/inner_form", form: form
-        .template-contents{ style: 'display:none' }
-          = form_tag launch_template_templates_path, remote: true, class: 'form-horizontal', id: 'launch_template' do
-            .form-group
-              = label_tag :template_id, 'Template', class: 'col-md-2 control-label'
+          = form_tag launch_template_templates_path, remote: true, id: "launch_template" do
+
+            .form-group.row
+              = label_tag :template_id, "Template", class: "col-md-2 col-form-label"
               .col-md-10
-                = select_tag :template_id, options_for_select([['----', nil]] + current_user.templates.order(:name).pluck(:name, :id)), class: 'form-control'
-            .form-group
-              = label_tag :template_billing_date, 'Billing Date', class: 'col-md-2 control-label'
+                = select_tag :template_id, options_for_select([["----", nil]] + current_user.templates.order(:name).pluck(:name, :id)), class: "form-control"
+            .form-group.row
+              = label_tag :template_billing_date, "Billing Date", class: "col-md-2 col-form-label"
               .col-md-10
-                = text_field_tag :template_billing_date, (@entry.billing_date ? @entry.billing_date.strftime('%m/%d/%Y') : ''),  class: 'datepicker form-control'
+                = text_field_tag :template_billing_date, (@entry.billing_date ? @entry.billing_date.strftime("%m/%d/%Y") : ""),  class: "datepicker form-control", autocomplete: "off"
       .modal-footer
-        = link_to 'Close', '#', class: 'btn btn-default', data: { dismiss: 'modal' }
+        = link_to "Close", "#", class: "btn btn-light", data: { dismiss: "modal" }
         %span.entry-contents
-          = link_to 'Create Entry', '#', class: 'btn btn-primary', data: { object: 'submit', target: '#new_entry', disable_with: 'Create Entry' }, id: 'entry-submit-button'
-        %span.template-contents{ style: 'display:none' }
-          = link_to 'Launch Template', '#', class: 'btn btn-primary', data: { object: 'submit', target: '#launch_template', disable_with: 'Launch Template' }, id: 'template-submit-button'
+          = link_to "Create Entry", "#", class: "btn btn-primary", data: { object: "submit", target: "#new_entry", disable_with: "Create Entry" }, id: "entry-submit-button"
+        %span.template-contents{ style: "display:none" }
+          = link_to "Launch Template", "#", class: "btn btn-primary", data: { object: "submit", target: "#launch_template", disable_with: "Launch Template" }, id: "template-submit-button"

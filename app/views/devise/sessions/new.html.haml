@@ -1,36 +1,30 @@
-- @title = 'Sign in'
+- @title = "Sign in"
 
-- @simple_layout = true
+.page-box.last-box.d-flex.flex-column.justify-content-center.background-p50-grey
+  .container
+    %p.lead.text-center Welcome back!
 
-.background-gradient
+    .sign-up-form
+      .sign-up-form-title
+        Sign in
 
-%p.lead.center.brand-white-text Welcome back!
+      = form_with model: resource, url: session_path(resource_name), local: true do |form|
+        = render "forms/vertical/email_field", form: form, object: resource, key: :email
 
-.sign-up-form
-  .sign-up-form-title
-    Sign in
+        .form-group
+          = form.label :password
+          %small= link_to "(Forgot password?)", new_password_path(resource_name), tabindex: "-1"
+          = form.password_field :password, class: "form-control#{" is-invalid" if flash[:alert].present?}", autocomplete: "current-password"
+          - if flash[:alert].present?
+            .invalid-feedback= flash[:alert].html_safe
 
-  = form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: 'form-vertical' }) do |f|
-    .form-group
-      = f.label :email, class: 'control-label'
-      = f.text_field :email, class: 'form-control'
+        .form-group.submit-btn-container
+          = form.submit "Sign in", class: "btn btn-primary btn-block"
 
-    .form-group
-      = f.label :password, class: 'control-label'
-      = link_to '(Forgot password?)', new_password_path(resource_name), tabindex: '-1'
-      = f.password_field :password, class: 'form-control', autocomplete: 'off'
+        - flash[:alert] = nil
 
-    .form-group.submit-btn-container
-      = f.submit 'Sign in', class: 'btn btn-primary btn-block btn-shadow'
-
-- if devise_mapping.confirmable?
-  .center{ style: 'margin-bottom:20px' }
-    = link_to "Didn't receive confirmation instructions?", new_confirmation_path(resource_name)
-
-.sign-up-form.center
-  New to
-  = succeed '?' do
-    = ENV['website_name']
-  = link_to 'Create an account.', new_user_registration_path
-
-=# render 'layouts/simple_footer'
+    .sign-up-form.text-center
+      New to
+      = succeed "?" do
+        = ENV["website_name"]
+      = link_to "Create an account.", new_user_registration_path
