@@ -5,6 +5,8 @@ class AccountsController < ApplicationController
   before_action :authenticate_user!
   before_action :find_account_or_redirect, only: [:show, :edit, :update, :destroy]
 
+  layout "layouts/full_page_sidebar"
+
   # GET /accounts
   def index
     scope = current_user.accounts

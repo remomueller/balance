@@ -1,24 +1,5 @@
-= form_for @account, html: { class: 'form-horizontal' } do |f|
-  .form-group
-    = f.label :name, nil, class: 'col-md-2 control-label'
-    .col-md-10
-      = f.text_field :name, class: 'form-control'
-      = render 'layouts/errors', object: @account, key: :name
-
-  .form-group
-    .col-md-offset-2.col-md-10
-      .checkbox
-        %label
-          = f.check_box :archived
-          Archive to Hide Account From Current Balance
-
-  .form-group
-    = f.label :category, class: 'col-md-2 control-label'
-    .col-md-10
-      = f.select :category, Account::CATEGORIES, {}, class: 'form-control'
-      = render 'layouts/errors', object: @account, key: :category
-
-  .form-group
-    .col-md-offset-2.col-md-10
-      = f.submit nil, class: 'btn btn-primary'
-      = link_to 'Cancel', @account.new_record? ? accounts_path : @account, class: 'btn btn-light'
+= form_with model: account, local: true do |form|
+  = render "forms/horizontal/text_field", form: form, object: account, key: :name
+  = render "forms/horizontal/check_box", form: form, object: account, key: :archived, help_text: "Archived accounts do not display in current balance."
+  = render "forms/horizontal/select", form: form, object: account, key: :category, options: Account::CATEGORIES
+  = render "forms/horizontal/submit", form: form, object: account

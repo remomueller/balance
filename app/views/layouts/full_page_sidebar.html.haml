@@ -14,23 +14,24 @@
     = javascript_include_tag "application", data: { turbolinks_track: "reload" }
     = javascript_tag "var root_url=\"#{request.script_name + "/"}\";"
   - @random_theme ? render("themes/random") : render("themes/theme")
-  %body#top.full-page.theme-bg{ class: @theme ? "theme-#{@theme}-bg" : nil, data: { theme: @theme } }
+  %body#top.full-page{ class: @theme ? "theme-#{@theme}-bg" : nil }
     = render "layouts/flash_bar"
-    #top-menu.top-menu= render "layouts/menu", menu: @theme ? "menu-#{@theme}" : nil, hide_logo: false
-    - if content_for?(:header)
-      .header-container
-        %div{ class: defined?(container) && container.present? ? container : "container" }
-          %h1.page-heading
-            = yield :header
+    #top-menu.top-menu= render "layouts/menu", menu: @theme ? "menu-#{@theme}" : nil, container: "container-fluid"
+    .header-container
+      .container-fluid
+        %h1.page-heading
+          = yield :header
     - if content_for?(:tabs)
       .header-tabs{ class: "#{"header-tabs-no-breadcrumbs" unless content_for?(:breadcrumbs)}" }
-        %div{ class: defined?(container) && container.present? ? container : "container" }
+        .container-fluid
           = yield :tabs
     - if content_for?(:breadcrumbs)
       .breadcrumb-container
-        %div{ class: defined?(container) && container.present? ? container : "container" }
+        .container-fluid
           = yield :breadcrumbs
-    .py-3
-      .container= yield
+    .row.no-gutters.flex-md-nowrap
+      = yield(:sidebar)
+      %main.col.p-3{ role: "main" }
+        = yield
     = yield :footer
-    = render "layouts/footer", footer: @theme ? "footer-#{@theme}" : nil
+    = render "layouts/footer", footer: @theme ? "footer-#{@theme}" : nil, container: "container-fluid"

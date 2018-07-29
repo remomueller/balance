@@ -1,0 +1,6 @@
+- if account.charge_types.present?
+  %ul.list-unstyled
+    - account.charge_types.each do |charge_type|
+      %li= link_to charge_type.name, charge_type
+- else
+  .text-muted No charge types.

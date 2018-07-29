@@ -1,40 +1,17 @@
 - @title = @charge_type.name
 
 - content_for :header do
-  .header-container
-    .container
-      %h1.page-heading
-        .float-right
-          .dropdown
-            = link_to '#', class: 'btn btn-light dropdown-toggle', data: { toggle: 'dropdown' } do
-              Actions
-              %strong.caret
-
-            %ul.dropdown-menu.dropdown-menu-right
-              %li
-                = link_to edit_charge_type_path(@charge_type) do
-                  %i.fa.fa-edit
-                  Edit
-              %li.divider{ role: 'separator' }
-              %li
-                = link_to @charge_type, method: :delete, data: { confirm: "Delete #{@charge_type.name}?" } do
-                  .text-danger
-                    %i.fa.fa-trash
-                    Delete
-        = @title
+  .float-right
+    = render "layouts/edit_delete_dropdown", edit_url: edit_charge_type_path(@charge_type), delete_url: @charge_type, delete_confirmation: "Delete #{@charge_type.name}?"
+  = @title
+= render "internal/tabs"
+- content_for :breadcrumbs do
+  %ol
+    %li= link_to "charge types", charge_types_path
+    %li.breadcrumb-muted= @charge_type.name.to_s.downcase
+- content_for :sidebar, render("internal/sidebar_setup")
 
 .dashboard-container
-  %table.table.table-borderless
-    %col.hidden-xs{ width: '30%' }
-    %col.hidden-sm.hidden-md.hidden-lg{ width: '50%' }
-    %tr
-      %th Account
-      %td= link_to @charge_type.account.name, @charge_type.account
-
-    %tr
-      %th Counts Towards Spending
-      %td= check_box_tag 'counts', 'towards_spending', @charge_type.counts_towards_spending?, disabled: true
-
-    %tr
-      %th Total Spent
-      %td= @charge_type.total_spent.to_currency
+  = render "forms/horizontal/show/generic", title: "Account", content: link_to(@charge_type.account.name, @charge_type.account)
+  = render "forms/horizontal/show/check_box", object: @charge_type, key: :counts_towards_spending
+  = render "forms/horizontal/show/generic", title: "Total spent", content: @charge_type.total_spent.to_currency

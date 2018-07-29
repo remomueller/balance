@@ -1,0 +1,36 @@
+.breadcrumb-container {
+  background-color: $p100-grey;
+  border-bottom: 1px solid $p200-grey;
+  list-style: none;
+  padding: map-get($spacers, 2) 0;
+
+  ol {
+    margin: 0;
+    padding: 0;
+
+    > li {
+      display: block;
+    }
+
+    @include media-breakpoint-up(sm) {
+      > li {
+        display: inline-block;
+      }
+    }
+
+    > li+li::before {
+      color: $p300-grey;
+      content: '\203A ';
+      padding: 0 4px 0 0;
+    }
+  }
+
+  .btn {
+    line-height: initial;
+  }
+}
+
+.breadcrumb-muted {
+  color: $p500-grey;
+  font-weight: 300;
+}

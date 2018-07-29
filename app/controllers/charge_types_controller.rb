@@ -5,6 +5,8 @@ class ChargeTypesController < ApplicationController
   before_action :authenticate_user!
   before_action :find_charge_type_or_redirect, only: [:show, :edit, :update, :destroy]
 
+  layout "layouts/full_page_sidebar"
+
   # GET /charge_types
   def index
     scope = current_user.charge_types
