@@ -5,13 +5,7 @@
     .dropdown-menu.dropdown-menu-right.dropdown-menu-custom
       .dropdown-menu-custom-inner
         = link_to accounts_path, class: "dropdown-item" do
-          Accounts
-
-        = link_to charge_types_path, class: "dropdown-item" do
-          Charge Types
-
-        = link_to templates_path, class: "dropdown-item" do
-          Templates
+          Setup
 
         .dropdown-divider
 
@@ -34,20 +28,8 @@
 
 %li.nav-item.d-lg-none{ class: current_page?(accounts_path) ? "active" : nil }
   = link_to accounts_path, class: "nav-link" do
-    Accounts
+    Setup
   - if current_page?(accounts_path)
-    %span.sr-only (current)
-
-%li.nav-item.d-lg-none{ class: current_page?(charge_types_path) ? "active" : nil }
-  = link_to charge_types_path, class: "nav-link" do
-    Charge Types
-  - if current_page?(charge_types_path)
-    %span.sr-only (current)
-
-%li.nav-item.d-lg-none{ class: current_page?(templates_path) ? "active" : nil }
-  = link_to templates_path, class: "nav-link" do
-    Templates
-  - if current_page?(templates_path)
     %span.sr-only (current)
 
 %li.nav-item.d-lg-none{ class: current_page?(backup_path) ? "active" : nil }

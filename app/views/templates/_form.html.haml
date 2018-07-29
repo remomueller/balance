@@ -1,20 +1,13 @@
-= form_for @template, html: { class: 'form-horizontal' } do |f|
-  .form-group
-    = f.label :name, class: 'col-md-2 control-label'
-    .col-md-10
-      = f.text_field :name, class: 'form-control'
-      = render 'layouts/errors', object: @template, key: :name
+= form_with model: template, local: true do |form|
+  = render "forms/horizontal/text_field", form: form, object: template, key: :name
 
-  .form-group
-    %label.col-md-2.control-label Items
+  .form-group.row
+    %label.col-md-2.col-form-label Items
     .col-md-10
-      = link_to 'Add Item', add_item_templates_path, method: :post, remote: true, class: 'btn btn-sm btn-light', style: 'margin-top: 6px'
-      #items{ data: { object: 'sortable' } }
-        = hidden_field_tag 'template[item_ids][]', nil
-        - @template.template_items.each do |template_item|
-          = render 'template_items/form', template_item: template_item
+      = link_to "Add Item", add_item_templates_path, method: :post, remote: true, class: "btn btn-sm btn-light", style: "margin-top: 6px"
+  #items{ data: { object: "sortable" } }
+    = hidden_field_tag "template[item_ids][]", nil
+    - @template.template_items.each do |template_item|
+      = render "template_items/form", template_item: template_item
 
-  .form-group
-    .col-md-10.col-md-offset-2
-      = f.submit nil, class: 'btn btn-primary'
-      = link_to 'Cancel', @template.new_record? ? templates_path : @template, class: 'btn btn-light'
+  = render "forms/horizontal/submit", form: form, object: template

@@ -12,4 +12,4 @@
       = text_area_tag "template[item_hashes][][description]", (template_item ? template_item.description : nil), class: "form-control", placeholder: "Entry Description", rows: 5
     .col-xs-2
       %i.fa.fa-arrows.item-handle
-      = link_to "Remove", "#", class: "btn btn-sm btn-danger-inverse", data: { object: "remove", target: "#item_#{position}" }, tabindex: "-1"
+      = link_to "Remove", "#", class: "btn btn-sm btn-outline-danger", data: { object: "remove", target: "#item_#{position}" }, tabindex: "-1"

@@ -2,7 +2,7 @@
 
 ### Enhancements
 - **General Changes**
-  - Updated interface for setting up accounts and charge types
+  - Updated interface for setting up accounts, charge types, and templates
 - **Gem Changes**
   - Updated to ruby 2.5.1
   - Updated to rails 5.2.0

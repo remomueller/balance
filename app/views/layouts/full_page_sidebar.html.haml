@@ -30,6 +30,7 @@
         .container-fluid
           = yield :breadcrumbs
     .row.no-gutters.flex-md-nowrap
+      = render "sidebar/mini"
       = yield(:sidebar)
       %main.col.p-3{ role: "main" }
         = yield

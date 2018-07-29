@@ -1,38 +1,32 @@
 - @title = @template.name
 
 - content_for :header do
-  .header-container
-    .container
-      %h1.page-heading
-        .float-right
-          .dropdown
-            = link_to '#', class: 'btn btn-light dropdown-toggle', data: { toggle: 'dropdown' } do
-              Actions
-              %strong.caret
+  .float-right
+    = render "layouts/edit_delete_dropdown", edit_url: edit_template_path(@template), delete_url: @template, delete_confirmation: "Delete #{@template.name}?"
+  = @title
+= render "internal/tabs"
+- content_for :breadcrumbs do
+  %ol
+    %li= link_to "templates", templates_path
+    %li.breadcrumb-muted= @template.name.to_s.downcase
+- content_for :sidebar, render("internal/sidebar_setup")
 
-            %ul.dropdown-menu.dropdown-menu-right
-              %li
-                = link_to edit_template_path(@template) do
-                  %i.fa.fa-edit
-                  Edit
-              %li.divider{ role: 'separator' }
-              %li
-                = link_to @template, method: :delete, data: { confirm: "Delete #{@template.name}?" } do
-                  .text-danger
-                    %i.fa.fa-trash
-                    Delete
-        = @title
-
-%table.table.table-striped.shadow
-  %thead
-    %tr
-      %th Name
-      %th Amount
-      %th Charge Type
-      %th Description
-  - @template.template_items.each do |template_item|
-    %tr
-      %td= template_item.name
-      %td= template_item.amount.to_currency
-      %td= template_item.charge_type.name
-      %td= simple_format template_item.description
+- if @template.template_items.present?
+  .dashboard-container.dashboard-table
+    %table.table.table-striped.table-borderless.table-hover.table-sticky
+      %thead
+        %tr
+          %th Name
+          %th Amount
+          %th Charge Type
+          %th Description
+      - @template.template_items.each do |template_item|
+        %tr
+          %td= template_item.name
+          %td= template_item.amount.to_currency
+          %td= template_item.charge_type.name
+          %td= simple_format template_item.description
+- else
+  .jumbotron.jumbotron-custom-text
+    %i.fa.fa-clone.mr-1
+    Template has no items.

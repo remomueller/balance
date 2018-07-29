@@ -1,8 +1,9 @@
-.col-12.col-md-3.col-xl-2.sidebar-wrapper{ style: "background-color: transparent;" }
+.col-12.col-md-3.col-xl-2.sidebar-wrapper
   .sidebar
-    #sidebar-nav-wrapper.sidebar-nav-wrapper.collapse{ style: "background-color: transparent;" }
-      .pt-3.mx-3.my-0.ml-md-3.mb-md-3.mr-md-0
+    #sidebar-nav-wrapper.sidebar-nav-wrapper.collapse
+      .pt-3.py-md-3.mx-3.my-0.ml-md-3.mb-md-3.mr-md-0
         %ul.sidebar-menu.sidebar-menu-shadow
-          %li.sidebar-menu-header Setup
+          %li.sidebar-menu-header= render "sidebar/toggle", title: "Setup"
           %li= link_to "Accounts", accounts_path, class: params[:controller] == "accounts" ? "active" : nil
           %li= link_to "Charge types", charge_types_path, class: params[:controller] == "charge_types" ? "active" : nil
+          %li= link_to "Templates", templates_path, class: params[:controller] == "templates" ? "active" : nil

@@ -1,5 +1,4 @@
 .sidebar-wrapper {
-  background-color: $p100-grey;
   order: 0;
 
   @include media-breakpoint-up(xl) {
@@ -9,7 +8,6 @@
 
 .sidebar-drawer {
   order: 2;
-  background-color: $p100-grey;
 }
 
 .sidebar {
@@ -24,7 +22,6 @@
 
 .sidebar-header {
   border-bottom: 1px solid rgba(0, 0, 0, .05);
-  margin: 0 -15px;
   padding: 1rem 15px;
 }
 

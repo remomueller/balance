@@ -31,6 +31,11 @@
       padding-left: 15px;
       padding-right: 15px;
       font-variant: small-caps;
+
+      a {
+        border: 0;
+        padding: 0;
+      }
     }
 
     // Add a margin to the top of a menu header if it has other menu items
@@ -59,6 +64,13 @@
           > .badge-sidebar {
             background-color: map-get($theme, brand-white);
             color: map-get($theme, p800);
+          }
+        }
+
+        &.sidebar-menu-header {
+          a {
+            background-color: initial;
+            color: map-get($theme, body-color);
           }
         }
       }
