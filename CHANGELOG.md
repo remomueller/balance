@@ -11,6 +11,7 @@
   - Replaced glyphicons with font awesome icons
   - Updated to bootstrap 4.1.1
   - Removed bootsnap
+  - Remove colorize
 
 ## 2.4.1 (November 16, 2017)
 
