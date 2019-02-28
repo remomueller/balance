@@ -5,13 +5,13 @@ namespace :backup do
   task import: :environment do
     if folder.blank?
       puts "Please specify a folder, ex:\n" +
-           '  rails backup:import FOLDER=20160320173700'.colorize(:blue)
+           '  rails backup:import FOLDER=20160320173700'.blue
       next
     elsif !File.exist? data_folder
-      puts 'Folder ' + data_folder.to_s.colorize(:red) + ' does not exist.'
+      puts 'Folder ' + data_folder.to_s.red + ' does not exist.'
       next
     else
-      puts 'Folder ' + data_folder.to_s.colorize(:green)
+      puts 'Folder ' + data_folder.to_s.green
     end
     import_users
     import_accounts
@@ -36,7 +36,7 @@ namespace :backup do
       )
     end
     restart_sequence(object)
-    puts 'imported ' + "#{User.count} user#{'s' if User.count != 1}".colorize(:green)
+    puts 'imported ' + "#{User.count} user#{'s' if User.count != 1}".green
   end
 
   def import_accounts
@@ -54,7 +54,7 @@ namespace :backup do
       )
     end
     restart_sequence(object)
-    puts 'imported ' + "#{Account.count} account#{'s' if Account.count != 1}".colorize(:green)
+    puts 'imported ' + "#{Account.count} account#{'s' if Account.count != 1}".green
   end
 
   def import_charge_types
@@ -71,7 +71,7 @@ namespace :backup do
       )
     end
     restart_sequence(object)
-    puts 'imported ' + "#{ChargeType.count} charge type#{'s' if ChargeType.count != 1}".colorize(:green)
+    puts 'imported ' + "#{ChargeType.count} charge type#{'s' if ChargeType.count != 1}".green
   end
 
   def import_entries
@@ -92,7 +92,7 @@ namespace :backup do
       )
     end
     restart_sequence(object)
-    puts 'imported ' + "#{Entry.count} #{Entry.count == 1 ? 'entry' : 'entries'}".colorize(:green)
+    puts 'imported ' + "#{Entry.count} #{Entry.count == 1 ? 'entry' : 'entries'}".green
   end
 
   def import_templates
@@ -108,7 +108,7 @@ namespace :backup do
       )
     end
     restart_sequence(object)
-    puts 'imported ' + "#{Template.count} template#{'s' if Template.count != 1}".colorize(:green)
+    puts 'imported ' + "#{Template.count} template#{'s' if Template.count != 1}".green
   end
 
   def import_template_items
@@ -127,7 +127,7 @@ namespace :backup do
       )
     end
     restart_sequence(object)
-    puts 'imported ' + "#{TemplateItem.count} template item#{'s' if TemplateItem.count != 1}".colorize(:green)
+    puts 'imported ' + "#{TemplateItem.count} template item#{'s' if TemplateItem.count != 1}".green
   end
 
   def folder

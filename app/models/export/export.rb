@@ -22,13 +22,13 @@ module Export
   end
 
   def self.create_data_folder
-    puts 'create'.colorize(:green) + ' ' + data_folder.to_s
+    puts 'create'.green + ' ' + data_folder.to_s
     FileUtils.mkdir_p data_folder
   end
 
   def self.export_users
     object = 'users'
-    puts 'export '.colorize(:blue) + object
+    puts 'export '.blue + object
     csv_file = file_base(object)
     CSV.open(csv_file, 'wb') do |csv|
       csv << ['User ID', 'First Name', 'Last Name', 'Email', 'Deleted']
@@ -46,7 +46,7 @@ module Export
 
   def self.export_accounts
     object = 'accounts'
-    puts 'export '.colorize(:blue) + object
+    puts 'export '.blue + object
     csv_file = file_base(object)
     CSV.open(csv_file, 'wb') do |csv|
       csv << ['Account ID', 'User ID', 'Name', 'Category', 'Archived', 'Deleted']
@@ -65,7 +65,7 @@ module Export
 
   def self.export_charge_types
     object = 'charge_types'
-    puts 'export '.colorize(:blue) + object
+    puts 'export '.blue + object
     csv_file = file_base(object)
     CSV.open(csv_file, 'wb') do |csv|
       csv << ['Charge Type ID', 'Name', 'Account ID', 'Counts Towards Spending', 'Deleted']
@@ -83,7 +83,7 @@ module Export
 
   def self.export_entries
     object = 'entries'
-    puts 'export '.colorize(:blue) + object
+    puts 'export '.blue + object
     csv_file = file_base(object)
     CSV.open(csv_file, 'wb') do |csv|
       csv << ['Entry ID', 'User ID', 'Charge Type ID', 'Name', 'Billing Date', 'Amount', 'Description', 'Charged', 'Deleted']
@@ -105,7 +105,7 @@ module Export
 
   def self.export_templates
     object = 'templates'
-    puts 'export '.colorize(:blue) + object
+    puts 'export '.blue + object
     csv_file = file_base(object)
     CSV.open(csv_file, 'wb') do |csv|
       csv << ['Template ID', 'Name', 'User ID', 'Deleted']
@@ -122,7 +122,7 @@ module Export
 
   def self.export_template_items
     object = 'template_items'
-    puts 'export '.colorize(:blue) + object
+    puts 'export '.blue + object
     csv_file = file_base(object)
     CSV.open(csv_file, 'wb') do |csv|
       csv << ['Template Item ID', 'Name', 'Charge Type ID', 'Amount', 'Description', 'Template ID', 'Position']

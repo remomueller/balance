@@ -10,7 +10,6 @@ gem "pg",                   "1.0.0"
 # Gems used by project
 gem "autoprefixer-rails"
 gem "bootstrap",            "~> 4.1.1"
-gem "colorize",             "~> 0.8.1"
 gem "devise",               "~> 4.4.3"
 gem "figaro",               "~> 1.1.1"
 gem "font-awesome-rails",   "~> 4.7.0"
