@@ -23,7 +23,7 @@
 .dashboard-container
   %dl.dl-horizontal
     %dt Billing Date
-    %dd= simple_date @entry.billing_date
+    %dd= link_to simple_date(@entry.billing_date), calendar_path(date: @entry.billing_date.strftime("%Y%m%d"))
 
     %dt Amount
     %dd= @entry.amount.to_currency
