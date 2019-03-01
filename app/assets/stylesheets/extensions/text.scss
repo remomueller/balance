@@ -1,13 +1,21 @@
-// Extension to text bootstrap classes
+// Extensions to bootstrap text classes.
 
-.text-accent {
-  color: $p500-purple;
-}
+@each $name, $theme in $themes {
+  .theme-#{$name}-bg {
+    .text-primary {
+      color: map-get($theme, primary) !important;
+    }
 
-.text-white {
-  color: $brand-white;
-}
+    .text-muted {
+      color: theme-color($theme, text-muted, $text-muted) !important;
+    }
 
-.text-shadow {
-  text-shadow: 0 2px 3px $standard-shadow-color;
+    .text-white {
+      color: map-get($theme, brand-white) !important;
+    }
+
+    .text-disabled {
+      color: theme-color($theme, input-disabled-bg, $p200-grey);
+    }
+  }
 }

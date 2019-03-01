@@ -1,52 +1,52 @@
 @openCalendarPopup = (selected_date) ->
-  $('#entry_billing_date').val(selected_date)
-  $('#template_billing_date').val(selected_date)
-  $('#new-entry-dialog').modal( dynamic: true )
+  $("#entry_billing_date").val(selected_date)
+  $("#template_billing_date").val(selected_date)
+  $("#new-entry-dialog").modal( dynamic: true )
 
 @activateEntryDraggables = ->
-  $('.entry-draggable').draggable(
-    revert: 'invalid'
+  $(".entry-draggable").draggable(
+    revert: "invalid"
     helper: ->
-      $(this).children('[data-object~="entry-helper"]').first().html()
+      $(this).children("[data-object~=entry-helper]").first().html()
     cursorAt:
       left: 10
   )
 
 @activateDayDroppables = ->
-  $('.day_droppable').droppable(
+  $(".day_droppable").droppable(
     classes:
-      'ui-droppable-hover': 'hover'
+      "ui-droppable-hover": "hover"
     tolerance: "pointer"
     drop: ( event, ui ) ->
-      billing_date = $(this).data('billing-date')
-      element_id = ui.draggable.attr('id')
-      entry_id = ui.draggable.data('entry-id')
+      billing_date = $(this).data("billing-date")
+      element_id = ui.draggable.attr("id")
+      entry_id = ui.draggable.data("entry-id")
       $.post(
         "#{root_url}entries/#{entry_id}/move",
         "entry[billing_date]=#{billing_date}", null, "script")
       false
     accept: ( draggable ) ->
-      $(this).data('billing-date') != draggable.data('billing-date')
+      $(this).data("billing-date") != draggable.data("billing-date")
   )
 
 @entriesTypeahead = ->
-  $("[data-object~='typeahead-entries']").typeahead('destroy')
-  $("[data-object~='typeahead-entries']").each( ->
+  $("[data-object~=typeahead-entries]").typeahead("destroy")
+  $("[data-object~=typeahead-entries]").each( ->
     $this = $(this)
     bloodhound = new Bloodhound(
       datumTokenizer: Bloodhound.tokenizers.whitespace
       queryTokenizer: Bloodhound.tokenizers.whitespace
       remote:
-        url: "#{$this.data('path')}?search=%QUERY"
-        wildcard: '%QUERY'
+        url: "#{$this.data("path")}?search=%QUERY"
+        wildcard: "%QUERY"
     )
     $this.typeahead({ hint: true }, { source: bloodhound })
   )
 
 @formsLoad = ->
-  $('[data-object~="form-load"]').each(->
+  $("[data-object~=form-load]").each(->
     element = $(this)[0]
-    Rails.fire(element, 'submit')
+    Rails.fire(element, "submit")
   )
 
 @entriesReady = ->
@@ -56,18 +56,10 @@
   formsLoad()
 
 $(document)
-  .on('click', '[data-object~="previous-year"]', ->
-    goBackOneYear()
+  .on("click", "[data-object~=copy]", ->
+    $($(this).data("target")).val($(this).data("amount"))
     false
   )
-  .on('click', '[data-object~="next-year"]', ->
-    goForwardOneYear()
-    false
-  )
-  .on('click', '[data-object~="copy"]', ->
-    $($(this).data('target')).val($(this).data('amount'))
-    false
-  )
-  .on('change', '#year', ->
+  .on("change", "#year", ->
     formsLoad()
   )

@@ -1,2 +1,3 @@
+$("#year-selection").html("<%=j render "entries/overview_year_selection", current_year: @current_year %>");
 $("#month_chart").data("chart", <%== @month_json.to_json %>);
 drawChart($("#month_chart"));

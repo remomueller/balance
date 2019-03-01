@@ -3,6 +3,7 @@
 ### Enhancements
 - **General Changes**
   - Update interface for setting up accounts, charge types, and templates
+  - Improve overview graph year selection
 - **Gem Changes**
   - Update to ruby 2.6.1
   - Update to rails 6.0.0.beta1

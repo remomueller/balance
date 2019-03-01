@@ -1,15 +1,10 @@
 - @title = "Earning and Spending"
 
 - content_for :header do
-  .float-right
-    = form_with url: earning_spending_graph_entries_path, data: { object: "form-load" }, class: "form-inline" do
-      .form-group.d-none.d-sm-flex
-        = link_to "&laquo;".html_safe, "#", data: { object: "previous-year" }, class: "btn btn-light"
-      .form-group
-        = select_tag :year, options_for_select( (current_user.first_billing_date.year..Time.zone.today.year).to_a, Time.zone.today.year ), class: "form-control"
-      .form-group.d-none.d-sm-flex
-        = link_to "&raquo;".html_safe, "#", data: { object: "next-year" }, class: "btn btn-light"
+  #year-selection= render "entries/overview_year_selection", current_year: @current_year
   = @title
+
+= form_with url: earning_spending_graph_entries_path, data: { object: "form-load" }
 
 #month_chart{ style: "height: 450px; margin-bottom: 50px;", data: { object: "chart-container", chart: "" } }
 

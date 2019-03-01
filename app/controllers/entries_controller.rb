@@ -30,6 +30,7 @@ class EntriesController < ApplicationController
 
   # GET /entries/overview
   def overview
+    @current_year = Time.zone.today.year
     (current_user.first_billing_date.year..Time.zone.today.year).each do |year|
       add_to_graph(year_start_date(year), year_end_date(year))
     end
@@ -60,12 +61,12 @@ class EntriesController < ApplicationController
 
   # POST /entries/earning_spending_graph.js
   def earning_spending_graph
-    params[:year] = Time.zone.today.year if params[:year].blank?
+    @current_year = (params[:year].presence || Time.zone.today.year).to_i
     (1..12).each do |month|
-      add_to_graph(month_start_date(params[:year], month), month_end_date(params[:year], month))
+      add_to_graph(month_start_date(@current_year, month), month_end_date(@current_year, month))
     end
     @month_json = {
-      title: "#{params[:year]} Overview",
+      title: "#{@current_year} Overview",
       y_title: 'Dollars',
       categories: Date::ABBR_MONTHNAMES.last(12),
       series: [

@@ -1,0 +1,12 @@
+- first_year = current_user.first_billing_date.year
+- last_year = Time.zone.today.year
+.float-right
+  .btn-group
+    = link_to icon("fas", "caret-left"), earning_spending_graph_entries_path(year: [current_year - 1, first_year].max), method: :post, remote: true, class: "btn btn-light #{"disabled" if current_year == first_year}"
+    = link_to current_year, "#", class: "btn btn-light", style: "border-radius: 0 !important;", data: { toggle: "dropdown" }
+    .dropdown-menu.dropdown-menu-right
+      - (first_year..last_year).reverse_each do |year|
+        = link_to earning_spending_graph_entries_path(year: year), method: :post, remote: true, class: "dropdown-item", style: year == current_year ? "font-weight: bold;" : nil do
+          = icon("fas", "calendar-alt")
+          = year
+    = link_to icon("fas", "caret-right"), earning_spending_graph_entries_path(year: [current_year + 1, last_year].min), method: :post, remote: true, class: "btn btn-light #{"disabled" if current_year == last_year}"
