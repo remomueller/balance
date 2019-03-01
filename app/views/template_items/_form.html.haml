@@ -2,14 +2,14 @@
 
 %div{ id: "item_#{position}", style: "line-height: 30px; padding-top: 5px;" }
   .row
-    .col-xs-2
+    .col-2
       = text_field_tag "template[item_hashes][][name]", (template_item ? template_item.name : nil), class: "form-control", placeholder: "Entry Name"
-    .col-xs-2
+    .col-2
       = text_field_tag "template[item_hashes][][decimal_amount]", (template_item ? template_item.decimal_amount : nil), class: "form-control", placeholder: "$0.00"
-    .col-xs-2
+    .col-2
       = select_tag "template[item_hashes][][charge_type_id]", options_for_select([["--Charge Type--", nil]] + current_user.charge_types.order(:name).collect { |ct| [ct.full_name, ct.id] }, (template_item ? template_item.charge_type_id : nil)), class: "form-control"
-    .col-xs-4
+    .col-4
       = text_area_tag "template[item_hashes][][description]", (template_item ? template_item.description : nil), class: "form-control", placeholder: "Entry Description", rows: 5
-    .col-xs-2
-      %i.fa.fa-arrows.item-handle
+    .col-2
+      = icon("far", "arrows-alt", class: "item-handle")
       = link_to "Remove", "#", class: "btn btn-sm btn-outline-danger", data: { object: "remove", target: "#item_#{position}" }, tabindex: "-1"

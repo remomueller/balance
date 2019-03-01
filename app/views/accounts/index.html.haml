@@ -34,6 +34,6 @@
   .center-horizontally= paginate @accounts, theme: "bootstrap"
 - else
   .jumbotron.jumbotron-custom-text
-    %i.fa.fa-clone.mr-1
+    = icon("far", "clone", class: "mr-1")
     No accounts found.
     = link_to "Start over", accounts_path if params[:search].present?

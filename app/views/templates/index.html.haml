@@ -34,6 +34,6 @@
   .center-horizontally= paginate @templates, theme: 'bootstrap'
 - else
   .jumbotron.jumbotron-custom-text
-    %i.fa.fa-clone.mr-1
+    = icon("far", "clone", class: "mr-1")
     No templates found.
     = link_to "Start over", templates_path if params[:search].present?

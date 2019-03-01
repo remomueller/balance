@@ -4,8 +4,8 @@
     = link_to "Balance", root_path, class: "navbar-brand navbar-hide-scrolled"
     - if @menu_title || @title
       = link_to "#top", data: { object: "remove-collapse-in scroll-anchor", target: ".navbar-full-menu" }, class: "navbar-brand navbar-show-scrolled" do
-        %i.fa.fa-level-up.fa-flip-horizontal{ aria: { hidden: "true" } }
-        = @menu_title || @title
+        = icon("fas", "level-up-alt", class: "fa-flip-horizontal")
+        = sanitize(@menu_title) || @title
     %button.navbar-toggler{ type: "button", data: { toggle: "collapse", target: "#menu-body" }, aria: { controls: "menu-body", expanded: "false", label: "Toggle navigation" } }
       %span.navbar-toggler-icon
 
@@ -23,13 +23,11 @@
         - if current_user
           - if current_user.no_recent_backup?
             %li.nav-item.d-none.d-lg-block
-              = link_to generate_backup_path, method: :post, class: "nav-link notifications-link notifications-link-active" do
-                %i.fa.fa-bell
+              = link_to icon("fas", "bell"), generate_backup_path, method: :post, class: "nav-link notifications-link notifications-link-active"
           = render "menu/dropdown_account"
         - else
           %li.nav-item{ class: current_page?(new_user_session_path) ? "active" : nil }
             = link_to new_user_session_path, class: "nav-link" do
-              %i.fa.fa-lock
               Sign in
             - if current_page?(new_user_session_path)
               %span.sr-only (current)

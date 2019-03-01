@@ -2,15 +2,16 @@
 
 ### Enhancements
 - **General Changes**
-  - Updated interface for setting up accounts, charge types, and templates
+  - Update interface for setting up accounts, charge types, and templates
 - **Gem Changes**
-  - Updated to ruby 2.5.1
-  - Updated to rails 5.2.0
-  - Updated to pg 1.0.0
-  - Updated to devise 4.4.3
-  - Replaced glyphicons with font awesome icons
-  - Updated to bootstrap 4.1.1
-  - Removed bootsnap
+  - Update to ruby 2.6.1
+  - Update to rails 6.0.0.beta1
+  - Update to pg 1.1.4
+  - Update to devise 4.6.1
+  - Update to bootstrap 4.3.1
+  - Update to font-awesome-sass 5.6.1
+  - Update to simplecov 0.16.1
+  - Remove bootsnap
   - Remove colorize
 
 ## 2.4.1 (November 16, 2017)

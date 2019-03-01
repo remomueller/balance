@@ -3,11 +3,9 @@
 - content_for :header do
   .float-right
     .btn-group
-      = link_to calendar_path(date: (@start_month - 1.month).strftime("%Y%m%d")), title: "Previous Month", class: "btn btn-sm btn-light" do
-        %i.fa.fa-caret-left
+      = link_to icon("fas", "caret-left"), calendar_path(date: (@start_month - 1.month).strftime("%Y%m%d")), title: "Previous Month", class: "btn btn-sm btn-light"
       = link_to "Today", root_path, class: "btn btn-sm btn-light"
-      = link_to calendar_path(date: (@start_month + 1.month).strftime("%Y%m%d")), class: "btn btn-sm btn-light" do
-        %i.fa.fa-caret-right
+      = link_to icon("fas", "caret-right"), calendar_path(date: (@start_month + 1.month).strftime("%Y%m%d")), class: "btn btn-sm btn-light"
   = render "entries/calendar_title"
 
 = render "entries/month_breakdown"

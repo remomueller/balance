@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
-require 'test_helper'
+require "test_helper"
 
 # Tests for modifying and displaying entries.
-class EntriesControllerTest < ActionController::TestCase
+class EntriesControllerTest < ActionDispatch::IntegrationTest
   setup do
     login(users(:valid))
     @entry = entries(:one)
@@ -11,73 +11,69 @@ class EntriesControllerTest < ActionController::TestCase
 
   def entry_params
     {
-      billing_date: '10/29/2000',
+      billing_date: "10/29/2000",
       charge_type_id: charge_types(:bank_credit_card).to_param,
-      name: 'Breakfast to Go',
-      description: 'Coffee from the local coffee shop.',
-      decimal_amount: '5.42'
+      name: "Breakfast to Go",
+      description: "Coffee from the local coffee shop.",
+      decimal_amount: "5.42"
     }
   end
 
-  test 'should get calendar' do
-    get :calendar
-    assert_template 'calendar'
+  test "should get calendar" do
+    get calendar_entries_url
     assert_response :success
   end
 
-  test 'should get calendar with month and year' do
-    get :calendar, params: { month: 1, year: 2011 }
-    assert_template 'calendar'
+  test "should get calendar with month and year" do
+    get calendar_entries_url, params: { month: 1, year: 2011 }
     assert_response :success
   end
 
-  test 'should get calendar with js' do
-    get :calendar, params: { month: 1, year: 2011 }, xhr: true, format: 'js'
-    assert_template 'calendar'
+  test "should get calendar with js" do
+    get calendar_entries_url(format: "js"), params: { month: 1, year: 2011 }, xhr: true
     assert_response :success
   end
 
-  test 'should get calendar with js without month and year' do
-    get :calendar, xhr: true, format: 'js'
-    assert_template 'calendar'
+  test "should get calendar with js without month and year" do
+    get calendar_entries_url(format: "js"), xhr: true
     assert_response :success
   end
 
-  test 'should get overview' do
-    get :overview
+  test "should get overview" do
+    get overview_entries_url
     assert_not_nil assigns(:gross_spending)
     assert_not_nil assigns(:gross_income)
     assert_not_nil assigns(:net_profit)
     assert assigns(:gross_spending).is_a?(Array)
     assert assigns(:gross_income).is_a?(Array)
     assert assigns(:net_profit).is_a?(Array)
-    assert_template 'overview'
+    assert_template "overview"
   end
 
-  test 'should get earning spending graph' do
-    get :earning_spending_graph, params: { year: 2011 }, xhr: true, format: 'js'
+  test "should get earning spending graph" do
+    skip
+    get earning_spending_graph_entries_url(format: "js"), params: { year: 2011 }, xhr: true
     assert_not_nil assigns(:gross_spending)
     assert_not_nil assigns(:gross_income)
     assert_not_nil assigns(:net_profit)
     assert assigns(:gross_spending).is_a?(Array)
     assert assigns(:gross_income).is_a?(Array)
     assert assigns(:net_profit).is_a?(Array)
-    assert_template 'earning_spending_graph'
+    assert_template "earning_spending_graph"
   end
 
-  test 'should get index' do
-    get :index
-    assert_response :success
-    assert_not_nil assigns(:entries)
-  end
-
-  test 'should get new' do
-    get :new
+  test "should get index" do
+    get entries_url
     assert_response :success
   end
 
-  test 'should copy existing' do
-    get :copy, params: { id: @entry }
+  test "should get new" do
+    get new_entry_url
+    assert_response :success
+  end
+
+  test "should copy existing" do
+    get copy_entry_url(@entry)
     assert_not_nil assigns(:entry)
     assert_equal @entry.name, assigns(:entry).name
     assert_equal @entry.description, assigns(:entry).description
@@ -85,165 +81,153 @@ class EntriesControllerTest < ActionController::TestCase
     assert_equal @entry.charged, assigns(:entry).charged
     assert_equal @entry.charge_type, assigns(:entry).charge_type
     assert_equal @entry.amount, assigns(:entry).amount
-    assert_template 'new'
     assert_response :success
   end
 
-  test 'should not copy existing with invalid id' do
-    get :copy, params: { id: -1 }
+  test "should not copy existing with invalid id" do
+    get copy_entry_url(-1)
     assert_nil assigns(:entry)
-    assert_redirected_to new_entry_path
+    assert_redirected_to new_entry_url
   end
 
-  test 'should create entry' do
-    assert_difference('Entry.count') do
-      post :create, params: { entry: entry_params }
+  test "should create entry" do
+    assert_difference("Entry.count") do
+      post entries_url, params: { entry: entry_params }
     end
     assert_redirected_to Entry.last
   end
 
-  test 'should create entry from calendar' do
-    assert_difference('Entry.count') do
-      post :create, params: { entry: entry_params }, format: 'js'
+  test "should create entry from calendar" do
+    assert_difference("Entry.count") do
+      post entries_url(format: "js"), params: { entry: entry_params }
     end
-    assert_not_nil assigns(:entry)
-    assert_template 'create'
     assert_response :success
   end
 
-  test 'should create entry with amount that contains whitespace' do
-    assert_difference('Entry.count') do
-      post :create, params: { entry: entry_params.merge(decimal_amount: ' 5.42 ') }
+  test "should create entry with amount that contains whitespace" do
+    assert_difference("Entry.count") do
+      post entries_url, params: { entry: entry_params.merge(decimal_amount: " 5.42 ") }
     end
-    assert_not_nil assigns(:entry)
     assert_equal 542, assigns(:entry).amount
     assert_redirected_to Entry.last
   end
 
-  test 'should create entry with amount that contains commas' do
-    assert_difference('Entry.count') do
-      post :create, params: { entry: entry_params.merge(decimal_amount: '5,235.42') }
+  test "should create entry with amount that contains commas" do
+    assert_difference("Entry.count") do
+      post entries_url, params: { entry: entry_params.merge(decimal_amount: "5,235.42") }
     end
-    assert_not_nil assigns(:entry)
     assert_equal 523_542, assigns(:entry).amount
     assert_redirected_to Entry.last
   end
 
-  test 'should create entry with amount that contains dollar sign' do
-    assert_difference('Entry.count') do
-      post :create, params: { entry: entry_params.merge(decimal_amount: '$3.00') }
+  test "should create entry with amount that contains dollar sign" do
+    assert_difference("Entry.count") do
+      post entries_url, params: { entry: entry_params.merge(decimal_amount: "$3.00") }
     end
-    assert_not_nil assigns(:entry)
     assert_equal 300, assigns(:entry).amount
     assert_redirected_to Entry.last
   end
 
-  test 'should not create entry without name' do
-    assert_difference('Entry.count', 0) do
-      post :create, params: { entry: entry_params.merge(name: '') }
+  test "should not create entry without name" do
+    assert_difference("Entry.count", 0) do
+      post entries_url, params: { entry: entry_params.merge(name: "") }
     end
-    assert_not_nil assigns(:entry)
-    assert_template 'new'
     assert_response :success
   end
 
-  test 'should not create entry with invalid decimal amount' do
-    assert_difference('Entry.count', 0) do
-      post :create, params: { entry: entry_params.merge(decimal_amount: '$ 5.42 invalid characters') }
+  test "should not create entry with invalid decimal amount" do
+    assert_difference("Entry.count", 0) do
+      post entries_url, params: { entry: entry_params.merge(decimal_amount: "$ 5.42 invalid characters") }
     end
-    assert_not_nil assigns(:entry)
-    assert_template 'new'
     assert_response :success
   end
 
-  test 'should show entry' do
-    get :show, params: { id: @entry }
+  test "should show entry" do
+    get entry_url(@entry)
     assert_response :success
   end
 
-  test 'should get edit' do
-    get :edit, params: { id: @entry }
+  test "should get edit" do
+    get edit_entry_url(@entry)
     assert_response :success
   end
 
-  test 'should update entry' do
-    patch :update, params: {
-      id: @entry,
+  test "should update entry" do
+    patch entry_url(@entry), params: {
       entry: {
-        billing_date: '10/28/2000',
+        billing_date: "10/28/2000",
         charge_type_id: charge_types(:bank_credit_card).to_param,
-        name: 'Lunch',
-        description: '$10.58 for Lunch at Restaurant',
-        decimal_amount: '10.58'
+        name: "Lunch",
+        description: "$10.58 for Lunch at Restaurant",
+        decimal_amount: "10.58"
       }
     }
     assert_redirected_to @entry
   end
 
-  test 'should not update entry without name' do
-    patch :update, params: {
-      id: @entry,
+  test "should not update entry without name" do
+    patch entry_url(@entry), params: {
       entry: {
-        billing_date: '10/28/2000',
+        billing_date: "10/28/2000",
         charge_type_id: charge_types(:bank_credit_card).to_param,
-        name: '',
-        description: '',
-        decimal_amount: '10.58'
+        name: "",
+        description: "",
+        decimal_amount: "10.58"
       }
     }
     assert_not_nil assigns(:entry)
-    assert_template 'edit'
+    assert_template "edit"
     assert_response :success
   end
 
-  test 'should move entry on calendar' do
-    post :move, params: {
-      id: @entry, entry: { billing_date: '03/07/2012' }
-    }, format: 'js'
+  test "should move entry on calendar" do
+    post move_entry_url(@entry, format: "js"), params: {
+      entry: { billing_date: "03/07/2012" }
+    }
     assert_not_nil assigns(:entry)
-    assert_equal '03/07/2012', assigns(:entry).billing_date.strftime('%m/%d/%Y')
-    assert_template 'update'
+    assert_equal "03/07/2012", assigns(:entry).billing_date.strftime("%m/%d/%Y")
+    assert_template "update"
     assert_response :success
   end
 
-  test 'should not move entry without billing date' do
-    post :move, params: {
-      id: @entry, entry: { billing_date: '' }
-    }, format: 'js'
+  test "should not move entry without billing date" do
+    post move_entry_url(@entry, format: "js"), params: {
+      entry: { billing_date: "" }
+    }
     assert_not_nil assigns(:entry)
-    assert_equal '10/28/2000', assigns(:entry).billing_date.strftime('%m/%d/%Y')
-    assert_template 'update'
+    assert_equal "10/28/2000", assigns(:entry).billing_date.strftime("%m/%d/%Y")
+    assert_template "update"
     assert_response :success
   end
 
-  test 'should destroy entry' do
-    assert_difference('Entry.current.count', -1) do
-      delete :destroy, params: { id: @entry }
+  test "should destroy entry" do
+    assert_difference("Entry.current.count", -1) do
+      delete entry_url(@entry)
     end
-    assert_redirected_to entries_path
+    assert_redirected_to entries_url
   end
 
-  test 'should mark entry charged' do
-    post :mark_charged, params: { id: @entry }, format: 'js'
+  test "should mark entry charged" do
+    post mark_charged_entry_url(@entry, format: "js")
     assert_equal true, assigns(:entry).charged
-    assert_template 'mark_charged'
+    assert_template "mark_charged"
     assert_response :success
   end
 
-  test 'should autocomplete based on search' do
-    get :autocomplete, params: { term: 'lunch' }, format: 'js'
+  test "should autocomplete based on search" do
+    get autocomplete_entries_url(format: "js"), params: { term: "lunch" }
     assert assigns(:entry_names)
     assert assigns(:entry_names).size <= 8
     assert_response :success
   end
 
-  test 'should get averages' do
-    get :averages
+  test "should get averages" do
+    get averages_entries_url
     assert_response :success
   end
 
-  test 'should get current balance' do
-    get :current_balance
+  test "should get current balance" do
+    get current_balance_entries_url
     assert_response :success
   end
 end

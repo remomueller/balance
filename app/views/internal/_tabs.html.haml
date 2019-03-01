@@ -1,9 +1,15 @@
 - content_for :tabs do
   - current_page = params[:controller].in?(%w(internal))
   = link_to root_path, class: "link-unstyled d-inline-block px-3 pt-2 pb-2 rounded-top header-tab #{"border border-bottom-0 header-tab-active" if current_page}", data: { object: "#{"suppress-click" if current_page?(root_path)}" } do
-    %i.fa.fa-home
-    Dashboard
+    = icon("fas", "home")
+    - if current_page
+      Dashboard
+    - else
+      .d-none.d-sm-inline Dashboard
   - current_page = params[:controller].in?(%w(accounts charge_types templates))
   = link_to accounts_path, class: "link-unstyled d-inline-block px-3 pt-2 pb-2 rounded-top header-tab #{"border border-bottom-0 header-tab-active" if current_page}", data: { object: "#{"suppress-click" if current_page?(accounts_path)}" } do
-    %i.fa.fa-cog
-    Setup
+    = icon("fas", "cog")
+    - if current_page
+      Settings
+    - else
+      .d-none.d-sm-inline Settings

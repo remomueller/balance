@@ -30,6 +30,6 @@
   .center-horizontally= paginate @charge_types, theme: "bootstrap"
 - else
   .jumbotron.jumbotron-custom-text
-    %i.fa.fa-clone.mr-1
+    = icon("far", "clone", class: "mr-1")
     No charge types found.
     = link_to "Start over", charge_types_path if params[:search].present?

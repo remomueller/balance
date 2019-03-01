@@ -8,10 +8,10 @@
 
 .float-right
   - if current_page_min > 1
-    = link_to url_for(filtered_params.merge(page: page - 1)), class: "no-underline small" do
-      %i.fa.fa-angle-double-left
+    = link_to url_for(filtered_params.merge(page: page - 1)), class: "link-no-underline small" do
+      = icon("fas", "angle-double-left")
   - else
-    %i.fa.fa-angle-double-left.text-muted.small
+    = icon("fas", "angle-double-left", class: "text-muted small")
 
   %span.mx-1.small
     %strong
@@ -23,7 +23,7 @@
       = number_with_delimiter object_count
 
   - if current_page_max < object_count
-    = link_to url_for(filtered_params.merge(page: page + 1)), class: "no-underline small" do
-      %i.fa.fa-angle-double-right
+    = link_to url_for(filtered_params.merge(page: page + 1)), class: "link-no-underline small" do
+      = icon("fas", "angle-double-right")
   - else
-    %i.fa.fa-angle-double-right.text-muted.small
+    = icon("fas", "angle-double-right", class: "text-muted small")

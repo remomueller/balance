@@ -5,16 +5,14 @@
     .entry-draggable{ rel: "tooltip", data: { title: entry.description.present? ? "#{simple_format(entry.description)}" : nil, entry_id: entry.id, html: "true", billing_date: entry.billing_date.strftime("%m/%d/%Y") } }
       .calendar-entry-amount= entry.amount.to_currency
       .calendar-entry-name
-        - unless entry.charged?
-          = link_to mark_charged_entry_path(entry, authenticity_token: form_authenticity_token), remote: true, method: :post, id: "entry_#{entry.id}_mark_charged_link" do
-            %i.fa.fa-star>
+        = link_to icon("fas", "star"), mark_charged_entry_path(entry, authenticity_token: form_authenticity_token), remote: true, method: :post, id: "entry_#{entry.id}_mark_charged_link" unless entry.charged?
         = link_to entry.name, entry, style: "text-decoration:none;color:#{entry.charged? ? "#404040" : "#FFB475"};", id: "entry_#{entry.id}_name"
       .entry-helper{ data: { object: "entry-helper" } }
         .entry-box
           = entry.amount.to_currency
           = entry.name
       %div{ style: "clear: both;" }
-  - if entries.size > 0
+  - if entries.present?
     - total_amount = entries.collect { |e| e.amount }.sum
     .calendar-entry-amount-total{ class: "#{total_amount.positive? ? (spending ? "loss" : "gain") : nil } #{total_amount.negative? ? (spending ? " gain" : " loss") : nil }" }
       = total_amount.to_currency
