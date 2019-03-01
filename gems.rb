@@ -38,7 +38,6 @@ group :test do
   gem "capybara",                 ">= 2.15", "< 4.0"
   gem "minitest"
   gem "puma"
-  gem "rails-controller-testing"
   gem "selenium-webdriver"
   gem "simplecov",                "~> 0.16.1", require: false
 end

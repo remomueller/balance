@@ -1,80 +1,74 @@
 # frozen_string_literal: true
 
-require 'test_helper'
+require "test_helper"
 
 # Tests to assure that templates can be created and modified.
-class TemplatesControllerTest < ActionController::TestCase
+class TemplatesControllerTest < ActionDispatch::IntegrationTest
   setup do
     @template = templates(:one)
   end
 
-  test 'should get index' do
+  test "should get index" do
     login(users(:regular))
-    get :index
-    assert_response :success
-    assert_not_nil assigns(:templates)
-  end
-
-  test 'should get new' do
-    login(users(:regular))
-    get :new
+    get templates_url
     assert_response :success
   end
 
-  test 'should create template' do
+  test "should get new" do
     login(users(:regular))
-    assert_difference('Template.count') do
-      post :create, params: { template: { name: 'New Template' } }
+    get new_template_url
+    assert_response :success
+  end
+
+  test "should create template" do
+    login(users(:regular))
+    assert_difference("Template.count") do
+      post templates_url, params: { template: { name: "New Template" } }
     end
-    assert_not_nil assigns(:template)
-    assert_equal 'New Template', assigns(:template).name
-    assert_equal users(:regular), assigns(:template).user
-    assert_redirected_to template_path(assigns(:template))
+    assert_equal "New Template", Template.last.name
+    assert_equal users(:regular), Template.last.user
+    assert_redirected_to template_url(Template.last)
   end
 
-  test 'should not create template with blank name' do
+  test "should not create template with blank name" do
     login(users(:regular))
-    assert_difference('Template.count', 0) do
-      post :create, params: { template: { name: '' } }
+    assert_difference("Template.count", 0) do
+      post templates_url, params: { template: { name: "" } }
     end
-    assert_not_nil assigns(:template)
-    assert_equal ["can't be blank"], assigns(:template).errors[:name]
     assert_response :success
   end
 
-  test 'should not create template with identical name' do
+  test "should not create template with identical name" do
     login(users(:regular))
-    assert_difference('Template.count', 0) do
-      post :create, params: { template: { name: 'monthly bills' } }
+    assert_difference("Template.count", 0) do
+      post templates_url, params: { template: { name: "monthly bills" } }
     end
-    assert_not_nil assigns(:template)
-    assert_equal ['has already been taken'], assigns(:template).errors[:name]
     assert_response :success
   end
 
-  test 'should show template' do
+  test "should show template" do
     login(users(:regular))
-    get :show, params: { id: @template }
+    get template_url(@template)
     assert_response :success
   end
 
-  test 'should get edit' do
+  test "should get edit" do
     login(users(:regular))
-    get :edit, params: { id: @template }
+    get edit_template_url(@template)
     assert_response :success
   end
 
-  test 'should update template' do
+  test "should update template" do
     login(users(:regular))
-    patch :update, params: { id: @template, template: { name: @template.name } }
-    assert_redirected_to template_path(assigns(:template))
+    patch template_url(@template), params: { template: { name: @template.name } }
+    assert_redirected_to template_url(@template)
   end
 
-  test 'should destroy template' do
+  test "should destroy template" do
     login(users(:regular))
-    assert_difference('Template.current.count', -1) do
-      delete :destroy, params: { id: @template }
+    assert_difference("Template.current.count", -1) do
+      delete template_url(@template)
     end
-    assert_redirected_to templates_path
+    assert_redirected_to templates_url
   end
 end

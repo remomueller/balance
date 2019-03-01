@@ -14,6 +14,7 @@
   - Update to simplecov 0.16.1
   - Remove bootsnap
   - Remove colorize
+  - Remove rails-controller-testing
 
 ## 2.4.1 (November 16, 2017)
 

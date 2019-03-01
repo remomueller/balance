@@ -61,19 +61,11 @@ class EntriesControllerTest < ActionDispatch::IntegrationTest
 
   test "should copy existing" do
     get copy_entry_url(@entry)
-    assert_not_nil assigns(:entry)
-    assert_equal @entry.name, assigns(:entry).name
-    assert_equal @entry.description, assigns(:entry).description
-    assert_nil assigns(:entry).billing_date
-    assert_equal @entry.charged, assigns(:entry).charged
-    assert_equal @entry.charge_type, assigns(:entry).charge_type
-    assert_equal @entry.amount, assigns(:entry).amount
     assert_response :success
   end
 
   test "should not copy existing with invalid id" do
     get copy_entry_url(-1)
-    assert_nil assigns(:entry)
     assert_redirected_to new_entry_url
   end
 
@@ -95,7 +87,7 @@ class EntriesControllerTest < ActionDispatch::IntegrationTest
     assert_difference("Entry.count") do
       post entries_url, params: { entry: entry_params.merge(decimal_amount: " 5.42 ") }
     end
-    assert_equal 542, assigns(:entry).amount
+    assert_equal 542, Entry.last.amount
     assert_redirected_to Entry.last
   end
 
@@ -103,7 +95,7 @@ class EntriesControllerTest < ActionDispatch::IntegrationTest
     assert_difference("Entry.count") do
       post entries_url, params: { entry: entry_params.merge(decimal_amount: "5,235.42") }
     end
-    assert_equal 523_542, assigns(:entry).amount
+    assert_equal 523_542, Entry.last.amount
     assert_redirected_to Entry.last
   end
 
@@ -111,7 +103,7 @@ class EntriesControllerTest < ActionDispatch::IntegrationTest
     assert_difference("Entry.count") do
       post entries_url, params: { entry: entry_params.merge(decimal_amount: "$3.00") }
     end
-    assert_equal 300, assigns(:entry).amount
+    assert_equal 300, Entry.last.amount
     assert_redirected_to Entry.last
   end
 
@@ -162,8 +154,6 @@ class EntriesControllerTest < ActionDispatch::IntegrationTest
         decimal_amount: "10.58"
       }
     }
-    assert_not_nil assigns(:entry)
-    assert_template "edit"
     assert_response :success
   end
 
@@ -171,9 +161,8 @@ class EntriesControllerTest < ActionDispatch::IntegrationTest
     post move_entry_url(@entry, format: "js"), params: {
       entry: { billing_date: "03/07/2012" }
     }
-    assert_not_nil assigns(:entry)
-    assert_equal "03/07/2012", assigns(:entry).billing_date.strftime("%m/%d/%Y")
-    assert_template "update"
+    @entry.reload
+    assert_equal "03/07/2012", @entry.billing_date.strftime("%m/%d/%Y")
     assert_response :success
   end
 
@@ -181,9 +170,8 @@ class EntriesControllerTest < ActionDispatch::IntegrationTest
     post move_entry_url(@entry, format: "js"), params: {
       entry: { billing_date: "" }
     }
-    assert_not_nil assigns(:entry)
-    assert_equal "10/28/2000", assigns(:entry).billing_date.strftime("%m/%d/%Y")
-    assert_template "update"
+    @entry.reload
+    assert_equal "10/28/2000", @entry.billing_date.strftime("%m/%d/%Y")
     assert_response :success
   end
 
@@ -196,15 +184,13 @@ class EntriesControllerTest < ActionDispatch::IntegrationTest
 
   test "should mark entry charged" do
     post mark_charged_entry_url(@entry, format: "js")
-    assert_equal true, assigns(:entry).charged
-    assert_template "mark_charged"
+    @entry.reload
+    assert_equal true, @entry.charged
     assert_response :success
   end
 
   test "should autocomplete based on search" do
     get autocomplete_entries_url(format: "js"), params: { term: "lunch" }
-    assert assigns(:entry_names)
-    assert assigns(:entry_names).size <= 8
     assert_response :success
   end
 

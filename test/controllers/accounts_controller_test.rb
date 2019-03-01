@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
-require 'test_helper'
+require "test_helper"
 
 # Tests to assure that a user can view and modify accounts.
-class AccountsControllerTest < ActionController::TestCase
+class AccountsControllerTest < ActionDispatch::IntegrationTest
   setup do
     @account = accounts(:my_bank)
     login(users(:valid))
@@ -11,69 +11,64 @@ class AccountsControllerTest < ActionController::TestCase
 
   def account_params
     {
-      name: 'My Bank',
-      category: 'savings',
-      archived: '0'
+      name: "My Bank",
+      category: "savings",
+      archived: "0"
     }
   end
 
-  test 'should get index' do
-    get :index
-    assert_response :success
-    assert_not_nil assigns(:accounts)
-  end
-
-  test 'should get new' do
-    get :new
+  test "should get index" do
+    get accounts_url
     assert_response :success
   end
 
-  test 'should create account' do
-    assert_difference('ChargeType.count') do
-      assert_difference('Account.count') do
-        post :create, params: { account: account_params }
+  test "should get new" do
+    get new_account_url
+    assert_response :success
+  end
+
+  test "should create account" do
+    assert_difference("ChargeType.count") do
+      assert_difference("Account.count") do
+        post accounts_url, params: { account: account_params }
       end
     end
-    assert_redirected_to account_path(Account.last)
+    assert_redirected_to account_url(Account.last)
   end
 
-  test 'should not create account without name' do
-    assert_difference('Account.count', 0) do
-      post :create, params: { account: account_params.merge(name: '') }
+  test "should not create account without name" do
+    assert_difference("Account.count", 0) do
+      post accounts_url, params: { account: account_params.merge(name: "") }
     end
-    assert_not_nil assigns(:account)
-    assert_template 'new'
     assert_response :success
   end
 
-  test 'should show account' do
-    get :show, params: { id: @account }
+  test "should show account" do
+    get account_url(@account)
     assert_response :success
   end
 
-  test 'should get edit' do
-    get :edit, params: { id: @account }
+  test "should get edit" do
+    get edit_account_url(@account)
     assert_response :success
   end
 
-  test 'should update account' do
-    patch :update, params: { id: @account, account: account_params }
+  test "should update account" do
+    patch account_url(@account), params: { account: account_params }
     assert_redirected_to @account
   end
 
-  test 'should not update account with blank name' do
-    patch :update, params: {
-      id: @account, account: account_params.merge(name: '')
+  test "should not update account with blank name" do
+    patch account_url(@account), params: {
+      account: account_params.merge(name: "")
     }
-    assert_not_nil assigns(:account)
-    assert_template 'edit'
     assert_response :success
   end
 
-  test 'should destroy account' do
-    assert_difference('Account.current.count', -1) do
-      delete :destroy, params: { id: @account.to_param }
+  test "should destroy account" do
+    assert_difference("Account.current.count", -1) do
+      delete account_url(@account)
     end
-    assert_redirected_to accounts_path
+    assert_redirected_to accounts_url
   end
 end
