@@ -1,13 +1,9 @@
-- @title = 'Backup Succeeded'
+- @title = "Backup Succeeded"
 
-- content_for :header do
-  .header-container
-    .container
-      %h1.page-heading= @title
+- content_for :header, @title
 
-.jumbotron
-  %p.lead.text-center{ style: 'margin: 0' }
-    Your data backup
-    = succeed '.' do
-      %span.label.label-accent succeeded
-
+.jumbotron.jumbotron-custom-text
+  = icon("fas", "check-circle", class: "text-success")
+  Your data backup
+  = succeed "." do
+    %strong succeeded

@@ -1,12 +1,9 @@
-- @title = 'Backup Failed'
+- @title = "Backup Failed"
 
-- content_for :header do
-  .header-container
-    .container
-      %h1.page-heading= @title
+- content_for :header, @title
 
-.jumbotron
-  %p.lead.text-center{ style: 'margin: 0' }
-    Your data backup
-    = succeed '.' do
-      %span.label.label-danger failed
+.jumbotron.jumbotron-custom-text
+  = icon("fas", "times-circle", class: "text-danger")
+  Your data backup
+  = succeed "." do
+    %strong failed

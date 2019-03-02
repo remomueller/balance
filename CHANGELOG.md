@@ -1,5 +1,9 @@
 ## 2.6.0
 
+### Enhancements
+- **General Changes**
+  - Improve display of backup status pages
+
 ## 2.5.0 (February 28, 2019)
 
 ### Enhancements
