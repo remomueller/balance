@@ -4,6 +4,7 @@
 - **General Changes**
   - Improve display of backup status pages
 - **Gem Changes**
+  - Update to ruby 2.6.2
   - Update to rails 6.0.0.beta3
 
 ## 2.5.0 (February 28, 2019)
