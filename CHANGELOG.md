@@ -3,6 +3,8 @@
 ### Enhancements
 - **General Changes**
   - Improve display of backup status pages
+- **Gem Changes**
+  - Update to rails 6.0.0.beta3
 
 ## 2.5.0 (February 28, 2019)
 
