@@ -36,7 +36,7 @@ group :development do
 end
 
 group :test do
-  gem "capybara",                 ">= 2.15", "< 4.0"
+  gem "capybara",                 ">= 2.15"
   gem "minitest"
   gem "selenium-webdriver"
   gem "simplecov",                "~> 0.16.1", require: false
