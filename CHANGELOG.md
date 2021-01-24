@@ -8,6 +8,7 @@
   - Update to rails 6.0.3.4
   - Update to devise 4.7.3
   - Update to bootstrap 4.4.1
+  - Update to figaro 1.2.0
 
 ## 2.5.0 (February 28, 2019)
 
