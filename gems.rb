@@ -14,7 +14,7 @@ gem "bootstrap",                  "~> 4.4.1"
 gem "devise",                     "~> 4.7.3"
 gem "figaro",                     "~> 1.2.0"
 gem "font-awesome-sass",          "~> 5.12.0"
-gem "haml",                       "~> 5.0.4"
+gem "haml",                       "~> 5.2.1"
 gem "jquery-ui-rails",            "~> 6.0.1"
 gem "kaminari",                   "~> 1.1.1"
 

@@ -10,6 +10,7 @@
   - Update to bootstrap 4.4.1
   - Update to figaro 1.2.0
   - Update to font-awesome-sass 5.12.0
+  - Update to haml 5.2.1
 
 ## 2.5.0 (February 28, 2019)
 
