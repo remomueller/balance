@@ -4,7 +4,7 @@
 - **General Changes**
   - Improve display of backup status pages
 - **Gem Changes**
-  - Update to ruby 2.6.2
+  - Update to ruby 3.0.0
   - Update to rails 6.0.3.4
   - Update to devise 4.7.3
   - Update to bootstrap 4.4.1
