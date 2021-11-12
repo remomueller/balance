@@ -12,7 +12,7 @@ module Balance
   # Tracks personal finances.
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
-    config.load_defaults 6.0
+    config.load_defaults 6.1
     # TODO: Remove this line and make :zeitwerk work with module loading dependencies.
     config.autoloader = :classic # :zeitwerk
 
@@ -28,7 +28,14 @@ module Balance
     # Ignores custom error DOM elements created by Rails.
     config.action_view.field_error_proc = proc { |html_tag, _instance| html_tag }
 
-    # Add export module to path
+    # `form_with` forms are no longer remote by default in Rails 6.1. The
+    # following line re-enables the remote form functionality. Upgrading would
+    # require all remote forms to specify `local: false`.
+    # https://discuss.rubyonrails.org/t/rails-6-1-remote-forms-are-no-longer-default/76912
+    config.action_view.form_with_generates_remote_forms = true
+
+    # Add Model subfolders to autoload_paths
+    # config.autoload_paths += Dir[Rails.root.join("app", "models", "{**/}")]
     config.autoload_paths << Rails.root.join("app", "models", "export")
   end
 end

@@ -3,7 +3,7 @@
 [![Build Status](https://travis-ci.com/remomueller/balance.svg?branch=master)](https://travis-ci.com/remomueller/balance)
 [![Code Climate](https://codeclimate.com/github/remomueller/balance/badges/gpa.svg)](https://codeclimate.com/github/remomueller/balance)
 
-Easy home finance tracker, using Rails 6.0+ and Ruby 3.0+.
+Easy home finance tracker, using Rails 6.1+ and Ruby 3.0+.
 
 ## Installation
 
