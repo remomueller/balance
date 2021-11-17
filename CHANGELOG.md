@@ -1,4 +1,4 @@
-## 2.6.0
+## 2.6.0 (November 17, 2021)
 
 ### Enhancements
 - **General Changes**
