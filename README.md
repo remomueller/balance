@@ -51,6 +51,12 @@ Open a browser and go to: [http://localhost](http://localhost)
 
 All done!
 
+## Production
+
+```
+git pull; bundle update; rails db:migrate RAILS_ENV=production; rails log:clear RAILS_ENV=production; rails tmp:clear RAILS_ENV=production; rails assets:precompile RAILS_ENV=production;touch tmp/restart.txt
+```
+
 ## Contributing to Balance
 
 - Check out the latest master to make sure the feature hasn't been implemented
