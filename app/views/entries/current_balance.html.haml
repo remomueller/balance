@@ -23,8 +23,12 @@
           %tr
             %td= link_to account.name, account
             %td.text-right
-              %span{ class: account_charged_amount != account_amount ? "mark" : nil }= account_charged_amount.to_currency
-            %td.text-right= account_amount.to_currency
+              - css_classes = []
+              - css_classes << "mark" if account_charged_amount != account_amount
+              - css_classes << "text-danger" if account_charged_amount < 0
+              %span{ class: css_classes }= account_charged_amount.to_currency
+            %td.text-right
+              %span{ class: account_amount < 0 ? "text-danger" : nil }= account_amount.to_currency
       %tfoot
         %tr
           %th Total
