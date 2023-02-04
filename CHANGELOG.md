@@ -6,6 +6,7 @@
 - **General Changes**
   - Improve display of backup status pages
   - Fix display of buttons on the search bar
+  - Highlight charged balance amounts that are different from their final balance
 - **Gem Changes**
   - Update to ruby 3.1.2
   - Update to rails 6.1.4.4

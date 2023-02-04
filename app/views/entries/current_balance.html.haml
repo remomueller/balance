@@ -16,16 +16,15 @@
           %th.text-right Final Balance
       %tbody
         - accounts.each do |account|
+          - account_charged_amount = account.balance(:charged_amount)
+          - total_charged_amount += account_charged_amount
+          - account_amount = account.balance(:amount)
+          - total_amount += account_amount
           %tr
             %td= link_to account.name, account
             %td.text-right
-              - account_charged_amount = account.balance(:charged_amount)
-              - total_charged_amount += account_charged_amount
-              = account_charged_amount.to_currency
-            %td.text-right
-              - account_amount = account.balance(:amount)
-              - total_amount += account_amount
-              = account_amount.to_currency
+              %span{ class: account_charged_amount != account_amount ? "mark" : nil }= account_charged_amount.to_currency
+            %td.text-right= account_amount.to_currency
       %tfoot
         %tr
           %th Total
