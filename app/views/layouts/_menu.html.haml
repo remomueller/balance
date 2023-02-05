@@ -17,7 +17,7 @@
         = render "menu/item", title: "Averages", path: averages_entries_path
         = render "menu/item", title: "Graphs", path: overview_entries_path
         = render "menu/item", title: "Entries", path: entries_path, active: current_page?(entries_path) || (params[:controller] == "entries" && ["new", "create", "edit", "update", "destroy"].include?(params[:action]))
-
+        = render "menu/item", title: "Statistics", path: statistics_entries_path
 
       %ul.navbar-nav
         - if current_user

@@ -1,0 +1,5 @@
+<% url = statistics_graph_entries_path %>
+$("#year-selection").html("<%=j render "entries/overview_year_selection", current_year: @current_year, url: url %>");
+$("#statistics-search").html("<%=j render "entries/statistics_search", current_year: @current_year, url: url %>");
+$("#statistics_chart").data("chart", <%== @statistics.to_json %>);
+drawChart($("#statistics_chart"));

@@ -45,8 +45,8 @@
 
 @formsLoad = ->
   $("[data-object~=form-load]").each(->
-    element = $(this)[0]
-    Rails.fire(element, "submit")
+    Rails.fire($(this)[0], "submit")
+    true
   )
 
 @entriesReady = ->

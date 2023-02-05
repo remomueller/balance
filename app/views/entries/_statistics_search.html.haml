@@ -1,0 +1,6 @@
+= form_with url: url, method: :post, id: "search-form", class: "mb-3" do
+  = hidden_field_tag :year, current_year
+  .input-group
+    = text_field_tag :search, params[:search], autocomplete: "off", class: "form-control", placeholder: "Search"
+    .input-group-append
+      = link_to icon("fas", "search"), "#", class: "btn btn-primary", data: { object: "submit", target: "#search-form" }

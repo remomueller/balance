@@ -1,11 +1,10 @@
 - @title = "Earning and Spending"
 
 - content_for :header do
-  #year-selection= render "entries/overview_year_selection", current_year: @current_year
+  #year-selection= render "entries/overview_year_selection", current_year: @current_year, url: earning_spending_graph_entries_path(year: [@current_year - 1, current_user.first_billing_date.year].max)
   = @title
 
-= form_with url: earning_spending_graph_entries_path, data: { object: "form-load" }
-
-#month_chart{ style: "height: 450px; margin-bottom: 50px;", data: { object: "chart-container", chart: "" } }
+= form_with url: earning_spending_graph_entries_path, data: { object: "form-load" } do
+  #month_chart{ style: "height: 450px; margin-bottom: 50px;", data: { object: "chart-container", chart: "" } }
 
 %div{ style: "height: 450px", data: { object: "chart-container", chart: "#{@year_json.to_json}" } }

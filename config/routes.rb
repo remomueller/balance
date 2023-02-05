@@ -21,6 +21,8 @@ Rails.application.routes.draw do
       get :calendar
       get :overview
       post :earning_spending_graph
+      get :statistics
+      post :statistics_graph, path: "statistics"
       get :autocomplete
       get :averages
       get :current_balance, path: "current-balance"

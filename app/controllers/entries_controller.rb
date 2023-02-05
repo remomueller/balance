@@ -36,8 +36,8 @@ class EntriesController < ApplicationController
     end
     @year_json = {
       title: "Full Overview",
-      y_title: "Dollars",
       categories: (current_user.first_billing_date.year..Time.zone.today.year).to_a,
+      cross_hairs: true,
       series: [
         {
           name: 'Gross Income',
@@ -67,8 +67,8 @@ class EntriesController < ApplicationController
     end
     @month_json = {
       title: "#{@current_year} Overview",
-      y_title: 'Dollars',
       categories: Date::ABBR_MONTHNAMES.last(12),
+      cross_hairs: true,
       series: [
         {
           name: 'Gross Income',
@@ -88,6 +88,67 @@ class EntriesController < ApplicationController
         }
       ]
     }
+  end
+
+  # GET /entries/statistics
+  def statistics
+    @current_year = (params[:year].presence || Time.zone.today.year).to_i
+    @start_date = first_monday_of_year(@current_year)
+    @end_date = last_sunday_of_year(@current_year)
+    params[:search] = current_user.entries.with_date_for_calendar(@start_date, @end_date).last&.name if params[:search].blank?
+  end
+
+  # POST /entries/statistics_graph.js
+  def statistics_graph
+    @current_year = (params[:year].presence || Time.zone.today.year).to_i
+    @start_date = first_monday_of_year(@current_year)
+    @end_date = last_sunday_of_year(@current_year)
+
+    scope = current_user.entries.with_date_for_calendar(@start_date, @end_date)
+
+    @scope = if params[:search].present?
+      scope.includes(:charge_type).search(params[:search])
+    else
+      scope.none
+    end
+
+    @series = []
+
+    @scope.group_by(&:name).collect do |key, entries|
+      finals = entries.collect do |entry|
+        cost = ((entry.amount.presence || 0) / 100.0).round(2)
+        cost *= -1 unless entry.charge_type.counts_towards_spending?
+        {
+          week: entry.billing_date.cweek,
+          cost: cost
+        }
+      end
+      @series << {
+        name: key,
+        data: (1..weeks_per_year(@current_year)).collect do |week|
+          finals.select { |i| i[:week] == week }.collect{ |i| i[:cost] }.sum
+        end
+      }
+    end
+
+    if @series.blank?
+      @series << {
+        name: "Type a search above",
+        data: (1..weeks_per_year(@current_year)).collect { |week| 0 }
+      }
+    end
+
+    @statistics = {
+      title: "#{@current_year} Overview",
+      y_title: nil,
+      categories: (1..weeks_per_year(@current_year)).collect { |week| "Week #{week}" },
+      cross_hairs: true,
+      series: @series,
+      stacking: "normal",
+      step: 1,
+      rotation: -45
+    }
+    render "entries/statistics"
   end
 
   # GET /entries
@@ -205,10 +266,36 @@ class EntriesController < ApplicationController
     @net_profit = []
   end
 
+  # This gives the first date that falls in the first "c" week of the year. It
+  # relies on the fact that January 4th always falls in the first cweek of the
+  # year, and then it goes to the monday of that week.
+  def first_monday_of_year(year)
+    Date.new(year, 1, 4).monday
+  end
+
+  # This gives the last date of the year that falls in the last "c" week of the
+  # year. It relies on the fact that December 28th always falls in the last
+  # cweek of the year, and then finds the sunday of that week.
+  def last_sunday_of_year(year)
+    Date.new(year, 12, 28).sunday
+  end
+
+  # This provides the number of weeks in a year, relying on the fact that
+  # December 28th always falls in the last week of the year.
+  def weeks_per_year(year)
+    Date.new(year, 12, 28).cweek
+  end
+
   def add_to_graph(start_date, end_date)
     @gross_spending << current_user.gross(start_date, end_date, true)
     @gross_income << current_user.gross(start_date, end_date, false)
     @net_profit << current_user.net_profit(start_date, end_date)
+  end
+
+  def statistic_for_week(week)
+    @gross_spending << 1
+    @gross_income << 1
+    @net_profit << 1
   end
 
   def scope_includes(scope)
